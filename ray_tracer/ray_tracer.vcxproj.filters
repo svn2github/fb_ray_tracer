@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ray.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="raster_image.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="vector3D.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="point3D.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="ray_tracer.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
+    <ClCompile Include="colorRGB.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_sphere.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_plane.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="bottom-layer">
+      <UniqueIdentifier>{843912d7-7a13-491e-b8db-d9169720b346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\basis">
+      <UniqueIdentifier>{52c0a14b-c3e1-4bd5-9965-e418df30bdd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\surface">
+      <UniqueIdentifier>{d4a28d6a-d31e-465c-9826-e52b30aaa697}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ray.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="raster_image.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="light.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="world.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="vector3D.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="point3D.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="ray_tracer.hpp">
+      <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="colorRGB.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="surface.hpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="misc.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
