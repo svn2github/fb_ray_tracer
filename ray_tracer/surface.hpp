@@ -4,6 +4,7 @@
 #include "ray.hpp"
 #include "vector3D.hpp"
 #include "point3D.hpp"
+#include "colorRGB.hpp"
 #include "hit_record.hpp"
 
 namespace ray_tracer {
@@ -12,8 +13,10 @@ namespace ray_tracer {
 	public:
 		virtual bool hit(ray *, double, hit_record *) = 0; // @parameter 3: only hit_t is returned
 		virtual vector3D get_normal(point3D *) = 0;
+
 	public:
 		int shininess;
+		colorRGB diffuse, specular, ambient;
 	};
 
 	class surface_sphere : public surface {

@@ -9,11 +9,11 @@ namespace ray_tracer {
 	class light {
 	public:
 		light();
-		light(const point3D &, const colorRGB &, const colorRGB &, const colorRGB &);
+		light(const point3D &, const colorRGB &);
 
 	public:
 		point3D position;
-		colorRGB diffuse, specular, ambient;
+		colorRGB color;
 	};
 }
 
