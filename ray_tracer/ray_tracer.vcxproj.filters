@@ -38,6 +38,12 @@
     <ClCompile Include="hit_record.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
+    <ClCompile Include="surface.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_plane_bw.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">

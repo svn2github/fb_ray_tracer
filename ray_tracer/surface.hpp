@@ -13,6 +13,7 @@ namespace ray_tracer {
 	public:
 		virtual bool hit(ray *, double, hit_record *) = 0; // @parameter 3: only hit_t is returned
 		virtual vector3D get_normal(point3D *) = 0;
+		virtual void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *);
 
 	public:
 		int shininess;
@@ -32,6 +33,7 @@ namespace ray_tracer {
 		double radius;
 	};
 
+
 	class surface_plane : public surface {
 	public:
 		surface_plane();
@@ -43,6 +45,14 @@ namespace ray_tracer {
 	public:
 		point3D point_on_plane;
 		vector3D normal;
+	};
+
+	class surface_plane_bw : public surface_plane {
+	public:
+		surface_plane_bw();
+		surface_plane_bw(const point3D &, const vector3D &);
+
+		void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *);
 	};
 }
 
