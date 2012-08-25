@@ -51,7 +51,7 @@ namespace ray_tracer {
 				colorRGB color, color_final;
 				int r = 0, g = 0, b = 0;
 				for (std::vector<surface *>::iterator iter = world_ptr->surfaces_ptr.begin(); iter != world_ptr->surfaces_ptr.end(); ++iter) {
-					if (tracer_ptr->ray_color(this, world_ptr, *iter, &camera_ray, &color)) {
+					if (tracer_ptr->ray_color(world_ptr, *iter, &camera_ray, &color)) {
 						color_final += color;
 					}
 				}

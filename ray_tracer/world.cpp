@@ -17,12 +17,12 @@ namespace ray_tracer {
 		delete tracer_ptr;
 	}
 
-	void world::add_light(light *light_) {
-		lights_ptr.push_back(light_);
+	void world::add_light(light *light_ptr_) {
+		lights_ptr.push_back(light_ptr_);
 	}
 
-	void world::add_surface(surface *surface_) {
-		surfaces_ptr.push_back(surface_);
+	void world::add_surface(surface *surface_ptr_) {
+		surfaces_ptr.push_back(surface_ptr_);
 	}
 
 	void world::set_camera(camera *camera_ptr_) {
