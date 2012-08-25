@@ -33,7 +33,27 @@ namespace ray_tracer {
 		image_ptr = image_ptr_;
 	}
 
+	void world::fit_window(int w, int h, void *p) {
+		dest_w = w;
+		dest_h = h;
+		pixal_buffer_ptr = (int *)p;
+	}
+
 	void world::render_scene() {
-		image_ptr->render_scene(this, tracer_ptr, camera_ptr);
+		int *buffer_ptr = pixal_buffer_ptr;
+
+		for (int y = 0; y < dest_h; y += 1) {
+			for (int x = 0; x < dest_w; x += 1) {			
+				ray camera_ray = image_ptr->get_ray(x, y, dest_w, dest_h, camera_ptr);
+				colorRGB color, color_final;
+				int r = 0, g = 0, b = 0;
+				for (std::vector<surface *>::iterator iter = surfaces_ptr.begin(); iter != surfaces_ptr.end(); ++iter) {
+					if (tracer_ptr->ray_color(this, *iter, &camera_ray, &color)) {
+						color_final += color;
+					}
+				}
+				*buffer_ptr ++ = color_final.clamp();
+			}
+		}
 	}
 }

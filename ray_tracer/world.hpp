@@ -19,14 +19,16 @@ namespace ray_tracer {
 		void add_surface(surface *);
 		void set_camera(camera *);
 		void set_raster_image(raster_image *);
-		void render_scene();
-
+		void fit_window(int, int, void *); // Dimension: pixal
+		void render_scene();		
+		
 	private:
 		std::vector<light *> lights_ptr;
 		std::vector<surface *> surfaces_ptr;
 		camera *camera_ptr;
 		raster_image *image_ptr;
 		ray_tracer *tracer_ptr;
+		int dest_w, dest_h, *pixal_buffer_ptr;
 	};
 }
 

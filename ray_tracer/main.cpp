@@ -35,7 +35,6 @@ int main() {
 
 	cam = new camera(point3D(0, 0, 0), vector3D(-1, 0, 0), vector3D(0, 1, 0));
 	image = new raster_image(-20, 20, 20, -20);
-	image->fit(width, height, screen->pixels);
 	s = new surface_sphere(point3D(20, -20, 0), 10);
 	// s = new surface_plane(point3D(91, 19, 12), vector3D(-1, 0, 2));
 	s->shininess = 5;
@@ -45,6 +44,7 @@ int main() {
 	world.set_raster_image(image);
 	world.add_surface(s);
 	world.add_light(l);
+	world.fit_window(width, height, screen->pixels);
 
 	double y = -20, step = 0.3;
 	int fps = 0;
