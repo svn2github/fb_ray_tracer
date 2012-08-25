@@ -15,20 +15,17 @@ namespace ray_tracer {
 		normal = normal_;
 	}
 
-	bool surface_plane::hit(ray *ray_ptr, double *tmin_ptr, point3D *contact_ptr) {
+	bool surface_plane::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) {
 		double deno = normal * ray_ptr->dir;
 
 		if (ray_dblcmp(deno) == 0) {
 			return false;
 		} else {
 			double t = (point_on_plane - ray_ptr->start) * normal / deno;
-			if (ray_dblcmp(t - *tmin_ptr) == -1) {
+			if (ray_dblcmp(t - tmin) == -1) {
 				return false;
 			}
-			contact_ptr->x = ray_ptr->start.x + ray_ptr->dir.x * t;
-			contact_ptr->y = ray_ptr->start.y + ray_ptr->dir.y * t;
-			contact_ptr->z = ray_ptr->start.z + ray_ptr->dir.z * t;
-			*tmin_ptr = t;
+			hit_ptr->hit_t = t;
 			return true;
 		}
 	}

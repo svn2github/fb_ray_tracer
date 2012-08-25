@@ -5,7 +5,9 @@ namespace ray_tracer {
 	
 	light::light() {
 		position = point3D();
-		diffuse = specular = ambient = color_white;
+		diffuse = color_white;
+		specular = color_white;
+		ambient = color_white;
 	}
 
 	light::light(const point3D &position_, const colorRGB &diffuse_, const colorRGB &specular_, const colorRGB &ambient_) {

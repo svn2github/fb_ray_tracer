@@ -36,10 +36,10 @@ int main() {
 	cam = new camera(point3D(0, 0, 0), vector3D(-1, 0, 0), vector3D(0, 1, 0));
 	image = new raster_image(-20, 20, 20, -20);
 	s1 = new surface_sphere(point3D(20, -20, 0), 10);
-	s2 = new surface_plane(point3D(0, 0, -20), vector3D(-1, 0, 2));
+	s2 = new surface_plane(point3D(0, 0, -20), vector3D(-0.3, 0, 2));
 	s1->shininess = 5;
 	s2->shininess = 100;
-	l = new light(point3D(0, 0, 30), colorRGB(0.2, 0.6, 0.8), colorRGB(0.7, 0.7, 0.7), colorRGB(0.2, 0.2, 0.2));
+	l = new light(point3D(0, 0, 30), colorRGB(0.2, 0.6, 0.8), colorRGB(0.7, 0.7, 0.7), colorRGB(0.1, 0.1, 0.1));
 
 	world.set_camera(cam);
 	world.set_raster_image(image);
@@ -75,6 +75,7 @@ int main() {
 		} else {
 			++fps;
 		}
+
 		world.render_scene();
 
 		if (SDL_MUSTLOCK(screen)) {

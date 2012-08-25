@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="hit_record.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point3D.cpp" />
@@ -87,6 +88,7 @@
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="colorRGB.hpp" />
+    <ClInclude Include="hit_record.hpp" />
     <ClInclude Include="point3D.hpp" />
     <ClInclude Include="surface.hpp" />
     <ClCompile Include="world.cpp" />

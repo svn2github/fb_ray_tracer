@@ -5,16 +5,16 @@
 
 namespace ray_tracer {
 
-	colorRGB ray_tracer::ray_color(world *world_ptr, surface *surface_ptr, ray *ray_ptr, point3D *contact_point_ptr) {
+	colorRGB ray_tracer::ray_color(world *world_ptr, hit_record *record) {
 		vector3D n, h, v, l;
 		colorRGB Ia, Id, Is;
-		v = (ray_ptr->start - *contact_point_ptr).normalized();
-		n = surface_ptr->get_normal(contact_point_ptr);
+		v = (record->ray_ptr->start - record->hit_point).normalized();
+		n = record->normal;;
 		for (std::vector<light *>::iterator iter = world_ptr->lights_ptr.begin(); iter != world_ptr->lights_ptr.end(); ++iter) {
-			l = ((*iter)->position - *contact_point_ptr).normalized();
+			l = ((*iter)->position - record->hit_point).normalized();
 			h = (v + l).normalized();
 			Id += (*iter)->diffuse * max(0.0, n * l);
-			Is += (*iter)->specular * pow(max(0.0, n * h), surface_ptr->shininess);
+			Is += (*iter)->specular * pow(max(0.0, n * h), record->surface_ptr->shininess);
 			Ia += (*iter)->ambient;
 		}
 		return Id + Is + Ia;

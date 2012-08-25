@@ -15,8 +15,8 @@ namespace ray_tracer {
 		camera();
 
 	protected:
-		point3D _position;
-		vector3D _axis_u, _axis_v, _axis_w;
+		point3D position;
+		vector3D axis_u, axis_v, axis_w;
 	};
 }
 

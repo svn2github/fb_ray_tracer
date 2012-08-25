@@ -35,6 +35,9 @@
     <ClCompile Include="surface_plane.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="hit_record.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -79,6 +82,9 @@
       <Filter>bottom-layer\surface</Filter>
     </ClInclude>
     <ClInclude Include="misc.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="hit_record.hpp">
       <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>

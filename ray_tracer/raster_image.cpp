@@ -25,8 +25,8 @@ namespace ray_tracer {
 		point3D origin;
 		vector3D dir;
 
-		dir = -camera_ptr->_axis_w;
-		origin = camera_ptr->_position + u * camera_ptr->_axis_u + v * camera_ptr->_axis_v;
+		dir = -camera_ptr->axis_w;
+		origin = camera_ptr->position + u * camera_ptr->axis_u + v * camera_ptr->axis_v;
 		return ray(origin, dir);
 	}
 }
