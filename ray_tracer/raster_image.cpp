@@ -1,18 +1,15 @@
 
 #include "raster_image.hpp"
-#include "colorRGB.hpp"
 #include "ray.hpp"
-#include "surface.hpp"
-#include "vector3D.hpp"
-#include "world.hpp"
-#include "ray_tracer.hpp"
 #include "camera.hpp"
-#include <vector>
 
 namespace ray_tracer {
 
 	raster_image::raster_image() {
-		l = r = t = b = 0;
+		l = 0;
+		r = 0;
+		t = 0;
+		b = 0;
 	}
 
 	raster_image::raster_image(double l_, double r_, double t_, double b_) {
@@ -27,6 +24,7 @@ namespace ray_tracer {
 		double v = b + (t - b) * ((double)y + 0.5) / (double)h;
 		point3D origin;
 		vector3D dir;
+
 		dir = -camera_ptr->_axis_w;
 		origin = camera_ptr->_position + u * camera_ptr->_axis_u + v * camera_ptr->_axis_v;
 		return ray(origin, dir);

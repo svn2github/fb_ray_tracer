@@ -17,8 +17,8 @@ int main() {
 	world world;
 	camera *cam;
 	raster_image *image;
-	surface_sphere *s;
-	// surface_plane *s;
+	surface_sphere *s1;
+	surface_plane *s2;
 	light *l;
 	char buf[16];
 
@@ -35,14 +35,16 @@ int main() {
 
 	cam = new camera(point3D(0, 0, 0), vector3D(-1, 0, 0), vector3D(0, 1, 0));
 	image = new raster_image(-20, 20, 20, -20);
-	s = new surface_sphere(point3D(20, -20, 0), 10);
-	// s = new surface_plane(point3D(91, 19, 12), vector3D(-1, 0, 2));
-	s->shininess = 5;
+	s1 = new surface_sphere(point3D(20, -20, 0), 10);
+	s2 = new surface_plane(point3D(0, 0, -20), vector3D(-1, 0, 2));
+	s1->shininess = 5;
+	s2->shininess = 100;
 	l = new light(point3D(0, 0, 30), colorRGB(0.2, 0.6, 0.8), colorRGB(0.7, 0.7, 0.7), colorRGB(0.2, 0.2, 0.2));
 
 	world.set_camera(cam);
 	world.set_raster_image(image);
-	world.add_surface(s);
+	world.add_surface(s1);
+	// world.add_surface(s2);
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 
@@ -60,7 +62,7 @@ int main() {
 
 		y += step;
 		if (y < -20 || y > 20) step = -step;
-		s->center.y = y;
+		s1->center.y = y;
 
 		if (GetTickCount() - old_time > 1000) {
 			old_time = GetTickCount();

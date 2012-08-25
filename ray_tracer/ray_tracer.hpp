@@ -7,7 +7,7 @@ namespace ray_tracer {
 
 	class ray_tracer {
 	public:	
-		bool ray_color(world *, surface *, ray *, colorRGB *);
+		colorRGB ray_color(world *, surface *, ray *, point3D *);
 
 	private:
 		template <class T> T max(T, T);

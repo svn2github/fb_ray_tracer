@@ -8,7 +8,7 @@
 namespace ray_tracer {
 	class surface {
 	public:
-		virtual bool hit(ray *, double, point3D *) = 0;
+		virtual bool hit(ray *, double *, point3D *) = 0;
 		virtual vector3D get_normal(point3D *) = 0;
 	public:
 		int shininess;
@@ -19,7 +19,7 @@ namespace ray_tracer {
 		surface_sphere();
 		surface_sphere(const point3D &, double);
 
-		bool hit(ray *, double, point3D *);
+		bool hit(ray *, double *, point3D *);
 		vector3D get_normal(point3D *);
 
 	public:
@@ -32,7 +32,7 @@ namespace ray_tracer {
 		surface_plane();
 		surface_plane(const point3D &, const vector3D &);
 
-		bool hit(ray *, double, point3D *);
+		bool hit(ray *, double *, point3D *);
 		vector3D get_normal(point3D *);
 
 	public:

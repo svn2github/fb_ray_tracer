@@ -1,8 +1,8 @@
 #ifndef __RASTER_IMAGE_HPP
 #define __RASTER_IMAGE_HPP
 
-#include "vector3D.hpp"
-#include "world.hpp"
+#include "camera.hpp"
+#include "ray.hpp"
 
 namespace ray_tracer {
 
