@@ -12,6 +12,7 @@
 #include "camera.hpp"
 #include "camera_orthographic.hpp"
 #include "camera_pinhole.hpp"
+#include "simpson.hpp"
 
 using namespace ray_tracer;
 
@@ -137,7 +138,22 @@ void test2(SDL_Surface *screen) {
 	while(1);
 }
 
+class fun_obj : public simpson_func {
+	double operator()(double x) const {
+		return sin(x);
+	}
+};
+
+void test3() {
+	simpson s;
+	fun_obj f;
+	double a = s.integration(0, acos(-1.0), &f, 1e-15);
+	std::cout << a << std::endl;
+}
+
 int main() {
+	test3();
+
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
 		return 0;
