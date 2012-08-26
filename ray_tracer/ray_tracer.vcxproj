@@ -75,6 +75,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="camera_orthographic.cpp" />
+    <ClCompile Include="camera_pinhole.cpp" />
     <ClCompile Include="hit_record.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
@@ -89,8 +91,10 @@
     <ClCompile Include="ray_tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="camera.hpp" />
+    <ClInclude Include="camera_pinhole.hpp" />
     <ClInclude Include="colorRGB.hpp" />
     <ClInclude Include="hit_record.hpp" />
+    <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="point3D.hpp" />
     <ClInclude Include="surface_plane.hpp" />
     <ClInclude Include="surface_sphere.hpp" />

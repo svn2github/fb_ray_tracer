@@ -4,16 +4,16 @@
 namespace ray_tracer {
 
 	raster_image::raster_image() {
-		l = 0;
-		r = 0;
-		t = 0;
-		b = 0;
+		set_left(0);
+		set_right(0);
+		set_top(0);
+		set_bottom(0);
 	}
 
-	raster_image::raster_image(double l_, double r_, double t_, double b_) {
-		l = l_;
-		r = r_;
-		t = t_;
-		b = b_;
+	raster_image::raster_image(double left_, double right_, double top_, double bottom_) {
+		set_left(left_);
+		set_right(right_);
+		set_top(top_);
+		set_bottom(bottom_);
 	}
 }

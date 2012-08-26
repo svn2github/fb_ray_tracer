@@ -14,9 +14,6 @@
     <ClCompile Include="world.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>bottom-layer</Filter>
-    </ClCompile>
     <ClCompile Include="vector3D.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
@@ -44,6 +41,15 @@
     <ClCompile Include="surface_plane_bw.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="camera_orthographic.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="camera_pinhole.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -54,6 +60,9 @@
     </Filter>
     <Filter Include="bottom-layer\surface">
       <UniqueIdentifier>{d4a28d6a-d31e-465c-9826-e52b30aaa697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\camera">
+      <UniqueIdentifier>{8432a768-f6d1-45bf-a97d-9420b946e42e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +76,6 @@
       <Filter>bottom-layer</Filter>
     </ClInclude>
     <ClInclude Include="world.hpp">
-      <Filter>bottom-layer</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.hpp">
       <Filter>bottom-layer</Filter>
     </ClInclude>
     <ClInclude Include="vector3D.hpp">
@@ -98,6 +104,15 @@
     </ClInclude>
     <ClInclude Include="surface_plane.hpp">
       <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.hpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_orthographic.hpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_pinhole.hpp">
+      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
