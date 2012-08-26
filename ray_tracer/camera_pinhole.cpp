@@ -16,6 +16,11 @@ namespace ray_tracer {
 		up = up_;
 		compute_axis();
 	}
+
+	void camera_pinhole::zoom(double factor) {
+		dist *= factor;
+		lookat = eye - dist * axis_w;
+	}
 	
 	ray camera_pinhole::get_ray(int x, int y, int w, int h, raster_image *image_ptr) const {
 		double u = image_ptr->get_left() + (image_ptr->get_right() - image_ptr->get_left()) * ((double)x + 0.5) / (double)w;

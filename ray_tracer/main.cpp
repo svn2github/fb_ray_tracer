@@ -92,7 +92,7 @@ void test1(SDL_Surface *screen) {
 
 void test2(SDL_Surface *screen) {
 	world world;
-	camera *cam;
+	camera_pinhole *cam;
 	raster_image *image;
 	surface_sphere *s1, *s2;
 	light *l;
@@ -127,6 +127,7 @@ void test2(SDL_Surface *screen) {
 			return;
 		}
 	}
+	cam->zoom(6);
 	world.render_scene();
 	if (SDL_MUSTLOCK(screen)) {
 		SDL_UnlockSurface(screen);

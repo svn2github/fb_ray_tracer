@@ -9,6 +9,7 @@ namespace ray_tracer {
 		camera_pinhole();
 		camera_pinhole(const point3D &, const point3D &, const vector3D &);
 		ray get_ray(int, int, int, int, raster_image *) const;
+		void zoom(double);
 	};
 }
 
