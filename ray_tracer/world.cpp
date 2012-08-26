@@ -49,7 +49,7 @@ namespace ray_tracer {
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
-				ray_from_camera = image_ptr->get_ray(x, y, dest_w, dest_h, camera_ptr);
+				ray_from_camera = camera_ptr->get_ray(x, y, dest_w, dest_h, image_ptr);
 				record.hit_t = ray_huge_double;
 				hit_flag = false;
 				for (std::vector<surface *>::iterator iter = surfaces_ptr.begin(); iter != surfaces_ptr.end(); ++iter) {
