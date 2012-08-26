@@ -4,12 +4,12 @@
 namespace ray_tracer {
 
 	ray::ray() {
-		start = point3D();
-		dir = vector3D();
+		set_origin(point3D());
+		set_dir(vector3D());
 	}
 
-	ray::ray(const point3D &start_, const vector3D &dir_) { 
-		start = start_;
-		dir = dir_; 
+	ray::ray(const point3D &origin_, const vector3D &dir_) { 
+		set_origin(origin_);
+		set_dir(dir_);
 	}
 }

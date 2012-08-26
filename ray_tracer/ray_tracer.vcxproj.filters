@@ -93,5 +93,11 @@
     <ClInclude Include="hit_record.hpp">
       <Filter>bottom-layer\basis</Filter>
     </ClInclude>
+    <ClInclude Include="surface_sphere.hpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_plane.hpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -92,6 +92,8 @@
     <ClInclude Include="colorRGB.hpp" />
     <ClInclude Include="hit_record.hpp" />
     <ClInclude Include="point3D.hpp" />
+    <ClInclude Include="surface_plane.hpp" />
+    <ClInclude Include="surface_sphere.hpp" />
     <ClInclude Include="surface.hpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>

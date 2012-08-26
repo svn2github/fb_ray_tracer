@@ -62,7 +62,7 @@ namespace ray_tracer {
 					}
 				}
 				if (hit_flag) { 
-					record.hit_point = ray_from_camera.start + ray_from_camera.dir * record.hit_t;
+					record.hit_point = ray_from_camera.get_origin() + ray_from_camera.get_dir() * record.hit_t;
 					record.normal = record.surface_ptr->get_normal(&record.hit_point);
 					record.ray_ptr = &ray_from_camera;
 					color = tracer_ptr->ray_color(this, &record);

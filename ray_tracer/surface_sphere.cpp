@@ -1,26 +1,26 @@
 
 #include "misc.hpp"
-#include "surface.hpp"
+#include "surface_sphere.hpp"
 #include <cmath>
 
 namespace ray_tracer {
 
 	surface_sphere::surface_sphere() {
-		center = point3D();
-		radius = 0;
+		set_center(point3D());
+		set_radius(0);
 	}
 
 	surface_sphere::surface_sphere(const point3D &center_, double radius_) {
-		center = center_;
-		radius = radius_;
+		set_center(center_);
+		set_radius(radius_);
 	}
 
-	bool surface_sphere::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) {
-		point3D e = ray_ptr->start, c = center;
-		vector3D d = ray_ptr->dir;
+	bool surface_sphere::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) const {
+		point3D e = ray_ptr->get_origin(), c = center;
+		vector3D d = ray_ptr->get_dir();
 		double a = d * (e - c), d2 = d.length2();
 		vector3D cc = e - c;
-		double delta = a * a - d2 * (cc.length2() - radius * radius);
+		double delta = a * a - d2 * (cc.length2() - radius2);
 		double t;
 
 		if (ray_dblcmp(delta) == -1) {
@@ -35,7 +35,7 @@ namespace ray_tracer {
 		}
 	}
 
-	vector3D surface_sphere::get_normal(point3D *point_ptr) {
+	vector3D surface_sphere::get_normal(point3D *point_ptr) const {
 		return (*point_ptr - center).normalized();
 	}
 

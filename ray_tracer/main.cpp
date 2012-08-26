@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include "vector3D.hpp"
 #include "surface.hpp"
+#include "surface_sphere.hpp"
+#include "surface_plane.hpp"
 #include "raster_image.hpp"
 #include "world.hpp"
 #include "light.hpp"
@@ -53,7 +55,7 @@ int main() {
 	world.set_camera(cam);
 	world.set_raster_image(image);
 	world.add_surface(s1);
-	// world.add_surface(s2);
+	world.add_surface(s2);
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 
@@ -71,7 +73,10 @@ int main() {
 
 		y += step;
 		if (y < -20 || y > 20) step = -step;
-		s1->center.y = y;
+		
+		point3D center = s1->get_center();
+		center.y = y;
+		s1->set_center(center);
 
 		if (GetTickCount() - old_time > 1000) {
 			old_time = GetTickCount();

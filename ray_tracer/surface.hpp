@@ -11,42 +11,13 @@ namespace ray_tracer {
 
 	class surface {
 	public:
-		virtual bool hit(ray *, double, hit_record *) = 0; // @parameter 3: only hit_t is returned
-		virtual vector3D get_normal(point3D *) = 0;
-		virtual void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *);
+		virtual bool hit(ray *, double, hit_record *) const = 0; // @parameter 3: only hit_t is returned
+		virtual vector3D get_normal(point3D *) const = 0;
+		virtual void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *) const;
 	public:
 		// material
 		int shininess;
 		colorRGB diffuse, specular, ambient;
-	};
-
-	class surface_sphere : public surface {
-	public:
-		surface_sphere();
-		surface_sphere(const point3D &, double);
-		bool hit(ray *, double, hit_record *);
-		vector3D get_normal(point3D *);
-	public:
-		point3D center;
-		double radius;
-	};
-
-	class surface_plane : public surface {
-	public:
-		surface_plane();
-		surface_plane(const point3D &, const vector3D &);
-		bool hit(ray *, double, hit_record *);
-		vector3D get_normal(point3D *);
-	public:
-		point3D point_on_plane;
-		vector3D normal;
-	};
-
-	class surface_plane_bw : public surface_plane {
-	public:
-		surface_plane_bw();
-		surface_plane_bw(const point3D &, const vector3D &);
-		void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *);
 	};
 }
 
