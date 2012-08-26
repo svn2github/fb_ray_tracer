@@ -4,7 +4,6 @@
 #include <cmath>
 
 namespace ray_tracer {
-
 	class vector3D {
 	public:
 		vector3D();
@@ -12,7 +11,6 @@ namespace ray_tracer {
 		double length() const;
 		double inv_length() const;
 		vector3D normalized() const;
-
 		friend vector3D operator+(const vector3D &, const vector3D &);
 		friend vector3D &operator+=(vector3D &, const vector3D &);
 		friend vector3D operator-(const vector3D &, const vector3D &);
@@ -22,7 +20,6 @@ namespace ray_tracer {
 		friend vector3D operator*(const vector3D &, double);
 		friend vector3D operator*(double, const vector3D &);
 		friend vector3D operator/(const vector3D &, double);
-
 	public:
 		double x, y, z;
 	};

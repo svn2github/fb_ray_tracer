@@ -4,14 +4,11 @@
 #include "camera.hpp"
 
 namespace ray_tracer {
-
 	class raster_image {
 	public:
 		friend class camera;
-
 		raster_image();
 		raster_image(double, double, double, double);
-
 	private:
 		double l, r, t, b;
 	};

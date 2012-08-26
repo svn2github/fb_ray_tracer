@@ -4,16 +4,13 @@
 #include "vector3D.hpp"
 
 namespace ray_tracer {
-
 	class point3D {
 	public:
 		point3D();
 		point3D(double, double, double);
-
 		friend point3D operator+(const point3D &, const vector3D &);
 		friend point3D &operator+=(point3D &, const vector3D &);
 		friend vector3D operator-(const point3D &, const point3D &);
-
 	public:
 		double x, y, z;
 	};

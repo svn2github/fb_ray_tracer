@@ -5,12 +5,10 @@
 #include "colorRGB.hpp"
 
 namespace ray_tracer {
-	
 	class light {
 	public:
 		light();
 		light(const point3D &, const colorRGB &);
-
 	public:
 		point3D position;
 		colorRGB color;

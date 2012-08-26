@@ -5,14 +5,11 @@
 #include "point3D.hpp"
 
 namespace ray_tracer {
-
 	class surface;
 	class ray;
-
 	class hit_record {
 	public:
 		hit_record();
-	
 	public:
 		double hit_t;
 		point3D hit_point;

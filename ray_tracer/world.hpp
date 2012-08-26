@@ -7,11 +7,9 @@
 #include "camera.hpp"
 
 namespace ray_tracer {
-
 	class world {
 		friend class raster_image;
 		friend class ray_tracer;
-
 	public:
 		world();
 		~world();
@@ -21,7 +19,6 @@ namespace ray_tracer {
 		void set_raster_image(raster_image *);
 		void fit_window(int, int, void *); // Dimension: pixal
 		void render_scene();		
-		
 	private:
 		std::vector<light *> lights_ptr;
 		std::vector<surface *> surfaces_ptr;

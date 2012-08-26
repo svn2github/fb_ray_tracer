@@ -69,7 +69,7 @@ namespace ray_tracer {
 				} else {
 					color = color_black; // background color
 				}
-				*buffer_ptr ++ = color.clamp();
+				*buffer_ptr ++ = color.clamp_to_int();
 			}
 		}
 	}
