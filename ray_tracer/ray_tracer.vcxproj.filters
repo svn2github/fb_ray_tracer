@@ -50,9 +50,6 @@
     <ClCompile Include="camera_pinhole.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
-    <ClCompile Include="simpson.cpp">
-      <Filter>bottom-layer\basis\algorithm</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -67,7 +64,7 @@
     <Filter Include="bottom-layer\camera">
       <UniqueIdentifier>{8432a768-f6d1-45bf-a97d-9420b946e42e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="bottom-layer\basis\algorithm">
+    <Filter Include="bottom-layer\integrator">
       <UniqueIdentifier>{420c9029-edd0-4cfc-840e-0dbf0c616837}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -121,7 +118,7 @@
       <Filter>bottom-layer\camera</Filter>
     </ClInclude>
     <ClInclude Include="simpson.hpp">
-      <Filter>bottom-layer\basis\algorithm</Filter>
+      <Filter>bottom-layer\integrator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

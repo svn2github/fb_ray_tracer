@@ -84,7 +84,6 @@
     <ClCompile Include="raster_image.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="colorRGB.cpp" />
-    <ClCompile Include="simpson.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="surface_plane.cpp" />
     <ClCompile Include="surface_plane_bw.cpp" />

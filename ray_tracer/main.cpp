@@ -138,16 +138,17 @@ void test2(SDL_Surface *screen) {
 	while(1);
 }
 
-class fun_obj : public simpson_func {
+class fun {
+public:
 	double operator()(double x) const {
 		return sin(x);
 	}
 };
 
 void test3() {
-	simpson s;
-	fun_obj f;
-	double a = s.integration(0, acos(-1.0), &f, 1e-15);
+	simpson<fun> s;
+	fun f;
+	double a = s.integration(0, acos(-1.0), f, 1e-15);
 	std::cout << a << std::endl;
 }
 
@@ -165,7 +166,7 @@ int main() {
 		return 0;
 	}
 
-	test2(screen);
+	test1(screen);
 
 	SDL_Quit();
 	return 0;
