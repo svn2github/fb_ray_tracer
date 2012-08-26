@@ -9,6 +9,7 @@ namespace ray_tracer {
 		vector3D();
 		vector3D(double, double, double);
 		double length() const;
+		double length2() const;
 		double inv_length() const;
 		vector3D normalized() const;
 		friend vector3D operator+(const vector3D &, const vector3D &);
@@ -23,6 +24,36 @@ namespace ray_tracer {
 	public:
 		double x, y, z;
 	};
+	
+	inline double vector3D::length() const {
+		return sqrt(x * x + y * y + z * z);
+	}
+
+	inline double vector3D::length2() const {
+		return x * x + y * y + z * z;
+	}
+
+	// This code is copyed from Quake III Q_rsqrt
+	inline double vector3D::inv_length() const {
+		float number = (float)(x * x + y * y + z * z);
+		int i;
+		float x2, yy;
+		const float threehalfs = 1.5f;
+
+		x2 = number * 0.5f;
+		yy = number;
+		i = * (int *) &yy;  // evil floating point bit level hacking
+		i = 0x5f3759df - (i >> 1); // what the fuck?
+		yy = * (float *) &i;
+		yy = yy * (threehalfs - (x2 * yy * yy)); // 1st iteration
+		// yy = yy * (threehalfs - (x2 * yy * yy)); // 2nd iteration, this can be removed
+		return yy;
+	}
+
+	inline vector3D vector3D::normalized() const {
+		double l = inv_length();
+		return vector3D(x * l, y * l, z * l);
+	}
 
 	inline vector3D operator+(const vector3D &v1, const vector3D &v2) {
 		return vector3D(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);

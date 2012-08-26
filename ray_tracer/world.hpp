@@ -20,8 +20,8 @@ namespace ray_tracer {
 		void fit_window(int, int, void *); // Dimension: pixal
 		void render_scene();		
 	private:
-		std::vector<light *> lights_ptr;
-		std::vector<surface *> surfaces_ptr;
+		std::vector<light *> lights;
+		std::vector<surface *> surfaces;
 		camera *camera_ptr;
 		raster_image *image_ptr;
 		ray_tracer *tracer_ptr;

@@ -19,11 +19,11 @@ namespace ray_tracer {
 	}
 
 	void world::add_light(light *light_ptr_) {
-		lights_ptr.push_back(light_ptr_);
+		lights.push_back(light_ptr_);
 	}
 
 	void world::add_surface(surface *surface_ptr_) {
-		surfaces_ptr.push_back(surface_ptr_);
+		surfaces.push_back(surface_ptr_);
 	}
 
 	void world::set_camera(camera *camera_ptr_) {
@@ -52,7 +52,7 @@ namespace ray_tracer {
 				ray_from_camera = camera_ptr->get_ray(x, y, dest_w, dest_h, image_ptr);
 				record.hit_t = ray_huge_double;
 				hit_flag = false;
-				for (std::vector<surface *>::iterator iter = surfaces_ptr.begin(); iter != surfaces_ptr.end(); ++iter) {
+				for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 					if ((*iter)->hit(&ray_from_camera, 0, &t_record)) {
 						if (t_record.hit_t < record.hit_t) {
 							record.hit_t = t_record.hit_t;

@@ -53,7 +53,7 @@ int main() {
 	world.set_camera(cam);
 	world.set_raster_image(image);
 	world.add_surface(s1);
-	world.add_surface(s2);
+	// world.add_surface(s2);
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 

@@ -13,7 +13,7 @@ namespace ray_tracer {
 		record->surface_ptr->get_color(&record->hit_point, &diffuse, &specular, &ambient);
 		v = (record->ray_ptr->start - record->hit_point).normalized();
 		n = record->normal;
-		for (std::vector<light *>::iterator iter = world_ptr->lights_ptr.begin(); iter != world_ptr->lights_ptr.end(); ++iter) {
+		for (std::vector<light *>::iterator iter = world_ptr->lights.begin(); iter != world_ptr->lights.end(); ++iter) {
 			l = ((*iter)->position - record->hit_point).normalized();
 			h = (v + l).normalized();
 			Id += (*iter)->color * diffuse * max(0.0, n * l);
