@@ -44,6 +44,7 @@ void test1(SDL_Surface *screen) {
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
+	world.set_ambient(color_blue);
 	world.set_camera(cam);
 	world.set_raster_image(image);
 	world.add_surface(s1);

@@ -24,9 +24,9 @@ namespace ray_tracer {
 			temp = n * h;
 			if (temp > 0.0) {
 				Is += (*iter)->get_color() * specular * pow(temp, record->surface_ptr->shininess);
-			}
-			Ia += (*iter)->get_color() * ambient;
+			}			
 		}
+		Ia += record->world_ptr->get_ambient() * ambient;
 		return Id + Is + Ia;
 	}
 }

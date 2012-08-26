@@ -12,6 +12,7 @@ namespace ray_tracer {
 
 	world::world() {
 		tracer_ptr = new ray_tracer;
+		set_ambient(color_white);
 	}
 
 	world::~world() {
@@ -64,6 +65,7 @@ namespace ray_tracer {
 				if (hit_flag) { 
 					record.hit_point = ray_from_camera.get_origin() + ray_from_camera.get_dir() * record.hit_t;
 					record.normal = record.surface_ptr->get_normal(&record.hit_point);
+					record.world_ptr = this;
 					record.ray_ptr = &ray_from_camera;
 					color = tracer_ptr->ray_color(this, &record);
 				} else {
