@@ -46,7 +46,7 @@ void test1(SDL_Surface *screen) {
 	
 	world.set_ambient(color_blue);
 	world.set_camera(cam);
-	world.set_view_plane(image);
+	world.set_view_plane(plane);
 	world.add_surface(s1);
 	// world.add_surface(s2);
 	world.add_light(l);
@@ -95,12 +95,12 @@ void test1(SDL_Surface *screen) {
 void test2(SDL_Surface *screen) {
 	world world;
 	camera_pinhole *cam;
-	view_plane *image;
+	view_plane *plane;
 	surface_sphere *s1, *s2;
 	light *l;
 	
 	cam = new camera_pinhole(point3D(0, 0, 0), point3D(3, 0, 0), vector3D(0, 1, 0));
-	image = new view_plane(-20, 20, 20, -20);
+	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -9, 0), 10);
 	s1->shininess = 5;
@@ -117,7 +117,7 @@ void test2(SDL_Surface *screen) {
 	l = new light(point3D(0, 0, 30), color_white);
 	
 	world.set_camera(cam);
-	world.set_view_plane(image);
+	world.set_view_plane(plane);
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_light(l);
