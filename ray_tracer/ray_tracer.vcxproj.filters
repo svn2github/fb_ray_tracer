@@ -5,9 +5,6 @@
       <Filter>bottom-layer</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="raster_image.cpp">
-      <Filter>bottom-layer</Filter>
-    </ClCompile>
     <ClCompile Include="light.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
@@ -50,6 +47,9 @@
     <ClCompile Include="camera_pinhole.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
+    <ClCompile Include="view_plane.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -70,9 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray.hpp">
-      <Filter>bottom-layer</Filter>
-    </ClInclude>
-    <ClInclude Include="raster_image.hpp">
       <Filter>bottom-layer</Filter>
     </ClInclude>
     <ClInclude Include="light.hpp">
@@ -119,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="simpson.hpp">
       <Filter>bottom-layer\integrator</Filter>
+    </ClInclude>
+    <ClInclude Include="view_plane.hpp">
+      <Filter>bottom-layer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

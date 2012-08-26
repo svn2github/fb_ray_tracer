@@ -8,7 +8,7 @@ namespace ray_tracer {
 	public:
 		camera_orthographic();
 		camera_orthographic(const point3D &, const point3D &, const vector3D &);
-		ray get_ray(int, int, int, int, raster_image *) const;
+		ray get_ray(int, int, int, int, view_plane *) const;
 	};
 }
 

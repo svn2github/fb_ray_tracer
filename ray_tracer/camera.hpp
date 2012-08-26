@@ -4,12 +4,12 @@
 #include "vector3D.hpp"
 #include "point3D.hpp"
 #include "ray.hpp"
-#include "raster_image.hpp"
+#include "view_plane.hpp"
 
 namespace ray_tracer {
 	class camera {
 	public:
-		virtual ray get_ray(int, int, int, int, raster_image *) const = 0;
+		virtual ray get_ray(int, int, int, int, view_plane *) const = 0;
 		point3D get_eye() const;
 		void set_eye(const point3D &);
 		point3D get_lookat() const;

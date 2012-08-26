@@ -81,7 +81,7 @@
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point3D.cpp" />
-    <ClCompile Include="raster_image.cpp" />
+    <ClCompile Include="view_plane.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="colorRGB.cpp" />
     <ClCompile Include="surface.cpp" />
@@ -105,7 +105,7 @@
   <ItemGroup>
     <ClInclude Include="light.hpp" />
     <ClInclude Include="misc.hpp" />
-    <ClInclude Include="raster_image.hpp" />
+    <ClInclude Include="view_plane.hpp" />
     <ClInclude Include="ray.hpp" />
     <ClInclude Include="vector3D.hpp" />
     <ClInclude Include="ray_tracer.hpp" />

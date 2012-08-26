@@ -8,7 +8,7 @@
 
 namespace ray_tracer {
 	class world {
-		friend class raster_image;
+		friend class view_plane;
 		friend class ray_tracer;
 	public:
 		world();
@@ -18,7 +18,7 @@ namespace ray_tracer {
 		void add_light(light *);
 		void add_surface(surface *);
 		void set_camera(camera *);
-		void set_raster_image(raster_image *);
+		void set_view_plane(view_plane *);
 		void fit_window(int, int, void *); // Dimension: pixal
 		void render_scene();		
 	private:
@@ -26,7 +26,7 @@ namespace ray_tracer {
 		std::vector<light *> lights;
 		std::vector<surface *> surfaces;
 		camera *camera_ptr;
-		raster_image *image_ptr;
+		view_plane *plane_ptr;
 		ray_tracer *tracer_ptr;
 		int dest_w, dest_h, *pixal_buffer_ptr;
 	};

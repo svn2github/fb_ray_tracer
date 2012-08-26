@@ -4,7 +4,7 @@
 #include "vector3D.hpp"
 #include "light.hpp"
 #include "surface.hpp"
-#include "raster_image.hpp"
+#include "view_plane.hpp"
 #include "ray_tracer.hpp"
 #include "hit_record.hpp"
 
@@ -31,8 +31,8 @@ namespace ray_tracer {
 		camera_ptr = camera_ptr_;
 	}
 
-	void world::set_raster_image(raster_image *image_ptr_) {
-		image_ptr = image_ptr_;
+	void world::set_view_plane(view_plane *plane_ptr_) {
+		plane_ptr = plane_ptr_;
 	}
 
 	void world::fit_window(int w, int h, void *p) {
@@ -50,7 +50,7 @@ namespace ray_tracer {
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
-				ray_from_camera = camera_ptr->get_ray(x, y, dest_w, dest_h, image_ptr);
+				ray_from_camera = camera_ptr->get_ray(x, y, dest_w, dest_h, plane_ptr);
 				record.hit_t = ray_huge_double;
 				hit_flag = false;
 				for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
