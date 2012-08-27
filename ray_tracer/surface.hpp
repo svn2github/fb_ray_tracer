@@ -1,14 +1,12 @@
 #ifndef __SURFACE_HPP
 #define __SURFACE_HPP
 
-#include "ray.hpp"
 #include "vector3D.hpp"
 #include "point3D.hpp"
 #include "colorRGB.hpp"
 #include "hit_info.hpp"
 
 namespace ray_tracer {
-
 	class surface {
 	public:
 		/** parameter 3: only hit_t is returned */

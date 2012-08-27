@@ -1,23 +1,20 @@
-#ifndef __RAY_TRACER_HPP
-#define __RAY_TRACER_HPP
+#ifndef __TRACER_HPP
+#define __TRACER_HPP
 
 #include "misc.hpp"
+#include "colorRGB.hpp"
+#include "hit_info.hpp"
 
 namespace ray_tracer {
-	class ray_tracer {
+	class world;
+	class tracer {
 	public:	
 		colorRGB ray_color(world *, hit_info *);
 	private:
-		template <class T> T max(T, T);
 		double pow(double, int);
 	};
 
-	template <class T> 
-	inline T ray_tracer::max(T x, T y) {
-		return x > y ? x : y;
-	}
-
-	inline double ray_tracer::pow(double base, int power) {
+	inline double tracer::pow(double base, int power) {
 		if (power <= 0) {
 			return 1;
 		} else {

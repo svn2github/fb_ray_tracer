@@ -1,44 +1,21 @@
 
-#include "world.hpp"
 #include "ray.hpp"
-#include "vector3D.hpp"
 #include "light.hpp"
 #include "surface.hpp"
 #include "view_plane.hpp"
-#include "ray_tracer.hpp"
-#include "hit_info.hpp"
+#include "tracer.hpp"
+#include "camera.hpp"
+#include "world.hpp"
 
 namespace ray_tracer {
 
 	world::world() {
-		tracer_ptr = new ray_tracer;
+		tracer_ptr = new tracer;
 		set_ambient(color_white);
 	}
 
 	world::~world() {
 		delete tracer_ptr;
-	}
-
-	void world::add_light(light *light_ptr_) {
-		lights.push_back(light_ptr_);
-	}
-
-	void world::add_surface(surface *surface_ptr_) {
-		surfaces.push_back(surface_ptr_);
-	}
-
-	void world::set_camera(camera *camera_ptr_) {
-		camera_ptr = camera_ptr_;
-	}
-
-	void world::set_view_plane(view_plane *plane_ptr_) {
-		plane_ptr = plane_ptr_;
-	}
-
-	void world::fit_window(int w, int h, void *p) {
-		dest_w = w;
-		dest_h = h;
-		pixal_buffer_ptr = (int *)p;
 	}
 
 	bool world::get_hit(ray *ray_ptr, hit_info *info_ptr) {
@@ -69,19 +46,10 @@ namespace ray_tracer {
 
 	void world::render_scene() {
 		int *buffer_ptr = pixal_buffer_ptr;
-		ray ray;
-		colorRGB color;
-		hit_info info;
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
-				ray = camera_ptr->get_ray(x, y, dest_w, dest_h, plane_ptr);
-				if (get_hit(&ray, &info)) {
-					color = tracer_ptr->ray_color(this, &info);
-				} else {
-					color = color_black; // background color
-				}
-				*buffer_ptr ++ = color.clamp_to_int();
+				*buffer_ptr ++ = camera_ptr->render_scene(x, y, dest_w, dest_h, this).clamp_to_int();
 			}
 		}
 	}

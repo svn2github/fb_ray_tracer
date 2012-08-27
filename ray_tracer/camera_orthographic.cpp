@@ -1,4 +1,8 @@
 
+#include "view_plane.hpp"
+#include "tracer.hpp"
+#include "ray.hpp"
+#include "world.hpp"
 #include "camera_orthographic.hpp"
 
 namespace ray_tracer {
@@ -8,6 +12,7 @@ namespace ray_tracer {
 		lookat = point3D();
 		up = vector3D();
 		compute_axis();
+		view_dist = 0;
 	}
 
 	camera_orthographic::camera_orthographic(const point3D &eye_, const point3D &lookat_, const vector3D &up_) {
@@ -15,16 +20,22 @@ namespace ray_tracer {
 		lookat = lookat_;
 		up = up_;
 		compute_axis();
+		view_dist = 0;
 	}
 	
-	ray camera_orthographic::get_ray(int x, int y, int w, int h, view_plane *plane_ptr) const {
-		double u = plane_ptr->get_left() + (plane_ptr->get_right() - plane_ptr->get_left()) * ((double)x + 0.5) / (double)w;
-		double v = plane_ptr->get_bottom() + (plane_ptr->get_top() - plane_ptr->get_bottom()) * ((double)y + 0.5) / (double)h;
+	colorRGB camera_orthographic::render_scene(int x, int y, int w, int h, world *world_ptr) const {
+		double u = world_ptr->get_view_plane()->get_left() + (world_ptr->get_view_plane()->get_right() - world_ptr->get_view_plane()->get_left()) * ((double)x + 0.5) / (double)w;
+		double v = world_ptr->get_view_plane()->get_bottom() + (world_ptr->get_view_plane()->get_top() - world_ptr->get_view_plane()->get_bottom()) * ((double)y + 0.5) / (double)h;
+		hit_info info;
 		point3D origin;
 		vector3D dir;
 
 		dir = -axis_w;
 		origin = eye + u * axis_u + v * axis_v;
-		return ray(origin, dir);
+		if (world_ptr->get_hit(&ray(eye + u * axis_u + v * axis_v, -axis_w), &info)) {
+			return world_ptr->get_tracer()->ray_color(world_ptr, &info);
+		} else {
+			return world_ptr->get_background();
+		}
 	}
 }

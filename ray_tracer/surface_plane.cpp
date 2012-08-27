@@ -1,7 +1,8 @@
 
-#include "misc.hpp"
-#include "surface_plane.hpp"
 #include <cmath>
+#include "misc.hpp"
+#include "ray.hpp"
+#include "surface_plane.hpp"
 
 namespace ray_tracer {
 

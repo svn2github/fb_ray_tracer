@@ -1,7 +1,8 @@
 
-#include "misc.hpp"
-#include "surface_sphere.hpp"
 #include <cmath>
+#include "misc.hpp"
+#include "ray.hpp"
+#include "surface_sphere.hpp"
 
 namespace ray_tracer {
 

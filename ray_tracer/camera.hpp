@@ -3,26 +3,28 @@
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
-#include "ray.hpp"
-#include "view_plane.hpp"
+#include "colorRGB.hpp"
 
 namespace ray_tracer {
+	class world;
 	class camera {
 	public:
-		virtual ray get_ray(int, int, int, int, view_plane *) const = 0;
+		virtual colorRGB render_scene(int, int, int, int, world *) const = 0;
 		point3D get_eye() const;
 		void set_eye(const point3D &);
 		point3D get_lookat() const;
 		void set_lookat(const point3D &);
 		vector3D get_up() const;
 		void set_up(const vector3D &);
+		double get_view_dist() const;
+		double set_view_dist(const double &);
 	protected:
 		void compute_axis();
 	protected:
 		point3D eye, lookat;
 		vector3D up;
 		vector3D axis_u, axis_v, axis_w;
-		double dist;
+		double view_dist;
 	};
 
 	inline point3D camera::get_eye() const {
@@ -50,6 +52,14 @@ namespace ray_tracer {
 	inline void camera::set_up(const vector3D &up_) {
 		up = up_;
 		compute_axis();
+	}
+
+	inline double camera::get_view_dist() const {
+		return view_dist;
+	}
+
+	inline double camera::set_view_dist(const double &view_dist_) {
+		view_dist = view_dist_;
 	}
 }
 

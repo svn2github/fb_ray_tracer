@@ -17,9 +17,6 @@
     <ClCompile Include="point3D.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
-    <ClCompile Include="ray_tracer.cpp">
-      <Filter>bottom-layer</Filter>
-    </ClCompile>
     <ClCompile Include="colorRGB.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
@@ -59,6 +56,9 @@
     <ClCompile Include="hit_info.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
+    <ClCompile Include="tracer.cpp">
+      <Filter>bottom-layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -95,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="point3D.hpp">
       <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="ray_tracer.hpp">
-      <Filter>bottom-layer</Filter>
     </ClInclude>
     <ClInclude Include="colorRGB.hpp">
       <Filter>bottom-layer\basis</Filter>
@@ -140,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="hit_info.hpp">
       <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="tracer.hpp">
+      <Filter>bottom-layer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

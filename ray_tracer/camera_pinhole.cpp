@@ -1,4 +1,8 @@
 
+#include "view_plane.hpp"
+#include "tracer.hpp"
+#include "ray.hpp"
+#include "world.hpp"
 #include "camera_pinhole.hpp"
 
 namespace ray_tracer {
@@ -8,28 +12,30 @@ namespace ray_tracer {
 		lookat = point3D();
 		up = vector3D();
 		compute_axis();
+		view_dist = 0;
 	}
 
-	camera_pinhole::camera_pinhole(const point3D &eye_, const point3D &lookat_, const vector3D &up_) {
+	camera_pinhole::camera_pinhole(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_) {
 		eye = eye_;
 		lookat = lookat_;
 		up = up_;
 		compute_axis();
+		view_dist = view_dist_;
 	}
 
 	void camera_pinhole::zoom(double factor) {
-		dist *= factor;
-		lookat = eye - dist * axis_w;
+		view_dist *= factor;
 	}
 	
-	ray camera_pinhole::get_ray(int x, int y, int w, int h, view_plane *plane_ptr) const {
-		double u = plane_ptr->get_left() + (plane_ptr->get_right() - plane_ptr->get_left()) * ((double)x + 0.5) / (double)w;
-		double v = plane_ptr->get_bottom() + (plane_ptr->get_top() - plane_ptr->get_bottom()) * ((double)y + 0.5) / (double)h;
-		point3D origin;
-		vector3D dir;
+	colorRGB camera_pinhole::render_scene(int x, int y, int w, int h, world *world_ptr) const {
+		double u = world_ptr->get_view_plane()->get_left() + (world_ptr->get_view_plane()->get_right() - world_ptr->get_view_plane()->get_left()) * ((double)x + 0.5) / (double)w;
+		double v = world_ptr->get_view_plane()->get_bottom() + (world_ptr->get_view_plane()->get_top() - world_ptr->get_view_plane()->get_bottom()) * ((double)y + 0.5) / (double)h;
+		hit_info info;
 
-		dir = lookat - eye + u * axis_u + v * axis_v;
-		origin = eye;
-		return ray(origin, dir);
+		if (world_ptr->get_hit(&ray(eye, (-axis_w * view_dist + u * axis_u + v * axis_v).normalized()), &info)) {
+			return world_ptr->get_tracer()->ray_color(world_ptr, &info);
+		} else {
+			return world_ptr->get_background();
+		}
 	}
 }

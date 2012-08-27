@@ -91,7 +91,7 @@
     <ClCompile Include="surface_plane.cpp" />
     <ClCompile Include="surface_plane_bw.cpp" />
     <ClCompile Include="vector3D.cpp" />
-    <ClCompile Include="ray_tracer.cpp" />
+    <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="camera_pinhole.hpp" />
@@ -114,7 +114,7 @@
     <ClInclude Include="view_plane.hpp" />
     <ClInclude Include="ray.hpp" />
     <ClInclude Include="vector3D.hpp" />
-    <ClInclude Include="ray_tracer.hpp" />
+    <ClInclude Include="tracer.hpp" />
     <ClInclude Include="world.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

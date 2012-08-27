@@ -1,11 +1,13 @@
 
-#include "world.hpp"
-#include "ray_tracer.hpp"
 #include <vector>
+#include "light.hpp"
+#include "world.hpp"
+#include "hit_info.hpp"
+#include "tracer.hpp"
 
 namespace ray_tracer {
 
-	colorRGB ray_tracer::ray_color(world *world_ptr, hit_info *info) {
+	colorRGB tracer::ray_color(world *world_ptr, hit_info *info) {
 		vector3D n, h, v, l;
 		colorRGB Ia, Id, Is;
 		colorRGB diffuse, specular, ambient;
@@ -14,7 +16,7 @@ namespace ray_tracer {
 		info->surface_ptr->get_color(info->hit_point, &diffuse, &specular, &ambient);
 		v = (info->ray_ptr->get_origin() - info->hit_point).normalized();
 		n = info->normal;
-		for (std::vector<light *>::iterator iter = world_ptr->lights.begin(); iter != world_ptr->lights.end(); ++iter) {
+		for (std::vector<light *>::const_iterator iter = world_ptr->get_lights().begin(); iter != world_ptr->get_lights().end(); ++iter) {
 			l = ((*iter)->get_position() - info->hit_point).normalized();
 			h = (v + l).normalized();
 			temp = n * l;

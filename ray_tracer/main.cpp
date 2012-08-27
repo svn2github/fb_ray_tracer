@@ -29,8 +29,8 @@ void test1(SDL_Surface *screen) {
 	light *l;
 	char buf[16];
 	
-	cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0));
-	plane = new view_plane(-20, 20, 20, -20);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 100);
+	plane = new view_plane(-200, 200, 200, -200);
 
 	s1 = new surface_sphere(point3D(20, -20, 0), 10);
 	s1->shininess = 5;
@@ -101,7 +101,7 @@ void test2(SDL_Surface *screen) {
 	surface_sphere *s1, *s2;
 	light *l;
 	
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(3, 0, 0), vector3D(0, 1, 0));
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(3, 0, 0), vector3D(0, 1, 0), 100);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -9, 0), 10);
@@ -179,7 +179,7 @@ int main() {
 		return 0;
 	}
 
-	test3(screen);
+	test1(screen);
 
 	SDL_Quit();
 	return 0;
