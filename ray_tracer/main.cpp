@@ -16,7 +16,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 300, height = 300;
 
 void test1(SDL_Surface *screen) {
 	world world;

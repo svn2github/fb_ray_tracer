@@ -41,32 +41,42 @@ namespace ray_tracer {
 		pixal_buffer_ptr = (int *)p;
 	}
 
+	bool world::get_hit_record(ray *ray_ptr, hit_record *record_ptr) {
+		bool hit_flag = false;
+		static hit_record temp_record;
+		surface *surface_ptr;
+
+		record_ptr->hit_t = ray_huge_double;
+		hit_flag = false;
+		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
+			surface_ptr = (*iter);
+			if (surface_ptr->hit(ray_ptr, 0, &temp_record)) {
+				if (temp_record.hit_t < record_ptr->hit_t) {
+					record_ptr->hit_t = temp_record.hit_t;
+					record_ptr->surface_ptr = surface_ptr;
+					hit_flag = true;
+				}
+			}
+		}
+		if (hit_flag) { 
+			record_ptr->hit_point = ray_ptr->get_origin() + ray_ptr->get_dir() * record_ptr->hit_t;
+			record_ptr->normal = record_ptr->surface_ptr->get_normal(&record_ptr->hit_point);
+			record_ptr->world_ptr = this;
+			record_ptr->ray_ptr = ray_ptr;
+		}
+		return hit_flag;
+	}
+
 	void world::render_scene() {
 		int *buffer_ptr = pixal_buffer_ptr;
-		ray ray_from_camera;
+		ray ray;
 		colorRGB color;
-		hit_record record, t_record;
-		bool hit_flag;
+		hit_record record;
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
-				ray_from_camera = camera_ptr->get_ray(x, y, dest_w, dest_h, plane_ptr);
-				record.hit_t = ray_huge_double;
-				hit_flag = false;
-				for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
-					if ((*iter)->hit(&ray_from_camera, 0, &t_record)) {
-						if (t_record.hit_t < record.hit_t) {
-							record.hit_t = t_record.hit_t;
-							record.surface_ptr = (*iter);
-							hit_flag = true;
-						}
-					}
-				}
-				if (hit_flag) { 
-					record.hit_point = ray_from_camera.get_origin() + ray_from_camera.get_dir() * record.hit_t;
-					record.normal = record.surface_ptr->get_normal(&record.hit_point);
-					record.world_ptr = this;
-					record.ray_ptr = &ray_from_camera;
+				ray = camera_ptr->get_ray(x, y, dest_w, dest_h, plane_ptr);
+				if (get_hit_record(&ray, &record)) {
 					color = tracer_ptr->ray_color(this, &record);
 				} else {
 					color = color_black; // background color

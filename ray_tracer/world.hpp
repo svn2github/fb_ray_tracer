@@ -20,6 +20,7 @@ namespace ray_tracer {
 		void set_camera(camera *);
 		void set_view_plane(view_plane *);
 		void fit_window(int, int, void *); // Dimension: pixal
+		bool get_hit_record(ray *, hit_record *);
 		void render_scene();		
 	private:
 		colorRGB ambient;
