@@ -6,7 +6,7 @@
 namespace ray_tracer {
 	class ray_tracer {
 	public:	
-		colorRGB ray_color(world *, hit_record *);
+		colorRGB ray_color(world *, hit_info *);
 	private:
 		template <class T> T max(T, T);
 		double pow(double, int);

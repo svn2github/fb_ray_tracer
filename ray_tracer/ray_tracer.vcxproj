@@ -77,7 +77,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="camera_orthographic.cpp" />
     <ClCompile Include="camera_pinhole.cpp" />
-    <ClCompile Include="hit_record.cpp" />
+    <ClCompile Include="hit_info.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="point2D.cpp" />
@@ -96,7 +96,7 @@
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="camera_pinhole.hpp" />
     <ClInclude Include="colorRGB.hpp" />
-    <ClInclude Include="hit_record.hpp" />
+    <ClInclude Include="hit_info.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="point2D.hpp" />
     <ClInclude Include="point3D.hpp" />

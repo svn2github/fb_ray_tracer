@@ -15,7 +15,7 @@ namespace ray_tracer {
 		set_radius(radius_);
 	}
 
-	bool surface_sphere::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) const {
+	bool surface_sphere::hit(ray *ray_ptr, double tmin, hit_info *hit_ptr) const {
 		point3D e = ray_ptr->get_origin(), c = center;
 		vector3D d = ray_ptr->get_dir();
 		double a = d * (e - c), d2 = d.length2();
@@ -35,8 +35,8 @@ namespace ray_tracer {
 		}
 	}
 
-	vector3D surface_sphere::get_normal(point3D *point_ptr) const {
-		return (*point_ptr - center).normalized();
+	vector3D surface_sphere::get_normal(const point3D &point) const {
+		return (point - center).normalized();
 	}
 
 }

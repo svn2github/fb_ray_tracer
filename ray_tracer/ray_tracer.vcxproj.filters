@@ -47,9 +47,6 @@
     <ClCompile Include="view_plane.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
-    <ClCompile Include="hit_record.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="sampler.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
@@ -58,6 +55,9 @@
     </ClCompile>
     <ClCompile Include="sampler_random.cpp">
       <Filter>bottom-layer\sampler</Filter>
+    </ClCompile>
+    <ClCompile Include="hit_info.cpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,9 +108,6 @@
     <ClInclude Include="misc.hpp">
       <Filter>bottom-layer\basis</Filter>
     </ClInclude>
-    <ClInclude Include="hit_record.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
     <ClInclude Include="surface_sphere.hpp">
       <Filter>bottom-layer\surface</Filter>
     </ClInclude>
@@ -140,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="sampler_random.hpp">
       <Filter>bottom-layer\sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="hit_info.hpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

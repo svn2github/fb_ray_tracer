@@ -141,30 +141,17 @@ void test2(SDL_Surface *screen) {
 	while(1);
 }
 
-class fun {
-public:
-	double operator()(double x) const {
-		return sin(x);
-	}
-};
-
-void test3() {
-	simpson<fun> s;
-	fun f;
-	double a = s.integration(0, acos(-1.0), f, 1e-15);
-	std::cout << a << std::endl;
-}
-
-void test4(SDL_Surface *screen) {
+void test3(SDL_Surface *screen) {
+	srand(100);
 	sampler *sam = new sampler_random();
 	sam->generate(1000);
+	sam->map_sample_to_disk();
 	if (SDL_MUSTLOCK(screen)) {
 		if (SDL_LockSurface(screen) < 0) {
 			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
 			return;
 		}
 	}
-
 	for (int i = 1; i <= 1000; ++i) {
 		point2D p = sam->get_sampler_zoomed(width);
 		int x = p.x, y = p.y;
@@ -181,8 +168,6 @@ void test4(SDL_Surface *screen) {
 }
 
 int main() {
-	test3();
-
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
 		return 0;
@@ -194,7 +179,7 @@ int main() {
 		return 0;
 	}
 
-	test4(screen);
+	test3(screen);
 
 	SDL_Quit();
 	return 0;

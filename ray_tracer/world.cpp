@@ -6,7 +6,7 @@
 #include "surface.hpp"
 #include "view_plane.hpp"
 #include "ray_tracer.hpp"
-#include "hit_record.hpp"
+#include "hit_info.hpp"
 
 namespace ray_tracer {
 
@@ -41,28 +41,28 @@ namespace ray_tracer {
 		pixal_buffer_ptr = (int *)p;
 	}
 
-	bool world::get_hit_record(ray *ray_ptr, hit_record *record_ptr) {
+	bool world::get_hit(ray *ray_ptr, hit_info *info_ptr) {
 		bool hit_flag = false;
-		static hit_record temp_record;
+		static hit_info temp;
 		surface *surface_ptr;
 
-		record_ptr->hit_t = huge_double;
+		info_ptr->hit_t = huge_double;
 		hit_flag = false;
 		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = (*iter);
-			if (surface_ptr->hit(ray_ptr, 0, &temp_record)) {
-				if (temp_record.hit_t < record_ptr->hit_t) {
-					record_ptr->hit_t = temp_record.hit_t;
-					record_ptr->surface_ptr = surface_ptr;
+			if (surface_ptr->hit(ray_ptr, 0, &temp)) {
+				if (temp.hit_t < info_ptr->hit_t) {
+					info_ptr->hit_t = temp.hit_t;
+					info_ptr->surface_ptr = surface_ptr;
 					hit_flag = true;
 				}
 			}
 		}
 		if (hit_flag) { 
-			record_ptr->hit_point = ray_ptr->get_origin() + ray_ptr->get_dir() * record_ptr->hit_t;
-			record_ptr->normal = record_ptr->surface_ptr->get_normal(&record_ptr->hit_point);
-			record_ptr->world_ptr = this;
-			record_ptr->ray_ptr = ray_ptr;
+			info_ptr->hit_point = ray_ptr->get_origin() + ray_ptr->get_dir() * info_ptr->hit_t;
+			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
+			info_ptr->world_ptr = this;
+			info_ptr->ray_ptr = ray_ptr;
 		}
 		return hit_flag;
 	}
@@ -71,13 +71,13 @@ namespace ray_tracer {
 		int *buffer_ptr = pixal_buffer_ptr;
 		ray ray;
 		colorRGB color;
-		hit_record record;
+		hit_info info;
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
 				ray = camera_ptr->get_ray(x, y, dest_w, dest_h, plane_ptr);
-				if (get_hit_record(&ray, &record)) {
-					color = tracer_ptr->ray_color(this, &record);
+				if (get_hit(&ray, &info)) {
+					color = tracer_ptr->ray_color(this, &info);
 				} else {
 					color = color_black; // background color
 				}

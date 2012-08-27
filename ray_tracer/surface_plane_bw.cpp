@@ -16,8 +16,8 @@ namespace ray_tracer {
 	}
 
 	// Hack implementation
-	void surface_plane_bw::get_color(point3D *p_ptr, colorRGB *diffuse_ptr, colorRGB * specular_ptr, colorRGB * ambient_ptr) const {
-		int y = (p_ptr->y + 100000) / 3, z = (p_ptr->z + 100000) / 3;
+	void surface_plane_bw::get_color(const point3D &p, colorRGB *diffuse_ptr, colorRGB * specular_ptr, colorRGB * ambient_ptr) const {
+		int y = (p.y + 100000) / 3, z = (p.z + 100000) / 3;
 	
 		if ((y + z) & 1) {
 			*diffuse_ptr = color_black;

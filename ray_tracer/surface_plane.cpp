@@ -15,7 +15,7 @@ namespace ray_tracer {
 		set_normal(normal_);
 	}
 
-	bool surface_plane::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) const {
+	bool surface_plane::hit(ray *ray_ptr, double tmin, hit_info *hit_ptr) const {
 		double deno = normal * ray_ptr->get_dir();
 
 		if (dblcmp(deno) == 0) {
@@ -30,7 +30,7 @@ namespace ray_tracer {
 		}
 	}
 
-	vector3D surface_plane::get_normal(point3D *point_ptr) const {
+	vector3D surface_plane::get_normal(const point3D &point) const {
 		return normal;
 	}
 
