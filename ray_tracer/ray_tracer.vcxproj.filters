@@ -50,6 +50,15 @@
     <ClCompile Include="hit_record.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
+    <ClCompile Include="sampler.cpp">
+      <Filter>bottom-layer\sampler</Filter>
+    </ClCompile>
+    <ClCompile Include="point2D.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
+    <ClCompile Include="sampler_random.cpp">
+      <Filter>bottom-layer\sampler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -66,6 +75,9 @@
     </Filter>
     <Filter Include="bottom-layer\integrator">
       <UniqueIdentifier>{420c9029-edd0-4cfc-840e-0dbf0c616837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\sampler">
+      <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +131,15 @@
     </ClInclude>
     <ClInclude Include="view_plane.hpp">
       <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="sampler.hpp">
+      <Filter>bottom-layer\sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="point2D.hpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClInclude>
+    <ClInclude Include="sampler_random.hpp">
+      <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,7 +11,8 @@ namespace ray_tracer {
 
 	class surface {
 	public:
-		virtual bool hit(ray *, double, hit_record *) const = 0; // @parameter 3: only hit_t is returned
+		/** parameter 3: only hit_t is returned */
+		virtual bool hit(ray *, double, hit_record *) const = 0; 
 		virtual vector3D get_normal(point3D *) const = 0;
 		virtual void get_color(point3D *, colorRGB *, colorRGB *, colorRGB *) const;
 	public:

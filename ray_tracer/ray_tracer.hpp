@@ -23,7 +23,7 @@ namespace ray_tracer {
 		} else {
 			double result = 1;
 
-			while (power > 0 && result > ray_eps) {
+			while (power > 0 && result > epsilon) {
 				if (power & 1) {
 					result *= base;
 				}

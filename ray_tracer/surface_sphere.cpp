@@ -23,11 +23,11 @@ namespace ray_tracer {
 		double delta = a * a - d2 * (cc.length2() - radius2);
 		double t;
 
-		if (ray_dblcmp(delta) == -1) {
+		if (dblcmp(delta) == -1) {
 			return false;
 		} else {
-			t = (-a - sqrt(delta + ray_eps)) / d2;
-			if (ray_dblcmp(t - tmin) == -1) {
+			t = (-a - sqrt(delta + epsilon)) / d2;
+			if (dblcmp(t - tmin) == -1) {
 				return false;
 			}
 			hit_ptr->hit_t = t;

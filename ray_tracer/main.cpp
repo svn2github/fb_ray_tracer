@@ -13,6 +13,8 @@
 #include "camera_orthographic.hpp"
 #include "camera_pinhole.hpp"
 #include "simpson.hpp"
+#include "sampler.hpp"
+#include "sampler_random.hpp"
 
 using namespace ray_tracer;
 
@@ -153,6 +155,31 @@ void test3() {
 	std::cout << a << std::endl;
 }
 
+void test4(SDL_Surface *screen) {
+	sampler *sam = new sampler_random();
+	sam->generate(1000);
+	if (SDL_MUSTLOCK(screen)) {
+		if (SDL_LockSurface(screen) < 0) {
+			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
+			return;
+		}
+	}
+
+	for (int i = 1; i <= 1000; ++i) {
+		point2D p = sam->get_sampler_zoomed(width);
+		int x = p.x, y = p.y;
+		int *ptr = (int *)screen->pixels;
+		ptr += y * width + x;
+		*ptr = color_red.clamp_to_int();
+	}
+
+	if (SDL_MUSTLOCK(screen)) {
+		SDL_UnlockSurface(screen);
+	}
+	SDL_UpdateRect(screen, 0, 0, width, height);
+	while(1);
+}
+
 int main() {
 	test3();
 
@@ -167,7 +194,7 @@ int main() {
 		return 0;
 	}
 
-	test1(screen);
+	test4(screen);
 
 	SDL_Quit();
 	return 0;

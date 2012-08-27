@@ -46,7 +46,7 @@ namespace ray_tracer {
 		static hit_record temp_record;
 		surface *surface_ptr;
 
-		record_ptr->hit_t = ray_huge_double;
+		record_ptr->hit_t = huge_double;
 		hit_flag = false;
 		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = (*iter);

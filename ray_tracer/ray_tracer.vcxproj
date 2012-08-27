@@ -80,7 +80,10 @@
     <ClCompile Include="hit_record.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="point2D.cpp" />
     <ClCompile Include="point3D.cpp" />
+    <ClCompile Include="sampler.cpp" />
+    <ClCompile Include="sampler_random.cpp" />
     <ClCompile Include="view_plane.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="colorRGB.cpp" />
@@ -95,7 +98,10 @@
     <ClInclude Include="colorRGB.hpp" />
     <ClInclude Include="hit_record.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
+    <ClInclude Include="point2D.hpp" />
     <ClInclude Include="point3D.hpp" />
+    <ClInclude Include="sampler.hpp" />
+    <ClInclude Include="sampler_random.hpp" />
     <ClInclude Include="simpson.hpp" />
     <ClInclude Include="surface_plane.hpp" />
     <ClInclude Include="surface_sphere.hpp" />

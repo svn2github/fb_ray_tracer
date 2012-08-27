@@ -18,11 +18,11 @@ namespace ray_tracer {
 	bool surface_plane::hit(ray *ray_ptr, double tmin, hit_record *hit_ptr) const {
 		double deno = normal * ray_ptr->get_dir();
 
-		if (ray_dblcmp(deno) == 0) {
+		if (dblcmp(deno) == 0) {
 			return false;
 		} else {
 			double t = (point_on_plane - ray_ptr->get_origin()) * normal / deno;
-			if (ray_dblcmp(t - tmin) == -1) {
+			if (dblcmp(t - tmin) == -1) {
 				return false;
 			}
 			hit_ptr->hit_t = t;
