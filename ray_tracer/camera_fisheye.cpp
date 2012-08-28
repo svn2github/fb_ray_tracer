@@ -13,7 +13,6 @@ namespace ray_tracer {
 		lookat = point3D();
 		up = vector3D();
 		compute_axis();
-		view_dist = 0;
 		fov = 0;
 	}
 
@@ -22,7 +21,6 @@ namespace ray_tracer {
 		lookat = lookat_;
 		up = up_;
 		compute_axis();
-		view_dist = 0;
 		fov = fov_;
 	}
 	

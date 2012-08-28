@@ -17,7 +17,7 @@ namespace ray_tracer {
 	private:
 		void init_sampler(int);
 	private:
-		double focal_dist, lens_radius;
+		double view_dist, focal_dist, lens_radius;
 		sampler *smpler;
 	};
 }

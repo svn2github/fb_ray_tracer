@@ -13,6 +13,8 @@ namespace ray_tracer {
 		camera_pinhole(const point3D &, const point3D &, const vector3D &, double);
 		colorRGB render_scene(int, int, int, int, world *) const;
 		void zoom(double);
+	private:
+		double view_dist;
 	};
 }
 

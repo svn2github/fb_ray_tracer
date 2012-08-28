@@ -12,7 +12,6 @@ namespace ray_tracer {
 		lookat = point3D();
 		up = vector3D();
 		compute_axis();
-		view_dist = 0;
 	}
 
 	camera_orthographic::camera_orthographic(const point3D &eye_, const point3D &lookat_, const vector3D &up_) {
@@ -20,7 +19,6 @@ namespace ray_tracer {
 		lookat = lookat_;
 		up = up_;
 		compute_axis();
-		view_dist = 0;
 	}
 	
 	colorRGB camera_orthographic::render_scene(int x, int y, int w, int h, world *world_ptr) const {
