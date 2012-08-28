@@ -16,10 +16,11 @@ namespace ray_tracer {
 		void set_bottom(double);
 		double compute_u(double, double) const;
 		double compute_v(double, double) const;
-	private:
+		double get_w() const;
+		double get_h() const;
 	private:
 		double left, right, top, bottom;
-		double delta_u, delta_v;
+		double w, h;
 	};
 
 	inline double view_plane::get_left() const {
@@ -28,7 +29,7 @@ namespace ray_tracer {
 
 	inline void view_plane::set_left(double left_) {
 		left = left_;
-		delta_u = right - left;
+		w = right - left;
 	}
 
 	inline double view_plane::get_right() const {
@@ -37,7 +38,7 @@ namespace ray_tracer {
 
 	inline void view_plane::set_right(double right_) {
 		right = right_;
-		delta_u = right - left;
+		w = right - left;
 	}
 
 	inline double view_plane::get_top() const {
@@ -46,7 +47,7 @@ namespace ray_tracer {
 
 	inline void view_plane::set_top(double top_) {
 		top = top_;
-		delta_v = top - bottom;
+		h = top - bottom;
 	}
 
 	inline double view_plane::get_bottom() const {
@@ -55,15 +56,23 @@ namespace ray_tracer {
 
 	inline void view_plane::set_bottom(double bottom_) {
 		bottom = bottom_;
-		delta_v = top - bottom;
+		h = top - bottom;
 	}
 
-	inline double view_plane::compute_u(double x, double w) const {
-		return left + delta_u * x / w;
+	inline double view_plane::compute_u(double x_, double w_) const {
+		return left + w * x_ / w_;
 	}
 
-	inline double view_plane::compute_v(double y, double h) const {
-		return bottom + delta_v * y / h;
+	inline double view_plane::compute_v(double y_, double h_) const {
+		return bottom + h * y_ / h_;
+	}
+
+	inline double view_plane::get_w() const {
+		return w;
+	}
+
+	inline double view_plane::get_h() const {
+		return h;
 	}
 }
 

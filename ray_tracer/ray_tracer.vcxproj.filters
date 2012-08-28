@@ -62,6 +62,9 @@
     <ClCompile Include="surface_triangle.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="camera_fisheye.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="surface_triangle.hpp">
       <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_fisheye.hpp">
+      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

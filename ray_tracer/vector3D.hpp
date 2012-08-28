@@ -2,6 +2,7 @@
 #define __VECTOR3D_HPP
 
 #include <cmath>
+#include "misc.hpp"
 
 namespace ray_tracer {
 	class vector3D {
@@ -33,21 +34,8 @@ namespace ray_tracer {
 		return x * x + y * y + z * z;
 	}
 
-	// This code is copyed from Quake III Q_rsqrt
 	inline double vector3D::inv_length() const {
-		float number = (float)(x * x + y * y + z * z);
-		int i;
-		float x2, yy;
-		const float threehalfs = 1.5f;
-
-		x2 = number * 0.5f;
-		yy = number;
-		i = * (int *) &yy;  // evil floating point bit level hacking
-		i = 0x5f3759df - (i >> 1); // what the fuck?
-		yy = * (float *) &i;
-		yy = yy * (threehalfs - (x2 * yy * yy)); // 1st iteration
-		// yy = yy * (threehalfs - (x2 * yy * yy)); // 2nd iteration, this can be removed
-		return yy;
+		return inv_sqrt((float)(x * x + y * y + z * z));
 	}
 
 	inline vector3D vector3D::normalized() const {

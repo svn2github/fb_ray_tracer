@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="camera_fisheye.cpp" />
     <ClCompile Include="camera_orthographic.cpp" />
     <ClCompile Include="camera_pinhole.cpp" />
     <ClCompile Include="camera_thinlens.cpp" />
@@ -95,6 +96,7 @@
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="camera.hpp" />
+    <ClInclude Include="camera_fisheye.hpp" />
     <ClInclude Include="camera_pinhole.hpp" />
     <ClInclude Include="camera_thinlens.hpp" />
     <ClInclude Include="colorRGB.hpp" />
