@@ -104,7 +104,7 @@ void test2(SDL_Surface *screen) {
 	surface *s1, *s2, *s3;
 	light *l;
 	
-	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi/2);
+	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi / 2);
 	//cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10, 30, 10);
 	//cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0));
 	plane = new view_plane(-20, 20, 20, -20);
@@ -145,8 +145,6 @@ void test2(SDL_Surface *screen) {
 		SDL_UnlockSurface(screen);
 	}
 	SDL_UpdateRect(screen, 0, 0, width, height);
-
-	while(1);
 }
 
 void test3(SDL_Surface *screen) {
@@ -172,7 +170,6 @@ void test3(SDL_Surface *screen) {
 		SDL_UnlockSurface(screen);
 	}
 	SDL_UpdateRect(screen, 0, 0, width, height);
-	while(1);
 }
 
 int main() {
@@ -189,6 +186,8 @@ int main() {
 
 	test2(screen);
 
+	SDL_Event event;
+	while (SDL_WaitEvent(&event));
 	SDL_Quit();
 	return 0;
 }
