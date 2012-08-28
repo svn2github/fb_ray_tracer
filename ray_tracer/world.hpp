@@ -12,11 +12,12 @@
 #include "view_plane.hpp"
 #include "camera.hpp"
 #include "tracer.hpp"
+#include "sampler_random.hpp"
 
 namespace ray_tracer {
 	class world {
 	public:
-		world();
+		world(bool);
 		~world();
 		colorRGB get_ambient() const;
 		void set_ambient(const colorRGB &);
@@ -37,6 +38,8 @@ namespace ray_tracer {
 		void render_scene();		
 	private:
 		colorRGB ambient, background;
+		bool enable_antialiasing;
+		sampler *sampler_ptr;
 		std::vector<light *> lights;
 		std::vector<surface *> surfaces;
 		camera *camera_ptr;

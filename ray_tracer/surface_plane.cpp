@@ -48,11 +48,12 @@ namespace ray_tracer {
 	
 		if ((y + z) & 1) {
 			*diffuse_ptr = color_black;
+			*ambient_ptr = color_black;
 		} else {
 			*diffuse_ptr = color_white;
+			*ambient_ptr = color_white;
 		}		
 		*specular_ptr = color_black;
-		*ambient_ptr = color_black;
 	}
 
 }

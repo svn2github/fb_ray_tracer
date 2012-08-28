@@ -13,7 +13,7 @@ namespace ray_tracer {
 		camera_thinlens();
 		camera_thinlens(const point3D &, const point3D &, const vector3D &, double, double, double);
 		~camera_thinlens();
-		colorRGB render_scene(int, int, int, int, world *) const;
+		colorRGB render_scene(double, double, int, int, world *) const;
 	private:
 		void init_sampler(int);
 	private:

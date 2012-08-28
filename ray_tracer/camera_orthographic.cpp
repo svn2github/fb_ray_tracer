@@ -21,7 +21,7 @@ namespace ray_tracer {
 		compute_axis();
 	}
 	
-	colorRGB camera_orthographic::render_scene(int x, int y, int w, int h, world *world_ptr) const {
+	colorRGB camera_orthographic::render_scene(double x, double y, int w, int h, world *world_ptr) const {
 		double u = world_ptr->get_view_plane()->compute_u(x + 0.5, w);
 		double v = world_ptr->get_view_plane()->compute_v(y + 0.5, h);
 		hit_info info;

@@ -9,13 +9,23 @@
 
 namespace ray_tracer {
 
-	world::world() {
+	const int num_antialiasing_sampler = 50;
+
+	world::world(bool enable_antialiasing_) {
 		tracer_ptr = new tracer;
 		set_ambient(color_white);
+		enable_antialiasing = enable_antialiasing_;
+		if (enable_antialiasing) {
+			sampler_ptr = new sampler_random();
+			sampler_ptr->generate(num_antialiasing_sampler);
+		}
 	}
 
 	world::~world() {
 		delete tracer_ptr;
+		if (enable_antialiasing) {
+			delete sampler_ptr;
+		}
 	}
 
 	bool world::get_hit(ray *ray_ptr, hit_info *info_ptr) {
@@ -46,10 +56,22 @@ namespace ray_tracer {
 
 	void world::render_scene() {
 		int *buffer_ptr = pixal_buffer_ptr;
+		colorRGB color;
+		point2D sample_point;
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
-				*buffer_ptr ++ = camera_ptr->render_scene(x, y, dest_w, dest_h, this).clamp_to_int();
+				color = color_black;
+				if (enable_antialiasing) {
+					for (int i = 1; i <= num_antialiasing_sampler; i += 1) {
+						sample_point = sampler_ptr->get_sampler_unit();
+						color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, this);
+					}
+					color = color / num_antialiasing_sampler;
+				} else {
+					color = camera_ptr->render_scene(x, y, dest_w, dest_h, this);
+				}
+				*buffer_ptr ++ = color.clamp_to_int();
 			}
 		}
 	}

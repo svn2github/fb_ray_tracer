@@ -24,7 +24,7 @@ namespace ray_tracer {
 		fov = fov_;
 	}
 	
-	colorRGB camera_fisheye::render_scene(int x, int y, int w, int h, world *world_ptr) const {
+	colorRGB camera_fisheye::render_scene(double x, double y, int w, int h, world *world_ptr) const {
 		point2D pp = point2D(((x + 0.5) / w - 0.5) * 2, ((y + 0.5) / h - 0.5) * 2);
 
 		if (pp.length2() <= 1) {
