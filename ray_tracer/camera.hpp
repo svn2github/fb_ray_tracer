@@ -9,6 +9,7 @@ namespace ray_tracer {
 	class world;
 	class camera {
 	public:
+		virtual ~camera() = 0;
 		virtual colorRGB render_scene(int, int, int, int, world *) const = 0;
 		point3D get_eye() const;
 		void set_eye(const point3D &);

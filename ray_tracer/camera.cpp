@@ -3,6 +3,8 @@
 
 namespace ray_tracer {
 
+	camera::~camera() { }
+
 	void camera::compute_axis() {
 		axis_w = (eye - lookat).normalized();
 		axis_u = up.normalized();
