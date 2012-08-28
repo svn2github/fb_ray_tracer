@@ -27,7 +27,7 @@ void test1(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface_sphere *s1;
-	surface_plane_bw *s2;
+	surface_plane *s2;
 	light *l;
 	char buf[16];
 
@@ -40,7 +40,7 @@ void test1(SDL_Surface *screen) {
 	s1->specular = colorRGB(0.7, 0.7, 0.7);
 	s1->ambient = colorRGB(0.3, 0.3, 0.3);
 
-	// s2 = new surface_plane_bw(point3D(100, 0, 0), vector3D(-1, 0, 0));
+	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
 	s2->shininess = 3;
 	s2->diffuse = colorRGB(0.8, 0.6, 0.2);
 	s2->specular = color_black; // colorRGB(0.7, 0.7, 0.7);

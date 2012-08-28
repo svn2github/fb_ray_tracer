@@ -29,9 +29,6 @@
     <ClCompile Include="surface.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
-    <ClCompile Include="surface_plane_bw.cpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClCompile>
     <ClCompile Include="camera.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>

@@ -14,7 +14,7 @@ namespace ray_tracer {
 		void set_normal(const vector3D &);
 		bool hit(ray *, double, hit_info *) const;
 		vector3D get_normal(const point3D &) const;
-	protected:
+	private:
 		point3D point_on_plane;
 		vector3D normal;
 	};
@@ -34,13 +34,6 @@ namespace ray_tracer {
 	inline void surface_plane::set_normal(const vector3D &normal_) {
 		normal = normal_.normalized();
 	}
-
-	class surface_plane_bw : public surface_plane {
-	public:
-		surface_plane_bw();
-		surface_plane_bw(const point3D &, const vector3D &);
-		void get_color(const point3D &, colorRGB *, colorRGB *, colorRGB *) const;
-	};
 }
 
 #endif
