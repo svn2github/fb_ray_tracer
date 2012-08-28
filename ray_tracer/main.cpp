@@ -101,13 +101,13 @@ void test2(SDL_Surface *screen) {
 	world world;
 	camera *cam;
 	view_plane *plane;
-	surface *s1, *s2;
+	surface *s1, *s2, *s3;
 	light *l;
 	
-	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi);
+	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi/2);
 	//cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10, 30, 10);
 	//cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0));
-	plane = new view_plane(-2, 2, 2, -2);
+	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
 	s1->shininess = 5;
@@ -121,12 +121,16 @@ void test2(SDL_Surface *screen) {
 	s2->specular = colorRGB(0.7, 0.7, 0.7);
 	s2->ambient = colorRGB(0.2, 0.2, 0.2);
 
+	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 0));
+	s3->shininess = 100;
+
 	l = new light(point3D(0, 0, 30), color_white);
 	
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.add_surface(s1);
 	world.add_surface(s2);
+	world.add_surface(s3);
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 
