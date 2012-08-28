@@ -59,6 +59,9 @@
     <ClCompile Include="tracer.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
+    <ClCompile Include="camera_thinlens.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -140,6 +143,9 @@
     </ClInclude>
     <ClInclude Include="tracer.hpp">
       <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_thinlens.hpp">
+      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

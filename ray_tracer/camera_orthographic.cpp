@@ -25,13 +25,9 @@ namespace ray_tracer {
 	
 	colorRGB camera_orthographic::render_scene(int x, int y, int w, int h, world *world_ptr) const {
 		double u = world_ptr->get_view_plane()->compute_u(x + 0.5, w);
-		double v = world_ptr->get_view_plane()->compute_u(y + 0.5, h);
+		double v = world_ptr->get_view_plane()->compute_v(y + 0.5, h);
 		hit_info info;
-		point3D origin;
-		vector3D dir;
 
-		dir = -axis_w;
-		origin = eye + u * axis_u + v * axis_v;
 		if (world_ptr->get_hit(&ray(eye + u * axis_u + v * axis_v, -axis_w), &info)) {
 			return world_ptr->get_tracer()->ray_color(world_ptr, &info);
 		} else {

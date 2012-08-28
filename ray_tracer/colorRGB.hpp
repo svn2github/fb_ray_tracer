@@ -12,6 +12,7 @@ namespace ray_tracer {
 		friend colorRGB operator*(const colorRGB &, double);
 		friend colorRGB operator*(double, const colorRGB &);
 		friend colorRGB operator*(const colorRGB &, const colorRGB &);
+		friend colorRGB operator/(const colorRGB &, double);
 	public:
 		double r, g, b;
 	};
@@ -45,6 +46,11 @@ namespace ray_tracer {
 
 	inline colorRGB operator*(const colorRGB &c1, const colorRGB &c2) {
 		return colorRGB(c1.r * c2.r, c1.g * c2.g, c1.b * c2.b);
+	}
+
+	inline colorRGB operator/(const colorRGB &c, double f) {
+		double inv = 1 / f;
+		return colorRGB(c.r * inv, c.g * inv, c.b * inv);
 	}
 
 	extern colorRGB color_black;
