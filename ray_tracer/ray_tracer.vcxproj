@@ -85,6 +85,7 @@
     <ClCompile Include="point3D.cpp" />
     <ClCompile Include="sampler.cpp" />
     <ClCompile Include="sampler_random.cpp" />
+    <ClCompile Include="surface_triangle.cpp" />
     <ClCompile Include="view_plane.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="colorRGB.cpp" />
@@ -113,6 +114,7 @@
   <ItemGroup>
     <ClInclude Include="light.hpp" />
     <ClInclude Include="misc.hpp" />
+    <ClInclude Include="surface_triangle.hpp" />
     <ClInclude Include="view_plane.hpp" />
     <ClInclude Include="ray.hpp" />
     <ClInclude Include="vector3D.hpp" />

@@ -62,6 +62,9 @@
     <ClCompile Include="camera_thinlens.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
+    <ClCompile Include="surface_triangle.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -146,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="camera_thinlens.hpp">
       <Filter>bottom-layer\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_triangle.hpp">
+      <Filter>bottom-layer\surface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

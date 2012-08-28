@@ -5,6 +5,7 @@
 #include "point3D.hpp"
 #include "colorRGB.hpp"
 #include "hit_info.hpp"
+#include "ray.hpp"
 
 namespace ray_tracer {
 	class surface {
