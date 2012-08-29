@@ -9,6 +9,7 @@ namespace ray_tracer {
 	public:
 		/** All sample's coordinate should be ranged in [0, 1) */
 		virtual void generate(int) = 0;
+		void reset();
 		void map_sample_to_disk();
 		point2D get_sampler_unit();
 		point2D get_sampler_zoomed(double);
@@ -17,6 +18,10 @@ namespace ray_tracer {
 		int sample_index;
 		std::vector<point2D> samples;
 	};
+
+	inline void sampler::reset() {
+		sample_index = 0;
+	}
 
 	inline point2D sampler::get_sampler_unit() {
 		if (++sample_index >= number_samples) sample_index = 0;

@@ -4,14 +4,14 @@
 #include "ray.hpp"
 #include "world.hpp"
 #include "camera_thinlens.hpp"
-#include "sampler_random.hpp"
+#include "sampler_jittered.hpp"
 
 namespace ray_tracer {
 
 	const int num_samplers = 100;
 
 	void camera_thinlens::init_sampler(int num) {
-		smpler = new sampler_random();
+		smpler = new sampler_jittered();
 		smpler->generate(num);
 		smpler->map_sample_to_disk();
 	}
@@ -52,7 +52,7 @@ namespace ray_tracer {
 
 		focal_point = eye + (-axis_w * view_dist + u * axis_u + v * axis_v) * (focal_dist / view_dist);
 		origin = eye - 0.5 * axis_u - 0.5 * axis_v;
-		// TODO: refactoring
+		/* TODO: refactoring */
 		if (world_ptr->is_antialiasing_enabled()) {
 			sample_point = smpler->get_sampler_zoomed(lens_radius);
 			origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
@@ -63,6 +63,7 @@ namespace ray_tracer {
 			}
 			return color;
 		} else {
+			smpler->reset();
 			for (int i = 1; i <= num_samplers; i += 1) {
 				sample_point = smpler->get_sampler_zoomed(lens_radius);
 				origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;

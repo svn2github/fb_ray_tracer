@@ -2,21 +2,36 @@
 #include "sampler.hpp"
 #include "misc.hpp"
 #include <cmath>
+#include <algorithm>
 
 namespace ray_tracer {
-	
-	/* 
-		TODO:
-		This implementation has something wrong
-		need to be corrected
-	*/
+
+	// Origin: Shirley and Chiu(1997)
 	void sampler::map_sample_to_disk() {
 		for (int i = 0; i < number_samples; i += 1) {
-			double angle = samples[i].x * 2 * pi, dist = samples[i].y / 2;
-			double x = cos(angle) * dist, y = sin(angle) * dist;
-
-			samples[i].x = x + 0.5;
-			samples[i].y = y + 0.5;
+			double x = (samples[i].x - 0.5) * 2, y = (samples[i].y - 0.5) * 2, r, angle;
+			if (x > -y) {
+				if (x > y) {
+					r = x;
+					angle = y / x;
+				} else {
+					r = y;
+					angle = 2 - x / y;
+				}
+			} else {
+				if (x < y) {
+					r = -x;
+					angle = 4 + y / x;
+				} else {
+					r = -y;
+					angle = 6 - x / y;
+				}
+			}
+			angle = angle * pi / 4;
+			r /= 2;
+			samples[i].x = r * cos(angle) + 0.5;
+			samples[i].y = r * sin(angle) + 0.5;
 		}
+		std::random_shuffle(samples.begin(), samples.end());
 	}
 };
