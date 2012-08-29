@@ -44,14 +44,17 @@ namespace ray_tracer {
 
 	// Hack implementation
 	void surface_plane_bw::get_color(const point3D &p, colorRGB *diffuse_ptr, colorRGB * specular_ptr, colorRGB * ambient_ptr) const {
-		int y = (p.y + 100000) / 3, z = (p.z + 100000) / 3;
+		const int sz = 4;
+		const double huge = 10000;
+		int x = (p.x + huge) / sz, y = (p.y + huge) / sz, z = (p.z + huge) / sz, mod;
 	
-		if ((y + z) & 1) {
+		mod = (((x + y + z) % 2) + 2) % 2;
+		if (mod) {
 			*diffuse_ptr = color_black;
 			*ambient_ptr = color_black;
 		} else {
 			*diffuse_ptr = color_white;
-			*ambient_ptr = color_white;
+			*ambient_ptr = color_black;
 		}		
 		*specular_ptr = color_black;
 	}

@@ -18,9 +18,9 @@ namespace ray_tracer {
 	};
 
 	inline int colorRGB::clamp_to_int() const {
-		int r_ = (int)((r > 1.0f ? 1.0f : r) * 255);
-		int g_ = (int)((g > 1.0f ? 1.0f : g) * 255);
-		int b_ = (int)((b > 1.0f ? 1.0f : b) * 255);
+		int r_ = (int)((r > 1.0 ? 1.0 : r) * 255);
+		int g_ = (int)((g > 1.0 ? 1.0 : g) * 255);
+		int b_ = (int)((b > 1.0 ? 1.0 : b) * 255);
 
 		return (b_ | (g_ << 8) | (r_ << 16));
 	}
