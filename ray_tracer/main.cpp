@@ -104,9 +104,10 @@ void test2(SDL_Surface *screen) {
 	surface *s1, *s2, *s3;
 	light *l;
 	
-	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi / 2);
-	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10, 30, 10);
+	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi / 2);
+	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10, 30, 2);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0));
+	//cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
@@ -121,7 +122,7 @@ void test2(SDL_Surface *screen) {
 	s2->specular = colorRGB(0.7, 0.7, 0.7);
 	s2->ambient = colorRGB(0.2, 0.2, 0.2);
 	 
-	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 0));
+	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->shininess = 100;
 
 	l = new light(point3D(0, 0, 30), color_white);
@@ -146,6 +147,7 @@ void test2(SDL_Surface *screen) {
 		SDL_UnlockSurface(screen);
 	}
 	SDL_UpdateRect(screen, 0, 0, width, height);
+	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
 void test3(SDL_Surface *screen) {

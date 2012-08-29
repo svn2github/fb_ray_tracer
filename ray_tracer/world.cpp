@@ -9,22 +9,19 @@
 
 namespace ray_tracer {
 
-	const int num_antialiasing_sampler = 50;
-
-	world::world(bool enable_antialiasing_) {
+	world::world(bool antialiasing_) {
 		tracer_ptr = new tracer;
 		set_ambient(color_white);
-		enable_antialiasing = enable_antialiasing_;
-		if (enable_antialiasing) {
-			sampler_ptr = new sampler_random();
-			sampler_ptr->generate(num_antialiasing_sampler);
+		antialiasing_enabled = false;
+		if (antialiasing_) {
+			enable_antialiasing();
 		}
 	}
 
 	world::~world() {
 		delete tracer_ptr;
-		if (enable_antialiasing) {
-			delete sampler_ptr;
+		if (antialiasing_enabled) {
+			disable_antialiasing();
 		}
 	}
 
@@ -62,7 +59,7 @@ namespace ray_tracer {
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
 				color = color_black;
-				if (enable_antialiasing) {
+				if (antialiasing_enabled) {
 					for (int i = 1; i <= num_antialiasing_sampler; i += 1) {
 						sample_point = sampler_ptr->get_sampler_unit();
 						color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, this);

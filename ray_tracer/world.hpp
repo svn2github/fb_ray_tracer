@@ -15,6 +15,7 @@
 #include "sampler_random.hpp"
 
 namespace ray_tracer {
+	const int num_antialiasing_sampler = 1000;
 	class world {
 	public:
 		world(bool);
@@ -23,6 +24,9 @@ namespace ray_tracer {
 		void set_ambient(const colorRGB &);
 		colorRGB get_background() const;
 		void set_background(const colorRGB &);
+		bool is_antialiasing_enabled() const;
+		void enable_antialiasing();
+		void disable_antialiasing();
 		void add_light(light *);
 		const std::vector<light *> &get_lights() const;
 		void add_surface(surface *);
@@ -38,7 +42,7 @@ namespace ray_tracer {
 		void render_scene();		
 	private:
 		colorRGB ambient, background;
-		bool enable_antialiasing;
+		bool antialiasing_enabled;
 		sampler *sampler_ptr;
 		std::vector<light *> lights;
 		std::vector<surface *> surfaces;
@@ -62,6 +66,25 @@ namespace ray_tracer {
 
 	inline void world::set_background(const colorRGB &background_) {
 		background = background_;
+	}
+
+	inline bool world::is_antialiasing_enabled() const {
+		return antialiasing_enabled;
+	}
+
+	inline void world::enable_antialiasing() {
+		if (antialiasing_enabled == false) {
+			antialiasing_enabled = true;
+			sampler_ptr = new sampler_random();
+			sampler_ptr->generate(num_antialiasing_sampler);
+		}
+	}
+
+	inline void world::disable_antialiasing() {
+		if (antialiasing_enabled == true) {
+			antialiasing_enabled = false;
+			delete sampler_ptr;
+		}
 	}
 
 	inline void world::add_light(light *light_ptr_) {

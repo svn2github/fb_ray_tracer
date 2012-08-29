@@ -52,7 +52,8 @@ namespace ray_tracer {
 
 		focal_point = eye + (-axis_w * view_dist + u * axis_u + v * axis_v) * (focal_dist / view_dist);
 		origin = eye - 0.5 * axis_u - 0.5 * axis_v;
-		for (int i = 1; i <= num_samplers; i += 1) {
+		// TODO: refactoring
+		if (world_ptr->is_antialiasing_enabled()) {
 			sample_point = smpler->get_sampler_zoomed(lens_radius);
 			origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
 			if (world_ptr->get_hit(&ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
@@ -60,7 +61,18 @@ namespace ray_tracer {
 			} else {
 				color += world_ptr->get_background();
 			}
+			return color;
+		} else {
+			for (int i = 1; i <= num_samplers; i += 1) {
+				sample_point = smpler->get_sampler_zoomed(lens_radius);
+				origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
+				if (world_ptr->get_hit(&ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
+					color += world_ptr->get_tracer()->ray_color(world_ptr, &info);
+				} else {
+					color += world_ptr->get_background();
+				}
+			}
+			return color / num_samplers;
 		}
-		return color / num_samplers;
 	}
 }
