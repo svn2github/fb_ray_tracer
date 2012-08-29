@@ -21,7 +21,7 @@
 
 using namespace ray_tracer;
 
-const int width = 300, height = 300;
+const int width = 1000, height = 1000;
 
 void test1(SDL_Surface *screen) {
 	world world(false);
@@ -32,7 +32,7 @@ void test1(SDL_Surface *screen) {
 	light *l;
 	char buf[16];
 
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(20, -20, 0), 10);
@@ -104,14 +104,14 @@ void test2(SDL_Surface *screen) {
 	surface *s1, *s2, *s3;
 	light *l;
 	
-	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), pi / 2);
-	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10, 30, 2);
-	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0));
-	//cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 1, 0), 10);
+	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
+	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 2);
+	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
+	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	s1->shininess = 5;
+	s1->shininess = 6;
 	s1->diffuse = colorRGB(0.2, 0.6, 0.8);
 	s1->specular = colorRGB(0.7, 0.7, 0.7);
 	s1->ambient = colorRGB(0.2, 0.2, 0.2);

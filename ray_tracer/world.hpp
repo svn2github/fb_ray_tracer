@@ -15,7 +15,7 @@
 #include "sampler_random.hpp"
 
 namespace ray_tracer {
-	const int num_antialiasing_sampler = 1000;
+	const int num_antialiasing_sampler = 100;
 	class world {
 	public:
 		world(bool);
