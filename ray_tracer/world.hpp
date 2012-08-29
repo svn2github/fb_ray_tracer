@@ -12,7 +12,7 @@
 #include "view_plane.hpp"
 #include "camera.hpp"
 #include "tracer.hpp"
-#include "sampler_random.hpp"
+#include "sampler_jittered.hpp"
 
 namespace ray_tracer {
 	const int num_antialiasing_sampler = 100;
@@ -75,7 +75,7 @@ namespace ray_tracer {
 	inline void world::enable_antialiasing() {
 		if (antialiasing_enabled == false) {
 			antialiasing_enabled = true;
-			sampler_ptr = new sampler_random();
+			sampler_ptr = new sampler_jittered();
 			sampler_ptr->generate(num_antialiasing_sampler);
 		}
 	}

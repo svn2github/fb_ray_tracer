@@ -65,6 +65,9 @@
     <ClCompile Include="camera_fisheye.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
+    <ClCompile Include="sampler_jittered.cpp">
+      <Filter>bottom-layer\sampler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="camera_fisheye.hpp">
       <Filter>bottom-layer\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="sampler_jittered.hpp">
+      <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

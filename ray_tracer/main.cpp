@@ -18,10 +18,11 @@
 #include "simpson.hpp"
 #include "sampler.hpp"
 #include "sampler_random.hpp"
+#include "sampler_jittered.hpp"
 
 using namespace ray_tracer;
 
-const int width = 1000, height = 1000;
+const int width = 500, height = 500;
 
 void test1(SDL_Surface *screen) {
 	world world(false);
@@ -122,7 +123,7 @@ void test2(SDL_Surface *screen) {
 	s2->specular = colorRGB(0.7, 0.7, 0.7);
 	s2->ambient = colorRGB(0.2, 0.2, 0.2);
 	 
-	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
+	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 0));
 	s3->shininess = 100;
 
 	l = new light(point3D(0, 0, 30), color_white);
@@ -152,16 +153,16 @@ void test2(SDL_Surface *screen) {
 
 void test3(SDL_Surface *screen) {
 	srand(100);
-	sampler *sam = new sampler_random();
-	sam->generate(1000);
-	sam->map_sample_to_disk();
+	sampler *sam = new sampler_jittered();
+	sam->generate(10000);
+	// sam->map_sample_to_disk();
 	if (SDL_MUSTLOCK(screen)) {
 		if (SDL_LockSurface(screen) < 0) {
 			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
 			return;
 		}
 	}
-	for (int i = 1; i <= 1000; ++i) {
+	for (int i = 1; i <= 10000; ++i) {
 		point2D p = sam->get_sampler_zoomed(width);
 		int x = p.x, y = p.y;
 		int *ptr = (int *)screen->pixels;
