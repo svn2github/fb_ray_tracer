@@ -17,16 +17,18 @@ namespace ray_tracer {
 		v = (info->ray_ptr->get_origin() - info->hit_point).normalized();
 		n = info->normal;
 		for (std::vector<light *>::const_iterator iter = world_ptr->get_lights().begin(); iter != world_ptr->get_lights().end(); ++iter) {
-			l = ((*iter)->get_position() - info->hit_point).normalized();
-			h = (v + l).normalized();
-			temp = n * l;
-			if (temp > 0.0) {
-				Id += (*iter)->get_color() * diffuse * temp;
+			if ((*iter)->under_shadow(info) == false) {
+				l = ((*iter)->get_position() - info->hit_point).normalized();
+				h = (v + l).normalized();
+				temp = n * l;
+				if (temp > 0.0) {
+					Id += (*iter)->get_color() * diffuse * temp;
+				}
+				temp = n * h;
+				if (temp > 0.0) {
+					Is += (*iter)->get_color() * specular * pow(temp, info->surface_ptr->shininess);
+				}
 			}
-			temp = n * h;
-			if (temp > 0.0) {
-				Is += (*iter)->get_color() * specular * pow(temp, info->surface_ptr->shininess);
-			}			
 		}
 		Ia += info->world_ptr->get_ambient() * ambient;
 		return Id + Is + Ia;

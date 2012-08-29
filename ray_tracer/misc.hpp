@@ -2,6 +2,7 @@
 #define __MISC_HPP
 
 #include <cstdlib>
+#include <cmath>
 
 namespace ray_tracer {
 

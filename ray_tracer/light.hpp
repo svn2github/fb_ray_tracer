@@ -3,6 +3,8 @@
 
 #include "point3D.hpp"
 #include "colorRGB.hpp"
+#include "hit_info.hpp"
+#include "ray.hpp"
 
 namespace ray_tracer {
 	class light {
@@ -13,6 +15,7 @@ namespace ray_tracer {
 		void set_position(const point3D &);
 		colorRGB get_color() const;
 		void set_color(const colorRGB &);
+		bool under_shadow(hit_info *) const;
 	private:
 		point3D position;
 		colorRGB color;

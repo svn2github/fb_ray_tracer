@@ -20,7 +20,7 @@ namespace ray_tracer {
 		double deno = normal * ray_ptr->get_dir();
 		double t = (point_on_plane - ray_ptr->get_origin()) * normal / deno;
 		
-		if (t < tmin) {
+		if (dblcmp(deno) == 0 || t < tmin) {
 			return false;
 		}
 		hit_ptr->hit_t = t;
@@ -54,7 +54,7 @@ namespace ray_tracer {
 			*ambient_ptr = color_black;
 		} else {
 			*diffuse_ptr = color_white;
-			*ambient_ptr = color_black;
+			*ambient_ptr = color_white;
 		}		
 		*specular_ptr = color_black;
 	}

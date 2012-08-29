@@ -22,7 +22,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 300, height = 300;
 
 void test1(SDL_Surface *screen) {
 	world world(false);
@@ -106,9 +106,9 @@ void test2(SDL_Surface *screen) {
 	light *l;
 	
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 2);
+	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 1);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
@@ -117,23 +117,23 @@ void test2(SDL_Surface *screen) {
 	s1->specular = colorRGB(0.7, 0.7, 0.7);
 	s1->ambient = colorRGB(0.2, 0.2, 0.2);
 
-	s2 = new surface_sphere(point3D(30, 10, 0), 8);
+	s2 = new surface_sphere(point3D(30, 9, 0), 8);
 	s2->shininess = 100;
 	s2->diffuse = colorRGB(0.8, 0.2, 0.8);
 	s2->specular = colorRGB(0.7, 0.7, 0.7);
 	s2->ambient = colorRGB(0.2, 0.2, 0.2);
 	 
-	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 0));
+	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->shininess = 100;
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
-	// world.set_ambient(color_red);
+	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.add_surface(s1);
 	world.add_surface(s2);
-	//world.add_surface(s3);
+	world.add_surface(s3);
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 
