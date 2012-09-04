@@ -81,6 +81,7 @@
     <ClCompile Include="camera_thinlens.cpp" />
     <ClCompile Include="filter.cpp" />
     <ClCompile Include="filter_gaussian_blur.cpp" />
+    <ClCompile Include="filter_gray.cpp" />
     <ClCompile Include="hit_info.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="colorRGB.hpp" />
     <ClInclude Include="filter.hpp" />
     <ClInclude Include="filter_gaussian_blur.hpp" />
+    <ClInclude Include="filter_gray.hpp" />
     <ClInclude Include="hit_info.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="point2D.hpp" />

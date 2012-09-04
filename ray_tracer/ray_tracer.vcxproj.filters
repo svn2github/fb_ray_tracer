@@ -74,6 +74,9 @@
     <ClCompile Include="filter_gaussian_blur.cpp">
       <Filter>bottom-layer\filter</Filter>
     </ClCompile>
+    <ClCompile Include="filter_gray.cpp">
+      <Filter>bottom-layer\filter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -175,6 +178,9 @@
       <Filter>bottom-layer\filter</Filter>
     </ClInclude>
     <ClInclude Include="filter_gaussian_blur.hpp">
+      <Filter>bottom-layer\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="filter_gray.hpp">
       <Filter>bottom-layer\filter</Filter>
     </ClInclude>
   </ItemGroup>
