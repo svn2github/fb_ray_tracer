@@ -13,9 +13,10 @@
 #include "camera.hpp"
 #include "tracer.hpp"
 #include "sampler_jittered.hpp"
+#include "filter.hpp"
 
 namespace ray_tracer {
-	const int num_antialiasing_sampler = 100;
+	const int num_antialiasing_sampler = 25;
 	class world {
 	public:
 		world(bool);
@@ -36,6 +37,8 @@ namespace ray_tracer {
 		view_plane *get_view_plane() const;
 		void set_view_plane(view_plane *);
 		tracer *get_tracer() const;
+		void set_filter(filter *);
+		filter *get_filter() const;
 		// void set_ray_tracer(ray_tracer *);
 		void fit_window(int, int, void *); // Dimension: pixal
 		bool get_hit(ray *, hit_info *);
@@ -49,6 +52,7 @@ namespace ray_tracer {
 		camera *camera_ptr;
 		view_plane *plane_ptr;
 		tracer *tracer_ptr;
+		filter *filter_ptr;
 		int dest_w, dest_h, *pixal_buffer_ptr;
 	};
 
@@ -121,6 +125,14 @@ namespace ray_tracer {
 
 	inline tracer *world::get_tracer() const {
 		return tracer_ptr;
+	}
+
+	inline filter *world::get_filter() const {
+		return filter_ptr;
+	}
+
+	inline void world::set_filter(filter *filter_ptr_) {
+		filter_ptr = filter_ptr_;
 	}
 
 	inline void world::fit_window(int w, int h, void *p) {

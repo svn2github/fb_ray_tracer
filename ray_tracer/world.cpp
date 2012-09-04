@@ -6,11 +6,13 @@
 #include "tracer.hpp"
 #include "camera.hpp"
 #include "world.hpp"
+#include "filter_gaussian_blur.hpp"
 
 namespace ray_tracer {
 
 	world::world(bool antialiasing_) {
 		tracer_ptr = new tracer;
+		filter_ptr = NULL;
 		set_ambient(color_white);
 		antialiasing_enabled = false;
 		if (antialiasing_) {
@@ -70,6 +72,9 @@ namespace ray_tracer {
 				}
 				*buffer_ptr ++ = color.clamp_to_int();
 			}
+		}
+		if (filter_ptr != NULL) {
+			filter_ptr->apply_filter(pixal_buffer_ptr, dest_w, dest_h);
 		}
 	}
 }

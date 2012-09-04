@@ -19,10 +19,12 @@
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
+#include "filter.hpp"
+#include "filter_gaussian_blur.hpp"
 
 using namespace ray_tracer;
 
-const int width = 300, height = 300;
+const int width = 1000, height = 1000;
 
 void test1(SDL_Surface *screen) {
 	world world(false);
@@ -104,7 +106,8 @@ void test2(SDL_Surface *screen) {
 	view_plane *plane;
 	surface *s1, *s2, *s3;
 	light *l;
-	
+	filter *f;
+
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
 	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 1);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
@@ -128,13 +131,16 @@ void test2(SDL_Surface *screen) {
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
-	world.set_ambient(color_white / 5);
+	f = new filter_gaussian_blur(10, 1, NULL);
+
+	world.set_ambient(color_white);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
 	world.add_light(l);
+	world.set_filter(f);
 	world.fit_window(width, height, screen->pixels);
 
 	if (SDL_MUSTLOCK(screen)) {
@@ -148,7 +154,7 @@ void test2(SDL_Surface *screen) {
 		SDL_UnlockSurface(screen);
 	}
 	SDL_UpdateRect(screen, 0, 0, width, height);
-	// SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
 void test3(SDL_Surface *screen) {
