@@ -2,7 +2,6 @@
 #include "sampler.hpp"
 #include "misc.hpp"
 #include <cmath>
-#include <algorithm>
 
 namespace ray_tracer {
 
@@ -32,6 +31,5 @@ namespace ray_tracer {
 			samples[i].x = r * cos(angle) + 0.5;
 			samples[i].y = r * sin(angle) + 0.5;
 		}
-		std::random_shuffle(samples.begin(), samples.end());
 	}
 };

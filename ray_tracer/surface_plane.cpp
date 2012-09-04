@@ -54,7 +54,7 @@ namespace ray_tracer {
 			*ambient_ptr = color_black;
 		} else {
 			*diffuse_ptr = color_white;
-			*ambient_ptr = color_white;
+			*ambient_ptr = color_white / 5;
 		}		
 		*specular_ptr = color_black;
 	}

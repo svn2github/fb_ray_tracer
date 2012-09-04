@@ -15,6 +15,14 @@ namespace ray_tracer {
 		b = b_;
 	}
 
+	colorRGB::colorRGB(int c) {
+		b = (double)(c & 255) / 255;
+		c >>= 8;
+		g = (double)(c & 255) / 255;
+		c >>= 8;
+		r = (double)(c & 255) / 255;
+	}
+
 	colorRGB color_black = colorRGB(0.0, 0.0, 0.0);
 	colorRGB color_white = colorRGB(1.0, 1.0, 1.0);
 	colorRGB color_red   = colorRGB(1.0, 0.0, 0.0);

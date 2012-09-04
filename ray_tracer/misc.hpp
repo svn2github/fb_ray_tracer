@@ -6,7 +6,8 @@
 
 namespace ray_tracer {
 
-	const double pi = 3.1415926535898;
+	const double pi = 3.141592653589;
+	const double e = 2.718281828459;
 	const double epsilon = 1e-7;
 	const double huge_double = 10e10;
 	#define dblcmp(_x_) ((_x_) < -epsilon ? -1 : ((_x_) > (epsilon ? 1 : 0)))

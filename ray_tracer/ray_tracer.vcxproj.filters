@@ -68,6 +68,12 @@
     <ClCompile Include="sampler_jittered.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
+    <ClCompile Include="filter.cpp">
+      <Filter>bottom-layer\filter</Filter>
+    </ClCompile>
+    <ClCompile Include="filter_gaussian_blur.cpp">
+      <Filter>bottom-layer\filter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -87,6 +93,9 @@
     </Filter>
     <Filter Include="bottom-layer\sampler">
       <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\filter">
+      <UniqueIdentifier>{04e2ebb0-6739-471c-97e5-d392e9a82bb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +170,12 @@
     </ClInclude>
     <ClInclude Include="sampler_jittered.hpp">
       <Filter>bottom-layer\sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="filter.hpp">
+      <Filter>bottom-layer\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="filter_gaussian_blur.hpp">
+      <Filter>bottom-layer\filter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
