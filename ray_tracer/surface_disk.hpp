@@ -19,7 +19,7 @@ namespace ray_tracer {
 	private:
 		point3D center;
 		vector3D normal;
-		double radius, radius2;
+		double radius, radius_squared;
 	};
 
 	inline point3D surface_disk::get_center() const {
@@ -44,7 +44,7 @@ namespace ray_tracer {
 
 	inline void surface_disk::set_radius(const double &radius_) {
 		radius = radius_;
-		radius2 = radius_ * radius_;
+		radius_squared = radius_ * radius_;
 	}
 }
 

@@ -16,7 +16,7 @@ namespace ray_tracer {
 		vector3D get_normal(const point3D &) const;
 	private:
 		point3D center;
-		double radius, radius2;
+		double radius, radius_squared;
 	};
 
 	inline point3D surface_sphere::get_center() const {
@@ -33,7 +33,7 @@ namespace ray_tracer {
 
 	inline void surface_sphere::set_radius(const double &radius_) {
 		radius = radius_;
-		radius2 = radius_ * radius_;
+		radius_squared = radius_ * radius_;
 	}
 }
 

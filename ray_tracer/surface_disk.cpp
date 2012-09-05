@@ -27,7 +27,7 @@ namespace ray_tracer {
 			return false;
 		}
 		p = ray_ptr->get_origin() + ray_ptr->get_dir() * t;
-		if ((center - p).length2() > radius2) {
+		if ((center - p).length_squared() > radius_squared) {
 			return false;
 		}
 		hit_ptr->hit_t = t;

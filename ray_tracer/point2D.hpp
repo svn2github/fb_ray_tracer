@@ -10,7 +10,7 @@ namespace ray_tracer {
 		point2D();
 		point2D(double, double);
 		double length() const;
-		double length2() const;
+		double length_squared() const;
 		double inv_length() const;
 		friend point2D operator*(const point2D &, double);
 		friend point2D operator*(double, const point2D &);
@@ -22,7 +22,7 @@ namespace ray_tracer {
 		return sqrt(x * x + y * y);
 	}
 
-	inline double point2D::length2() const {
+	inline double point2D::length_squared() const {
 		return x * x + y * y;
 	}
 
