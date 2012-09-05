@@ -10,6 +10,7 @@ namespace ray_tracer {
 		int clamp_to_int() const;
 		friend colorRGB operator+(const colorRGB &, const colorRGB &);
 		friend colorRGB &operator+=(colorRGB &, const colorRGB &);
+		friend colorRGB operator-(const colorRGB &, const colorRGB &);
 		friend colorRGB operator*(const colorRGB &, double);
 		friend colorRGB operator*(double, const colorRGB &);
 		friend colorRGB operator*(const colorRGB &, const colorRGB &);
@@ -37,6 +38,10 @@ namespace ray_tracer {
 		return c1;
 	}
 	
+	inline colorRGB operator-(const colorRGB &c1, const colorRGB &c2) {
+		return colorRGB(c1.r - c2.r, c1.g - c2.g, c1.b - c2.b);
+	}
+
 	inline colorRGB operator*(const colorRGB &c, double f) {
 		return colorRGB(c.r * f, c.g * f, c.b * f);
 	}

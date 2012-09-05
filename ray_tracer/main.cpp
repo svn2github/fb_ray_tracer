@@ -21,7 +21,7 @@
 #include "sampler_jittered.hpp"
 #include "filter.hpp"
 #include "filter_gaussian_blur.hpp"
-#include "filter_gray.hpp"
+#include "filter_invert.hpp"
 
 using namespace ray_tracer;
 
@@ -132,7 +132,7 @@ void test2(SDL_Surface *screen) {
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
-	f = new filter_gaussian_blur(10, 1, new filter_gray(NULL));
+	f = new filter_invert(NULL);
 
 	world.set_ambient(color_white);
 	world.set_camera(cam);
