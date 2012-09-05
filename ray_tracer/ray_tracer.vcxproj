@@ -91,6 +91,7 @@
     <ClCompile Include="sampler.cpp" />
     <ClCompile Include="sampler_jittered.cpp" />
     <ClCompile Include="sampler_random.cpp" />
+    <ClCompile Include="surface_disk.cpp" />
     <ClCompile Include="surface_triangle.cpp" />
     <ClCompile Include="view_plane.cpp" />
     <ClCompile Include="ray.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="sampler_jittered.hpp" />
     <ClInclude Include="sampler_random.hpp" />
     <ClInclude Include="simpson.hpp" />
+    <ClInclude Include="surface_disk.hpp" />
     <ClInclude Include="surface_plane.hpp" />
     <ClInclude Include="surface_sphere.hpp" />
     <ClInclude Include="surface.hpp" />

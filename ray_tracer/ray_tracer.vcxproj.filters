@@ -80,6 +80,9 @@
     <ClCompile Include="filter_invert.cpp">
       <Filter>bottom-layer\filter</Filter>
     </ClCompile>
+    <ClCompile Include="surface_disk.cpp">
+      <Filter>bottom-layer\surface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="filter_invert.hpp">
       <Filter>bottom-layer\filter</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_disk.hpp">
+      <Filter>bottom-layer\surface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
