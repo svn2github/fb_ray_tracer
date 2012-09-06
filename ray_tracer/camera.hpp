@@ -17,6 +17,7 @@ namespace ray_tracer {
 		void set_lookat(const point3D &);
 		vector3D get_up() const;
 		void set_up(const vector3D &);
+		void rotate(double);
 	protected:
 		void compute_axis();
 	protected:

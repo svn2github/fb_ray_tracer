@@ -83,6 +83,9 @@
     <ClCompile Include="surface_disk.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="matrix3D.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -194,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="surface_disk.hpp">
       <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix3D.hpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -86,6 +86,7 @@
     <ClCompile Include="hit_info.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="matrix3D.cpp" />
     <ClCompile Include="point2D.cpp" />
     <ClCompile Include="point3D.cpp" />
     <ClCompile Include="sampler.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="filter_invert.hpp" />
     <ClInclude Include="hit_info.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
+    <ClInclude Include="matrix3D.hpp" />
     <ClInclude Include="point2D.hpp" />
     <ClInclude Include="point3D.hpp" />
     <ClInclude Include="sampler.hpp" />
