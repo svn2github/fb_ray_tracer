@@ -102,7 +102,7 @@ void test1(SDL_Surface *screen) {
 }
 
 void test2(SDL_Surface *screen) {
-	world world(true);
+	world world(false);
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
@@ -110,10 +110,10 @@ void test2(SDL_Surface *screen) {
 	filter *f;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 1);
+	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
-	cam->rotate(pi / 4);
+	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	// cam->rotate(pi / 4);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);

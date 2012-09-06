@@ -42,6 +42,10 @@ namespace ray_tracer {
 		delete smpler;
 	}
 
+	void camera_thinlens::zoom(double factor) {
+		view_dist *= factor;
+	}
+
 	colorRGB camera_thinlens::render_scene(double x, double y, int w, int h, world *world_ptr) const {
 		double u = world_ptr->get_view_plane()->compute_u(x + 0.5, w);
 		double v = world_ptr->get_view_plane()->compute_v(y + 0.5, h);
