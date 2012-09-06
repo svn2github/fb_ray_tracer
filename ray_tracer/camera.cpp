@@ -29,7 +29,7 @@ namespace ray_tracer {
 		axis_u = mat * axis_u;
 		axis_v = mat * axis_v;
 		axis_w = mat * axis_w;
-		up = -axis_v * up.length();
+		up = mat * up;
 	}
 
 	void camera::compute_axis() {
