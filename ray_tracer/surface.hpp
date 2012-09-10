@@ -11,6 +11,7 @@
 namespace ray_tracer {
 	class surface {
 	public:
+		virtual ~surface() = 0;
 		/** parameter 3: only hit_t is returned */
 		virtual bool hit(ray *, double, hit_info *) const = 0; 
 		virtual vector3D get_normal(const point3D &) const = 0;
