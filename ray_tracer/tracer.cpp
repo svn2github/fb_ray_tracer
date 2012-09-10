@@ -26,7 +26,7 @@ namespace ray_tracer {
 				}
 				temp = n * h;
 				if (temp > 0.0) {
-					Is += (*iter)->get_color() * specular * pow(temp, info->surface_ptr->shininess);
+					Is += (*iter)->get_color() * specular * pow(temp, info->surface_ptr->get_material()->shininess);
 				}
 			}
 		}

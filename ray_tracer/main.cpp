@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <SDL.h>
 #include "vector3D.hpp"
+#include "material.hpp"
 #include "surface.hpp"
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
@@ -33,6 +34,7 @@ void test1(SDL_Surface *screen) {
 	view_plane *plane;
 	surface_sphere *s1;
 	surface_plane *s2;
+	material *m1, *m2, *m3;
 	light *l;
 	char buf[16];
 
@@ -40,16 +42,20 @@ void test1(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	s1->shininess = 6;
-	s1->diffuse = colorRGB(0.2, 0.6, 0.8);
-	s1->specular = colorRGB(0.7, 0.7, 0.7);
-	s1->ambient = colorRGB(0.2, 0.2, 0.2);
+	m1 = new material;
+	m1->shininess = 6;
+	m1->diffuse = colorRGB(0.2, 0.6, 0.8);
+	m1->specular = colorRGB(0.7, 0.7, 0.7);
+	m1->ambient = colorRGB(0.2, 0.2, 0.2);
+	s1->set_material(m1);
 
 	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
-	s2->shininess = 3;
-	s2->diffuse = colorRGB(0.8, 0.6, 0.2);
-	s2->specular = colorRGB(0.7, 0.7, 0.7);
-	s2->ambient = colorRGB(0.1, 0.1, 0.1);
+	m2 = new material;
+	m2->shininess = 100;
+	m2->diffuse = colorRGB(0.8, 0.2, 0.8);
+	m2->specular = colorRGB(0.7, 0.7, 0.7);
+	m2->ambient = colorRGB(0.2, 0.2, 0.2);
+	s2->set_material(m2);
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
@@ -102,34 +108,40 @@ void test1(SDL_Surface *screen) {
 }
 
 void test2(SDL_Surface *screen) {
-	world world(false);
+	world world(true);
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
+	material *m1, *m2, *m3;
 	light *l;
 	filter *f;
 
-	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
+
+	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
+	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
 	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	// cam->rotate(pi / 4);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	s1->shininess = 6;
-	s1->diffuse = colorRGB(0.2, 0.6, 0.8);
-	s1->specular = colorRGB(0.7, 0.7, 0.7);
-	s1->ambient = colorRGB(0.2, 0.2, 0.2);
+	m1 = new material;
+	m1->shininess = 6;
+	m1->diffuse = colorRGB(0.2, 0.6, 0.8);
+	m1->specular = colorRGB(0.7, 0.7, 0.7);
+	m1->ambient = colorRGB(0.2, 0.2, 0.2);
+	s1->set_material(m1);
 
 	s2 = new surface_sphere(point3D(30, 9, 0), 8);
-	s2->shininess = 100;
-	s2->diffuse = colorRGB(0.8, 0.2, 0.8);
-	s2->specular = colorRGB(0.7, 0.7, 0.7);
-	s2->ambient = colorRGB(0.2, 0.2, 0.2);
-	 
+	m2 = new material;
+	m2->shininess = 100;
+	m2->diffuse = colorRGB(0.8, 0.2, 0.8);
+	m2->specular = colorRGB(0.7, 0.7, 0.7);
+	m2->ambient = colorRGB(0.2, 0.2, 0.2);
+	s2->set_material(m2);
+
 	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
-	s3->shininess = 100;
+	s3->set_material(m2);
 
 	l = new light(point3D(0, 0, 30), color_white);
 	
