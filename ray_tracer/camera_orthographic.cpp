@@ -27,7 +27,7 @@ namespace ray_tracer {
 		hit_info info;
 
 		if (world_ptr->get_hit(&ray(eye + u * axis_u + v * axis_v, -axis_w), &info)) {
-			return world_ptr->get_tracer()->ray_color(world_ptr, &info);
+			return world_ptr->get_tracer()->ray_color(&info);
 		} else {
 			return world_ptr->get_background();
 		}

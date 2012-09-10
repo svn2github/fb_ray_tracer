@@ -3,5 +3,5 @@
 
 namespace ray_tracer {
 
-	// material::~material() { }
+	material::~material() { }
 }

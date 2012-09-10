@@ -39,7 +39,7 @@ namespace ray_tracer {
 	public:
 		surface_plane_bw();
 		surface_plane_bw(const point3D &, const vector3D &);
-		void get_color(const point3D &, colorRGB *, colorRGB *, colorRGB *) const;
+		void get_color(const point3D &, colorRGB *) const;
 	};
 }
 

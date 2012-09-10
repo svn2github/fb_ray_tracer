@@ -9,7 +9,7 @@ namespace ray_tracer {
 	class world;
 	class tracer {
 	public:	
-		colorRGB ray_color(world *, hit_info *);
+		colorRGB ray_color(hit_info *);
 	private:
 		double pow(double, int);
 	};

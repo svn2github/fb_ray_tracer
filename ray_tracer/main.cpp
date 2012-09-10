@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "vector3D.hpp"
 #include "material.hpp"
+#include "material_blinn_phong.hpp"
 #include "surface.hpp"
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
@@ -34,7 +35,7 @@ void test1(SDL_Surface *screen) {
 	view_plane *plane;
 	surface_sphere *s1;
 	surface_plane *s2;
-	material *m1, *m2, *m3;
+	material_blinn_phong *m1, *m2;
 	light *l;
 	char buf[16];
 
@@ -42,19 +43,13 @@ void test1(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	m1 = new material;
-	m1->shininess = 6;
-	m1->diffuse = colorRGB(0.2, 0.6, 0.8);
-	m1->specular = colorRGB(0.7, 0.7, 0.7);
-	m1->ambient = colorRGB(0.2, 0.2, 0.2);
+	m1 = new material_blinn_phong;
+	m1->set_specular_shininess(6);
 	s1->set_material(m1);
 
 	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
-	m2 = new material;
-	m2->shininess = 100;
-	m2->diffuse = colorRGB(0.8, 0.2, 0.8);
-	m2->specular = colorRGB(0.7, 0.7, 0.7);
-	m2->ambient = colorRGB(0.2, 0.2, 0.2);
+	m2 = new material_blinn_phong;
+	m2->set_specular_shininess(100);
 	s2->set_material(m2);
 
 	l = new light(point3D(0, 0, 30), color_white);
@@ -112,33 +107,29 @@ void test2(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
-	material *m1, *m2, *m3;
+	material_blinn_phong *m1, *m2;
 	light *l;
 	filter *f;
 
 
-	cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
+	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
 	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	// cam->rotate(pi / 4);
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	m1 = new material;
-	m1->shininess = 6;
-	m1->diffuse = colorRGB(0.2, 0.6, 0.8);
-	m1->specular = colorRGB(0.7, 0.7, 0.7);
-	m1->ambient = colorRGB(0.2, 0.2, 0.2);
+	m1 = new material_blinn_phong;
+	m1->set_specular_shininess(6);
 	s1->set_material(m1);
+	s1->surface_color = colorRGB(0.2, 0.6, 0.8);
 
 	s2 = new surface_sphere(point3D(30, 9, 0), 8);
-	m2 = new material;
-	m2->shininess = 100;
-	m2->diffuse = colorRGB(0.8, 0.2, 0.8);
-	m2->specular = colorRGB(0.7, 0.7, 0.7);
-	m2->ambient = colorRGB(0.2, 0.2, 0.2);
+	m2 = new material_blinn_phong;
+	m2->set_specular_shininess(100);
 	s2->set_material(m2);
+	s2->surface_color = colorRGB(0.8, 0.2, 0.8);
 
 	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->set_material(m2);
@@ -147,7 +138,7 @@ void test2(SDL_Surface *screen) {
 	
 	f = new filter_invert(NULL);
 
-	world.set_ambient(color_white);
+	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.add_surface(s1);
