@@ -7,6 +7,7 @@
 namespace ray_tracer {
 	class sampler {
 	public:
+		virtual ~sampler() = 0;
 		/** All sample's coordinate should be ranged in [0, 1) */
 		virtual void generate(int) = 0;
 		void reset();

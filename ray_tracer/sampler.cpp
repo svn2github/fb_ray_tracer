@@ -5,6 +5,8 @@
 
 namespace ray_tracer {
 
+	sampler::~sampler() { }
+
 	// Origin: Shirley and Chiu(1997)
 	void sampler::map_sample_to_disk() {
 		for (int i = 0; i < number_samples; i += 1) {
