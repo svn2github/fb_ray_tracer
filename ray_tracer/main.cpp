@@ -143,7 +143,7 @@ void test2(SDL_Surface *screen) {
 
 	s3 = new surface_plane(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->set_material(m2);
-	t3 = new texture_checker;
+	t3 = new texture_checker(color_red, color_green);
 	s3->set_texture(t3);
 
 	l = new light(point3D(0, 0, 30), color_white);

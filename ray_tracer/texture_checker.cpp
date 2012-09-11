@@ -3,6 +3,16 @@
 
 namespace ray_tracer {
 
+	texture_checker::texture_checker() {
+		color1 = color_black;
+		color2 = color_white;
+	}
+
+	texture_checker::texture_checker(colorRGB color1_, colorRGB color2_) {
+		color1 = color1_;
+		color2 = color2_;
+	}
+
 	colorRGB texture_checker::texture_shade(hit_info *info_ptr) {
 		const int sz = 4;
 		const double huge = 10000;
@@ -11,9 +21,9 @@ namespace ray_tracer {
 	
 		mod = (((x + y + z) % 2) + 2) % 2;
 		if (mod) {
-			return color_black;
+			return color1;
 		} else {
-			return color_white;
+			return color2;
 		}
 	}
 }

@@ -6,7 +6,11 @@
 namespace ray_tracer {
 	class texture_checker : public texture {
 	public:
+		texture_checker();
+		texture_checker(colorRGB, colorRGB);
 		colorRGB texture_shade(hit_info *);
+	private:
+		colorRGB color1, color2;
 	};
 }
 
