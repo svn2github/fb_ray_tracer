@@ -14,7 +14,7 @@ namespace ray_tracer {
 		double temp;
 
 		world_ptr = info->world_ptr;
-		info->surface_ptr->get_color(info->hit_point, &surface_color);
+		surface_color = info->surface_ptr->texture_shade(info);
 		win = (info->ray_ptr->get_origin() - info->hit_point).normalized();
 		normal = info->normal;
 		result = info->world_ptr->get_ambient() * surface_color;
@@ -23,7 +23,7 @@ namespace ray_tracer {
 				wout = ((*iter)->get_position() - info->hit_point).normalized();
 				temp = normal * wout;
 				if (temp > 0) {
-					result += (*iter)->get_color() * temp * info->surface_ptr->get_material()->material_shade(info, surface_color, win, wout);
+					result += (*iter)->get_color() * temp * info->surface_ptr->material_shade(info, surface_color, win, wout);
 				}
 			}
 		}

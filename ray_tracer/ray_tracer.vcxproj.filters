@@ -104,6 +104,15 @@
     <ClCompile Include="material_blinn_phong.cpp">
       <Filter>bottom-layer\material</Filter>
     </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_solid_color.cpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_checker.cpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -132,6 +141,9 @@
     </Filter>
     <Filter Include="bottom-layer\material\BRDF">
       <UniqueIdentifier>{5a781ca3-da1d-4507-b98b-7d4733377557}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\texture">
+      <UniqueIdentifier>{63482482-2542-416e-a168-f93e10404a1b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +254,15 @@
     </ClInclude>
     <ClInclude Include="material_blinn_phong.hpp">
       <Filter>bottom-layer\material</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.hpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_solid_color.hpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_checker.hpp">
+      <Filter>bottom-layer\texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

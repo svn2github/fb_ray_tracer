@@ -9,6 +9,9 @@
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
 #include "surface_triangle.hpp"
+#include "texture.hpp"
+#include "texture_checker.hpp"
+#include "texture_solid_color.hpp"
 #include "view_plane.hpp"
 #include "world.hpp"
 #include "light.hpp"
@@ -36,6 +39,7 @@ void test1(SDL_Surface *screen) {
 	surface_sphere *s1;
 	surface_plane *s2;
 	material_blinn_phong *m1, *m2;
+	texture *t1, *t2;
 	light *l;
 	char buf[16];
 
@@ -44,16 +48,20 @@ void test1(SDL_Surface *screen) {
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
 	m1 = new material_blinn_phong;
+	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	m1->set_specular_shininess(6);
 	s1->set_material(m1);
+	s1->set_texture(t1);
 
 	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
 	m2 = new material_blinn_phong;
 	m2->set_specular_shininess(100);
 	s2->set_material(m2);
+	t2 = new texture_checker;
+	s2->set_texture(t2);
 
 	l = new light(point3D(0, 0, 30), color_white);
-	
+
 	world.set_ambient(color_white);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
@@ -76,7 +84,7 @@ void test1(SDL_Surface *screen) {
 
 		y += step;
 		if (y < -20 || y > 20) step = -step;
-		
+
 		point3D center = s1->get_center();
 		center.y = y;
 		s1->set_center(center);
@@ -108,9 +116,9 @@ void test2(SDL_Surface *screen) {
 	view_plane *plane;
 	surface *s1, *s2, *s3;
 	material_blinn_phong *m1, *m2;
+	texture *t1, *t2, *t3;
 	light *l;
 	filter *f;
-
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
 	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
@@ -121,21 +129,25 @@ void test2(SDL_Surface *screen) {
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
 	m1 = new material_blinn_phong;
+	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	m1->set_specular_shininess(6);
 	s1->set_material(m1);
-	s1->surface_color = colorRGB(0.2, 0.6, 0.8);
+	s1->set_texture(t1);
 
 	s2 = new surface_sphere(point3D(30, 9, 0), 8);
 	m2 = new material_blinn_phong;
+	t2 = new texture_solid_color(colorRGB(0.8, 0.2, 0.8));
 	m2->set_specular_shininess(100);
 	s2->set_material(m2);
-	s2->surface_color = colorRGB(0.8, 0.2, 0.8);
+	s2->set_texture(t2);
 
-	s3 = new surface_plane_bw(point3D(50, 0, 0), vector3D(-1, 0, 1));
+	s3 = new surface_plane(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->set_material(m2);
+	t3 = new texture_checker;
+	s3->set_texture(t3);
 
 	l = new light(point3D(0, 0, 30), color_white);
-	
+
 	f = new filter_invert(NULL);
 
 	world.set_ambient(color_white / 5);

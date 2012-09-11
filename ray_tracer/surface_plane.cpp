@@ -30,30 +30,4 @@ namespace ray_tracer {
 	vector3D surface_plane::get_normal(const point3D &point) const {
 		return normal;
 	}
-	
-	// This class is just for test
-	surface_plane_bw::surface_plane_bw() {
-		set_point_on_plane(point3D());
-		set_normal(vector3D());
-	}
-
-	surface_plane_bw::surface_plane_bw(const point3D &point_, const vector3D &normal_) {
-		set_point_on_plane(point_);
-		set_normal(normal_);
-	}
-
-	// Hack implementation
-	void surface_plane_bw::get_color(const point3D &p, colorRGB *color_ptr) const {
-		const int sz = 4;
-		const double huge = 10000;
-		int x = (p.x + huge) / sz, y = (p.y + huge) / sz, z = (p.z + huge) / sz, mod;
-	
-		mod = (((x + y + z) % 2) + 2) % 2;
-		if (mod) {
-			*color_ptr = color_black;
-		} else {
-			*color_ptr = color_white;
-		}
-	}
-
 }
