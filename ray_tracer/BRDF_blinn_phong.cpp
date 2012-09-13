@@ -4,10 +4,10 @@
 #include <cstdio>
 
 namespace ray_tracer {
-	colorRGB BRDF_blinn_phong::f(hitInfo *hit_ptr, const vector3D &win, const vector3D &wout) {
+	colorRGB BRDF_blinn_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {
 		double temp;
 
-		temp = hit_ptr->normal * (win + wout).normalized();
+		temp = info_ptr->normal * (win + wout).normalized();
 		if (temp > 0.0) {
 			temp = pow(temp, shininess);
 			return colorRGB(temp, temp, temp) * coefficient;

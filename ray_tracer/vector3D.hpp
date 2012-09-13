@@ -5,10 +5,12 @@
 #include "misc.hpp"
 
 namespace ray_tracer {
+	class point3D;
 	class vector3D {
 	public:
 		vector3D();
 		vector3D(double, double, double);
+		point3D to_point() const;
 		double length() const;
 		double length_squared() const;
 		double inv_length() const;

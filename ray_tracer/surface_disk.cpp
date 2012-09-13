@@ -18,7 +18,7 @@ namespace ray_tracer {
 		set_radius(radius);
 	}
 
-	bool surface_disk::hit(ray *ray_ptr, double tmin, hitInfo *hit_ptr) const {
+	bool surface_disk::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
 		double deno = normal * ray_ptr->get_dir();
 		double t = (center - ray_ptr->get_origin()) * normal / deno;
 		point3D p;
@@ -30,7 +30,7 @@ namespace ray_tracer {
 		if ((center - p).length_squared() > radius_squared) {
 			return false;
 		}
-		hit_ptr->hit_t = t;
+		info_ptr->hit_t = t;
 		return true;
 	}
 

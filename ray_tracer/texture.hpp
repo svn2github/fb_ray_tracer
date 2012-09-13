@@ -9,7 +9,7 @@ namespace ray_tracer {
 	class texture {
 	public:
 		virtual ~texture() = 0;
-		virtual colorRGB texture_shade(hitInfo *) = 0;
+		virtual colorRGB texture_shade(hitInfo *) const = 0;
 	};
 }
 

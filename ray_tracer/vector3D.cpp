@@ -1,5 +1,6 @@
 
 #include "vector3D.hpp"
+#include "point3D.hpp"
 
 namespace ray_tracer {
 
@@ -13,5 +14,9 @@ namespace ray_tracer {
 		x = x_;
 		y = y_;
 		z = z_; 
+	}
+
+	point3D vector3D::to_point() const {
+		return point3D(x, y, z);
 	}
 }

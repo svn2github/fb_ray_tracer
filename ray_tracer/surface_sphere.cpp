@@ -16,7 +16,7 @@ namespace ray_tracer {
 		set_radius(radius_);
 	}
 
-	bool surface_sphere::hit(ray *ray_ptr, double tmin, hitInfo *hit_ptr) const {
+	bool surface_sphere::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
 		point3D e = ray_ptr->get_origin(), c = center;
 		vector3D d = ray_ptr->get_dir();
 		double a = d * (e - c), d2 = d.length_squared();
@@ -31,7 +31,7 @@ namespace ray_tracer {
 			if (t < tmin) {
 				return false;
 			}
-			hit_ptr->hit_t = t;
+			info_ptr->hit_t = t;
 			return true;
 		}
 	}
@@ -40,4 +40,7 @@ namespace ray_tracer {
 		return (point - center).normalized();
 	}
 
+	point3D surface_sphere::get_relative_pos(const point3D &point) const {
+		return (point - center).to_point();
+	}
 }

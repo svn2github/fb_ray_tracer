@@ -16,14 +16,14 @@ namespace ray_tracer {
 		set_normal(normal_);
 	}
 
-	bool surface_plane::hit(ray *ray_ptr, double tmin, hitInfo *hit_ptr) const {
+	bool surface_plane::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
 		double deno = normal * ray_ptr->get_dir();
 		double t = (point_on_plane - ray_ptr->get_origin()) * normal / deno;
 		
 		if (dblcmp(deno) == 0 || t < tmin) {
 			return false;
 		}
-		hit_ptr->hit_t = t;
+		info_ptr->hit_t = t;
 		return true;
 	}
 

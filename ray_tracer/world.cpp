@@ -46,6 +46,7 @@ namespace ray_tracer {
 		}
 		if (hit_flag) { 
 			info_ptr->hit_point = ray_ptr->get_origin() + ray_ptr->get_dir() * info_ptr->hit_t;
+			info_ptr->hit_relative_point = info_ptr->surface_ptr->get_relative_pos(info_ptr->hit_point);
 			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
 			info_ptr->world_ptr = this;
 			info_ptr->ray_ptr = ray_ptr;

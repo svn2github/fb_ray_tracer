@@ -20,7 +20,7 @@ namespace ray_tracer {
 		normal = ((v1 - v0) ^ (v2 - v0)).normalized();
 	}
 
-	bool surface_triangle::hit(ray *ray_ptr, double tmin, hitInfo *hit_ptr) const {
+	bool surface_triangle::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
 		double a = v0.x - v1.x, b = v0.x - v2.x, c = ray_ptr->get_dir().x, d = v0.x - ray_ptr->get_origin().x;
 		double e = v0.y - v1.y, f = v0.y - v2.y, g = ray_ptr->get_dir().y, h = v0.y - ray_ptr->get_origin().y;
 		double i = v0.z - v1.z, j = v0.z - v2.z, k = ray_ptr->get_dir().z, l = v0.z - ray_ptr->get_origin().z;
@@ -46,7 +46,7 @@ namespace ray_tracer {
 		if (t < tmin) {
 			return false;
 		}
-		hit_ptr->hit_t = t;
+		info_ptr->hit_t = t;
 		return true;
 	}
 

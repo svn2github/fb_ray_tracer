@@ -5,13 +5,17 @@
 #include "vector3D.hpp"
 #include "material.hpp"
 #include "material_blinn_phong.hpp"
+#include "material_matte.hpp"
 #include "surface.hpp"
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
 #include "surface_triangle.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
+#include "texture_image.hpp"
 #include "texture_solid_color.hpp"
+#include "image_mapping.hpp"
+#include "image_mapping_sphere.hpp"
 #include "view_plane.hpp"
 #include "world.hpp"
 #include "light.hpp"
@@ -199,6 +203,50 @@ void test3(SDL_Surface *screen) {
 	SDL_UpdateRect(screen, 0, 0, width, height);
 }
 
+void test4(SDL_Surface *screen) {
+	world world(false);
+	camera *cam;
+	view_plane *plane;
+	surface *s;
+	material *m;
+	texture *t;
+	light *l;
+	SDL_Surface *img;
+
+	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
+	SDL_LockSurface(img);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 30);
+	plane = new view_plane(-20, 20, 20, -20);
+
+	s = new surface_sphere(point3D(30, 0, 0), 10);
+	m = new material_matte;
+	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new image_mapping_sphere());
+	s->set_material(m);
+	s->set_texture(t);
+
+	l = new light(point3D(0, 0, 30), color_white);
+
+	world.set_ambient(color_white / 5);
+	world.set_camera(cam);
+	world.set_view_plane(plane);
+	world.add_surface(s);
+	world.add_light(l);
+	world.fit_window(width, height, screen->pixels);
+
+	if (SDL_MUSTLOCK(screen)) {
+		if (SDL_LockSurface(screen) < 0) {
+			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
+			return;
+		}
+	}
+	world.render_scene();
+	if (SDL_MUSTLOCK(screen)) {
+		SDL_UnlockSurface(screen);
+	}
+	SDL_UpdateRect(screen, 0, 0, width, height);
+	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+}
+
 int main() {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
@@ -211,7 +259,7 @@ int main() {
 		return 0;
 	}
 
-	test2(screen);
+	test4(screen);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));
