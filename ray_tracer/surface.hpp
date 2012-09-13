@@ -4,7 +4,7 @@
 #include "vector3D.hpp"
 #include "point3D.hpp"
 #include "colorRGB.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 #include "ray.hpp"
 #include "material.hpp"
 #include "texture.hpp"
@@ -14,11 +14,11 @@ namespace ray_tracer {
 	public:
 		virtual ~surface() = 0;
 		/** parameter 3: only hit_t is returned */
-		virtual bool hit(ray *, double, hit_info *) const = 0; 
+		virtual bool hit(ray *, double, hitInfo *) const = 0; 
 		virtual vector3D get_normal(const point3D &) const = 0;
-		colorRGB material_shade(hit_info *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
 		void set_material(material *);
-		colorRGB texture_shade(hit_info *);
+		colorRGB texture_shade(hitInfo *);
 		void set_texture(texture *);
 	protected:
 		material *material_ptr;

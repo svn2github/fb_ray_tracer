@@ -50,9 +50,6 @@
     <ClCompile Include="sampler_random.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
-    <ClCompile Include="hit_info.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="tracer.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
@@ -112,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="texture_checker.cpp">
       <Filter>bottom-layer\texture</Filter>
+    </ClCompile>
+    <ClCompile Include="hitInfo.cpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +201,6 @@
     <ClInclude Include="sampler_random.hpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
-    <ClInclude Include="hit_info.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
     <ClInclude Include="tracer.hpp">
       <Filter>bottom-layer</Filter>
     </ClInclude>
@@ -263,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="texture_checker.hpp">
       <Filter>bottom-layer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="hitInfo.hpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

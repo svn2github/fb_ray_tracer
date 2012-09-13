@@ -1,6 +1,6 @@
 
 #include "material_blinn_phong.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 
 namespace ray_tracer {
 
@@ -17,7 +17,7 @@ namespace ray_tracer {
 		delete specular_ptr;
 	}
 
-	colorRGB material_blinn_phong::material_shade(hit_info *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) {
+	colorRGB material_blinn_phong::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) {
 		return diffuse_ptr->f(info_ptr, win, wout) * surface_color + specular_ptr->f(info_ptr, win, wout);
 	}
 }

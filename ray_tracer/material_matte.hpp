@@ -10,7 +10,7 @@ namespace ray_tracer {
 	public:
 		material_matte();
 		~material_matte();
-		colorRGB material_shade(hit_info *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
 		void set_diffuse_coefficient(const colorRGB &);
 	private:
 		BRDF_lambertian *diffuse_ptr;

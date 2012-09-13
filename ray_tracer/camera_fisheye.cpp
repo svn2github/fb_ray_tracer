@@ -32,7 +32,7 @@ namespace ray_tracer {
 			double r = pp.length();
 			double sin_alpha = pp.y * inv_r, cos_alpha = pp.x * inv_r;
 			double sin_beta = sin(r * fov), cos_beta = cos(r * fov);
-			hit_info info;
+			hitInfo info;
 
 			if (world_ptr->get_hit(&ray(eye, sin_beta * cos_alpha * axis_u + sin_beta * sin_alpha * axis_v - cos_beta * axis_w), &info)) {
 				return world_ptr->get_tracer()->ray_color(&info);

@@ -6,7 +6,7 @@
 namespace ray_tracer {
 	class BRDF_blinn_phong : public BRDF {
 	public:
-		colorRGB f(hit_info *, const vector3D &, const vector3D &);
+		colorRGB f(hitInfo *, const vector3D &, const vector3D &);
 		void set_shininess(const int &);	
 	private:
 		double pow(double, int);

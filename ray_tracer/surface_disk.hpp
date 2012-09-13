@@ -14,7 +14,7 @@ namespace ray_tracer {
 		void set_radius(const double &);
 		vector3D get_normal() const;
 		void set_normal(const vector3D &);
-		bool hit(ray *, double, hit_info *) const;
+		bool hit(ray *, double, hitInfo *) const;
 		vector3D get_normal(const point3D &) const;
 	private:
 		point3D center;

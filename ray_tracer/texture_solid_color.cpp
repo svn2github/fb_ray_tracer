@@ -11,7 +11,7 @@ namespace ray_tracer {
 		solid = solid_;
 	}
 
-	colorRGB texture_solid_color::texture_shade(hit_info *info_ptr) {
+	colorRGB texture_solid_color::texture_shade(hitInfo *info_ptr) {
 		return solid;
 	}
 }

@@ -27,9 +27,9 @@ namespace ray_tracer {
 		}
 	}
 
-	bool world::get_hit(ray *ray_ptr, hit_info *info_ptr) {
+	bool world::get_hit(ray *ray_ptr, hitInfo *info_ptr) {
 		bool hit_flag = false;
-		static hit_info temp;
+		static hitInfo temp;
 		surface *surface_ptr;
 
 		info_ptr->hit_t = huge_double;

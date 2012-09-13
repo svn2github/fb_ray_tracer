@@ -18,7 +18,7 @@ namespace ray_tracer {
 		set_radius(radius);
 	}
 
-	bool surface_disk::hit(ray *ray_ptr, double tmin, hit_info *hit_ptr) const {
+	bool surface_disk::hit(ray *ray_ptr, double tmin, hitInfo *hit_ptr) const {
 		double deno = normal * ray_ptr->get_dir();
 		double t = (center - ray_ptr->get_origin()) * normal / deno;
 		point3D p;

@@ -5,7 +5,7 @@
 #include "colorRGB.hpp"
 #include "vector3D.hpp"
 #include "point3D.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 #include "ray.hpp"
 #include "light.hpp"
 #include "surface.hpp"
@@ -41,7 +41,7 @@ namespace ray_tracer {
 		filter *get_filter() const;
 		// void set_ray_tracer(ray_tracer *);
 		void fit_window(int, int, void *); // Dimension: pixal
-		bool get_hit(ray *, hit_info *);
+		bool get_hit(ray *, hitInfo *);
 		void render_scene();		
 	private:
 		colorRGB ambient, background;

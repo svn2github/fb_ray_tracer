@@ -15,11 +15,11 @@ namespace ray_tracer {
 		set_color(color_);
 	}
 
-	bool light::under_shadow(hit_info *info_ptr) const {
+	bool light::under_shadow(hitInfo *info_ptr) const {
 		world *world_ptr = info_ptr->world_ptr;
 		point3D origin = info_ptr->hit_point;
 		vector3D dir;
-		hit_info temp;
+		hitInfo temp;
 
 		dir = (position - origin).normalized();
 		if (world_ptr->get_hit(&ray(origin, dir), &temp)) {

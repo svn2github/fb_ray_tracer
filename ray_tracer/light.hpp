@@ -3,7 +3,7 @@
 
 #include "point3D.hpp"
 #include "colorRGB.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 #include "ray.hpp"
 
 namespace ray_tracer {
@@ -15,7 +15,7 @@ namespace ray_tracer {
 		void set_position(const point3D &);
 		colorRGB get_color() const;
 		void set_color(const colorRGB &);
-		bool under_shadow(hit_info *) const;
+		bool under_shadow(hitInfo *) const;
 	private:
 		point3D position;
 		colorRGB color;

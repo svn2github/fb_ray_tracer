@@ -86,7 +86,7 @@
     <ClCompile Include="filter_gaussian_blur.cpp" />
     <ClCompile Include="filter_gray.cpp" />
     <ClCompile Include="filter_invert.cpp" />
-    <ClCompile Include="hit_info.cpp" />
+    <ClCompile Include="hitInfo.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />
@@ -123,7 +123,7 @@
     <ClInclude Include="filter_gaussian_blur.hpp" />
     <ClInclude Include="filter_gray.hpp" />
     <ClInclude Include="filter_invert.hpp" />
-    <ClInclude Include="hit_info.hpp" />
+    <ClInclude Include="hitInfo.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="material.hpp" />
     <ClInclude Include="material_blinn_phong.hpp" />

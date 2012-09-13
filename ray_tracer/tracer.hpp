@@ -3,13 +3,13 @@
 
 #include "misc.hpp"
 #include "colorRGB.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 
 namespace ray_tracer {
 	class world;
 	class tracer {
 	public:	
-		colorRGB ray_color(hit_info *);
+		colorRGB ray_color(hitInfo *);
 	private:
 		double pow(double, int);
 	};

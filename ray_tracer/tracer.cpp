@@ -2,12 +2,12 @@
 #include <vector>
 #include "light.hpp"
 #include "world.hpp"
-#include "hit_info.hpp"
+#include "hitInfo.hpp"
 #include "tracer.hpp"
 
 namespace ray_tracer {
 
-	colorRGB tracer::ray_color(hit_info *info) {
+	colorRGB tracer::ray_color(hitInfo *info) {
 		world *world_ptr;
 		vector3D normal, win, wout;
 		colorRGB surface_color, result;

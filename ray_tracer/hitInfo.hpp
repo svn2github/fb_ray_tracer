@@ -1,5 +1,5 @@
-#ifndef __HIT_INFO_HPP
-#define __HIT_INFO_HPP
+#ifndef __HITINFO_HPP
+#define __HITINFO_HPP
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
@@ -8,9 +8,9 @@ namespace ray_tracer {
 	class world;
 	class surface;
 	class ray;
-	class hit_info {
+	class hitInfo {
 	public:
-		hit_info();
+		hitInfo();
 	public:
 		double hit_t;
 		point3D hit_point;

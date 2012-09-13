@@ -11,7 +11,7 @@ namespace ray_tracer {
 	public:
 		material_blinn_phong();
 		~material_blinn_phong();
-		colorRGB material_shade(hit_info *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
 		void set_diffuse_coefficient(const colorRGB &);
 		void set_specular_coefficient(const colorRGB &);
 		void set_specular_shininess(const int &);
