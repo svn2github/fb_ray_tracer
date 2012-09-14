@@ -1,9 +1,9 @@
 
-#include "image_mapping_sphere.hpp"
+#include "texture_mapping_sphere.hpp"
 
 namespace ray_tracer {
 
-	point2D image_mapping_sphere::get_coordinate(hitInfo *info_ptr) const {
+	point2D texture_mapping_sphere::get_coordinate(hitInfo *info_ptr) const {
 		point3D p = info_ptr->hit_relative_point;
 		double alpha, beta;
 

@@ -3,16 +3,16 @@
 
 #include "texture.hpp"
 #include "image.hpp"
-#include "image_mapping.hpp"
+#include "texture_mapping.hpp"
 
 namespace ray_tracer {
 	class texture_image : public texture {
 	public:
-		texture_image(image *, image_mapping *);
+		texture_image(image *, texture_mapping *);
 		colorRGB texture_shade(hitInfo *) const;
 	private:
 		image *image_ptr;
-		image_mapping *mapping_ptr;
+		texture_mapping *mapping_ptr;
 	};
 }
 

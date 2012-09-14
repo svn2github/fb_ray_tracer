@@ -4,7 +4,7 @@
 
 namespace ray_tracer {
 
-	texture_image::texture_image(image *image_ptr_, image_mapping *mapping_ptr_) {
+	texture_image::texture_image(image *image_ptr_, texture_mapping *mapping_ptr_) {
 		image_ptr = image_ptr_;
 		mapping_ptr = mapping_ptr_;
 	}

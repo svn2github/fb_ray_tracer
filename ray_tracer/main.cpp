@@ -14,8 +14,8 @@
 #include "texture_checker.hpp"
 #include "texture_image.hpp"
 #include "texture_solid_color.hpp"
-#include "image_mapping.hpp"
-#include "image_mapping_sphere.hpp"
+#include "texture_mapping.hpp"
+#include "texture_mapping_sphere.hpp"
 #include "view_plane.hpp"
 #include "world.hpp"
 #include "light.hpp"
@@ -218,9 +218,9 @@ void test4(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 30);
 	plane = new view_plane(-20, 20, 20, -20);
 
-	s = new surface_sphere(point3D(30, 0, 0), 10);
+	s = new surface_sphere(point3D(30, 0, 0), 20);
 	m = new material_matte;
-	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new image_mapping_sphere());
+	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 
