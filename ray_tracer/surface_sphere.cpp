@@ -17,17 +17,15 @@ namespace ray_tracer {
 	}
 
 	bool surface_sphere::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
-		point3D e = ray_ptr->get_origin(), c = center;
-		vector3D d = ray_ptr->get_dir();
-		double a = d * (e - c), d2 = d.length_squared();
-		vector3D cc = e - c;
-		double delta = a * a - d2 * (cc.length_squared() - radius_squared);
-		double t;
+		point3D o = ray_ptr->get_origin(), c = center;
+		vector3D d = ray_ptr->get_dir(), cc = o - c;
+		double a = d * cc;
+		double delta = a * a - (cc.length_squared() - radius_squared), t;
 
 		if (delta < 0) {
 			return false;
 		} else {
-			t = (-a - sqrt(delta)) / d2;
+			t = -a - sqrt(delta);
 			if (t < tmin) {
 				return false;
 			}

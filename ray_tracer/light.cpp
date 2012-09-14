@@ -20,14 +20,13 @@ namespace ray_tracer {
 		point3D origin = info_ptr->hit_point;
 		vector3D dir;
 		hitInfo temp;
+		double dist;
 
-		dir = (position - origin).normalized();
+		dir = position - origin;
+		dist = dir.length();
+		dir = dir.normalized();
 		if (world_ptr->get_hit(&ray(origin, dir), &temp)) {
-			if (info_ptr->surface_ptr != temp.surface_ptr) {
-				return true;
-			} else {
-				return false;
-			}
+			return (temp.hit_t < dist);
 		} else {
 			return false;
 		}

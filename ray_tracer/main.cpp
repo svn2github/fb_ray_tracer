@@ -147,7 +147,7 @@ void test2(SDL_Surface *screen) {
 
 	s3 = new surface_plane(point3D(50, 0, 0), vector3D(-1, 0, 1));
 	s3->set_material(m2);
-	t3 = new texture_checker(color_red, color_green);
+	t3 = new texture_checker;
 	s3->set_texture(t3);
 
 	l = new light(point3D(0, 0, 30), color_white);
@@ -204,7 +204,7 @@ void test3(SDL_Surface *screen) {
 }
 
 void test4(SDL_Surface *screen) {
-	world world(false);
+	world world(true);
 	camera *cam;
 	view_plane *plane;
 	surface *s;
@@ -218,7 +218,7 @@ void test4(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 30);
 	plane = new view_plane(-20, 20, 20, -20);
 
-	s = new surface_sphere(point3D(30, 0, 0), 20);
+	s = new surface_sphere(point3D(30, 0, 0), 10);
 	m = new material_matte;
 	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
@@ -259,7 +259,7 @@ int main() {
 		return 0;
 	}
 
-	test4(screen);
+	test2(screen);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));
