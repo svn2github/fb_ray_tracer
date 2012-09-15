@@ -27,7 +27,7 @@ namespace ray_tracer {
 	}
 
 	inline double point2D::inv_length() const {
-		return inv_sqrt((float)(x * x + y * y));
+		return inv_sqrt(x * x + y * y);
 	}
 
 	inline point2D operator*(const point2D &p, double f) {

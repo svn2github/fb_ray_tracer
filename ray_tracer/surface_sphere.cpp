@@ -18,14 +18,21 @@ namespace ray_tracer {
 
 	bool surface_sphere::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
 		point3D o = ray_ptr->get_origin(), c = center;
-		vector3D d = ray_ptr->get_dir(), cc = o - c;
-		double a = d * cc;
-		double delta = a * a - (cc.length_squared() - radius_squared), t;
+		vector3D d = ray_ptr->get_dir();
+		double a = d * (o - c), d2 = d.length_squared();
+		vector3D cc = o - c;
+		double cc2 = cc.length_squared();
+		double delta = a * a - d2 * (cc2 - radius_squared);
+		double t;
 
 		if (delta < 0) {
 			return false;
 		} else {
-			t = -a - sqrt(delta);
+			if (cc2 < radius_squared) {
+				t = (-a + sqrt(delta)) / d2;
+			} else {
+				t = (-a - sqrt(delta)) / d2;
+			}
 			if (t < tmin) {
 				return false;
 			}

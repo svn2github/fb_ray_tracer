@@ -15,7 +15,6 @@ namespace ray_tracer {
 
 		x = (image_ptr->get_w() - 1) * coord.x;
 		y = (image_ptr->get_h() - 1) * coord.y;
-		//fprintf(stderr, "%d %d\n", coord.x, coord.y);
 		return image_ptr->get_color(x, y);
 	}
 }

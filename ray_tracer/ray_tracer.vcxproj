@@ -141,7 +141,6 @@
     <ClInclude Include="sampler.hpp" />
     <ClInclude Include="sampler_jittered.hpp" />
     <ClInclude Include="sampler_random.hpp" />
-    <ClInclude Include="simpson.hpp" />
     <ClInclude Include="surface_disk.hpp" />
     <ClInclude Include="surface_plane.hpp" />
     <ClInclude Include="surface_sphere.hpp" />

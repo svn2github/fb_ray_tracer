@@ -17,16 +17,15 @@ namespace ray_tracer {
 
 	bool light::under_shadow(hitInfo *info_ptr) const {
 		world *world_ptr = info_ptr->world_ptr;
-		point3D origin = info_ptr->hit_point;
 		vector3D dir;
 		hitInfo temp;
 		double dist;
 
-		dir = position - origin;
+		dir = info_ptr->hit_point - position;
 		dist = dir.length();
 		dir = dir.normalized();
-		if (world_ptr->get_hit(&ray(origin, dir), &temp)) {
-			return (temp.hit_t < dist);
+		if (world_ptr->get_hit(&ray(position, dir), &temp)) {
+			return dblcmp(temp.hit_t - dist) < 0;
 		} else {
 			return false;
 		}

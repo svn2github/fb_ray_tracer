@@ -21,10 +21,8 @@ namespace ray_tracer {
 		for (std::vector<light *>::const_iterator iter = world_ptr->get_lights().begin(); iter != world_ptr->get_lights().end(); ++iter) {
 			if ((*iter)->under_shadow(info) == false) {
 				wout = ((*iter)->get_position() - info->hit_point).normalized();
-				temp = normal * wout;
-				if (temp > 0) {
-					result += (*iter)->get_color() * temp * info->surface_ptr->material_shade(info, surface_color, win, wout);
-				}
+				temp = fabs(normal * wout); // two side light modeling
+				result += (*iter)->get_color() * temp * info->surface_ptr->material_shade(info, surface_color, win, wout);
 			}
 		}
 		result += info->world_ptr->get_ambient() * surface_color;

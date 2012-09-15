@@ -66,7 +66,7 @@ void test1(SDL_Surface *screen) {
 
 	l = new light(point3D(0, 0, 30), color_white);
 
-	world.set_ambient(color_white);
+	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.add_surface(s1);

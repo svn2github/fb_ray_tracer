@@ -139,9 +139,6 @@
     <Filter Include="bottom-layer\camera">
       <UniqueIdentifier>{8432a768-f6d1-45bf-a97d-9420b946e42e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="bottom-layer\integrator">
-      <UniqueIdentifier>{420c9029-edd0-4cfc-840e-0dbf0c616837}</UniqueIdentifier>
-    </Filter>
     <Filter Include="bottom-layer\sampler">
       <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
     </Filter>
@@ -200,9 +197,6 @@
     </ClInclude>
     <ClInclude Include="camera_pinhole.hpp">
       <Filter>bottom-layer\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="simpson.hpp">
-      <Filter>bottom-layer\integrator</Filter>
     </ClInclude>
     <ClInclude Include="view_plane.hpp">
       <Filter>bottom-layer</Filter>

@@ -37,7 +37,7 @@ namespace ray_tracer {
 	}
 
 	inline double vector3D::inv_length() const {
-		return inv_sqrt((float)(x * x + y * y + z * z));
+		return inv_sqrt(x * x + y * y + z * z);
 	}
 
 	inline vector3D vector3D::normalized() const {
