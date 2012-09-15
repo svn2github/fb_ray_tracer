@@ -9,14 +9,14 @@
 namespace ray_tracer {
 	class light {
 	public:
-		light();
-		light(const point3D &, const colorRGB &);
+		virtual ~light();
 		point3D get_position() const;
 		void set_position(const point3D &);
 		colorRGB get_color() const;
 		void set_color(const colorRGB &);
-		bool under_shadow(hitInfo *) const;
-	private:
+		virtual bool in_range(hitInfo *) const;
+		virtual bool under_shadow(hitInfo *) const;
+	protected:
 		point3D position;
 		colorRGB color;
 	};

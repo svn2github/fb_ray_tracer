@@ -88,10 +88,11 @@
     <ClCompile Include="filter_invert.cpp" />
     <ClCompile Include="hitInfo.cpp" />
     <ClCompile Include="image.cpp" />
+    <ClCompile Include="light.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
     <ClCompile Include="texture_image.cpp" />
-    <ClCompile Include="light.cpp" />
+    <ClCompile Include="light_point.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="material_blinn_phong.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="hitInfo.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="image.hpp" />
+    <ClInclude Include="light.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />
     <ClInclude Include="material.hpp" />
@@ -148,7 +150,7 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="light.hpp" />
+    <ClInclude Include="light_point.hpp" />
     <ClInclude Include="misc.hpp" />
     <ClInclude Include="surface_triangle.hpp" />
     <ClInclude Include="texture.hpp" />

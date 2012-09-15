@@ -19,6 +19,7 @@
 #include "view_plane.hpp"
 #include "world.hpp"
 #include "light.hpp"
+#include "light_point.hpp"
 #include "camera.hpp"
 #include "camera_orthographic.hpp"
 #include "camera_pinhole.hpp"
@@ -64,7 +65,7 @@ void test1(SDL_Surface *screen) {
 	t2 = new texture_checker;
 	s2->set_texture(t2);
 
-	l = new light(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(0, 0, 30), color_white);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
@@ -150,7 +151,7 @@ void test2(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	l = new light(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(0, 0, 30), color_white);
 
 	f = new filter_invert(NULL);
 
@@ -224,7 +225,7 @@ void test4(SDL_Surface *screen) {
 	s->set_material(m);
 	s->set_texture(t);
 
-	l = new light(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(0, 0, 30), color_white);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);

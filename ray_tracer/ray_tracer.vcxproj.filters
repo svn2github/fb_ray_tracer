@@ -5,9 +5,6 @@
       <Filter>bottom-layer</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="light.cpp">
-      <Filter>bottom-layer</Filter>
-    </ClCompile>
     <ClCompile Include="world.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
@@ -125,6 +122,12 @@
     <ClCompile Include="texture_mapping_sphere.cpp">
       <Filter>bottom-layer\texture\texture_mapping</Filter>
     </ClCompile>
+    <ClCompile Include="light_point.cpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -157,12 +160,12 @@
     <Filter Include="bottom-layer\texture\texture_mapping">
       <UniqueIdentifier>{6dac98c8-e650-4673-9560-1fd06bd69f9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bottom-layer\light">
+      <UniqueIdentifier>{34306fb5-d86c-456e-8379-dd75ac02b33e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray.hpp">
-      <Filter>bottom-layer</Filter>
-    </ClInclude>
-    <ClInclude Include="light.hpp">
       <Filter>bottom-layer</Filter>
     </ClInclude>
     <ClInclude Include="world.hpp">
@@ -284,6 +287,12 @@
     </ClInclude>
     <ClInclude Include="texture_mapping_sphere.hpp">
       <Filter>bottom-layer\texture\texture_mapping</Filter>
+    </ClInclude>
+    <ClInclude Include="light_point.hpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="light.hpp">
+      <Filter>bottom-layer\light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
