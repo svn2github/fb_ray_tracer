@@ -10,6 +10,7 @@
 #include "light.hpp"
 #include "surface.hpp"
 #include "view_plane.hpp"
+#include "fog.hpp"
 #include "camera.hpp"
 #include "tracer.hpp"
 #include "sampler_jittered.hpp"
@@ -24,7 +25,6 @@ namespace ray_tracer {
 		colorRGB get_ambient() const;
 		void set_ambient(const colorRGB &);
 		colorRGB get_background() const;
-		void set_background(const colorRGB &);
 		bool is_antialiasing_enabled() const;
 		void enable_antialiasing();
 		void disable_antialiasing();
@@ -32,6 +32,8 @@ namespace ray_tracer {
 		const std::vector<light *> &get_lights() const;
 		void add_surface(surface *);
 		const std::vector<surface *> &get_surfaces() const;
+		fog *get_fog() const;
+		void set_fog(fog *);
 		camera *get_camera() const;
 		void set_camera(camera *);
 		view_plane *get_view_plane() const;
@@ -44,11 +46,12 @@ namespace ray_tracer {
 		bool get_hit(ray *, hitInfo *);
 		void render_scene();		
 	private:
-		colorRGB ambient, background;
+		colorRGB ambient;
 		bool antialiasing_enabled;
 		sampler *sampler_ptr;
 		std::vector<light *> lights;
 		std::vector<surface *> surfaces;
+		fog *fog_ptr;
 		camera *camera_ptr;
 		view_plane *plane_ptr;
 		tracer *tracer_ptr;
@@ -65,11 +68,7 @@ namespace ray_tracer {
 	}
 
 	inline colorRGB world::get_background() const {
-		return background;
-	}
-
-	inline void world::set_background(const colorRGB &background_) {
-		background = background_;
+		return fog_ptr == NULL ? color_black : fog_ptr->get_fog_color();
 	}
 
 	inline bool world::is_antialiasing_enabled() const {
@@ -105,6 +104,14 @@ namespace ray_tracer {
 
 	inline const std::vector<surface *> &world::get_surfaces() const {
 		return surfaces;
+	}
+
+	inline fog *world::get_fog() const {
+		return fog_ptr;
+	}
+
+	inline void world::set_fog(fog *fog_ptr_) {
+		fog_ptr = fog_ptr_;
 	}
 
 	inline camera *world::get_camera() const {

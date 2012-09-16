@@ -4,6 +4,7 @@
 #include "world.hpp"
 #include "hitInfo.hpp"
 #include "tracer.hpp"
+#include "fog.hpp"
 
 namespace ray_tracer {
 
@@ -26,6 +27,9 @@ namespace ray_tracer {
 			}
 		}
 		result += info_ptr->world_ptr->get_ambient() * surface_color;
+		if (world_ptr->get_fog()) {
+			result = world_ptr->get_fog()->mix_fog(info_ptr, world_ptr->get_camera()->get_eye(), result);
+		}
 		return result;
 	}
 }

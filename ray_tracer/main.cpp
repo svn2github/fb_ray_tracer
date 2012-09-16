@@ -17,6 +17,7 @@
 #include "texture_mapping.hpp"
 #include "texture_mapping_sphere.hpp"
 #include "view_plane.hpp"
+#include "fog.hpp"
 #include "world.hpp"
 #include "light.hpp"
 #include "light_point.hpp"
@@ -35,7 +36,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 2000, height = 2000;
 
 void test1(SDL_Surface *screen) {
 	world world(false);
@@ -123,7 +124,6 @@ void test2(SDL_Surface *screen) {
 	material_phong *m1, *m2;
 	texture *t1, *t2, *t3;
 	light *l;
-	filter *f;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
 	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
@@ -151,21 +151,20 @@ void test2(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
+	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
+	l = new light_point(point3D(0, 0, 30), color_white);
 	l->set_attenuation_constant(1);
 	l->set_attenuation_linear(0.001);
 	l->set_attenuation_quadratic(0.0005);
 
-	f = new filter_invert(NULL);
-
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
+	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
 	world.add_light(l);
-	// world.set_filter(f);
 	world.fit_window(width, height, screen->pixels);
 
 	if (SDL_MUSTLOCK(screen)) {

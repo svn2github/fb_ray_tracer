@@ -12,6 +12,7 @@ namespace ray_tracer {
 
 	world::world(bool antialiasing_) {
 		tracer_ptr = new tracer;
+		fog_ptr = NULL;
 		filter_ptr = NULL;
 		set_ambient(color_black);
 		antialiasing_enabled = false;
