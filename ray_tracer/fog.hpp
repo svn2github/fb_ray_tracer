@@ -11,7 +11,6 @@ namespace ray_tracer {
 		fog(double, int, const colorRGB &);
 		colorRGB mix_fog(hitInfo *, const point3D &, const colorRGB &);
 		colorRGB get_fog_color() const;
-		double get_density() const;
 	private:
 		int exponent;
 		double density;
