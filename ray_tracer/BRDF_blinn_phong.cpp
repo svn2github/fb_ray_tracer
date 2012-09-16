@@ -1,7 +1,7 @@
 
 #include "BRDF_blinn_phong.hpp"
 #include "vector3D.hpp"
-#include <cstdio>
+#include "misc.hpp"
 
 namespace ray_tracer {
 	colorRGB BRDF_blinn_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {

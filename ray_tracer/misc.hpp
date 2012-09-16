@@ -11,6 +11,23 @@ namespace ray_tracer {
 	const double epsilon = 1e-7;
 	const double huge_double = 10e10;
 	#define dblcmp(_x_) ((_x_) < -epsilon ? -1 : ((_x_) > (epsilon ? 1 : 0)))
+	
+	inline double pow(double base, int power) {
+		if (power <= 0) {
+			return 1;
+		} else {
+			double result = 1;
+
+			while (power > 0 && result > epsilon) {
+				if (power & 1) {
+					result *= base;
+				}
+				power >>= 1;
+				base *= base;
+			}
+			return result;
+		}
+	}
 
 	/*
 	// Fast version, but have relative float error

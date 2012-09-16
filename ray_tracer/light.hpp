@@ -12,8 +12,8 @@ namespace ray_tracer {
 		virtual ~light();
 		point3D get_position() const;
 		void set_position(const point3D &);
-		colorRGB get_color() const;
 		void set_color(const colorRGB &);
+		virtual colorRGB light_shade(hitInfo *) const;
 		virtual bool in_range(hitInfo *) const;
 		virtual bool under_shadow(hitInfo *) const;
 	protected:
@@ -27,10 +27,6 @@ namespace ray_tracer {
 
 	inline void light::set_position(const point3D &position_) {
 		position = position_;
-	}
-
-	inline colorRGB light::get_color() const {
-		return color;
 	}
 
 	inline void light::set_color(const colorRGB &color_) {

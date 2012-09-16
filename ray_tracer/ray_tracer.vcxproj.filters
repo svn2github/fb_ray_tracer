@@ -128,6 +128,9 @@
     <ClCompile Include="light.cpp">
       <Filter>bottom-layer\light</Filter>
     </ClCompile>
+    <ClCompile Include="light_spot.cpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -292,6 +295,9 @@
       <Filter>bottom-layer\light</Filter>
     </ClInclude>
     <ClInclude Include="light.hpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="light_spot.hpp">
       <Filter>bottom-layer\light</Filter>
     </ClInclude>
   </ItemGroup>

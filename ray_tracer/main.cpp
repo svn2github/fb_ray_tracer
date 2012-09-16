@@ -20,6 +20,7 @@
 #include "world.hpp"
 #include "light.hpp"
 #include "light_point.hpp"
+#include "light_spot.hpp"
 #include "camera.hpp"
 #include "camera_orthographic.hpp"
 #include "camera_pinhole.hpp"
@@ -151,7 +152,7 @@ void test2(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	l = new light_point(point3D(0, 0, 30), color_white);
+	l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
 
 	f = new filter_invert(NULL);
 

@@ -14,20 +14,4 @@ namespace ray_tracer {
 		set_position(position_);
 		set_color(color_);
 	}
-
-	bool light_point::under_shadow(hitInfo *info_ptr) const {
-		world *world_ptr = info_ptr->world_ptr;
-		vector3D dir;
-		hitInfo temp;
-		double dist;
-
-		dir = info_ptr->hit_point - position;
-		dist = dir.length();
-		dir = dir.normalized();
-		if (world_ptr->get_hit(&ray(position, dir), &temp)) {
-			return dblcmp(temp.hit_t - dist) < 0;
-		} else {
-			return false;
-		}
-	}
 };
