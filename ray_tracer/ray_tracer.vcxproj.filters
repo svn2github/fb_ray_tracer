@@ -89,13 +89,7 @@
     <ClCompile Include="BRDF_lambertian.cpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClCompile>
-    <ClCompile Include="BRDF_blinn_phong.cpp">
-      <Filter>bottom-layer\material\BRDF</Filter>
-    </ClCompile>
     <ClCompile Include="material_matte.cpp">
-      <Filter>bottom-layer\material</Filter>
-    </ClCompile>
-    <ClCompile Include="material_blinn_phong.cpp">
       <Filter>bottom-layer\material</Filter>
     </ClCompile>
     <ClCompile Include="texture.cpp">
@@ -130,6 +124,12 @@
     </ClCompile>
     <ClCompile Include="light_spot.cpp">
       <Filter>bottom-layer\light</Filter>
+    </ClCompile>
+    <ClCompile Include="BRDF_phong.cpp">
+      <Filter>bottom-layer\material\BRDF</Filter>
+    </ClCompile>
+    <ClCompile Include="material_phong.cpp">
+      <Filter>bottom-layer\material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,13 +258,7 @@
     <ClInclude Include="BRDF_lambertian.hpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClInclude>
-    <ClInclude Include="BRDF_blinn_phong.hpp">
-      <Filter>bottom-layer\material\BRDF</Filter>
-    </ClInclude>
     <ClInclude Include="material_matte.hpp">
-      <Filter>bottom-layer\material</Filter>
-    </ClInclude>
-    <ClInclude Include="material_blinn_phong.hpp">
       <Filter>bottom-layer\material</Filter>
     </ClInclude>
     <ClInclude Include="texture.hpp">
@@ -299,6 +293,12 @@
     </ClInclude>
     <ClInclude Include="light_spot.hpp">
       <Filter>bottom-layer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="BRDF_phong.hpp">
+      <Filter>bottom-layer\material\BRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="material_phong.hpp">
+      <Filter>bottom-layer\material</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

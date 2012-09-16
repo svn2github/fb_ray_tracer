@@ -75,7 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BRDF.cpp" />
-    <ClCompile Include="BRDF_blinn_phong.cpp" />
+    <ClCompile Include="BRDF_phong.cpp" />
     <ClCompile Include="BRDF_lambertian.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="camera_fisheye.cpp" />
@@ -96,7 +96,7 @@
     <ClCompile Include="light_point.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />
-    <ClCompile Include="material_blinn_phong.cpp" />
+    <ClCompile Include="material_phong.cpp" />
     <ClCompile Include="material_matte.cpp" />
     <ClCompile Include="matrix3D.cpp" />
     <ClCompile Include="point2D.cpp" />
@@ -118,7 +118,7 @@
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="BRDF.hpp" />
-    <ClInclude Include="BRDF_blinn_phong.hpp" />
+    <ClInclude Include="BRDF_phong.hpp" />
     <ClInclude Include="BRDF_lambertian.hpp" />
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="camera_fisheye.hpp" />
@@ -137,7 +137,7 @@
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />
     <ClInclude Include="material.hpp" />
-    <ClInclude Include="material_blinn_phong.hpp" />
+    <ClInclude Include="material_phong.hpp" />
     <ClInclude Include="material_matte.hpp" />
     <ClInclude Include="matrix3D.hpp" />
     <ClInclude Include="point2D.hpp" />

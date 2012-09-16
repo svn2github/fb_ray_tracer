@@ -1,10 +1,10 @@
 
-#include "BRDF_blinn_phong.hpp"
+#include "BRDF_phong.hpp"
 #include "vector3D.hpp"
 #include "misc.hpp"
 
 namespace ray_tracer {
-	colorRGB BRDF_blinn_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {
+	colorRGB BRDF_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {
 		double temp;
 
 		temp = info_ptr->normal * (win + wout).normalized();

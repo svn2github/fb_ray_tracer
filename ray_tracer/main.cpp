@@ -4,7 +4,7 @@
 #include <SDL.h>
 #include "vector3D.hpp"
 #include "material.hpp"
-#include "material_blinn_phong.hpp"
+#include "material_phong.hpp"
 #include "material_matte.hpp"
 #include "surface.hpp"
 #include "surface_sphere.hpp"
@@ -26,7 +26,6 @@
 #include "camera_pinhole.hpp"
 #include "camera_thinlens.hpp"
 #include "camera_fisheye.hpp"
-#include "simpson.hpp"
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
@@ -44,7 +43,7 @@ void test1(SDL_Surface *screen) {
 	view_plane *plane;
 	surface_sphere *s1;
 	surface_plane *s2;
-	material_blinn_phong *m1, *m2;
+	material_phong *m1, *m2;
 	texture *t1, *t2;
 	light *l;
 	char buf[16];
@@ -53,14 +52,14 @@ void test1(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	m1 = new material_blinn_phong;
+	m1 = new material_phong;
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	m1->set_specular_shininess(6);
 	s1->set_material(m1);
 	s1->set_texture(t1);
 
 	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
-	m2 = new material_blinn_phong;
+	m2 = new material_phong;
 	m2->set_specular_shininess(100);
 	s2->set_material(m2);
 	t2 = new texture_checker;
@@ -121,7 +120,7 @@ void test2(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
-	material_blinn_phong *m1, *m2;
+	material_phong *m1, *m2;
 	texture *t1, *t2, *t3;
 	light *l;
 	filter *f;
@@ -134,14 +133,14 @@ void test2(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	m1 = new material_blinn_phong;
+	m1 = new material_phong;
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	m1->set_specular_shininess(6);
 	s1->set_material(m1);
 	s1->set_texture(t1);
 
 	s2 = new surface_sphere(point3D(30, 9, 0), 8);
-	m2 = new material_blinn_phong;
+	m2 = new material_phong;
 	t2 = new texture_solid_color(colorRGB(0.8, 0.2, 0.8));
 	m2->set_specular_shininess(100);
 	s2->set_material(m2);
