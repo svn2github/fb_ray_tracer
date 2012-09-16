@@ -17,21 +17,13 @@ namespace ray_tracer {
 	}
 
 	camera_thinlens::camera_thinlens() {
-		eye = point3D();
-		lookat = point3D();
-		up = vector3D();
-		compute_axis();
 		view_dist = 0;
 		focal_dist = 0;
 		lens_radius = 0;
 		init_sampler(num_samplers);
 	}
 
-	camera_thinlens::camera_thinlens(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_, double focal_dist_, double lens_radius_) {
-		eye = eye_;
-		lookat = lookat_;
-		up = up_;
-		compute_axis();
+	camera_thinlens::camera_thinlens(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_, double focal_dist_, double lens_radius_) : camera(eye_, lookat_, up_) {
 		view_dist = view_dist_;
 		focal_dist = focal_dist_;
 		lens_radius = lens_radius_;

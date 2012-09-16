@@ -3,6 +3,11 @@
 
 namespace ray_tracer {
 
+	surface::surface() {
+		material_ptr = NULL;
+		texture_ptr = NULL;
+	}
+
 	surface::~surface() { }
 
 	bool surface::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {

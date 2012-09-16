@@ -7,8 +7,7 @@
 
 namespace ray_tracer {
 
-	filter_gaussian_blur::filter_gaussian_blur(double sigma_, int radius_, filter *next_filter_) {
-		next_filter = next_filter_;
+	filter_gaussian_blur::filter_gaussian_blur(double sigma_, int radius_, filter *next_filter_) : filter(next_filter_) {
 		sigma = sigma_;
 		radius = radius_;
 		guassian_template = new double[(2 * radius_ + 1) * (2 * radius_ + 1)];

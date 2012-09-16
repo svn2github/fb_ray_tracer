@@ -8,18 +8,10 @@
 namespace ray_tracer {
 	
 	camera_pinhole::camera_pinhole() {
-		eye = point3D();
-		lookat = point3D();
-		up = vector3D();
-		compute_axis();
 		view_dist = 0;
 	}
 
-	camera_pinhole::camera_pinhole(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_) {
-		eye = eye_;
-		lookat = lookat_;
-		up = up_;
-		compute_axis();
+	camera_pinhole::camera_pinhole(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_) : camera(eye_, lookat_, up_) {
 		view_dist = view_dist_;
 	}
 

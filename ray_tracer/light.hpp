@@ -9,6 +9,8 @@
 namespace ray_tracer {
 	class light {
 	public:
+		light();
+		light(const point3D &, const colorRGB &);
 		virtual ~light();
 		point3D get_position() const;
 		void set_position(const point3D &);

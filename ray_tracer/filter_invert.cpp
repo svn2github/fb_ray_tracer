@@ -4,9 +4,7 @@
 
 namespace ray_tracer {
 
-	filter_invert::filter_invert(filter *next_filter_) {
-		next_filter = next_filter_;
-	}
+	filter_invert::filter_invert(filter *next_filter_) : filter(next_filter_) { }
 
 	void filter_invert::apply_filter(int *buf_ptr, int w, int h) {
 		int *temp_ptr = buf_ptr;

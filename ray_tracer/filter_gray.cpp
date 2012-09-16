@@ -4,9 +4,7 @@
 
 namespace ray_tracer {
 
-	filter_gray::filter_gray(filter *next_filter_) {
-		next_filter = next_filter_;
-	}
+	filter_gray::filter_gray(filter *next_filter_) : filter(next_filter_) { }
 
 	void filter_gray::apply_filter(int *buf_ptr, int w, int h) {
 		colorRGB color;

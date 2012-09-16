@@ -9,18 +9,10 @@
 namespace ray_tracer {
 	
 	camera_fisheye::camera_fisheye() {
-		eye = point3D();
-		lookat = point3D();
-		up = vector3D();
-		compute_axis();
 		fov = 0;
 	}
 
-	camera_fisheye::camera_fisheye(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double fov_) {
-		eye = eye_;
-		lookat = lookat_;
-		up = up_;
-		compute_axis();
+	camera_fisheye::camera_fisheye(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double fov_) : camera(eye_, lookat_, up_) {
 		fov = fov_;
 	}
 	

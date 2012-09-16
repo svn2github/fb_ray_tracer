@@ -12,6 +12,7 @@
 namespace ray_tracer {
 	class surface {
 	public:
+		surface();
 		virtual ~surface() = 0;
 		/** parameter 3: only hit_t is returned */
 		virtual bool hit(ray *, double, hitInfo *) const = 0; 
@@ -24,7 +25,6 @@ namespace ray_tracer {
 	protected:
 		material *material_ptr;
 		texture *texture_ptr;
-
 	};
 
 	inline void surface::set_material(material *material_ptr_) {

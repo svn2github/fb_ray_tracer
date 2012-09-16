@@ -5,6 +5,20 @@
 
 namespace ray_tracer {
 
+	camera::camera() {
+		eye = point3D();
+		lookat = point3D();
+		up = vector3D();
+		compute_axis();
+	}
+	
+	camera::camera(const point3D &eye_, const point3D &lookat_, const vector3D &up_) {
+		eye = eye_;
+		lookat = lookat_;
+		up = up_;
+		compute_axis();
+	}
+
 	camera::~camera() { }
 
 	void camera::rotate(double angle) {

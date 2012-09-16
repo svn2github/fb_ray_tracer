@@ -4,6 +4,8 @@
 namespace ray_tracer {
 	class filter {
 	public:
+		filter();
+		filter(filter *);
 		virtual ~filter() = 0;
 		virtual void apply_filter(int *, int, int) = 0;
 	protected:
