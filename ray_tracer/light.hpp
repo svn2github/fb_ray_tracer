@@ -15,12 +15,20 @@ namespace ray_tracer {
 		point3D get_position() const;
 		void set_position(const point3D &);
 		void set_color(const colorRGB &);
+		void set_attenuation_constant(const double &);
+		void set_attenuation_linear(const double &);
+		void set_attenuation_quadratic(const double &);
 		virtual colorRGB light_shade(hitInfo *) const;
 		virtual bool in_range(hitInfo *) const;
 		virtual bool under_shadow(hitInfo *) const;
+	private:
+		void init_attenuation();
 	protected:
 		point3D position;
 		colorRGB color;
+	private:
+		bool attenuation_enabled;
+		double attenuation_constant, attenuation_linear, attenuation_quadratic;
 	};
 
 	inline point3D light::get_position() const {
@@ -33,6 +41,21 @@ namespace ray_tracer {
 
 	inline void light::set_color(const colorRGB &color_) {
 		color = color_;
+	}
+
+	inline void light::set_attenuation_constant(const double &f) {
+		attenuation_constant = f;
+		attenuation_enabled = true;
+	}
+
+	inline void light::set_attenuation_linear(const double &f) {
+		attenuation_linear = f;
+		attenuation_enabled = true;
+	}
+
+	inline void light::set_attenuation_quadratic(const double &f) {
+		attenuation_quadratic = f;
+		attenuation_enabled = true;
 	}
 }
 

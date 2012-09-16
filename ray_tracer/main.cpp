@@ -152,6 +152,9 @@ void test2(SDL_Surface *screen) {
 	s3->set_texture(t3);
 
 	l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
+	l->set_attenuation_constant(1);
+	l->set_attenuation_linear(0.001);
+	l->set_attenuation_quadratic(0.0005);
 
 	f = new filter_invert(NULL);
 
