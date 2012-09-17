@@ -43,7 +43,7 @@ namespace ray_tracer {
 		filter *get_filter() const;
 		// void set_ray_tracer(ray_tracer *);
 		void fit_window(int, int, void *); // Dimension: pixal
-		bool get_hit(ray *, hitInfo *);
+		bool get_hit(const ray &, hitInfo *);
 		void render_scene();		
 	private:
 		colorRGB ambient;

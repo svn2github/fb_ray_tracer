@@ -3,11 +3,11 @@
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
+#include "ray.hpp"
 
 namespace ray_tracer {
 	class world;
 	class surface;
-	class ray;
 	class hitInfo {
 	public:
 		hitInfo();
@@ -18,7 +18,8 @@ namespace ray_tracer {
 		vector3D normal;
 		world *world_ptr;
 		surface *surface_ptr;
-		ray *ray_ptr;
+		ray emission_ray;
+		point3D light_position;
 	};
 }
 

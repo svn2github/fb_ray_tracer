@@ -12,7 +12,8 @@ namespace ray_tracer {
 		light();
 		light(const point3D &, const colorRGB &);
 		virtual ~light();
-		point3D get_position() const;
+		virtual point3D get_light_origin() const;
+		virtual int get_sampler_count() const;
 		void set_position(const point3D &);
 		void set_color(const colorRGB &);
 		void set_attenuation_constant(const double &);
@@ -30,10 +31,6 @@ namespace ray_tracer {
 		bool attenuation_enabled;
 		double attenuation_constant, attenuation_linear, attenuation_quadratic;
 	};
-
-	inline point3D light::get_position() const {
-		return position;
-	}
 
 	inline void light::set_position(const point3D &position_) {
 		position = position_;

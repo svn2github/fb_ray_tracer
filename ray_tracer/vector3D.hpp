@@ -15,6 +15,7 @@ namespace ray_tracer {
 		double length_squared() const;
 		double inv_length() const;
 		vector3D normalized() const;
+		vector3D create_vertical() const;
 		friend vector3D operator+(const vector3D &, const vector3D &);
 		friend vector3D &operator+=(vector3D &, const vector3D &);
 		friend vector3D operator-(const vector3D &, const vector3D &);

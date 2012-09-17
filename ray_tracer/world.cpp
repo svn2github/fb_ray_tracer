@@ -28,7 +28,7 @@ namespace ray_tracer {
 		}
 	}
 
-	bool world::get_hit(ray *ray_ptr, hitInfo *info_ptr) {
+	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) {
 		bool hit_flag = false;
 		static hitInfo temp;
 		surface *surface_ptr;
@@ -37,7 +37,7 @@ namespace ray_tracer {
 		hit_flag = false;
 		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = (*iter);
-			if (surface_ptr->hit(ray_ptr, 0, &temp)) {
+			if (surface_ptr->hit(emission_ray, 0, &temp)) {
 				if (temp.hit_t < info_ptr->hit_t) {
 					info_ptr->hit_t = temp.hit_t;
 					info_ptr->surface_ptr = surface_ptr;
@@ -46,11 +46,11 @@ namespace ray_tracer {
 			}
 		}
 		if (hit_flag) { 
-			info_ptr->hit_point = ray_ptr->get_origin() + ray_ptr->get_dir() * info_ptr->hit_t;
+			info_ptr->hit_point = emission_ray.get_origin() + emission_ray.get_dir() * info_ptr->hit_t;
 			info_ptr->hit_relative_point = info_ptr->surface_ptr->get_relative_pos(info_ptr->hit_point);
 			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
 			info_ptr->world_ptr = this;
-			info_ptr->ray_ptr = ray_ptr;
+			info_ptr->emission_ray = emission_ray;
 		}
 		return hit_flag;
 	}

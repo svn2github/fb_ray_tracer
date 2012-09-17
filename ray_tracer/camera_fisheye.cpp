@@ -26,13 +26,13 @@ namespace ray_tracer {
 			double sin_beta = sin(r * fov), cos_beta = cos(r * fov);
 			hitInfo info;
 
-			if (world_ptr->get_hit(&ray(eye, sin_beta * cos_alpha * axis_u + sin_beta * sin_alpha * axis_v - cos_beta * axis_w), &info)) {
+			if (world_ptr->get_hit(ray(eye, sin_beta * cos_alpha * axis_u + sin_beta * sin_alpha * axis_v - cos_beta * axis_w), &info)) {
 				return world_ptr->get_tracer()->ray_color(&info);
 			} else {
 				return world_ptr->get_background();
 			}
 		} else {
-			return world_ptr->get_background();
+			return color_black;
 		}
 	}
 }

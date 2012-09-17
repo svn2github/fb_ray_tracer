@@ -1,7 +1,6 @@
 
 #include "light_spot.hpp"
 #include "world.hpp"
-#include <vector>
 
 namespace ray_tracer {
 	

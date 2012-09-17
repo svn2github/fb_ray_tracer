@@ -15,7 +15,7 @@ namespace ray_tracer {
 		surface();
 		virtual ~surface() = 0;
 		/** parameter 3: only hit_t is returned */
-		virtual bool hit(ray *, double, hitInfo *) const = 0; 
+		virtual bool hit(const ray &, double, hitInfo *) const = 0; 
 		virtual vector3D get_normal(const point3D &) const = 0;
 		virtual point3D get_relative_pos(const point3D &) const;
 		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);

@@ -26,12 +26,19 @@ namespace ray_tracer {
 
 	light::~light() { }
 
+	int light::get_sampler_count() const {
+		return 1;
+	}
+
+	point3D light::get_light_origin() const {
+		return position;
+	}
+
 	colorRGB light::light_shade(hitInfo *info_ptr) const {
 		if (attenuation_enabled) {
-			double d = (info_ptr->hit_point - position).length();
+			double d = (info_ptr->hit_point - info_ptr->light_position).length();
 			double f = 1 / (attenuation_constant + attenuation_linear * d + attenuation_quadratic * d * d);
 
-			// fprintf(stderr, "%.8lf\n", f);
 			return f * color;
 		} else {
 			return color;
@@ -44,10 +51,10 @@ namespace ray_tracer {
 		hitInfo temp;
 		double dist;
 
-		dir = info_ptr->hit_point - position;
+		dir = info_ptr->hit_point - info_ptr->light_position;
 		dist = dir.length();
 		dir = dir.normalized();
-		if (world_ptr->get_hit(&ray(position, dir), &temp)) {
+		if (world_ptr->get_hit(ray(info_ptr->light_position, dir), &temp)) {
 			return dblcmp(temp.hit_t - dist) < 0;
 		} else {
 			return false;

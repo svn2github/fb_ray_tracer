@@ -51,7 +51,7 @@ namespace ray_tracer {
 		for (int i = 1; i <= num_samplers; i += 1) {
 			sample_point = smpler->get_sampler_zoomed(lens_radius);
 			origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
-			if (world_ptr->get_hit(&ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
+			if (world_ptr->get_hit(ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
 				color += world_ptr->get_tracer()->ray_color(&info);
 			} else {
 				color += world_ptr->get_background();

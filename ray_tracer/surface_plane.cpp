@@ -16,9 +16,9 @@ namespace ray_tracer {
 		set_normal(normal_);
 	}
 
-	bool surface_plane::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
-		double deno = normal * ray_ptr->get_dir();
-		double t = (point_on_plane - ray_ptr->get_origin()) * normal / deno;
+	bool surface_plane::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
+		double deno = normal * emission_ray.get_dir();
+		double t = (point_on_plane - emission_ray.get_origin()) * normal / deno;
 		
 		if (dblcmp(deno) == 0 || t < tmin) {
 			return false;

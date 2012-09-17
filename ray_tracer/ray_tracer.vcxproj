@@ -90,6 +90,7 @@
     <ClCompile Include="hitInfo.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="light.cpp" />
+    <ClCompile Include="light_area.cpp" />
     <ClCompile Include="light_spot.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="image.hpp" />
     <ClInclude Include="light.hpp" />
+    <ClInclude Include="light_area.hpp" />
     <ClInclude Include="light_spot.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />

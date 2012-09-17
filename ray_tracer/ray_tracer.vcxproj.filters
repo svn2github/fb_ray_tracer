@@ -134,6 +134,9 @@
     <ClCompile Include="fog.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
+    <ClCompile Include="light_area.cpp">
+      <Filter>bottom-layer\light</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -305,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="fog.hpp">
       <Filter>bottom-layer</Filter>
+    </ClInclude>
+    <ClInclude Include="light_area.hpp">
+      <Filter>bottom-layer\light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

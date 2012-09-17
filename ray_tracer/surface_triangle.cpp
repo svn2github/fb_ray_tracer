@@ -20,10 +20,10 @@ namespace ray_tracer {
 		normal = ((v1 - v0) ^ (v2 - v0)).normalized();
 	}
 
-	bool surface_triangle::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
-		double a = v0.x - v1.x, b = v0.x - v2.x, c = ray_ptr->get_dir().x, d = v0.x - ray_ptr->get_origin().x;
-		double e = v0.y - v1.y, f = v0.y - v2.y, g = ray_ptr->get_dir().y, h = v0.y - ray_ptr->get_origin().y;
-		double i = v0.z - v1.z, j = v0.z - v2.z, k = ray_ptr->get_dir().z, l = v0.z - ray_ptr->get_origin().z;
+	bool surface_triangle::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
+		double a = v0.x - v1.x, b = v0.x - v2.x, c = emission_ray.get_dir().x, d = v0.x - emission_ray.get_origin().x;
+		double e = v0.y - v1.y, f = v0.y - v2.y, g = emission_ray.get_dir().y, h = v0.y - emission_ray.get_origin().y;
+		double i = v0.z - v1.z, j = v0.z - v2.z, k = emission_ray.get_dir().z, l = v0.z - emission_ray.get_origin().z;
 		double m = f * k - g * j, n = h * k - g * l, p = f * l - h * j;
 		double q = g * i - e * k, s = e * j - f * i;
 		double inv_deno = 1 / (a * m + b * q + c * s);

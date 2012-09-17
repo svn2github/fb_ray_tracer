@@ -18,15 +18,15 @@ namespace ray_tracer {
 		set_radius(radius);
 	}
 
-	bool surface_disk::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
-		double deno = normal * ray_ptr->get_dir();
-		double t = (center - ray_ptr->get_origin()) * normal / deno;
+	bool surface_disk::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
+		double deno = normal * emission_ray.get_dir();
+		double t = (center - emission_ray.get_origin()) * normal / deno;
 		point3D p;
 
 		if (dblcmp(deno) == 0 || t < tmin) {
 			return false;
 		}
-		p = ray_ptr->get_origin() + ray_ptr->get_dir() * t;
+		p = emission_ray.get_origin() + emission_ray.get_dir() * t;
 		if ((center - p).length_squared() > radius_squared) {
 			return false;
 		}

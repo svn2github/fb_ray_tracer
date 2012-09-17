@@ -16,7 +16,7 @@ namespace ray_tracer {
 		void set_v1(const point3D &);
 		point3D get_v2() const;
 		void set_v2(const point3D &);
-		bool hit(ray *, double, hitInfo *) const;
+		bool hit(const ray &, double, hitInfo *) const;
 		vector3D get_normal(const point3D &) const;
 	private:
 		point3D v0, v1, v2;

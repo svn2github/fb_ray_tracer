@@ -10,7 +10,7 @@ namespace ray_tracer {
 
 	surface::~surface() { }
 
-	bool surface::hit(ray *ray_ptr, double tmin, hitInfo *info_ptr) const {
+	bool surface::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
 		return false;
 	}
 
