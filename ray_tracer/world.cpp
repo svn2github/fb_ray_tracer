@@ -6,7 +6,6 @@
 #include "tracer.hpp"
 #include "camera.hpp"
 #include "world.hpp"
-#include "filter_gaussian_blur.hpp"
 
 namespace ray_tracer {
 
@@ -74,9 +73,6 @@ namespace ray_tracer {
 				}
 				*buffer_ptr ++ = color.clamp_to_int();
 			}
-		}
-		if (filter_ptr != NULL) {
-			filter_ptr->apply_filter(pixal_buffer_ptr, dest_w, dest_h);
 		}
 	}
 }

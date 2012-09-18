@@ -4,7 +4,7 @@
 
 namespace ray_tracer {
 	
-	const int num_area_sampler = 625;
+	const int num_area_sampler = 169;
 
 	light_area::light_area() { 
 		radius = 0;

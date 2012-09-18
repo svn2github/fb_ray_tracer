@@ -62,18 +62,6 @@
     <ClCompile Include="sampler_jittered.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
-    <ClCompile Include="filter.cpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClCompile>
-    <ClCompile Include="filter_gaussian_blur.cpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClCompile>
-    <ClCompile Include="filter_gray.cpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClCompile>
-    <ClCompile Include="filter_invert.cpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClCompile>
     <ClCompile Include="surface_disk.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
@@ -154,9 +142,6 @@
     <Filter Include="bottom-layer\sampler">
       <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
     </Filter>
-    <Filter Include="bottom-layer\filter">
-      <UniqueIdentifier>{04e2ebb0-6739-471c-97e5-d392e9a82bb8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="bottom-layer\material">
       <UniqueIdentifier>{022ba66c-2681-41d1-89ad-9f74a90b16b5}</UniqueIdentifier>
     </Filter>
@@ -236,18 +221,6 @@
     </ClInclude>
     <ClInclude Include="sampler_jittered.hpp">
       <Filter>bottom-layer\sampler</Filter>
-    </ClInclude>
-    <ClInclude Include="filter.hpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClInclude>
-    <ClInclude Include="filter_gaussian_blur.hpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClInclude>
-    <ClInclude Include="filter_gray.hpp">
-      <Filter>bottom-layer\filter</Filter>
-    </ClInclude>
-    <ClInclude Include="filter_invert.hpp">
-      <Filter>bottom-layer\filter</Filter>
     </ClInclude>
     <ClInclude Include="surface_disk.hpp">
       <Filter>bottom-layer\surface</Filter>

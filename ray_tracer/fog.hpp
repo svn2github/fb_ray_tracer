@@ -9,7 +9,7 @@ namespace ray_tracer {
 	public:
 		fog();
 		fog(double, int, const colorRGB &);
-		colorRGB mix_fog(hitInfo *, const point3D &, const colorRGB &);
+		colorRGB fog_blending(hitInfo *, const point3D &, const colorRGB &);
 		colorRGB get_fog_color() const;
 	private:
 		int exponent;

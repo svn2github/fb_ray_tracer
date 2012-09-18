@@ -31,9 +31,6 @@
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
-#include "filter.hpp"
-#include "filter_gaussian_blur.hpp"
-#include "filter_invert.hpp"
 
 using namespace ray_tracer;
 
@@ -140,7 +137,7 @@ void test2(SDL_Surface *screen) {
 	s1->set_material(m1);
 	s1->set_texture(t1);
 
-	s2 = new surface_sphere(point3D(30, 9, 0), 8);
+	s2 = new surface_sphere(point3D(30, 9, 0), 12);
 	m2 = new material_phong;
 	t2 = new texture_solid_color(colorRGB(0.8, 0.2, 0.8));
 	m2->set_specular_shininess(100);

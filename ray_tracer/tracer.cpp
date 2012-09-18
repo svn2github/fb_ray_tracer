@@ -33,7 +33,7 @@ namespace ray_tracer {
 		}
 		result += info_ptr->world_ptr->get_ambient() * surface_color;
 		if (world_ptr->get_fog()) {
-			result = world_ptr->get_fog()->mix_fog(info_ptr, world_ptr->get_camera()->get_eye(), result);
+			result = world_ptr->get_fog()->fog_blending(info_ptr, world_ptr->get_camera()->get_eye(), result);
 		}
 		return result;
 	}
