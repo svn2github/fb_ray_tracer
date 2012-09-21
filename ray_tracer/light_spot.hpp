@@ -7,7 +7,7 @@ namespace ray_tracer {
 	class light_spot : public light {
 	public:
 		light_spot();
-		light_spot(const point3D &, const colorRGB &, const vector3D &, double, int);
+		light_spot(const point3D &, const colorRGB &, bool, const vector3D &, double, int);
 		colorRGB light_shade(hitInfo *) const;
 		bool in_range(hitInfo *) const;
 		void set_direcion(const vector3D &);

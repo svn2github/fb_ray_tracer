@@ -20,8 +20,8 @@ namespace ray_tracer {
 	}
 	
 	colorRGB camera_pinhole::render_scene(double x, double y, int w, int h, world *world_ptr) const {
-		double u = world_ptr->get_view_plane()->compute_u(x + 0.5, w);
-		double v = world_ptr->get_view_plane()->compute_v(y + 0.5, h);
+		double u = world_ptr->get_view_plane()->compute_u(x, w);
+		double v = world_ptr->get_view_plane()->compute_v(y, h);
 		hitInfo info;
 
 		if (world_ptr->get_hit(ray(eye, (-axis_w * view_dist + u * axis_u + v * axis_v).normalized()), &info)) {

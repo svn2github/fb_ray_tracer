@@ -6,6 +6,7 @@ namespace ray_tracer {
 
 	fog::fog() {
 		density = 1;
+		exponent = 1;
 		fog_color = color_white;
 	}
 

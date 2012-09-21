@@ -10,7 +10,7 @@ namespace ray_tracer {
 		set_exponent(1);
 	}
 
-	light_spot::light_spot(const point3D &position_, const colorRGB &color_, const vector3D &direction_, double cutoff_, int exponent_) : light(position_, color_) {
+	light_spot::light_spot(const point3D &position_, const colorRGB &color_, bool shadow_, const vector3D &direction_, double cutoff_, int exponent_) : light(position_, color_, shadow_) {
 		set_direcion(direction_);
 		set_cutoff(cutoff_);
 		set_exponent(exponent_);

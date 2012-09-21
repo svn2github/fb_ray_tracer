@@ -10,7 +10,7 @@ namespace ray_tracer {
 	class light {
 	public:
 		light();
-		light(const point3D &, const colorRGB &);
+		light(const point3D &, const colorRGB &, bool);
 		virtual ~light();
 		virtual point3D get_light_origin() const;
 		virtual int get_sampler_count() const;
@@ -19,15 +19,16 @@ namespace ray_tracer {
 		void set_attenuation_constant(const double &);
 		void set_attenuation_linear(const double &);
 		void set_attenuation_quadratic(const double &);
+		bool under_shadow(hitInfo *) const;
 		virtual colorRGB light_shade(hitInfo *) const;
 		virtual bool in_range(hitInfo *) const;
-		virtual bool under_shadow(hitInfo *) const;
 	private:
 		void init_attenuation();
 	protected:
 		point3D position;
 		colorRGB color;
 	private:
+		bool cast_shadow;
 		bool attenuation_enabled;
 		double attenuation_constant, attenuation_linear, attenuation_quadratic;
 	};

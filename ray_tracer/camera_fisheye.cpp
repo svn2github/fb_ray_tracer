@@ -17,7 +17,7 @@ namespace ray_tracer {
 	}
 	
 	colorRGB camera_fisheye::render_scene(double x, double y, int w, int h, world *world_ptr) const {
-		point2D pp = point2D(((x + 0.5) / w - 0.5) * 2, ((y + 0.5) / h - 0.5) * 2);
+		point2D pp = point2D((x / w - 0.5) * 2, (y / h - 0.5) * 2);
 
 		if (pp.length_squared() <= 1) {
 			double inv_r = pp.inv_length();

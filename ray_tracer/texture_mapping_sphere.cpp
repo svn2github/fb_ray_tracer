@@ -7,7 +7,7 @@ namespace ray_tracer {
 		point3D p = info_ptr->hit_relative_point;
 		double alpha, beta;
 
-		p = p.to_vector().normalized().to_point();
+		p = p.normalized();
 		alpha = acos(p.z), beta = atan2(p.x, p.y);
 		if (beta < 0) {
 			beta += pi * 2;

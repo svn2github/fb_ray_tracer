@@ -12,8 +12,7 @@ namespace ray_tracer {
 	world::world(bool antialiasing_) {
 		tracer_ptr = new tracer;
 		fog_ptr = NULL;
-		filter_ptr = NULL;
-		set_ambient(color_black);
+		set_ambient(color_white / 5);
 		antialiasing_enabled = false;
 		if (antialiasing_) {
 			enable_antialiasing();
@@ -69,7 +68,7 @@ namespace ray_tracer {
 					}
 					color = color / num_antialiasing_sampler;
 				} else {
-					color = camera_ptr->render_scene(x, y, dest_w, dest_h, this);
+					color = camera_ptr->render_scene(x + 0.5, y + 0.5, dest_w, dest_h, this);
 				}
 				*buffer_ptr ++ = color.clamp_to_int();
 			}

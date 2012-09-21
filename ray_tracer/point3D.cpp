@@ -15,9 +15,5 @@ namespace ray_tracer {
 		y = y_;
 		z = z_; 
 	}
-
-	vector3D point3D::to_vector() const {
-		return vector3D(x, y, z);
-	}
 }
 

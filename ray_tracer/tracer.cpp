@@ -25,8 +25,10 @@ namespace ray_tracer {
 				info_ptr->light_position = (*iter)->get_light_origin();
 				if ((*iter)->in_range(info_ptr) && !(*iter)->under_shadow(info_ptr)) {
 					wout = (info_ptr->light_position - info_ptr->hit_point).normalized();
-					temp = fabs(normal * wout); // two side light modeling
-					light_accumulate += (*iter)->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
+					temp = normal * wout; 
+					if (temp > 0) {
+						light_accumulate += (*iter)->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
+					}
 				}
 			}
 			result += light_accumulate / (*iter)->get_sampler_count();

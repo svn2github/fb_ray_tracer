@@ -64,7 +64,7 @@ void test1(SDL_Surface *screen) {
 	t2 = new texture_checker;
 	s2->set_texture(t2);
 
-	l = new light_point(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(0, 0, 30), color_white, false);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
@@ -115,7 +115,7 @@ void test1(SDL_Surface *screen) {
 }
 
 void test2(SDL_Surface *screen) {
-	world world(false);
+	world world(true);
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
@@ -149,17 +149,17 @@ void test2(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
-	// l = new light_point(point3D(0, 0, 30), color_white);
-	l = new light_area(point3D(0, 0, 30), 10, vector3D(30, 9, -30), color_white);
-	// l->set_attenuation_constant(1);
-	// l->set_attenuation_linear(0.001);
-	// l->set_attenuation_quadratic(0.0005);
+	// l = new light_spot(point3D(0, 0, 30), color_white, true, vector3D(30, 9, -30), pi / 7, 5);
+	l = new light_point(point3D(0, 0, 30), color_white, true);
+	// l = new light_area(point3D(0, 0, 30), 10, true, vector3D(30, 9, -30), color_white);
+	l->set_attenuation_constant(1);
+	l->set_attenuation_linear(0.001);
+	l->set_attenuation_quadratic(0.0005);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
 	world.set_view_plane(plane);
-	world.set_fog(new fog(0.01, 1, color_black));
+	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
@@ -217,17 +217,17 @@ void test4(SDL_Surface *screen) {
 
 	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
 	SDL_LockSurface(img);
-	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 30);
-	cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
+	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), 30);
+	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
 	plane = new view_plane(-20, 20, 20, -20);
 
-	s = new surface_sphere(point3D(30, 0, 0), 10);
+	s = new surface_sphere(point3D(40, 0, 0), 10);
 	m = new material_matte;
 	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 
-	l = new light_point(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(0, 0, 30), color_white, true);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);

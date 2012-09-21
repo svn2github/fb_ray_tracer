@@ -16,11 +16,13 @@ namespace ray_tracer {
 		set_position(point3D());
 		set_color(color_white);
 		init_attenuation();
+		cast_shadow = true;
 	}
 
-	light::light(const point3D &position_, const colorRGB &color_) {
+	light::light(const point3D &position_, const colorRGB &color_, bool shadow_) {
 		set_position(position_);
 		set_color(color_);
+		cast_shadow = shadow_;
 		init_attenuation();
 	}
 
@@ -46,18 +48,22 @@ namespace ray_tracer {
 	}
 
 	bool light::under_shadow(hitInfo *info_ptr) const {
-		world *world_ptr = info_ptr->world_ptr;
-		vector3D dir;
-		hitInfo temp;
-		double dist;
-
-		dir = info_ptr->hit_point - info_ptr->light_position;
-		dist = dir.length();
-		dir = dir.normalized();
-		if (world_ptr->get_hit(ray(info_ptr->light_position, dir), &temp)) {
-			return dblcmp(temp.hit_t - dist) < 0;
-		} else {
+		if (!cast_shadow) {
 			return false;
+		} else {
+			world *world_ptr = info_ptr->world_ptr;
+			vector3D dir;
+			hitInfo temp;
+			double dist;
+
+			dir = info_ptr->hit_point - info_ptr->light_position;
+			dist = dir.length();
+			dir = dir.normalized();
+			if (world_ptr->get_hit(ray(info_ptr->light_position, dir), &temp)) {
+				return dblcmp(temp.hit_t - dist) < 0;
+			} else {
+				return false;
+			}
 		}
 	}
 

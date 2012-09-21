@@ -37,8 +37,4 @@ namespace ray_tracer {
 		assert(false);
 		return vector3D(); // never be here
 	}
-
-	point3D vector3D::to_point() const {
-		return point3D(x, y, z);
-	}
 }

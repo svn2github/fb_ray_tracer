@@ -4,7 +4,7 @@
 
 namespace ray_tracer {
 	
-	const int num_area_sampler = 169;
+	const int num_area_sampler = 144;
 
 	light_area::light_area() { 
 		radius = 0;
@@ -16,7 +16,7 @@ namespace ray_tracer {
 		smpler->map_sample_to_disk();
 	}
 
-	light_area::light_area(const point3D &position_, double radius_, const vector3D &normal_, const colorRGB &color_) : light(position_, color_) {
+	light_area::light_area(const point3D &position_, const colorRGB &color_, bool shadow_, double radius_, const vector3D &normal_) : light(position_, color_, shadow_) {
 		radius = radius_;
 		normal = normal_.normalized();
 		axis_u = normal.create_vertical();

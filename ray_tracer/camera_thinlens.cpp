@@ -39,8 +39,8 @@ namespace ray_tracer {
 	}
 
 	colorRGB camera_thinlens::render_scene(double x, double y, int w, int h, world *world_ptr) const {
-		double u = world_ptr->get_view_plane()->compute_u(x + 0.5, w);
-		double v = world_ptr->get_view_plane()->compute_v(y + 0.5, h);
+		double u = world_ptr->get_view_plane()->compute_u(x, w);
+		double v = world_ptr->get_view_plane()->compute_v(y, h);
 		hitInfo info;
 		point3D focal_point, origin, origin_fixed;
 		colorRGB color = color_black;

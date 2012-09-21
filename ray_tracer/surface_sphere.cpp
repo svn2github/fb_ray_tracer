@@ -46,6 +46,8 @@ namespace ray_tracer {
 	}
 
 	point3D surface_sphere::get_relative_pos(const point3D &point) const {
-		return (point - center).to_point();
+		vector3D v = point - center;
+
+		return point3D(v.x, v.y, v.z);
 	}
 }
