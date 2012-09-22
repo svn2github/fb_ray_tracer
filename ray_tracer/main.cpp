@@ -210,7 +210,7 @@ void test4(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface *s;
-	material *m;
+	material_phong *m;
 	texture *t;
 	light *l;
 	SDL_Surface *img;
@@ -222,12 +222,13 @@ void test4(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s = new surface_sphere(point3D(40, 0, 0), 10);
-	m = new material_matte;
+	m = new material_phong;
+	m->set_specular_shininess(50);
 	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 
-	l = new light_point(point3D(0, 0, 30), color_white, true);
+	l = new light_point(point3D(0, 50, 30), color_white, false);
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
@@ -262,7 +263,7 @@ int main() {
 		return 0;
 	}
 
-	test2(screen);
+	test4(screen);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));
