@@ -15,11 +15,11 @@ namespace ray_tracer {
 	}
 
 	vector3D surface::get_normal(const point3D &point) const {
-		return vector3D();
+		return vector3D(0, 0, 0);
 	}
 
 	point3D surface::get_relative_pos(const point3D &point) const {
-		return point3D();
+		return point3D(0, 0, 0);
 	}
 
 	colorRGB surface::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) {

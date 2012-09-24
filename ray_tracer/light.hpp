@@ -12,8 +12,7 @@ namespace ray_tracer {
 		light();
 		light(const point3D &, const colorRGB &, bool);
 		virtual ~light();
-		virtual point3D get_light_origin() const;
-		virtual int get_sampler_count() const;
+		virtual point3D get_light_origin(hitInfo *) const;
 		void set_position(const point3D &);
 		void set_color(const colorRGB &);
 		void set_attenuation_constant(const double &);

@@ -88,6 +88,7 @@
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_area.cpp" />
     <ClCompile Include="light_spot.cpp" />
+    <ClCompile Include="sampler_single.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
     <ClCompile Include="texture_image.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="light.hpp" />
     <ClInclude Include="light_area.hpp" />
     <ClInclude Include="light_spot.hpp" />
+    <ClInclude Include="sampler_single.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />
     <ClInclude Include="material.hpp" />

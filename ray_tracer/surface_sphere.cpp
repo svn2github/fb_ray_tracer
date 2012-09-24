@@ -7,13 +7,15 @@
 namespace ray_tracer {
 
 	surface_sphere::surface_sphere() {
-		set_center(point3D());
-		set_radius(0);
+		center = point3D(0, 0, 0);
+		radius = 1;
+		radius_squared = 1;
 	}
 
 	surface_sphere::surface_sphere(const point3D &center_, double radius_) {
-		set_center(center_);
-		set_radius(radius_);
+		center = center_;
+		radius = radius_;
+		radius_squared = radius_ * radius_;
 	}
 
 	bool surface_sphere::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {

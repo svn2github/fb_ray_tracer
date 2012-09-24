@@ -7,15 +7,17 @@
 namespace ray_tracer {
 
 	surface_disk::surface_disk() {
-		set_center(point3D());
-		set_normal(vector3D());
-		set_radius(0);
+		center = point3D(0, 0, 0);
+		normal = vector3D(0, 0, 1);
+		radius = 1;
+		radius_squared = 1;
 	}
 
-	surface_disk::surface_disk(const point3D &center_, const vector3D &normal_, double radius) {
-		set_center(center_);
-		set_normal(normal_);
-		set_radius(radius);
+	surface_disk::surface_disk(const point3D &center_, const vector3D &normal_, double radius_) {
+		center = center_;
+		normal = normal_.normalized();
+		radius = radius_;
+		radius_squared = radius_ * radius_;
 	}
 
 	bool surface_disk::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {

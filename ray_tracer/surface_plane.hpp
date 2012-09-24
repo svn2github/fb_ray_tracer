@@ -8,32 +8,12 @@ namespace ray_tracer {
 	public:
 		surface_plane();
 		surface_plane(const point3D &, const vector3D &);
-		point3D get_point_on_plane() const;
-		void set_point_on_plane(const point3D &);
-		vector3D get_normal() const;
-		void set_normal(const vector3D &);
 		bool hit(const ray &, double, hitInfo *) const;
 		vector3D get_normal(const point3D &) const;
 	protected:
 		point3D point_on_plane;
 		vector3D normal;
 	};
-
-	inline point3D surface_plane::get_point_on_plane() const {
-		return point_on_plane;
-	}
-	
-	inline void surface_plane::set_point_on_plane(const point3D &point_on_plane_) {
-		point_on_plane = point_on_plane_;
-	}
-
-	inline vector3D surface_plane::get_normal() const {
-		return normal;
-	}
-
-	inline void surface_plane::set_normal(const vector3D &normal_) {
-		normal = normal_.normalized();
-	}
 }
 
 #endif

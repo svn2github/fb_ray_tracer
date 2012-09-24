@@ -7,10 +7,10 @@
 namespace ray_tracer {
 
 	surface_triangle::surface_triangle() {
-		v0 = point3D();
-		v1 = point3D();
-		v2 = point3D();
-		normal = vector3D();
+		v0 = point3D(0, 0, 1);
+		v1 = point3D(0, 1, 0);
+		v2 = point3D(1, 0, 0);
+		normal = ((v1 - v0) ^ (v2 - v0)).normalized();
 	}
 
 	surface_triangle::surface_triangle(const point3D &v0_, const point3D &v1_, const point3D &v2_) {

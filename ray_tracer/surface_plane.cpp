@@ -7,13 +7,13 @@
 namespace ray_tracer {
 
 	surface_plane::surface_plane() {
-		set_point_on_plane(point3D());
-		set_normal(vector3D());
+		point_on_plane = point3D(0, 0, 0);
+		normal = vector3D(0, 0, 1);
 	}
 
 	surface_plane::surface_plane(const point3D &point_, const vector3D &normal_) {
-		set_point_on_plane(point_);
-		set_normal(normal_);
+		point_on_plane = point_;
+		normal = normal_.normalized();
 	}
 
 	bool surface_plane::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {

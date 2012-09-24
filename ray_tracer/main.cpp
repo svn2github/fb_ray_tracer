@@ -37,7 +37,7 @@ using namespace ray_tracer;
 const int width = 500, height = 500;
 
 void test1(SDL_Surface *screen) {
-	world world(false);
+	world world;
 	camera *cam;
 	view_plane *plane;
 	surface_sphere *s1;
@@ -74,7 +74,6 @@ void test1(SDL_Surface *screen) {
 	world.add_light(l);
 	world.fit_window(width, height, screen->pixels);
 
-	double y = -20, step = 0.3;
 	int fps = 0;
 	DWORD old_time = GetTickCount();
 
@@ -85,13 +84,6 @@ void test1(SDL_Surface *screen) {
 				return;
 			}
 		}
-
-		y += step;
-		if (y < -20 || y > 20) step = -step;
-
-		point3D center = s1->get_center();
-		center.y = y;
-		s1->set_center(center);
 
 		if (GetTickCount() - old_time > 1000) {
 			old_time = GetTickCount();
@@ -115,7 +107,7 @@ void test1(SDL_Surface *screen) {
 }
 
 void test2(SDL_Surface *screen) {
-	world world(true);
+	world world;
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
@@ -124,9 +116,9 @@ void test2(SDL_Surface *screen) {
 	light *l;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
+	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	//cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	// cam->rotate(pi / 4);
 	plane = new view_plane(-20, 20, 20, -20);
 
@@ -140,7 +132,7 @@ void test2(SDL_Surface *screen) {
 	s2 = new surface_sphere(point3D(30, 9, 0), 12);
 	m2 = new material_phong;
 	t2 = new texture_solid_color(colorRGB(0.8, 0.2, 0.8));
-	m2->set_specular_shininess(100);
+	m2->set_specular_shininess(50);
 	s2->set_material(m2);
 	s2->set_texture(t2);
 
@@ -150,13 +142,14 @@ void test2(SDL_Surface *screen) {
 	s3->set_texture(t3);
 
 	// l = new light_spot(point3D(0, 0, 30), color_white, true, vector3D(30, 9, -30), pi / 7, 5);
-	l = new light_point(point3D(0, 0, 30), color_white, true);
-	// l = new light_area(point3D(0, 0, 30), 10, true, vector3D(30, 9, -30), color_white);
+	// l = new light_point(point3D(0, 0, 30), color_white, true);
+	l = new light_area(point3D(0, 0, 30), color_white, true, 10, vector3D(30, 9, -30));
 	l->set_attenuation_constant(1);
 	l->set_attenuation_linear(0.001);
 	l->set_attenuation_quadratic(0.0005);
 
 	world.set_ambient(color_white / 5);
+	world.set_sampler(new sampler_jittered(625));
 	world.set_camera(cam);
 	world.set_view_plane(plane);
 	world.set_fog(new fog(0.01, 1, color_white));
@@ -182,9 +175,7 @@ void test2(SDL_Surface *screen) {
 
 void test3(SDL_Surface *screen) {
 	srand(100);
-	sampler *sam = new sampler_jittered();
-	sam->generate(10000);
-	sam->map_sample_to_disk();
+	sampler *sam = new sampler_jittered(10000);
 	if (SDL_MUSTLOCK(screen)) {
 		if (SDL_LockSurface(screen) < 0) {
 			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
@@ -192,7 +183,8 @@ void test3(SDL_Surface *screen) {
 		}
 	}
 	for (int i = 1; i <= 10000; ++i) {
-		point2D p = sam->get_sampler_zoomed(width);
+		sam->next_sampler();
+		point2D p = sam->get_sampler_zoomed(sampler_set_anti_aliasing, width);
 		int x = p.x, y = p.y;
 		int *ptr = (int *)screen->pixels;
 		ptr += y * width + x;
@@ -206,24 +198,23 @@ void test3(SDL_Surface *screen) {
 }
 
 void test4(SDL_Surface *screen) {
-	world world(true);
+	world world;
 	camera *cam;
 	view_plane *plane;
 	surface *s;
-	material_phong *m;
+	material *m;
 	texture *t;
 	light *l;
 	SDL_Surface *img;
 
 	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
 	SDL_LockSurface(img);
-	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), 30);
+	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), 40);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s = new surface_sphere(point3D(40, 0, 0), 10);
-	m = new material_phong;
-	m->set_specular_shininess(50);
+	m = new material_matte;
 	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
@@ -263,7 +254,7 @@ int main() {
 		return 0;
 	}
 
-	test4(screen);
+	test2(screen);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));

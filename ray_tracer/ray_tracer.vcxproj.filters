@@ -125,6 +125,9 @@
     <ClCompile Include="light_area.cpp">
       <Filter>bottom-layer\light</Filter>
     </ClCompile>
+    <ClCompile Include="sampler_single.cpp">
+      <Filter>bottom-layer\sampler</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -284,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="light_area.hpp">
       <Filter>bottom-layer\light</Filter>
+    </ClInclude>
+    <ClInclude Include="sampler_single.hpp">
+      <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

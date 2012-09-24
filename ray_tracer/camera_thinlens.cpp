@@ -4,34 +4,19 @@
 #include "ray.hpp"
 #include "world.hpp"
 #include "camera_thinlens.hpp"
-#include "sampler_jittered.hpp"
 
 namespace ray_tracer {
-
-	const int num_samplers = 625;
-
-	void camera_thinlens::init_sampler(int num) {
-		smpler = new sampler_jittered();
-		smpler->generate(num);
-		smpler->map_sample_to_disk();
-	}
 
 	camera_thinlens::camera_thinlens() {
 		view_dist = 0;
 		focal_dist = 0;
 		lens_radius = 0;
-		init_sampler(num_samplers);
 	}
 
 	camera_thinlens::camera_thinlens(const point3D &eye_, const point3D &lookat_, const vector3D &up_, double view_dist_, double focal_dist_, double lens_radius_) : camera(eye_, lookat_, up_) {
 		view_dist = view_dist_;
 		focal_dist = focal_dist_;
 		lens_radius = lens_radius_;
-		init_sampler(num_samplers);
-	}
-
-	camera_thinlens::~camera_thinlens() {
-		delete smpler;
 	}
 
 	void camera_thinlens::zoom(double factor) {
@@ -48,15 +33,13 @@ namespace ray_tracer {
 
 		focal_point = eye + (-axis_w * view_dist + u * axis_u + v * axis_v) * (focal_dist / view_dist);
 		origin = eye - 0.5 * axis_u - 0.5 * axis_v;
-		for (int i = 1; i <= num_samplers; i += 1) {
-			sample_point = smpler->get_sampler_zoomed(lens_radius);
-			origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
-			if (world_ptr->get_hit(ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
-				color += world_ptr->get_tracer()->ray_color(&info);
-			} else {
-				color += world_ptr->get_background();
-			}
+		sample_point = world_ptr->get_sampler()->get_sampler_disk_zoomed(sampler_set_camera_thinlens, lens_radius);
+		origin_fixed = origin + sample_point.x * axis_u + sample_point.y * axis_v;
+		if (world_ptr->get_hit(ray(origin_fixed, (focal_point - origin_fixed).normalized()), &info)) {
+			color += world_ptr->get_tracer()->ray_color(&info);
+		} else {
+			color += world_ptr->get_background();
 		}
-		return color / num_samplers;
+		return color;
 	}
 }

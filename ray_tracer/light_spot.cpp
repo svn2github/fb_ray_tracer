@@ -5,7 +5,7 @@
 namespace ray_tracer {
 	
 	light_spot::light_spot() {
-		set_direcion(vector3D());
+		set_direcion(vector3D(0, 0, 1));
 		set_cutoff(pi / 2);
 		set_exponent(1);
 	}

@@ -13,7 +13,7 @@ namespace ray_tracer {
 	}
 
 	light::light() {
-		set_position(point3D());
+		set_position(point3D(0, 0, 0));
 		set_color(color_white);
 		init_attenuation();
 		cast_shadow = true;
@@ -28,11 +28,7 @@ namespace ray_tracer {
 
 	light::~light() { }
 
-	int light::get_sampler_count() const {
-		return 1;
-	}
-
-	point3D light::get_light_origin() const {
+	point3D light::get_light_origin(hitInfo *info_ptr) const {
 		return position;
 	}
 

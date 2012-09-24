@@ -9,11 +9,8 @@ namespace ray_tracer {
 	public:
 		light_area();
 		light_area(const point3D &, const colorRGB &, bool, double, const vector3D &);
-		~light_area();
-		int get_sampler_count() const;
-		point3D get_light_origin() const;
+		point3D get_light_origin(hitInfo *) const;
 	private:
-		sampler_jittered *smpler;
 		double radius;
 		vector3D normal, axis_u, axis_v;
 	};

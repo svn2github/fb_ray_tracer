@@ -6,6 +6,10 @@
 
 namespace ray_tracer {
 
+	sampler_jittered::sampler_jittered(int num) : sampler(num) { 
+		generate(num);
+	}
+
 	bool sampler_jittered::is_squared(int number, int &root) {
 		root = (int)floor(sqrt((double)number) + epsilon);
 		return root * root == number;
@@ -14,9 +18,6 @@ namespace ray_tracer {
 	void sampler_jittered::generate(int num) {
 		int root;
 		if (is_squared(num, root)) {
-			number_samples = num;
-			sample_index = 0;
-			samples.reserve(number_samples);
 			for (int i = 0; i < root; i += 1) {
 				for (int j = 0; j < root; j += 1) {
 					samples.push_back(point2D((i + random_double()) / root, (j + random_double()) / root));

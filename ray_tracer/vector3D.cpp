@@ -35,6 +35,6 @@ namespace ray_tracer {
 			}
 		}
 		assert(false);
-		return vector3D(); // never be here
+		return vector3D(0, 0, 0); // never be here
 	}
 }

@@ -7,9 +7,9 @@
 namespace ray_tracer {
 
 	camera::camera() {
-		eye = point3D();
-		lookat = point3D();
-		up = vector3D();
+		eye = point3D(0, 0, 0);
+		lookat = point3D(0, 0, 1);
+		up = vector3D(0, 1, 0);
 		compute_axis();
 	}
 	
@@ -47,11 +47,10 @@ namespace ray_tracer {
 		up = mat * up;
 	}
 
-
 	/** Note: axis_w dot axis_v = 0 */
 	void camera::compute_axis() {
 		axis_w = (eye - lookat).normalized();
-		axis_v = -up;
+		axis_v = -up.normalized();
 		assert(dblcmp(axis_w * axis_v) == 0);
 		axis_u = axis_v ^ axis_w;
 	}

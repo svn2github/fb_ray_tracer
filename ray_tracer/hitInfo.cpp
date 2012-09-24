@@ -10,12 +10,12 @@ namespace ray_tracer {
 
 	hitInfo::hitInfo() { 
 		hit_t = huge_double;
-		hit_point = point3D();
-		hit_relative_point = point3D();
-		normal = vector3D();
+		hit_point = point3D(0, 0, 0);
+		hit_relative_point = point3D(0, 0, 0);
+		normal = vector3D(0, 0, 0);
 		world_ptr = NULL;
 		surface_ptr = NULL;
 		emission_ray = ray();
-		light_position = point3D();
+		light_position = point3D(0, 0, 0);
 	}
 }

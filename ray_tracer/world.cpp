@@ -5,25 +5,22 @@
 #include "view_plane.hpp"
 #include "tracer.hpp"
 #include "camera.hpp"
+#include "sampler_single.hpp"
 #include "world.hpp"
 
 namespace ray_tracer {
 
-	world::world(bool antialiasing_) {
+	world::world() {
 		tracer_ptr = new tracer;
+		sampler_ptr = NULL;
+		sampler_single_ptr = new sampler_single(1);
 		fog_ptr = NULL;
 		set_ambient(color_white / 5);
-		antialiasing_enabled = false;
-		if (antialiasing_) {
-			enable_antialiasing();
-		}
 	}
 
 	world::~world() {
 		delete tracer_ptr;
-		if (antialiasing_enabled) {
-			disable_antialiasing();
-		}
+		delete sampler_single_ptr;
 	}
 
 	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) {
@@ -57,19 +54,17 @@ namespace ray_tracer {
 		int *buffer_ptr = pixal_buffer_ptr;
 		colorRGB color;
 		point2D sample_point;
+		int number_samples = get_sampler()->get_sampler_count();
 
 		for (int y = 0; y < dest_h; y += 1) {
 			for (int x = 0; x < dest_w; x += 1) {
 				color = color_black;
-				if (antialiasing_enabled) {
-					for (int i = 1; i <= num_antialiasing_sampler; i += 1) {
-						sample_point = sampler_ptr->get_sampler_unit();
-						color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, this);
-					}
-					color = color / num_antialiasing_sampler;
-				} else {
-					color = camera_ptr->render_scene(x + 0.5, y + 0.5, dest_w, dest_h, this);
+				for (int i = 0; i < number_samples; i += 1) {
+					get_sampler()->next_sampler();
+					sample_point = get_sampler()->get_sampler_unit(sampler_set_anti_aliasing);
+					color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, this);
 				}
+				color = color / number_samples;
 				*buffer_ptr ++ = color.clamp_to_int();
 			}
 		}

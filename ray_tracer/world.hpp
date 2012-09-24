@@ -13,20 +13,18 @@
 #include "fog.hpp"
 #include "camera.hpp"
 #include "tracer.hpp"
-#include "sampler_jittered.hpp"
+#include "sampler.hpp"
 
 namespace ray_tracer {
-	const int num_antialiasing_sampler = 25;
 	class world {
 	public:
-		world(bool);
+		world();
 		~world();
 		colorRGB get_ambient() const;
 		void set_ambient(const colorRGB &);
 		colorRGB get_background() const;
-		bool is_antialiasing_enabled() const;
-		void enable_antialiasing();
-		void disable_antialiasing();
+		sampler *get_sampler() const;
+		void set_sampler(sampler *);
 		void add_light(light *);
 		const std::vector<light *> &get_lights() const;
 		void add_surface(surface *);
@@ -44,8 +42,7 @@ namespace ray_tracer {
 		void render_scene();		
 	private:
 		colorRGB ambient;
-		bool antialiasing_enabled;
-		sampler *sampler_ptr;
+		sampler *sampler_ptr, *sampler_single_ptr;
 		std::vector<light *> lights;
 		std::vector<surface *> surfaces;
 		fog *fog_ptr;
@@ -67,23 +64,12 @@ namespace ray_tracer {
 		return fog_ptr == NULL ? color_black : fog_ptr->get_fog_color();
 	}
 
-	inline bool world::is_antialiasing_enabled() const {
-		return antialiasing_enabled;
+	inline sampler *world::get_sampler() const {
+		return sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr;
 	}
 
-	inline void world::enable_antialiasing() {
-		if (antialiasing_enabled == false) {
-			antialiasing_enabled = true;
-			sampler_ptr = new sampler_jittered();
-			sampler_ptr->generate(num_antialiasing_sampler);
-		}
-	}
-
-	inline void world::disable_antialiasing() {
-		if (antialiasing_enabled == true) {
-			antialiasing_enabled = false;
-			delete sampler_ptr;
-		}
+	inline void world::set_sampler(sampler *sampler_ptr_) {
+		sampler_ptr = sampler_ptr_;
 	}
 
 	inline void world::add_light(light *light_ptr_) {
