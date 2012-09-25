@@ -128,6 +128,12 @@
     <ClCompile Include="sampler_single.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
+    <ClCompile Include="BRDF_mirror.cpp">
+      <Filter>bottom-layer\material\BRDF</Filter>
+    </ClCompile>
+    <ClCompile Include="material_mirror.cpp">
+      <Filter>bottom-layer\material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -290,6 +296,12 @@
     </ClInclude>
     <ClInclude Include="sampler_single.hpp">
       <Filter>bottom-layer\sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="BRDF_mirror.hpp">
+      <Filter>bottom-layer\material\BRDF</Filter>
+    </ClInclude>
+    <ClInclude Include="material_mirror.hpp">
+      <Filter>bottom-layer\material</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

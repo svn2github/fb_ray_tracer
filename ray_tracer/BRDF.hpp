@@ -10,7 +10,8 @@ namespace ray_tracer {
 	public:
 		BRDF();
 		/** win & wout should be unit vector */
-		virtual colorRGB f(hitInfo *, const vector3D &, const vector3D &) = 0;
+		virtual colorRGB f(hitInfo *, const vector3D &, const vector3D &);
+		virtual colorRGB reflect_f(hitInfo *, const vector3D &);
 		void set_coefficient(const colorRGB &);
 	protected:
 		colorRGB coefficient;

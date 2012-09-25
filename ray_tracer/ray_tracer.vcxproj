@@ -75,6 +75,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BRDF.cpp" />
+    <ClCompile Include="BRDF_mirror.cpp" />
     <ClCompile Include="BRDF_phong.cpp" />
     <ClCompile Include="BRDF_lambertian.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_area.cpp" />
     <ClCompile Include="light_spot.cpp" />
+    <ClCompile Include="material_mirror.cpp" />
     <ClCompile Include="sampler_single.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
@@ -117,6 +119,7 @@
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="BRDF.hpp" />
+    <ClInclude Include="BRDF_mirror.hpp" />
     <ClInclude Include="BRDF_phong.hpp" />
     <ClInclude Include="BRDF_lambertian.hpp" />
     <ClInclude Include="camera.hpp" />
@@ -131,6 +134,7 @@
     <ClInclude Include="light.hpp" />
     <ClInclude Include="light_area.hpp" />
     <ClInclude Include="light_spot.hpp" />
+    <ClInclude Include="material_mirror.hpp" />
     <ClInclude Include="sampler_single.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />

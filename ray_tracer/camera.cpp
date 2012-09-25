@@ -1,6 +1,8 @@
 
 #include "camera.hpp"
+#include "hitInfo.hpp"
 #include "matrix3D.hpp"
+#include "world.hpp"
 #include "misc.hpp"
 #include <cassert>
 
@@ -12,15 +14,26 @@ namespace ray_tracer {
 		up = vector3D(0, 1, 0);
 		compute_axis();
 	}
-	
+
 	camera::camera(const point3D &eye_, const point3D &lookat_, const vector3D &up_) {
 		eye = eye_;
 		lookat = lookat_;
 		up = up_;
 		compute_axis();
 	}
-
+	
 	camera::~camera() { }
+
+	colorRGB camera::render_scene(const point3D &origin, const vector3D &dir, world *world_ptr) {
+		hitInfo info;
+
+		info.camera_ptr = this;
+		if (world_ptr->get_hit(ray(origin, dir), &info)) {
+			return world_ptr->get_tracer()->ray_color(&info);
+		} else {
+			return world_ptr->get_background();
+		}
+	}
 
 	void camera::rotate(double angle) {
 		matrix3D mat1, mat2, mat3, mat;

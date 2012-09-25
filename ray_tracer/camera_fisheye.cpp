@@ -16,7 +16,7 @@ namespace ray_tracer {
 		fov = fov_;
 	}
 	
-	colorRGB camera_fisheye::render_scene(double x, double y, int w, int h, world *world_ptr) const {
+	colorRGB camera_fisheye::render_scene(double x, double y, int w, int h, world *world_ptr) {
 		point2D pp = point2D((x / w - 0.5) * 2, (y / h - 0.5) * 2);
 
 		if (pp.length_squared() <= 1) {
@@ -24,13 +24,8 @@ namespace ray_tracer {
 			double r = pp.length();
 			double sin_alpha = pp.y * inv_r, cos_alpha = pp.x * inv_r;
 			double sin_beta = sin(r * fov), cos_beta = cos(r * fov);
-			hitInfo info;
 
-			if (world_ptr->get_hit(ray(eye, sin_beta * cos_alpha * axis_u + sin_beta * sin_alpha * axis_v - cos_beta * axis_w), &info)) {
-				return world_ptr->get_tracer()->ray_color(&info);
-			} else {
-				return world_ptr->get_background();
-			}
+			return camera::render_scene(eye, sin_beta * cos_alpha * axis_u + sin_beta * sin_alpha * axis_v - cos_beta * axis_w, world_ptr);
 		} else {
 			return color_black;
 		}

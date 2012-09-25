@@ -8,6 +8,7 @@
 namespace ray_tracer {
 	class world;
 	class surface;
+	class camera;
 	class hitInfo {
 	public:
 		hitInfo();
@@ -18,7 +19,9 @@ namespace ray_tracer {
 		vector3D normal;
 		world *world_ptr;
 		surface *surface_ptr;
+		camera *camera_ptr;
 		ray emission_ray;
+		int ray_tracing_depth;
 		point3D light_position;
 	};
 }

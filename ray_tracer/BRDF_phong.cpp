@@ -4,6 +4,7 @@
 #include "misc.hpp"
 
 namespace ray_tracer {
+
 	colorRGB BRDF_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {
 		double temp;
 

@@ -6,6 +6,7 @@
 #include "material.hpp"
 #include "material_phong.hpp"
 #include "material_matte.hpp"
+#include "material_mirror.hpp"
 #include "surface.hpp"
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
@@ -34,7 +35,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 1000, height = 1000;
 
 void test1(SDL_Surface *screen) {
 	world world;
@@ -111,52 +112,64 @@ void test2(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
-	material_phong *m1, *m2;
+	//material_phong *m1;
+	material_mirror *m1, *m2;
+	material_phong *m3;
 	texture *t1, *t2, *t3;
-	light *l;
+	light *l, *l2;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
+	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 4);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	//cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
 	// cam->rotate(pi / 4);
 	plane = new view_plane(-20, 20, 20, -20);
 
-	s1 = new surface_sphere(point3D(15, -7, 0), 8);
-	m1 = new material_phong;
+	s1 = new surface_sphere(point3D(15, -7, 0), 9);
+	// m1 = new material_phong;
+	// m1->set_specular_shininess(6);
+	m1 = new material_mirror;
+	m1->set_mirror_coefficient(colorRGB(0.2, 0.6, 0.8));
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
-	m1->set_specular_shininess(6);
+	
 	s1->set_material(m1);
 	s1->set_texture(t1);
 
 	s2 = new surface_sphere(point3D(30, 9, 0), 12);
-	m2 = new material_phong;
-	t2 = new texture_solid_color(colorRGB(0.8, 0.2, 0.8));
-	m2->set_specular_shininess(50);
+	// m2 = new material_phong;
+	// m2->set_specular_shininess(50);
+	m2 = new material_mirror;
+	m2->set_mirror_coefficient(colorRGB(0.8, 0.2, 0.8));
+	t2 = new texture_solid_color(color_white);
+
 	s2->set_material(m2);
 	s2->set_texture(t2);
 
-	s3 = new surface_plane(point3D(50, 0, 0), vector3D(-1, 0, 1));
-	s3->set_material(m2);
+	s3 = new surface_plane(point3D(50, 0, 16), vector3D(-1, 0, 1));
+	m3 = new material_phong;
+	m3->set_specular_shininess(50);
+	s3->set_material(m3);
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
 	// l = new light_spot(point3D(0, 0, 30), color_white, true, vector3D(30, 9, -30), pi / 7, 5);
-	// l = new light_point(point3D(0, 0, 30), color_white, true);
-	l = new light_area(point3D(0, 0, 30), color_white, true, 10, vector3D(30, 9, -30));
-	l->set_attenuation_constant(1);
-	l->set_attenuation_linear(0.001);
-	l->set_attenuation_quadratic(0.0005);
+	// l = new light_point(point3D(0, 0, 0), color_white, true);
+	l = new light_area(point3D(0, 0, 0), color_white, true, 10, vector3D(30, 9, -30));
+	//l->set_attenuation_constant(1);
+	//l->set_attenuation_linear(0.001);
+	//l->set_attenuation_quadratic(0.0005);
+	l2 = new light_point(point3D(0, 0, 30), color_white, true);
 
 	world.set_ambient(color_white / 5);
-	world.set_sampler(new sampler_jittered(625));
+	world.set_sampler(new sampler_jittered(144));
 	world.set_camera(cam);
 	world.set_view_plane(plane);
-	world.set_fog(new fog(0.01, 1, color_white));
+	world.set_fog(new fog(0.01, 1, color_black));
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
 	world.add_light(l);
+	world.add_light(l2);
 	world.fit_window(width, height, screen->pixels);
 
 	if (SDL_MUSTLOCK(screen)) {

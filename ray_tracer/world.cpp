@@ -33,7 +33,7 @@ namespace ray_tracer {
 		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = (*iter);
 			if (surface_ptr->hit(emission_ray, 0, &temp)) {
-				if (temp.hit_t < info_ptr->hit_t) {
+				if (temp.hit_t > epsilon && temp.hit_t < info_ptr->hit_t) {
 					info_ptr->hit_t = temp.hit_t;
 					info_ptr->surface_ptr = surface_ptr;
 					hit_flag = true;
