@@ -19,7 +19,7 @@ namespace ray_tracer {
 	}
 
 	point3D light_area::get_light_origin(hitInfo *info_ptr) const {
-		point2D p = info_ptr->world_ptr->get_sampler()->get_sampler_disk_zoomed(sampler_set_area_light, radius);
+		point2D p = info_ptr->sampler_iterator_ptr->get_sampler_disk_zoomed(sampler_set_area_light, radius);
 
 		p.x -= radius / 2;
 		p.y -= radius / 2;

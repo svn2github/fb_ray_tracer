@@ -23,6 +23,12 @@ namespace ray_tracer {
 		delete sampler_single_ptr;
 	}
 
+	void world::fit_window(int w, int h, void *p) {
+		dest_w = w;
+		dest_h = h;
+		pixal_buffer_ptr = (int *)p;
+	}
+
 	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) {
 		bool hit_flag = false;
 		static hitInfo temp;
@@ -44,29 +50,51 @@ namespace ray_tracer {
 			info_ptr->hit_point = emission_ray.get_origin() + emission_ray.get_dir() * info_ptr->hit_t;
 			info_ptr->hit_relative_point = info_ptr->surface_ptr->get_relative_pos(info_ptr->hit_point);
 			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
-			info_ptr->world_ptr = this;
 			info_ptr->emission_ray = emission_ray;
 		}
 		return hit_flag;
 	}
 
+	void world::render_begin() {
+		curr_rendering_x = 0;
+		curr_rendering_y = 0;
+		rendering_mutex = 0;
+	}
+
 	void world::render_scene() {
-		int *buffer_ptr = pixal_buffer_ptr;
 		colorRGB color;
 		point2D sample_point;
-		int number_samples = get_sampler()->get_sampler_count();
-
-		for (int y = 0; y < dest_h; y += 1) {
-			for (int x = 0; x < dest_w; x += 1) {
-				color = color_black;
-				for (int i = 0; i < number_samples; i += 1) {
-					get_sampler()->next_sampler();
-					sample_point = get_sampler()->get_sampler_unit(sampler_set_anti_aliasing);
-					color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, this);
-				}
-				color = color / number_samples;
-				*buffer_ptr ++ = color.clamp_to_int();
+		int x, y;
+		
+		while (curr_rendering_y != dest_h) {
+			while (rendering_mutex) { }
+			rendering_mutex = 1;
+			x = curr_rendering_x;
+			y = curr_rendering_y;
+			x += 1;
+			if (x == dest_w) {
+				x = 0; 
+				y += 1;
 			}
+			curr_rendering_x = x;
+			curr_rendering_y = y;
+			rendering_mutex = 0;
+			color = color_black;
+
+			sampler_iterator sam_iter(sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr);
+			int number_sample = sam_iter.get_sampler_count();
+
+			for (int i = 0; i < number_sample; i += 1) {
+				hitInfo info;
+				
+				info.world_ptr = this;
+				info.sampler_iterator_ptr = &sam_iter;
+				sam_iter.next_sampler();
+				sample_point = sam_iter.get_sampler_unit(sampler_set_anti_aliasing);
+				color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, &info);
+			}
+			color = color / number_sample;
+			*(pixal_buffer_ptr + y * dest_w + x) = color.clamp_to_int();
 		}
 	}
 }

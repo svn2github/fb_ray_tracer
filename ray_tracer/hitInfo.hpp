@@ -6,9 +6,12 @@
 #include "ray.hpp"
 
 namespace ray_tracer {
+
 	class world;
 	class surface;
 	class camera;
+	class sampler_iterator;
+
 	class hitInfo {
 	public:
 		hitInfo();
@@ -20,6 +23,7 @@ namespace ray_tracer {
 		world *world_ptr;
 		surface *surface_ptr;
 		camera *camera_ptr;
+		sampler_iterator *sampler_iterator_ptr;
 		ray emission_ray;
 		int ray_tracing_depth;
 		point3D light_position;

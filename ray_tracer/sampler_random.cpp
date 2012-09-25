@@ -6,6 +6,7 @@ namespace ray_tracer {
 
 	sampler_random::sampler_random(int num) : sampler(num) { 
 		generate(num);
+		map_sample_to_disk();
 	}
 
 	void sampler_random::generate(int num) {

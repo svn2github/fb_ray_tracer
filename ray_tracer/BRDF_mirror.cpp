@@ -11,8 +11,11 @@ namespace ray_tracer {
 	}
 
 	colorRGB BRDF_mirror::reflect_f(hitInfo *info_ptr, const vector3D &win) {
-		hitInfo info;
+		hitInfo info = *info_ptr;
 
-		return coefficient * info_ptr->camera_ptr->render_scene(info_ptr->hit_point, 2 * info_ptr->normal - win, info_ptr->world_ptr);
+		// info.world_ptr = info_ptr->world_ptr;
+		// info.sampler_iterator_ptr = info_ptr->sampler_iterator_ptr;
+		info.ray_tracing_depth = info_ptr->ray_tracing_depth - 1;
+		return coefficient * info_ptr->camera_ptr->render_scene(info_ptr->hit_point, 2 * info_ptr->normal - win, &info);
 	}
 }

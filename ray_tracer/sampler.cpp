@@ -4,12 +4,8 @@
 #include <cmath>
 
 namespace ray_tracer {
-	
+
 	sampler::sampler(int num) {
-		for (int i = 0; i < sampler_set_count; i += 1) {
-			sample_index[i] = i % num;
-		}
-		mapped_to_disk = false;
 		number_samples = num;
 		samples.reserve(number_samples);
 	}
@@ -18,58 +14,66 @@ namespace ray_tracer {
 
 	// Origin: Shirley and Chiu(1997)
 	void sampler::map_sample_to_disk() {
-		if (!mapped_to_disk) {
-			mapped_to_disk = true;
-			samples_disk.reserve(number_samples);
-			for (int i = 0; i < number_samples; i += 1) {
-				double x = (samples[i].x - 0.5) * 2, y = (samples[i].y - 0.5) * 2, r, angle;
-				if (x > -y) {
-					if (x > y) {
-						r = x;
-						angle = y / x;
-					} else {
-						r = y;
-						angle = 2 - x / y;
-					}
+		samples_disk.reserve(number_samples);
+		for (int i = 0; i < number_samples; i += 1) {
+			double x = (samples[i].x - 0.5) * 2, y = (samples[i].y - 0.5) * 2, r, angle;
+			if (x > -y) {
+				if (x > y) {
+					r = x;
+					angle = y / x;
 				} else {
-					if (x < y) {
-						r = -x;
-						angle = 4 + y / x;
-					} else {
-						r = -y;
-						angle = 6 - x / y;
-					}
+					r = y;
+					angle = 2 - x / y;
 				}
-				angle = angle * pi / 4;
-				r /= 2;
-				samples_disk[i].x = r * cos(angle) + 0.5;
-				samples_disk[i].y = r * sin(angle) + 0.5;
+			} else {
+				if (x < y) {
+					r = -x;
+					angle = 4 + y / x;
+				} else {
+					r = -y;
+					angle = 6 - x / y;
+				}
 			}
+			angle = angle * pi / 4;
+			r /= 2;
+			samples_disk.push_back(point2D(r * cos(angle) + 0.5, r * sin(angle) + 0.5));
 		}
 	}
 
-	void sampler::next_sampler() {
+	int sampler::get_sampler_count() const {
+		return number_samples;
+	}
+
+	sampler_iterator::sampler_iterator(sampler *sam_) {
+		sampler_bind = sam_;
 		for (int i = 0; i < sampler_set_count; i += 1) {
-			if (++sample_index[i] >= number_samples) sample_index[i] = 0;
+			sample_index[i] = i % sampler_bind->number_samples;
 		}
 	}
 
-	point2D sampler::get_sampler_unit(int set) {
-		return samples[sample_index[set]];
+	int sampler_iterator::get_sampler_count() const {
+		return sampler_bind->get_sampler_count();
 	}
 
-	point2D sampler::get_sampler_zoomed(int set, double zoom) {
+	void sampler_iterator::next_sampler() {
+		for (int i = 0; i < sampler_set_count; i += 1) {
+			if (++sample_index[i] >= get_sampler_count()) sample_index[i] = 0;
+		}
+	}
+
+	point2D sampler_iterator::get_sampler_unit(int set) {
+		return sampler_bind->samples[sample_index[set]];
+	}
+
+	point2D sampler_iterator::get_sampler_zoomed(int set, double zoom) {
 		return get_sampler_unit(set) * zoom;
 	}
 
-	point2D sampler::get_sampler_disk_unit(int set) {
-		if (!mapped_to_disk) {
-			map_sample_to_disk();
-		}
-		return samples_disk[sample_index[set]];
+	point2D sampler_iterator::get_sampler_disk_unit(int set) {
+		return sampler_bind->samples_disk[sample_index[set]];
 	}
 
-	point2D sampler::get_sampler_disk_zoomed(int set, double zoom) {
+	point2D sampler_iterator::get_sampler_disk_zoomed(int set, double zoom) {
 		return get_sampler_disk_unit(set) * zoom;
 	}
 };

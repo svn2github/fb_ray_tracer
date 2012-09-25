@@ -11,7 +11,7 @@ namespace ray_tracer {
 	public:
 		camera_thinlens();
 		camera_thinlens(const point3D &, const point3D &, const vector3D &, double, double, double);
-		colorRGB render_scene(double, double, int, int, world *);
+		colorRGB render_scene(double, double, int, int, hitInfo *);
 		void zoom(double);
 	private:
 		double view_dist, focal_dist, lens_radius;

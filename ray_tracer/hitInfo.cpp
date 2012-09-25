@@ -15,6 +15,7 @@ namespace ray_tracer {
 		normal = vector3D(0, 0, 0);
 		world_ptr = NULL;
 		surface_ptr = NULL;
+		sampler_iterator_ptr = NULL;
 		emission_ray = ray();
 		ray_tracing_depth = 5;
 		light_position = point3D(0, 0, 0);

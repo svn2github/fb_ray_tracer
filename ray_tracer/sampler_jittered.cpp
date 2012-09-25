@@ -8,6 +8,7 @@ namespace ray_tracer {
 
 	sampler_jittered::sampler_jittered(int num) : sampler(num) { 
 		generate(num);
+		map_sample_to_disk();
 	}
 
 	bool sampler_jittered::is_squared(int number, int &root) {

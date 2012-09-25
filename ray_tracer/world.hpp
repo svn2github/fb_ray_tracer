@@ -20,10 +20,11 @@ namespace ray_tracer {
 	public:
 		world();
 		~world();
+
+		/* access functions */
 		colorRGB get_ambient() const;
 		void set_ambient(const colorRGB &);
 		colorRGB get_background() const;
-		sampler *get_sampler() const;
 		void set_sampler(sampler *);
 		void add_light(light *);
 		const std::vector<light *> &get_lights() const;
@@ -36,10 +37,14 @@ namespace ray_tracer {
 		view_plane *get_view_plane() const;
 		void set_view_plane(view_plane *);
 		tracer *get_tracer() const;
-		// void set_ray_tracer(ray_tracer *);
+
+		/* help functions */
 		void fit_window(int, int, void *); // Dimension: pixal
 		bool get_hit(const ray &, hitInfo *);
-		void render_scene();		
+
+		/* render functions */
+		void render_begin();
+		void render_scene();
 	private:
 		colorRGB ambient;
 		sampler *sampler_ptr, *sampler_single_ptr;
@@ -50,6 +55,7 @@ namespace ray_tracer {
 		view_plane *plane_ptr;
 		tracer *tracer_ptr;
 		int dest_w, dest_h, *pixal_buffer_ptr;
+		int curr_rendering_x, curr_rendering_y, rendering_mutex;
 	};
 
 	inline colorRGB world::get_ambient() const {
@@ -62,10 +68,6 @@ namespace ray_tracer {
 
 	inline colorRGB world::get_background() const {
 		return fog_ptr == NULL ? color_black : fog_ptr->get_fog_color();
-	}
-
-	inline sampler *world::get_sampler() const {
-		return sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr;
 	}
 
 	inline void world::set_sampler(sampler *sampler_ptr_) {
@@ -114,12 +116,6 @@ namespace ray_tracer {
 
 	inline tracer *world::get_tracer() const {
 		return tracer_ptr;
-	}
-
-	inline void world::fit_window(int w, int h, void *p) {
-		dest_w = w;
-		dest_h = h;
-		pixal_buffer_ptr = (int *)p;
 	}
 }
 

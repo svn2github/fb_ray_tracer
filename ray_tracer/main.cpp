@@ -2,6 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <SDL.h>
+#include <SDL_thread.h>
 #include "vector3D.hpp"
 #include "material.hpp"
 #include "material_phong.hpp"
@@ -35,7 +36,13 @@
 
 using namespace ray_tracer;
 
-const int width = 1000, height = 1000;
+const int width = 500, height = 500;
+
+int render_thread(void *data) {
+	world *world_ptr = (world *)data;
+	world_ptr->render_scene();
+	return 0;
+}
 
 void test1(SDL_Surface *screen) {
 	world world;
@@ -98,6 +105,7 @@ void test1(SDL_Surface *screen) {
 			++fps;
 		}
 
+		world.render_begin();
 		world.render_scene();
 
 		if (SDL_MUSTLOCK(screen)) {
@@ -112,8 +120,8 @@ void test2(SDL_Surface *screen) {
 	camera *cam;
 	view_plane *plane;
 	surface *s1, *s2, *s3;
-	//material_phong *m1;
-	material_mirror *m1, *m2;
+	material_phong *m1;
+	material_mirror *m2;
 	material_phong *m3;
 	texture *t1, *t2, *t3;
 	light *l, *l2;
@@ -126,10 +134,10 @@ void test2(SDL_Surface *screen) {
 	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 9);
-	// m1 = new material_phong;
-	// m1->set_specular_shininess(6);
-	m1 = new material_mirror;
-	m1->set_mirror_coefficient(colorRGB(0.2, 0.6, 0.8));
+	m1 = new material_phong;
+	m1->set_specular_shininess(6);
+	// m1 = new material_mirror;
+	// m1->set_mirror_coefficient(colorRGB(0.2, 0.6, 0.8));
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	
 	s1->set_material(m1);
@@ -155,10 +163,13 @@ void test2(SDL_Surface *screen) {
 	// l = new light_spot(point3D(0, 0, 30), color_white, true, vector3D(30, 9, -30), pi / 7, 5);
 	// l = new light_point(point3D(0, 0, 0), color_white, true);
 	l = new light_area(point3D(0, 0, 0), color_white, true, 10, vector3D(30, 9, -30));
-	//l->set_attenuation_constant(1);
-	//l->set_attenuation_linear(0.001);
-	//l->set_attenuation_quadratic(0.0005);
+	l->set_attenuation_constant(1);
+	l->set_attenuation_linear(0.001);
+	l->set_attenuation_quadratic(0.0005);
 	l2 = new light_point(point3D(0, 0, 30), color_white, true);
+	l2->set_attenuation_constant(1);
+	l2->set_attenuation_linear(0.001);
+	l2->set_attenuation_quadratic(0.0005);
 
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(144));
@@ -178,7 +189,14 @@ void test2(SDL_Surface *screen) {
 			return;
 		}
 	}
-	world.render_scene();
+
+	world.render_begin();
+	SDL_Thread *thread1, *thread2;
+	thread1 = SDL_CreateThread(render_thread, &world);
+	thread2 = SDL_CreateThread(render_thread, &world);
+	SDL_WaitThread(thread1, NULL);
+	SDL_WaitThread(thread2, NULL);
+	
 	if (SDL_MUSTLOCK(screen)) {
 		SDL_UnlockSurface(screen);
 	}
@@ -189,6 +207,7 @@ void test2(SDL_Surface *screen) {
 void test3(SDL_Surface *screen) {
 	srand(100);
 	sampler *sam = new sampler_jittered(10000);
+	sampler_iterator it(sam);
 	if (SDL_MUSTLOCK(screen)) {
 		if (SDL_LockSurface(screen) < 0) {
 			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
@@ -196,8 +215,8 @@ void test3(SDL_Surface *screen) {
 		}
 	}
 	for (int i = 1; i <= 10000; ++i) {
-		sam->next_sampler();
-		point2D p = sam->get_sampler_zoomed(sampler_set_anti_aliasing, width);
+		it.next_sampler();
+		point2D p = it.get_sampler_zoomed(sampler_set_anti_aliasing, width);
 		int x = p.x, y = p.y;
 		int *ptr = (int *)screen->pixels;
 		ptr += y * width + x;
@@ -247,6 +266,7 @@ void test4(SDL_Surface *screen) {
 			return;
 		}
 	}
+	world.render_begin();
 	world.render_scene();
 	if (SDL_MUSTLOCK(screen)) {
 		SDL_UnlockSurface(screen);
@@ -267,7 +287,9 @@ int main() {
 		return 0;
 	}
 
+	DWORD old_time = GetTickCount();
 	test2(screen);
+	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));
