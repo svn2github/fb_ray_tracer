@@ -8,7 +8,7 @@ namespace ray_tracer {
 
 	const double pi = 3.141592653589;
 	const double e = 2.718281828459;
-	const double epsilon = 1e-7;
+	const double epsilon = 1e-6;
 	const double huge_double = 10e10;
 	#define dblcmp(_x_) ((_x_) < -epsilon ? -1 : ((_x_) > (epsilon ? 1 : 0)))
 	
@@ -29,28 +29,34 @@ namespace ray_tracer {
 		}
 	}
 
-	/*
+#define __INV_SQRT_FAST
+// #define __INV_SQRT_FAST2
+
+#ifdef __INV_SQRT_FAST
 	// Fast version, but have relative float error
 	// This code is copyed from Quake III Q_rsqrt
-	inline float inv_sqrt(float number) {
+	inline double inv_sqrt(double dnumber) {
+		float number = (float)dnumber;
 		int i;
 		float x2, yy;
 		const float threehalfs = 1.5f;
-
+		
 		x2 = number * 0.5f;
 		yy = number;
 		i = * (int *) &yy;  // evil floating point bit level hacking
 		i = 0x5f3759df - (i >> 1); // what the fuck?
 		yy = * (float *) &i;
 		yy = yy * (threehalfs - (x2 * yy * yy)); // 1st iteration
-		// yy = yy * (threehalfs - (x2 * yy * yy)); // 2nd iteration, this can be removed
-		return yy;
+#ifdef __INV_SQRT_FAST2
+		yy = yy * (threehalfs - (x2 * yy * yy)); // 2nd iteration, this can be removed
+#endif
+		return (double)yy;
 	}
-	*/
-
+#else
 	inline double inv_sqrt(double number) {
 		return 1 / sqrt(number);
 	}
+#endif
 
 	inline void set_seed(int seed) {
 		srand(seed);
