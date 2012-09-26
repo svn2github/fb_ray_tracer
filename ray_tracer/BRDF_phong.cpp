@@ -5,7 +5,7 @@
 
 namespace ray_tracer {
 
-	colorRGB BRDF_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) {
+	colorRGB BRDF_phong::f(hitInfo *info_ptr, const vector3D &win, const vector3D &wout) const {
 		double temp;
 
 		temp = info_ptr->normal * (win + wout).normalized();

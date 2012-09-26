@@ -1,5 +1,5 @@
-#ifndef __MATERIAL_PHONG_HPP
-#define __MATERIAL_PHONG_HPP
+#ifndef __MATERIAL_PHONG_HPP__
+#define __MATERIAL_PHONG_HPP__
 
 #include "material.hpp"
 #include "BRDF.hpp"
@@ -11,7 +11,7 @@ namespace ray_tracer {
 	public:
 		material_phong();
 		~material_phong();
-		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		void set_diffuse_coefficient(const colorRGB &);
 		void set_specular_coefficient(const colorRGB &);
 		void set_specular_shininess(const int &);

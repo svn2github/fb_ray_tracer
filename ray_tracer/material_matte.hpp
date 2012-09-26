@@ -1,5 +1,5 @@
-#ifndef __MATERIAL_MATTE_HPP
-#define __MATERIAL_MATTE_HPP
+#ifndef __MATERIAL_MATTE_HPP__
+#define __MATERIAL_MATTE_HPP__
 
 #include "material.hpp"
 #include "BRDF.hpp"
@@ -10,7 +10,7 @@ namespace ray_tracer {
 	public:
 		material_matte();
 		~material_matte();
-		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		void set_diffuse_coefficient(const colorRGB &);
 	private:
 		BRDF_lambertian *diffuse_ptr;

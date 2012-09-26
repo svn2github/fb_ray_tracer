@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_SOLID_COLOR_HPP
-#define __TEXTURE_SOLID_COLOR_HPP
+#ifndef __TEXTURE_SOLID_COLOR_HPP__
+#define __TEXTURE_SOLID_COLOR_HPP__
 
 #include "texture.hpp"
 

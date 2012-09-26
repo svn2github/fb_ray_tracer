@@ -1,5 +1,5 @@
-#ifndef __CAMERA_ORTHOGRAPHIC_HPP
-#define __CAMERA_ORTHOGRAPHIC_HPP
+#ifndef __CAMERA_ORTHOGRAPHIC_HPP__
+#define __CAMERA_ORTHOGRAPHIC_HPP__
 
 #include "camera.hpp"
 #include "point3D.hpp"
@@ -11,7 +11,7 @@ namespace ray_tracer {
 	public:
 		camera_orthographic();
 		camera_orthographic(const point3D &, const point3D &, const vector3D &);
-		colorRGB render_scene(double, double, int, int, hitInfo *);
+		colorRGB render_scene(double, double, int, int, hitInfo *) const;
 	};
 }
 

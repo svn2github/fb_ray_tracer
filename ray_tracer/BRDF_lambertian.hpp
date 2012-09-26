@@ -1,12 +1,12 @@
-#ifndef __BRDF_LAMBERTIAN_HPP
-#define __BRDF_LAMBERTIAN_HPP
+#ifndef __BRDF_LAMBERTIAN_HPP__
+#define __BRDF_LAMBERTIAN_HPP__
 
 #include "BRDF.hpp"
 
 namespace ray_tracer {
 	class BRDF_lambertian : public BRDF {
 	public:
-		colorRGB f(hitInfo *, const vector3D &, const vector3D &);
+		colorRGB f(hitInfo *, const vector3D &, const vector3D &) const;
 	};
 }
 

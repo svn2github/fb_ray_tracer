@@ -1,5 +1,5 @@
-#ifndef __VIEW_PLANE_HPP
-#define __VIEW_PLANE_HPP
+#ifndef __VIEW_PLANE_HPP__
+#define __VIEW_PLANE_HPP__
 
 namespace ray_tracer {
 	class view_plane {

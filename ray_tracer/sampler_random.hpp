@@ -1,5 +1,5 @@
-#ifndef __SAMPLER_RANDOM_HPP
-#define __SAMPLER_RANDOM_HPP
+#ifndef __SAMPLER_RANDOM_HPP__
+#define __SAMPLER_RANDOM_HPP__
 
 #include "sampler.hpp"
 

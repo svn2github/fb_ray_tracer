@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_IMAGE_HPP
-#define __TEXTURE_IMAGE_HPP
+#ifndef __TEXTURE_IMAGE_HPP__
+#define __TEXTURE_IMAGE_HPP__
 
 #include "texture.hpp"
 #include "image.hpp"
@@ -8,11 +8,11 @@
 namespace ray_tracer {
 	class texture_image : public texture {
 	public:
-		texture_image(image *, texture_mapping *);
+		texture_image(const image *, const texture_mapping *);
 		colorRGB texture_shade(hitInfo *) const;
 	private:
-		image *image_ptr;
-		texture_mapping *mapping_ptr;
+		const image *image_ptr;
+		const texture_mapping *mapping_ptr;
 	};
 }
 

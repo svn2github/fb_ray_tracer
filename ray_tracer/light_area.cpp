@@ -11,7 +11,7 @@ namespace ray_tracer {
 		axis_v = vector3D(0, 0, 0);
 	}
 
-	light_area::light_area(const point3D &position_, const colorRGB &color_, bool shadow_, double radius_, const vector3D &normal_) : light(position_, color_, shadow_) {
+	light_area::light_area(const point3D &position_, const colorRGB &color_, double radius_, const vector3D &normal_) : light(position_, color_) {
 		radius = radius_;
 		normal = normal_.normalized();
 		axis_u = normal.create_vertical();

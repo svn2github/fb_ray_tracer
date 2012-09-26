@@ -23,31 +23,24 @@ namespace ray_tracer {
 		delete sampler_single_ptr;
 	}
 
-	void world::fit_window(int w, int h, void *p) {
-		dest_w = w;
-		dest_h = h;
-		pixal_buffer_ptr = (int *)p;
-	}
-
-	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) {
+	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) const {
 		bool hit_flag = false;
-		static hitInfo temp;
-		surface *surface_ptr;
+		const surface *surface_ptr;
 
-		info_ptr->hit_t = huge_double;
+		info_ptr->hit_time = huge_double;
 		hit_flag = false;
-		for (std::vector<surface *>::iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
-			surface_ptr = (*iter);
-			if (surface_ptr->hit(emission_ray, 0, &temp)) {
-				if (temp.hit_t > epsilon && temp.hit_t < info_ptr->hit_t) {
-					info_ptr->hit_t = temp.hit_t;
-					info_ptr->surface_ptr = surface_ptr;
-					hit_flag = true;
-				}
+		for (std::vector<const surface *>::const_iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
+			surface_ptr = *iter;
+			double t = surface_ptr->hit(emission_ray);
+			/* Avoid hiting the surface which shots this ray */
+			if (t > epsilon && t < info_ptr->hit_time) {
+				info_ptr->hit_time = t;
+				info_ptr->surface_ptr = surface_ptr;
+				hit_flag = true;
 			}
 		}
 		if (hit_flag) { 
-			info_ptr->hit_point = emission_ray.get_origin() + emission_ray.get_dir() * info_ptr->hit_t;
+			info_ptr->hit_point = emission_ray.origin + emission_ray.dir * info_ptr->hit_time;
 			info_ptr->hit_relative_point = info_ptr->surface_ptr->get_relative_pos(info_ptr->hit_point);
 			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
 			info_ptr->emission_ray = emission_ray;
@@ -55,39 +48,42 @@ namespace ray_tracer {
 		return hit_flag;
 	}
 
-	void world::render_begin() {
-		curr_rendering_x = 0;
-		curr_rendering_y = 0;
-		rendering_mutex = 0;
+	void world::render_begin(int w_, int h_, void *ptr_) {
+		dest_w = w_;
+		dest_h = h_;
+		pixal_buffer_ptr = (int *)ptr_;
+		current_coordinate_x = 0;
+		current_coordinate_y = 0;
 	}
 
 	void world::render_scene() {
 		colorRGB color;
 		point2D sample_point;
 		int x, y;
-		
-		while (curr_rendering_y != dest_h) {
-			while (rendering_mutex) { }
-			rendering_mutex = 1;
-			x = curr_rendering_x;
-			y = curr_rendering_y;
-			x += 1;
+		hitInfo info;
+
+		while (current_coordinate_y < dest_h) {
+#ifndef __MT_NO_MUTEX
+			coordinate_mutex.lock();
+#endif
+			x = current_coordinate_x + 1;
+			y = current_coordinate_y;
 			if (x == dest_w) {
 				x = 0; 
 				y += 1;
 			}
-			curr_rendering_x = x;
-			curr_rendering_y = y;
-			rendering_mutex = 0;
-			color = color_black;
-
+			current_coordinate_x = x;
+			current_coordinate_y = y;
+#ifndef __MT_NO_MUTEX
+			coordinate_mutex.unlock();
+#endif
 			sampler_iterator sam_iter(sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr);
 			int number_sample = sam_iter.get_sampler_count();
 
+			color = color_black;
 			for (int i = 0; i < number_sample; i += 1) {
-				hitInfo info;
-				
 				info.world_ptr = this;
+				info.view_plane_ptr = plane_ptr;
 				info.sampler_iterator_ptr = &sam_iter;
 				sam_iter.next_sampler();
 				sample_point = sam_iter.get_sampler_unit(sampler_set_anti_aliasing);

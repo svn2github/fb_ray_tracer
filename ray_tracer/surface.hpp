@@ -1,5 +1,5 @@
-#ifndef __SURFACE_HPP
-#define __SURFACE_HPP
+#ifndef __SURFACE_HPP__
+#define __SURFACE_HPP__
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
@@ -14,13 +14,14 @@ namespace ray_tracer {
 	public:
 		surface();
 		virtual ~surface() = 0;
-		/** parameter 3: only hit_t is returned */
-		virtual bool hit(const ray &, double, hitInfo *) const = 0; 
-		virtual vector3D get_normal(const point3D &) const = 0;
+		virtual bool two_face() const;
+		/** Return a negative value if missed. */
+		virtual double hit(const ray &) const; 
+		virtual vector3D get_normal(const point3D &) const;
 		virtual point3D get_relative_pos(const point3D &) const;
-		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &);
+		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		void set_material(material *);
-		colorRGB texture_shade(hitInfo *);
+		colorRGB texture_shade(hitInfo *) const;
 		void set_texture(texture *);
 	protected:
 		material *material_ptr;

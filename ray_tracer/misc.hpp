@@ -1,14 +1,14 @@
-#ifndef __MISC_HPP
-#define __MISC_HPP
+#ifndef __MISC_HPP__
+#define __MISC_HPP__
 
 #include <cstdlib>
 #include <cmath>
 
 namespace ray_tracer {
 
-	const double pi = 3.141592653589;
-	const double e = 2.718281828459;
-	const double epsilon = 1e-6;
+	const double pi = acos(-1.0);
+	const double e = exp(1.0);
+	const double epsilon = 1e-7;
 	const double huge_double = 10e10;
 	#define dblcmp(_x_) ((_x_) < -epsilon ? -1 : ((_x_) > (epsilon ? 1 : 0)))
 	

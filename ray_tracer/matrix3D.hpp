@@ -1,5 +1,5 @@
-#ifndef __MATRIX3D_HPP
-#define __MATRIX3D_HPP
+#ifndef __MATRIX3D_HPP__
+#define __MATRIX3D_HPP__
 
 #include "vector3D.hpp"
 

@@ -15,14 +15,15 @@ namespace ray_tracer {
 	light::light() {
 		set_position(point3D(0, 0, 0));
 		set_color(color_white);
+		cast_shadow = true;
 		init_attenuation();
 		cast_shadow = true;
 	}
 
-	light::light(const point3D &position_, const colorRGB &color_, bool shadow_) {
+	light::light(const point3D &position_, const colorRGB &color_) {
 		set_position(position_);
 		set_color(color_);
-		cast_shadow = shadow_;
+		cast_shadow = true;
 		init_attenuation();
 	}
 
@@ -34,7 +35,7 @@ namespace ray_tracer {
 
 	colorRGB light::light_shade(hitInfo *info_ptr) const {
 		if (attenuation_enabled) {
-			double d = (info_ptr->hit_point - info_ptr->light_position).length();
+			double d = (info_ptr->hit_point - get_light_origin(info_ptr)).length();
 			double f = 1 / (attenuation_constant + attenuation_linear * d + attenuation_quadratic * d * d);
 
 			return f * color;
@@ -47,16 +48,16 @@ namespace ray_tracer {
 		if (!cast_shadow) {
 			return false;
 		} else {
-			world *world_ptr = info_ptr->world_ptr;
+			const world *world_ptr = info_ptr->world_ptr;
 			vector3D dir;
 			hitInfo temp;
 			double dist;
 
-			dir = info_ptr->hit_point - info_ptr->light_position;
-			dist = dir.length();
+			dir = get_light_origin(info_ptr) - info_ptr->hit_point;
+			dist = 1 / dir.inv_length();
 			dir = dir.normalized();
-			if (world_ptr->get_hit(ray(info_ptr->light_position, dir), &temp)) {
-				return dblcmp(temp.hit_t - dist) < 0;
+			if (world_ptr->get_hit(ray(info_ptr->hit_point, dir), &temp)) {
+				return temp.hit_time < dist;
 			} else {
 				return false;
 			}
@@ -65,5 +66,13 @@ namespace ray_tracer {
 
 	bool light::in_range(hitInfo *info_ptr) const {
 		return true;
+	}
+
+	void light::inherit_light(const light *light_ptr) {
+		this->attenuation_enabled = light_ptr->attenuation_enabled;
+		this->attenuation_constant = light_ptr->attenuation_constant;
+		this->attenuation_linear = light_ptr->attenuation_linear;
+		this->attenuation_quadratic = light_ptr->attenuation_quadratic;
+		this->cast_shadow = light_ptr->cast_shadow;
 	}
 }

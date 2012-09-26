@@ -1,5 +1,5 @@
-#ifndef __SAMPLER_SINGLE_HPP
-#define __SAMPLER_SINGLE_HPP
+#ifndef __SAMPLER_SINGLE_HPP__
+#define __SAMPLER_SINGLE_HPP__
 
 #include "sampler.hpp"
 

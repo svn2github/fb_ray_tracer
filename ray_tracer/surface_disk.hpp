@@ -1,5 +1,5 @@
-#ifndef __SURFACE_DISK_HPP
-#define __SURFACE_DISK_HPP
+#ifndef __SURFACE_DISK_HPP__
+#define __SURFACE_DISK_HPP__
 
 #include "surface.hpp"
 
@@ -8,7 +8,7 @@ namespace ray_tracer {
 	public:
 		surface_disk();
 		surface_disk(const point3D &, const vector3D &, double);
-		bool hit(const ray &, double, hitInfo *) const;
+		double hit(const ray &) const;
 		vector3D get_normal(const point3D &) const;
 	private:
 		point3D center;

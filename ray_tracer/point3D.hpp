@@ -1,5 +1,5 @@
-#ifndef __POINT3D_HPP
-#define __POINT3D_HPP
+#ifndef __POINT3D_HPP__
+#define __POINT3D_HPP__
 
 #include "vector3D.hpp"
 

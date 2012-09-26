@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_HPP
-#define __TEXTURE_HPP
+#ifndef __TEXTURE_HPP__
+#define __TEXTURE_HPP__
 
 #include "point3D.hpp"
 #include "colorRGB.hpp"

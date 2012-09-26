@@ -9,15 +9,16 @@
 namespace ray_tracer {
 
 	hitInfo::hitInfo() { 
-		hit_t = huge_double;
+		hit_time = huge_double;
 		hit_point = point3D(0, 0, 0);
 		hit_relative_point = point3D(0, 0, 0);
 		normal = vector3D(0, 0, 0);
 		world_ptr = NULL;
+		view_plane_ptr = NULL;
 		surface_ptr = NULL;
+		light_ptr = NULL;
 		sampler_iterator_ptr = NULL;
 		emission_ray = ray();
-		ray_tracing_depth = 5;
-		light_position = point3D(0, 0, 0);
+		ray_tracing_depth = 7;
 	}
 }

@@ -1,5 +1,5 @@
-#ifndef __CAMERA_HPP
-#define __CAMERA_HPP
+#ifndef __CAMERA_HPP__
+#define __CAMERA_HPP__
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
@@ -13,8 +13,8 @@ namespace ray_tracer {
 		camera();
 		camera(const point3D &, const point3D &, const vector3D &);
 		virtual ~camera() = 0;
-		virtual colorRGB render_scene(double, double, int, int, hitInfo *) = 0;
-		colorRGB render_scene(const point3D &, const vector3D &, hitInfo *);
+		virtual colorRGB render_scene(double, double, int, int, hitInfo *) const = 0;
+		colorRGB render_scene(const point3D &, const vector3D &, hitInfo *, const light * = NULL) const;
 		point3D get_origin() const;
 		void rotate(double);
 	protected:

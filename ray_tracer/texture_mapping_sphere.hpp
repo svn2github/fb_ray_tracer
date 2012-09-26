@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_MAPPING_SPHERE_HPP
-#define __TEXTURE_MAPPING_SPHERE_HPP
+#ifndef __TEXTURE_MAPPING_SPHERE_HPP__
+#define __TEXTURE_MAPPING_SPHERE_HPP__
 
 #include "texture_mapping.hpp"
 

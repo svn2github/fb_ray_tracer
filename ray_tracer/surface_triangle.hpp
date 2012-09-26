@@ -1,5 +1,5 @@
-#ifndef __SURFACE_TRIANGLE_HPP
-#define __SURFACE_TRIANGLE_HPP
+#ifndef __SURFACE_TRIANGLE_HPP__
+#define __SURFACE_TRIANGLE_HPP__
 
 #include "surface.hpp"
 #include "point3D.hpp"
@@ -10,7 +10,7 @@ namespace ray_tracer {
 	public:
 		surface_triangle();
 		surface_triangle(const point3D &, const point3D &, const point3D &);
-		bool hit(const ray &, double, hitInfo *) const;
+		double hit(const ray &) const;
 		vector3D get_normal(const point3D &) const;
 	private:
 		point3D v0, v1, v2;

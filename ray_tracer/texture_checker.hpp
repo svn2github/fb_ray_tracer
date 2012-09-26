@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_CHECKER_HPP
-#define __TEXTURE_CHECKER_HPP
+#ifndef __TEXTURE_CHECKER_HPP__
+#define __TEXTURE_CHECKER_HPP__
 
 #include "texture.hpp"
 

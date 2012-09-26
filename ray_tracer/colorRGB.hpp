@@ -1,5 +1,5 @@
-#ifndef __COLORRGB_HPP
-#define __COLORRGB_HPP
+#ifndef __COLORRGB_HPP__
+#define __COLORRGB_HPP__
 
 namespace ray_tracer {
 	class colorRGB {

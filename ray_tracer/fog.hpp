@@ -1,25 +1,21 @@
-#ifndef __FOG_HPP
-#define __FOG_HPP
+#ifndef __FOG_HPP__
+#define __FOG_HPP__
 
 #include "colorRGB.hpp"
 #include "hitInfo.hpp"
 
 namespace ray_tracer {
 	class fog {
+		friend class world;
 	public:
 		fog();
 		fog(double, int, const colorRGB &);
-		colorRGB fog_blending(hitInfo *, const point3D &, const colorRGB &);
-		colorRGB get_fog_color() const;
+		colorRGB fog_blending(hitInfo *, const point3D &, const colorRGB &) const;
 	private:
 		int exponent;
 		double density;
 		colorRGB fog_color;
 	};
-
-	inline colorRGB fog::get_fog_color() const {
-		return fog_color;
-	} 
 }
 
 #endif

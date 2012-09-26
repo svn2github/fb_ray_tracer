@@ -1,5 +1,5 @@
-#ifndef __TEXTURE_MAPPING_HPP
-#define __TEXTURE_MAPPING_HPP
+#ifndef __TEXTURE_MAPPING_HPP__
+#define __TEXTURE_MAPPING_HPP__
 
 #include "point2D.hpp"
 #include "hitInfo.hpp"

@@ -16,15 +16,13 @@ namespace ray_tracer {
 		normal = normal_.normalized();
 	}
 
-	bool surface_plane::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
-		double deno = normal * emission_ray.get_dir();
-		double t = (point_on_plane - emission_ray.get_origin()) * normal / deno;
-		
-		if (dblcmp(deno) == 0 || t < tmin) {
-			return false;
+	double surface_plane::hit(const ray &emission_ray) const {
+		double deno = normal * emission_ray.dir;
+
+		if (dblcmp(deno) == 0) {
+			return -1;
 		}
-		info_ptr->hit_t = t;
-		return true;
+		return (point_on_plane - emission_ray.origin) * normal / deno;
 	}
 
 	vector3D surface_plane::get_normal(const point3D &point) const {

@@ -23,10 +23,10 @@ namespace ray_tracer {
 		view_dist *= factor;
 	}
 
-	colorRGB camera_thinlens::render_scene(double x, double y, int w, int h, hitInfo *info_ptr) {
-		world *world_ptr = info_ptr->world_ptr;
-		double u = world_ptr->get_view_plane()->compute_u(x, w);
-		double v = world_ptr->get_view_plane()->compute_v(y, h);
+	colorRGB camera_thinlens::render_scene(double x, double y, int w, int h, hitInfo *info_ptr) const {
+		const view_plane *plane_ptr = info_ptr->view_plane_ptr;
+		double u = plane_ptr->compute_u(x, w);
+		double v = plane_ptr->compute_v(y, h);
 		hitInfo info;
 		point3D focal_point, origin, origin_fixed;
 		point2D sample_point;

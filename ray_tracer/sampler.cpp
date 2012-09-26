@@ -44,7 +44,7 @@ namespace ray_tracer {
 		return number_samples;
 	}
 
-	sampler_iterator::sampler_iterator(sampler *sam_) {
+	sampler_iterator::sampler_iterator(const sampler *sam_) {
 		sampler_bind = sam_;
 		for (int i = 0; i < sampler_set_count; i += 1) {
 			sample_index[i] = i % sampler_bind->number_samples;
@@ -61,19 +61,19 @@ namespace ray_tracer {
 		}
 	}
 
-	point2D sampler_iterator::get_sampler_unit(int set) {
+	point2D sampler_iterator::get_sampler_unit(int set) const {
 		return sampler_bind->samples[sample_index[set]];
 	}
 
-	point2D sampler_iterator::get_sampler_zoomed(int set, double zoom) {
+	point2D sampler_iterator::get_sampler_zoomed(int set, double zoom) const {
 		return get_sampler_unit(set) * zoom;
 	}
 
-	point2D sampler_iterator::get_sampler_disk_unit(int set) {
+	point2D sampler_iterator::get_sampler_disk_unit(int set) const {
 		return sampler_bind->samples_disk[sample_index[set]];
 	}
 
-	point2D sampler_iterator::get_sampler_disk_zoomed(int set, double zoom) {
+	point2D sampler_iterator::get_sampler_disk_zoomed(int set, double zoom) const {
 		return get_sampler_disk_unit(set) * zoom;
 	}
 };

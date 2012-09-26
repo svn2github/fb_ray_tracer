@@ -1,5 +1,5 @@
-#ifndef __SAMPLER_HPP
-#define __SAMPLER_HPP
+#ifndef __SAMPLER_HPP__
+#define __SAMPLER_HPP__
 
 #include "point2D.hpp"
 #include <vector>
@@ -30,15 +30,15 @@ namespace ray_tracer {
 
 	class sampler_iterator {
 	public:
-		sampler_iterator(sampler *);
+		sampler_iterator(const sampler *);
 		int get_sampler_count() const;
 		void next_sampler();
-		point2D get_sampler_unit(int);
-		point2D get_sampler_zoomed(int, double);
-		point2D get_sampler_disk_unit(int);
-		point2D get_sampler_disk_zoomed(int, double);
+		point2D get_sampler_unit(int) const;
+		point2D get_sampler_zoomed(int, double) const;
+		point2D get_sampler_disk_unit(int) const;
+		point2D get_sampler_disk_zoomed(int, double) const;
 	private:
-		sampler *sampler_bind;
+		const sampler *sampler_bind;
 		int sample_index[sampler_set_count];
 	};
 }

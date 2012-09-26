@@ -1,5 +1,5 @@
-#ifndef __POINT2D_HPP
-#define __POINT2D_HPP
+#ifndef __POINT2D_HPP__
+#define __POINT2D_HPP__
 
 #include <cmath>
 #include "misc.hpp"

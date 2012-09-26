@@ -20,20 +20,19 @@ namespace ray_tracer {
 		radius_squared = radius_ * radius_;
 	}
 
-	bool surface_disk::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
-		double deno = normal * emission_ray.get_dir();
-		double t = (center - emission_ray.get_origin()) * normal / deno;
+	double surface_disk::hit(const ray &emission_ray) const {
+		double deno = normal * emission_ray.dir;
+		double t = (center - emission_ray.origin) * normal / deno;
 		point3D p;
 
-		if (dblcmp(deno) == 0 || t < tmin) {
-			return false;
+		if (dblcmp(deno) == 0) {
+			return -1;
 		}
-		p = emission_ray.get_origin() + emission_ray.get_dir() * t;
+		p = emission_ray.origin + emission_ray.dir * t;
 		if ((center - p).length_squared() > radius_squared) {
-			return false;
+			return -1;
 		}
-		info_ptr->hit_t = t;
-		return true;
+		return t;
 	}
 
 	vector3D surface_disk::get_normal(const point3D &point) const {

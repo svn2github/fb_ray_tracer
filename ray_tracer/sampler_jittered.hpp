@@ -1,5 +1,5 @@
-#ifndef __SAMPLER_JITTERED_HPP
-#define __SAMPLER_JITTERED_HPP
+#ifndef __SAMPLER_JITTERED_HPP__
+#define __SAMPLER_JITTERED_HPP__
 
 #include "sampler.hpp"
 

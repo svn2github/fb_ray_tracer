@@ -18,9 +18,13 @@ namespace ray_tracer {
 		radius_squared = radius_ * radius_;
 	}
 
-	bool surface_sphere::hit(const ray &emission_ray, double tmin, hitInfo *info_ptr) const {
-		point3D o = emission_ray.get_origin(), c = center;
-		vector3D d = emission_ray.get_dir();
+	bool surface_sphere::two_face() const {
+		return false;
+	}
+
+	double surface_sphere::hit(const ray &emission_ray) const {
+		point3D o = emission_ray.origin, c = center;
+		vector3D d = emission_ray.dir;
 		double a = d * (o - c), d2 = d.length_squared();
 		vector3D cc = o - c;
 		double cc2 = cc.length_squared();
@@ -28,18 +32,14 @@ namespace ray_tracer {
 		double t;
 
 		if (delta < 0) {
-			return false;
+			return -1;
 		} else {
 			if (cc2 < radius_squared) {
 				t = (-a + sqrt(delta)) / d2;
 			} else {
 				t = (-a - sqrt(delta)) / d2;
 			}
-			if (t < tmin) {
-				return false;
-			}
-			info_ptr->hit_t = t;
-			return true;
+			return t;
 		}
 	}
 

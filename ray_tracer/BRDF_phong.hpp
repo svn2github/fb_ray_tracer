@@ -1,12 +1,12 @@
-#ifndef __BRDF_BLINN_PHONG_HPP
-#define __BRDF_BLINN_PHONG_HPP
+#ifndef __BRDF_BLINN_PHONG_HPP__
+#define __BRDF_BLINN_PHONG_HPP__
 
 #include "BRDF.hpp"
 
 namespace ray_tracer {
 	class BRDF_phong : public BRDF {
 	public:
-		colorRGB f(hitInfo *, const vector3D &, const vector3D &);
+		colorRGB f(hitInfo *, const vector3D &, const vector3D &) const;
 		void set_shininess(const int &);	
 	private:
 		int shininess;
