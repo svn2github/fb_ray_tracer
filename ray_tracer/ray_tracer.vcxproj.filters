@@ -131,9 +131,6 @@
     <ClCompile Include="material_mirror.cpp">
       <Filter>bottom-layer\material</Filter>
     </ClCompile>
-    <ClCompile Include="camera_spherical.cpp">
-      <Filter>bottom-layer\camera</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -296,9 +293,6 @@
     </ClInclude>
     <ClInclude Include="material_mirror.hpp">
       <Filter>bottom-layer\material</Filter>
-    </ClInclude>
-    <ClInclude Include="camera_spherical.hpp">
-      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
     <ClInclude Include="camera_thinlens.hpp">
       <Filter>bottom-layer\camera</Filter>

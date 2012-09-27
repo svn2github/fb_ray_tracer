@@ -29,14 +29,13 @@
 #include "camera_pinhole.hpp"
 #include "camera_thinlens.hpp"
 #include "camera_fisheye.hpp"
-#include "camera_spherical.hpp"
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 1000, height = 1000;
 
 void test1(SDL_Surface *screen) {
 	world world;
@@ -50,10 +49,9 @@ void test1(SDL_Surface *screen) {
 	light *l, *l2;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), 30, 3);
+	cam = new camera_thinlens(point3D(-10, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), 35, 2.5, true);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
-	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0));
-	cam = new camera_spherical(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(10.0), atan(10.0));
+	// cam = new camera_pinhole(point3D(-10, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), true);
 	// cam->rotate(pi / 4);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 9);
@@ -63,7 +61,7 @@ void test1(SDL_Surface *screen) {
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	s1->set_material(m1);
 	s1->set_texture(t1);
-	s2 = new surface_sphere(point3D(30, 9, 0), 12);
+	s2 = new surface_sphere(point3D(30, 9, 0), 11);
 	// m2 = new material_phong;
 	// m2->set_specular_shininess(50);
 	m2 = new material_mirror;
@@ -91,7 +89,7 @@ void test1(SDL_Surface *screen) {
 	l2->set_attenuation_quadratic(0.0005);
 
 	world.set_ambient(color_white / 5);
-	world.set_sampler(new sampler_jittered(25));
+	world.set_sampler(new sampler_jittered(576));
 	world.set_camera(cam);
 	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);

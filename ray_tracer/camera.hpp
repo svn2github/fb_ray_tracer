@@ -15,7 +15,7 @@ namespace ray_tracer {
 		virtual ~camera() = 0;
 		virtual colorRGB render_scene(double, double, int, int, hitInfo *) const = 0;
 		colorRGB render_scene(const point3D &, const vector3D &, hitInfo *, const light * = NULL) const;
-		point3D get_origin() const;
+		point3D get_view_point() const;
 		void rotate(double);
 	protected:
 		void compute_axis();
@@ -25,7 +25,7 @@ namespace ray_tracer {
 		vector3D axis_u, axis_v, axis_w;
 	};
 
-	inline point3D camera::get_origin() const {
+	inline point3D camera::get_view_point() const {
 		return eye;
 	}
 }

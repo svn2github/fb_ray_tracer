@@ -13,10 +13,11 @@ namespace ray_tracer {
 		fov_v = fov_v_;
 	}
 	
-	colorRGB camera_orthographic::render_scene(double x, double y, int w, int h, hitInfo *info_ptr) const {
-		double u = (x / w - 0.5) * fov_u;
-		double v = (y / h - 0.5) * fov_v;
-		
-		return camera::render_scene(eye + u * axis_u + v * axis_v, -axis_w, info_ptr);
+	colorRGB camera_orthographic::render_scene(double x, double y, int width, int height, hitInfo *info_ptr) const {
+		double u = (x / width - 0.5) * fov_u;
+		double v = (y / height - 0.5) * fov_v;
+		double w = -1;
+
+		return camera::render_scene(eye + u * axis_u + v * axis_v, w * axis_w, info_ptr);
 	}
 }

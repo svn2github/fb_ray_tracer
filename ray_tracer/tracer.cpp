@@ -21,7 +21,7 @@ namespace ray_tracer {
 				temp = -temp;
 			}
 			if (temp > 0) {
-				return light_ptr->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
+			 	return light_ptr->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
 			}
 		}
 		return color_black;
@@ -46,7 +46,7 @@ namespace ray_tracer {
 				result += process_light(info_ptr->emission_ray.attached_light_ptr, info_ptr, surface_color, win);
 			}
 			if (world_ptr->fog_ptr) {
-				result = world_ptr->fog_ptr->fog_blending(info_ptr, world_ptr->camera_ptr->get_origin(), result);
+				result = world_ptr->fog_ptr->fog_blending(info_ptr, world_ptr->camera_ptr->get_view_point(), result);
 			}
 			return result;
 		}
