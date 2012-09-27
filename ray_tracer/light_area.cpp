@@ -25,4 +25,4 @@ namespace ray_tracer {
 		p.y -= radius / 2;
 		return position + axis_u * p.x + axis_v * p.y;
 	}
-};
+}

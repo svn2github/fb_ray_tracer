@@ -57,18 +57,6 @@ namespace ray_tracer {
 		return 1 / sqrt(number);
 	}
 #endif
-
-	inline void set_seed(int seed) {
-		srand(seed);
-	}
-
-	inline int random_int() {
-		return rand();
-	}
-
-	inline double random_double() {
-		return (double)rand() / RAND_MAX;
-	}
 }
 
 #endif

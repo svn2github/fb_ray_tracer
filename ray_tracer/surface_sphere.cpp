@@ -1,5 +1,4 @@
 
-#include <cmath>
 #include "misc.hpp"
 #include "ray.hpp"
 #include "surface_sphere.hpp"

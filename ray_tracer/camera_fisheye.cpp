@@ -1,5 +1,4 @@
 
-#include "view_plane.hpp"
 #include "tracer.hpp"
 #include "ray.hpp"
 #include "world.hpp"

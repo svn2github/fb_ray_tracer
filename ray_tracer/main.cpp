@@ -18,7 +18,6 @@
 #include "texture_solid_color.hpp"
 #include "texture_mapping.hpp"
 #include "texture_mapping_sphere.hpp"
-#include "view_plane.hpp"
 #include "fog.hpp"
 #include "world.hpp"
 #include "light.hpp"
@@ -30,102 +29,32 @@
 #include "camera_pinhole.hpp"
 #include "camera_thinlens.hpp"
 #include "camera_fisheye.hpp"
+#include "camera_spherical.hpp"
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
 
 using namespace ray_tracer;
 
-const int width = 2000, height = 2000;
+const int width = 500, height = 500;
 
 void test1(SDL_Surface *screen) {
 	world world;
 	camera *cam;
-	view_plane *plane;
-	surface_sphere *s1;
-	surface_plane *s2;
-	material_phong *m1, *m2;
-	texture *t1, *t2;
-	light *l;
-	char buf[16];
-
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
-	plane = new view_plane(-20, 20, 20, -20);
-
-	s1 = new surface_sphere(point3D(15, 0, 0), 10);
-	m1 = new material_phong;
-	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
-	m1->set_specular_shininess(6);
-	s1->set_material(m1);
-	s1->set_texture(t1);
-
-	s2 = new surface_plane(point3D(100, 0, 0), vector3D(-1, 0, 0));
-	m2 = new material_phong;
-	m2->set_specular_shininess(100);
-	s2->set_material(m2);
-	t2 = new texture_checker;
-	s2->set_texture(t2);
-
-	l = new light_point(point3D(0, 0, 30), color_white);
-	l->enable_shadow(false);
-
-	world.set_ambient(color_white / 5);
-	world.set_fog(new fog(0.01, 1, color_white));
-	world.set_camera(cam);
-	world.set_view_plane(plane);
-	world.add_surface(s1);
-	// world.add_surface(s2);
-	world.add_light(l);
-
-	int fps = 1;
-	DWORD old_time = GetTickCount();
-
-	while (true) {
-		if (SDL_MUSTLOCK(screen)) {
-			if (SDL_LockSurface(screen) < 0) {
-				printf("Couldn't lock the screen: %s.\n", SDL_GetError());
-				return;
-			}
-		}
-
-		if (GetTickCount() - old_time > 1000) {
-			old_time = GetTickCount();
-
-			strcpy(buf, "fps: ");
-			itoa(fps, buf + 5, 10);
-
-			SDL_WM_SetCaption(buf, NULL);
-			fps = 1;
-		} else {
-			++fps;
-		}
-		world.render_begin(width, height, screen->pixels);
-		world.render_scene();
-		if (SDL_MUSTLOCK(screen)) {
-			SDL_UnlockSurface(screen);
-		}		
-		SDL_UpdateRect(screen, 0, 0, width, height);
-	}
-}
-
-void test2(SDL_Surface *screen) {
-	world world;
-	camera *cam;
-	view_plane *plane;
 	surface *s1, *s2, *s3;
 	// material_matte *m1;
 	material_mirror *m1;
 	material_mirror *m2;
-	material_phong *m3;
+	material_matte *m3;
 	texture *t1, *t2, *t3;
 	light *l, *l2;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
-	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10, 30, 3);
-	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 10);
+	// cam = new camera_thinlens(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), 30, 3);
+	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
+	// cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0));
+	cam = new camera_spherical(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(10.0), atan(10.0));
 	// cam->rotate(pi / 4);
-	plane = new view_plane(-20, 20, 20, -20);
 
 	s1 = new surface_sphere(point3D(15, -7, 0), 9);
 	// m1 = new material_matte;
@@ -145,8 +74,7 @@ void test2(SDL_Surface *screen) {
 	s2->set_texture(t2);
 
 	s3 = new surface_plane(point3D(0, 0, -10), vector3D(0, 0, 1));
-	m3 = new material_phong;
-	m3->set_specular_shininess(50);
+	m3 = new material_matte;
 	s3->set_material(m3);
 	t3 = new texture_checker;
 	s3->set_texture(t3);
@@ -165,7 +93,6 @@ void test2(SDL_Surface *screen) {
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(25));
 	world.set_camera(cam);
-	world.set_view_plane(plane);
 	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);
 	world.add_surface(s2);
@@ -194,35 +121,10 @@ void test2(SDL_Surface *screen) {
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
-void test3(SDL_Surface *screen) {
-	srand(100);
-	sampler *sam = new sampler_jittered(10000);
-	sampler_iterator it(sam);
-	if (SDL_MUSTLOCK(screen)) {
-		if (SDL_LockSurface(screen) < 0) {
-			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
-			return;
-		}
-	}
-	for (int i = 1; i <= 10000; ++i) {
-		it.next_sampler();
-		point2D p = it.get_sampler_zoomed(sampler_set_anti_aliasing, width);
-		int x = p.x, y = p.y;
-		int *ptr = (int *)screen->pixels;
-		ptr += y * width + x;
-		*ptr = color_red.clamp_to_int();
-	}
-
-	if (SDL_MUSTLOCK(screen)) {
-		SDL_UnlockSurface(screen);
-	}
-	SDL_UpdateRect(screen, 0, 0, width, height);
-}
-
-void test4(SDL_Surface *screen) {
+/*
+void test2(SDL_Surface *screen) {
 	world world;
 	camera *cam;
-	view_plane *plane;
 	surface *s;
 	material *m;
 	texture *t;
@@ -231,9 +133,8 @@ void test4(SDL_Surface *screen) {
 
 	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
 	SDL_LockSurface(img);
-	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), 40);
-	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1));
-	plane = new view_plane(-20, 20, 20, -20);
+	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), 40);
+	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
 
 	s = new surface_sphere(point3D(40, 0, 0), 10);
 	m = new material_matte;
@@ -246,7 +147,6 @@ void test4(SDL_Surface *screen) {
 
 	world.set_ambient(color_white / 5);
 	world.set_camera(cam);
-	world.set_view_plane(plane);
 	world.add_surface(s);
 	world.add_light(l);
 
@@ -264,6 +164,7 @@ void test4(SDL_Surface *screen) {
 	SDL_UpdateRect(screen, 0, 0, width, height);
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
+*/
 
 int main() {
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
@@ -278,7 +179,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test2(screen);
+	test1(screen);
 	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;

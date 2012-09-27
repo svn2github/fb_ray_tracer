@@ -36,4 +36,4 @@ namespace ray_tracer {
 
 		return (vdotd > cos_cutoff);
 	}
-};
+}

@@ -12,7 +12,6 @@
 #include "ray.hpp"
 #include "light.hpp"
 #include "surface.hpp"
-#include "view_plane.hpp"
 #include "fog.hpp"
 #include "camera.hpp"
 #include "tracer.hpp"
@@ -32,7 +31,6 @@ namespace ray_tracer {
 		void add_surface(const surface *);
 		void set_fog(const fog *);
 		void set_camera(const camera *);
-		void set_view_plane(const view_plane *);
 		bool get_hit(const ray &, hitInfo *) const;
 		void render_begin(int, int, void *); // Dimension: pixal
 		void render_scene();
@@ -42,7 +40,6 @@ namespace ray_tracer {
 		std::vector<const surface *> surfaces;
 		const fog *fog_ptr;
 		const camera *camera_ptr;
-		const view_plane *plane_ptr;
 		const tracer *tracer_ptr;
 		const sampler *sampler_ptr, *sampler_single_ptr;
 		int *pixal_buffer_ptr;
@@ -79,10 +76,6 @@ namespace ray_tracer {
 
 	inline void world::set_camera(const camera *camera_ptr_) {
 		camera_ptr = camera_ptr_;
-	}
-
-	inline void world::set_view_plane(const view_plane *plane_ptr_) {
-		plane_ptr = plane_ptr_;
 	}
 }
 

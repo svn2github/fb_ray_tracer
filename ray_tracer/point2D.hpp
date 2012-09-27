@@ -1,7 +1,6 @@
 #ifndef __POINT2D_HPP__
 #define __POINT2D_HPP__
 
-#include <cmath>
 #include "misc.hpp"
 
 namespace ray_tracer {

@@ -14,7 +14,6 @@ namespace ray_tracer {
 		hit_relative_point = point3D(0, 0, 0);
 		normal = vector3D(0, 0, 0);
 		world_ptr = NULL;
-		view_plane_ptr = NULL;
 		surface_ptr = NULL;
 		light_ptr = NULL;
 		sampler_iterator_ptr = NULL;

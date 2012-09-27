@@ -2,7 +2,6 @@
 #include "ray.hpp"
 #include "light.hpp"
 #include "surface.hpp"
-#include "view_plane.hpp"
 #include "tracer.hpp"
 #include "camera.hpp"
 #include "sampler_single.hpp"
@@ -83,7 +82,6 @@ namespace ray_tracer {
 			color = color_black;
 			for (int i = 0; i < number_sample; i += 1) {
 				info.world_ptr = this;
-				info.view_plane_ptr = plane_ptr;
 				info.sampler_iterator_ptr = &sam_iter;
 				sam_iter.next_sampler();
 				sample_point = sam_iter.get_sampler_unit(sampler_set_anti_aliasing);

@@ -1,7 +1,6 @@
 #ifndef __VECTOR3D_HPP__
 #define __VECTOR3D_HPP__
 
-#include <cmath>
 #include "misc.hpp"
 
 namespace ray_tracer {

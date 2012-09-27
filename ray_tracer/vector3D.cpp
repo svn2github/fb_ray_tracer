@@ -25,9 +25,9 @@ namespace ray_tracer {
 			return v1;
 		} else {
 			while (true) {
-				v2.x = random_double() * random_int();
-				v2.y = random_double() * random_int();
-				v2.z = random_double() * random_int();
+				v2.x = rand();
+				v2.y = rand();
+				v2.z = rand();
 				v3 = v1 ^ v2;
 				if (dblcmp(v3.length()) != 0) {
 					return v3.normalized();

@@ -10,11 +10,10 @@ namespace ray_tracer {
 	class camera_pinhole : public camera {
 	public:
 		camera_pinhole();
-		camera_pinhole(const point3D &, const point3D &, const vector3D &, double);
+		camera_pinhole(const point3D &, const point3D &, const vector3D &, double, double);
 		colorRGB render_scene(double, double, int, int, hitInfo *) const;
-		void zoom(double);
 	private:
-		double view_dist;
+		double fov_u, fov_v, tan_fov_u_coef, tan_fov_v_coef;
 	};
 }
 

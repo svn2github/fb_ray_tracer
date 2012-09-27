@@ -17,7 +17,7 @@ namespace ray_tracer {
 			wout = (light_ptr->get_light_origin(info_ptr) - info_ptr->hit_point).normalized();
 			temp = info_ptr->normal * wout; 
 			if (temp < 0 && info_ptr->surface_ptr->two_face()) {
-				info_ptr->normal.invert();
+				info_ptr->normal = info_ptr->normal.invert();
 				temp = -temp;
 			}
 			if (temp > 0) {

@@ -8,7 +8,6 @@
 namespace ray_tracer {
 
 	class world;
-	class view_plane;
 	class surface;
 	class camera;
 	class light;
@@ -23,7 +22,6 @@ namespace ray_tracer {
 		point3D hit_relative_point; 
 		vector3D normal;
 		const world *world_ptr;
-		const view_plane *view_plane_ptr;
 		const surface *surface_ptr;
 		const camera *camera_ptr;
 		const light *light_ptr;

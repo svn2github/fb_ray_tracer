@@ -85,6 +85,7 @@
     <ClCompile Include="camera_fisheye.cpp" />
     <ClCompile Include="camera_orthographic.cpp" />
     <ClCompile Include="camera_pinhole.cpp" />
+    <ClCompile Include="camera_spherical.cpp" />
     <ClCompile Include="camera_thinlens.cpp" />
     <ClCompile Include="fog.cpp" />
     <ClCompile Include="hitInfo.cpp" />
@@ -113,7 +114,6 @@
     <ClCompile Include="texture.cpp" />
     <ClCompile Include="texture_checker.cpp" />
     <ClCompile Include="texture_solid_color.cpp" />
-    <ClCompile Include="view_plane.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="colorRGB.cpp" />
     <ClCompile Include="surface.cpp" />
@@ -128,6 +128,7 @@
     <ClInclude Include="camera.hpp" />
     <ClInclude Include="camera_fisheye.hpp" />
     <ClInclude Include="camera_pinhole.hpp" />
+    <ClInclude Include="camera_spherical.hpp" />
     <ClInclude Include="camera_thinlens.hpp" />
     <ClInclude Include="colorRGB.hpp" />
     <ClInclude Include="fog.hpp" />
@@ -164,7 +165,6 @@
     <ClInclude Include="texture_checker.hpp" />
     <ClInclude Include="texture_image.hpp" />
     <ClInclude Include="texture_solid_color.hpp" />
-    <ClInclude Include="view_plane.hpp" />
     <ClInclude Include="ray.hpp" />
     <ClInclude Include="vector3D.hpp" />
     <ClInclude Include="tracer.hpp" />

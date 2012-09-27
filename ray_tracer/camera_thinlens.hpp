@@ -10,11 +10,11 @@ namespace ray_tracer {
 	class camera_thinlens : public camera {
 	public:
 		camera_thinlens();
-		camera_thinlens(const point3D &, const point3D &, const vector3D &, double, double, double);
+		camera_thinlens(const point3D &, const point3D &, const vector3D &, double, double, double, double);
 		colorRGB render_scene(double, double, int, int, hitInfo *) const;
-		void zoom(double);
 	private:
-		double view_dist, focal_dist, lens_radius;
+		double focal_dist, lens_radius;
+		double fov_u, fov_v, tan_fov_u_coef, tan_fov_v_coef;
 	};
 }
 

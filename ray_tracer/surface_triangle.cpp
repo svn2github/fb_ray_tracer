@@ -1,7 +1,6 @@
 
-#include "ray.hpp"
-#include <cmath>
 #include "misc.hpp"
+#include "ray.hpp"
 #include "surface_triangle.hpp"
 
 namespace ray_tracer {

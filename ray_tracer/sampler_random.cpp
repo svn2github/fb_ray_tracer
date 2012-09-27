@@ -11,7 +11,7 @@ namespace ray_tracer {
 
 	void sampler_random::generate(int num) {
 		for (int i = 0; i < number_samples; i += 1) {
-			samples.push_back(point2D(random_double(), random_double()));
+			samples.push_back(point2D((double)rand() / RAND_MAX, (double)rand() / RAND_MAX));
 		}
 	}
 }

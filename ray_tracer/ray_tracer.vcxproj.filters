@@ -35,9 +35,6 @@
     <ClCompile Include="camera_pinhole.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
-    <ClCompile Include="view_plane.cpp">
-      <Filter>bottom-layer</Filter>
-    </ClCompile>
     <ClCompile Include="sampler.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
@@ -134,6 +131,9 @@
     <ClCompile Include="material_mirror.cpp">
       <Filter>bottom-layer\material</Filter>
     </ClCompile>
+    <ClCompile Include="camera_spherical.cpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -204,9 +204,6 @@
     <ClInclude Include="camera_pinhole.hpp">
       <Filter>bottom-layer\camera</Filter>
     </ClInclude>
-    <ClInclude Include="view_plane.hpp">
-      <Filter>bottom-layer</Filter>
-    </ClInclude>
     <ClInclude Include="sampler.hpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
@@ -218,9 +215,6 @@
     </ClInclude>
     <ClInclude Include="tracer.hpp">
       <Filter>bottom-layer</Filter>
-    </ClInclude>
-    <ClInclude Include="camera_thinlens.hpp">
-      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
     <ClInclude Include="surface_triangle.hpp">
       <Filter>bottom-layer\surface</Filter>
@@ -302,6 +296,12 @@
     </ClInclude>
     <ClInclude Include="material_mirror.hpp">
       <Filter>bottom-layer\material</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_spherical.hpp">
+      <Filter>bottom-layer\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="camera_thinlens.hpp">
+      <Filter>bottom-layer\camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

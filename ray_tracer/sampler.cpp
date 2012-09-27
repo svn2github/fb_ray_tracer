@@ -1,7 +1,6 @@
 
 #include "sampler.hpp"
 #include "misc.hpp"
-#include <cmath>
 
 namespace ray_tracer {
 
@@ -12,7 +11,10 @@ namespace ray_tracer {
 
 	sampler::~sampler() { }
 
-	// Origin: Shirley and Chiu(1997)
+	/*
+		Origin: Shirley and Chiu(1997).
+		See book <Ray Tracing From The Ground Up>.
+	*/
 	void sampler::map_sample_to_disk() {
 		samples_disk.reserve(number_samples);
 		for (int i = 0; i < number_samples; i += 1) {
