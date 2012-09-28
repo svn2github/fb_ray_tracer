@@ -19,7 +19,7 @@ namespace ray_tracer {
 	}
 
 	vector3D surface::get_normal(const point3D &point) const {
-		return vector3D(0, 0, 0);
+		return vector3D(0, 0, 1);
 	}
 
 	point3D surface::get_relative_pos(const point3D &point) const {

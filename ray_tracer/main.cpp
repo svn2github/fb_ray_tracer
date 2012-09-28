@@ -12,6 +12,7 @@
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
 #include "surface_triangle.hpp"
+#include "surface_parabolic.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
 #include "texture_image.hpp"
@@ -117,7 +118,6 @@ void test1(SDL_Surface *screen) {
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
-/*
 void test2(SDL_Surface *screen) {
 	world world;
 	camera *cam;
@@ -127,21 +127,22 @@ void test2(SDL_Surface *screen) {
 	light *l;
 	SDL_Surface *img;
 
-	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
+	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\moon.bmp");
 	SDL_LockSurface(img);
-	cam = new camera_pinhole(point3D(0, 10, 0), point3D(40, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), 40);
+	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), true);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
 
-	s = new surface_sphere(point3D(40, 0, 0), 10);
-	m = new material_matte;
+	s = new surface_sphere(point3D(25, 0, 0), 10);
+	m = new material_matte(colorRGB(1.4, 1.4, 0.5));
 	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 
-	l = new light_point(point3D(0, 50, 30), color_white);
+	l = new light_point(point3D(0, -30, 30), color_white);
 	l->enable_shadow(false);
 
-	world.set_ambient(color_white / 5);
+	world.set_ambient(color_black);
+	world.set_sampler(new sampler_jittered(25));
 	world.set_camera(cam);
 	world.add_surface(s);
 	world.add_light(l);
@@ -160,9 +161,53 @@ void test2(SDL_Surface *screen) {
 	SDL_UpdateRect(screen, 0, 0, width, height);
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
-*/
+
+
+void test3(SDL_Surface *screen) {
+	world world;
+	camera *cam;
+	surface *s;
+	material *m;
+	texture *t;
+	light *l;
+
+	cam = new camera_pinhole(point3D(-20, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), true);
+	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
+
+	s = new surface_parabolic;
+	m = new material_matte;
+	t = new texture_checker(color_red, color_blue);
+	s->set_material(m);
+	s->set_texture(t);
+
+	l = new light_point(point3D(-20, 0, -10), color_white);
+	l->enable_shadow(false);
+
+	world.set_ambient(color_white / 5);
+	// world.set_sampler(new sampler_jittered(25));
+	world.set_camera(cam);
+	world.add_surface(s);
+	world.add_light(l);
+
+	if (SDL_MUSTLOCK(screen)) {
+		if (SDL_LockSurface(screen) < 0) {
+			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
+			return;
+		}
+	}
+	world.render_begin(width, height, screen->pixels);
+	world.render_scene();
+	if (SDL_MUSTLOCK(screen)) {
+		SDL_UnlockSurface(screen);
+	}
+	SDL_UpdateRect(screen, 0, 0, width, height);
+	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+}
 
 int main() {
+	// algebra_quadratic a;
+	// a.xx = 2, a.yy = 1, a.z = 1, a.c = -3;
+	// printf("%.6lf\n", a.find_root(point3D(0, 0, 0), vector3D(1, 1, 1).normalized()));
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
 		return 0;
@@ -175,7 +220,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test1(screen);
+	test3(screen);
 	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;
