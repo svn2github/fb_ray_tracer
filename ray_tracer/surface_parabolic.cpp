@@ -11,7 +11,7 @@ namespace ray_tracer {
 		// quad.yy = 1;
 		// quad.zz = 3;
 		// quad.c = -100;
-		// x2 + y2 + z = c
+		// Parabolic: x2 + y2 + z = c
 		quad.xx = 1;
 		quad.yy = 1;
 		quad.z = 3;
@@ -28,6 +28,6 @@ namespace ray_tracer {
 	}
 
 	vector3D surface_parabolic::get_normal(const point3D &point) const {
-		return vector3D(quad.find_limit_x(point), quad.find_limit_y(point), quad.find_limit_z(point)).normalized();
+		return vector3D(quad.gradient_x(point), quad.gradient_y(point), quad.gradient_z(point)).normalized(); 
 	}
 }

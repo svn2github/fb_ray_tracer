@@ -27,16 +27,16 @@ namespace ray_tracer {
 		}
 #endif
 
-		double find_limit_x(const point3D &p) const {
-			return 2 * xx * p.x + xy * p.y + xz * p.z;
+		double gradient_x(const point3D &p) const {
+			return 2 * xx * p.x + xy * p.y + xz * p.z + x;
 		}
 
-		double find_limit_y(const point3D &p) const {
-			return 2 * yy * p.y + xy * p.x + yz * p.z;
+		double gradient_y(const point3D &p) const {
+			return 2 * yy * p.y + xy * p.x + yz * p.z + y;
 		}
 		
-		double find_limit_z(const point3D &p) const {
-			return 2 * yy * p.z + xz * p.y + yz * p.x;
+		double gradient_z(const point3D &p) const {
+			return 2 * yy * p.z + xz * p.y + yz * p.x + z;
 		}
 
 		/* it should be granted that the vector is an unit vector. */
@@ -46,6 +46,7 @@ namespace ray_tracer {
 			point3D p = p_;
 			vector3D v = v_;
 
+			// make sure v.x is not zero
 			if (v.x == 0 && v.y != 0) {
 				swap(p.x, p.y);
 				swap(v.x, v.y);
@@ -53,10 +54,12 @@ namespace ray_tracer {
 				swap(p.x, p.z);
 				swap(v.x, v.z);
 			}
+			// transform y and z to x
 			_y = v.y / v.x;
 			_yc = p.y - _y * p.x;
 			_z = v.z / v.x;
 			_zc = p.z - _z * p.x;
+			// calcuate the coefficient of quadratic equation
 			// xx
 			_xx += xx;
 			_x += x;
@@ -93,7 +96,7 @@ namespace ray_tracer {
 			_xx += 0;
 			_x += z * _z;
 			_c += z * _zc;
-
+			// find the root
 			delta = _x * _x - 4 * _xx * _c;
 			if (delta > 0) {
 				delta = sqrt(delta);
