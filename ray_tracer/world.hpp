@@ -1,7 +1,7 @@
 #ifndef __WOLRD_HPP__
 #define __WOLRD_HPP__
 
-#ifndef __MT_NO_MUTEX
+#ifndef __MT_NO_MUTEX__
 #include <mutex> // C++0x Only
 #endif
 #include <vector>
@@ -45,7 +45,7 @@ namespace ray_tracer {
 		int *pixal_buffer_ptr;
 		int dest_w, dest_h;
 		int current_coordinate_x, current_coordinate_y;
-#ifndef __MT_NO_MUTEX
+#ifndef __MT_NO_MUTEX__
 		std::mutex coordinate_mutex;
 #endif
 	};

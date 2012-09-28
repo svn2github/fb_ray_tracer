@@ -5,7 +5,7 @@
 namespace ray_tracer {
 
 	fog::fog() {
-		density = 1;
+		density = 0.1;
 		exponent = 1;
 		fog_color = color_white;
 	}
@@ -20,6 +20,12 @@ namespace ray_tracer {
 		double z = (info_ptr->hit_point - origin).length();
 		double f = exp(-pow(density * z, exponent));
 
+		if (f < 0) {
+			f = 0;
+		}
+		if (f > 1) {
+			f = 1;
+		}
 		return f * color + (1 - f) * fog_color;
 	}
 }

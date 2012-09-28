@@ -33,7 +33,7 @@ namespace ray_tracer {
 		if (delta < 0) {
 			return -1;
 		} else {
-			if (cc2 < radius_squared) {
+			if (cc2 < radius_squared + epsilon) {
 				t = (-a + sqrt(delta)) / d2;
 			} else {
 				t = (-a - sqrt(delta)) / d2;

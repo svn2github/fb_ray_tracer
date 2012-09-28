@@ -17,7 +17,7 @@ namespace ray_tracer {
 		set_color(color_white);
 		cast_shadow = true;
 		init_attenuation();
-		cast_shadow = true;
+		traveled_dist = 0;
 	}
 
 	light::light(const point3D &position_, const colorRGB &color_) {
@@ -25,6 +25,7 @@ namespace ray_tracer {
 		set_color(color_);
 		cast_shadow = true;
 		init_attenuation();
+		traveled_dist = 0;
 	}
 
 	light::~light() { }
@@ -35,7 +36,7 @@ namespace ray_tracer {
 
 	colorRGB light::light_shade(hitInfo *info_ptr) const {
 		if (attenuation_enabled) {
-			double d = (info_ptr->hit_point - get_light_origin(info_ptr)).length();
+			double d = (info_ptr->hit_point - get_light_origin(info_ptr)).length() + traveled_dist;
 			double f = 1 / (attenuation_constant + attenuation_linear * d + attenuation_quadratic * d * d);
 
 			return f * color;
@@ -74,5 +75,6 @@ namespace ray_tracer {
 		this->attenuation_linear = light_ptr->attenuation_linear;
 		this->attenuation_quadratic = light_ptr->attenuation_quadratic;
 		this->cast_shadow = light_ptr->cast_shadow;
+		this->traveled_dist = light_ptr->traveled_dist + (light_ptr->position - this->position).length();
 	}
 }

@@ -78,7 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BRDF.cpp" />
-    <ClCompile Include="BRDF_mirror.cpp" />
+    <ClCompile Include="BRDF_reflection.cpp" />
     <ClCompile Include="BRDF_phong.cpp" />
     <ClCompile Include="BRDF_lambertian.cpp" />
     <ClCompile Include="camera.cpp" />
@@ -121,7 +121,7 @@
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="BRDF.hpp" />
-    <ClInclude Include="BRDF_mirror.hpp" />
+    <ClInclude Include="BRDF_reflection.hpp" />
     <ClInclude Include="BRDF_phong.hpp" />
     <ClInclude Include="BRDF_lambertian.hpp" />
     <ClInclude Include="camera.hpp" />

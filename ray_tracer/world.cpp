@@ -62,7 +62,7 @@ namespace ray_tracer {
 		hitInfo info;
 
 		while (current_coordinate_y < dest_h) {
-#ifndef __MT_NO_MUTEX
+#ifndef __MT_NO_MUTEX__
 			coordinate_mutex.lock();
 #endif
 			x = current_coordinate_x + 1;
@@ -73,7 +73,7 @@ namespace ray_tracer {
 			}
 			current_coordinate_x = x;
 			current_coordinate_y = y;
-#ifndef __MT_NO_MUTEX
+#ifndef __MT_NO_MUTEX__
 			coordinate_mutex.unlock();
 #endif
 			sampler_iterator sam_iter(sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr);

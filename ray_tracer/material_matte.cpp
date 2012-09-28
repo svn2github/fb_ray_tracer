@@ -5,8 +5,11 @@
 namespace ray_tracer {
 
 	material_matte::material_matte() {
-		diffuse_ptr = new BRDF_lambertian;
-		set_diffuse_coefficient(color_white);
+		diffuse_ptr = new BRDF_lambertian(color_white);
+	}
+
+	material_matte::material_matte(const colorRGB &rho_) {
+		diffuse_ptr = new BRDF_lambertian(rho_);
 	}
 
 	material_matte::~material_matte() {

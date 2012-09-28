@@ -29,6 +29,7 @@ namespace ray_tracer {
 		point3D position;
 		colorRGB color;
 	private:
+		double traveled_dist;
 		bool cast_shadow;
 		bool attenuation_enabled;
 		double attenuation_constant, attenuation_linear, attenuation_quadratic;

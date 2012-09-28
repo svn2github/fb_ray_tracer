@@ -1,7 +1,6 @@
 
 #include "vector3D.hpp"
 #include "point3D.hpp"
-#include <cassert>
 
 namespace ray_tracer {
 
@@ -34,7 +33,6 @@ namespace ray_tracer {
 				}
 			}
 		}
-		assert(false);
 		return vector3D(0, 0, 0); // never be here
 	}
 }

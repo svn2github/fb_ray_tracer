@@ -3,12 +3,15 @@
 #include "hitInfo.hpp"
 
 namespace ray_tracer {
-
+	
 	material_phong::material_phong() {
-		diffuse_ptr = new BRDF_lambertian;
-		specular_ptr = new BRDF_phong;
-		set_diffuse_coefficient(color_white);
-		set_specular_coefficient(color_white);
+		diffuse_ptr = new BRDF_lambertian(color_white);
+		specular_ptr = new BRDF_phong(color_white);	
+	}
+
+	material_phong::material_phong(const colorRGB &diffuse_rho_, const colorRGB &specular_rho_) {
+		diffuse_ptr = new BRDF_lambertian(diffuse_rho_);
+		specular_ptr = new BRDF_phong(specular_rho_);
 		set_specular_shininess(1);
 	}
 
