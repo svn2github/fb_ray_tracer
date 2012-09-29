@@ -37,7 +37,7 @@ namespace ray_tracer {
 		}
 		
 		double gradient_z(const point3D &p) const {
-			return 2 * yy * p.z + xz * p.y + yz * p.x + z;
+			return 2 * zz * p.z + xz * p.x + yz * p.y + z;
 		}
 
 		/* it should be granted that the vector is an unit vector. */
