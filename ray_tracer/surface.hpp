@@ -11,14 +11,15 @@
 
 namespace ray_tracer {
 	class surface {
+		friend class tracer;
 	public:
 		surface();
 		virtual ~surface() = 0;
-		virtual bool two_face() const;
 		/** Return a negative value if missed. */
 		virtual double hit(const ray &) const; 
-		virtual vector3D get_normal(const point3D &) const;
-		virtual point3D get_relative_pos(const point3D &) const;
+		virtual vector3D get_normal_vector(const point3D &) const;
+		virtual point3D get_local_point(const point3D &) const;
+		void enable_twoface_shading(bool);
 		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		void set_material(material *);
 		colorRGB texture_shade(hitInfo *) const;
@@ -26,6 +27,8 @@ namespace ray_tracer {
 	protected:
 		material *material_ptr;
 		texture *texture_ptr;
+	private:
+		bool twoface_shading;
 	};
 
 	inline void surface::set_material(material *material_ptr_) {

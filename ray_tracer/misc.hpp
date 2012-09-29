@@ -29,7 +29,7 @@ namespace ray_tracer {
 		}
 	}
 
-#define __INV_SQRT_FAST__
+// #define __INV_SQRT_FAST__
 // #define __INV_SQRT_FAST2__
 
 #ifdef __INV_SQRT_FAST__

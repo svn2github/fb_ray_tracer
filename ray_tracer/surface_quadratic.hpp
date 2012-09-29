@@ -9,7 +9,7 @@ namespace ray_tracer {
 	public:
 		surface_quadratic();
 		double hit(const ray &) const;
-		vector3D get_normal(const point3D &) const;
+		vector3D get_normal_vector(const point3D &) const;
 	private:
 		algebra_quadratic quad;
 	};

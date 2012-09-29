@@ -34,7 +34,7 @@ namespace ray_tracer {
 		return t;
 	}
 
-	vector3D surface_disk::get_normal(const point3D &point) const {
+	vector3D surface_disk::get_normal_vector(const point3D &point) const {
 		return normal;
 	}
 }

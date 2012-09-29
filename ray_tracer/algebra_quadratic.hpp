@@ -3,6 +3,7 @@
 
 #include "point3D.hpp"
 #include "vector3D.hpp"
+#include <iostream>
 
 namespace ray_tracer {
 	class algebra_quadratic {
@@ -42,10 +43,12 @@ namespace ray_tracer {
 
 		/* it should be granted that the vector is an unit vector. */
 		double find_root(point3D p, vector3D v) const {
+			point3D p_ = p;
+			vector3D v_ = v;
 			double _xx = 0, _x = 0, _c = 0;
 			double _y, _yc, _z, _zc, delta, value1, value2;
 
-			// make sure v.x is not zero
+			// make sure v.x is not zero.
 			if (v.x == 0 && v.y != 0) {
 				swap(p.x, p.y);
 				swap(v.x, v.y);
@@ -53,16 +56,16 @@ namespace ray_tracer {
 				swap(p.x, p.z);
 				swap(v.x, v.z);
 			}
-			// transform y and z to x
+			// transform y and z to x.
 			_y = v.y / v.x;
 			_yc = p.y - _y * p.x;
 			_z = v.z / v.x;
 			_zc = p.z - _z * p.x;
-			// calcuate the coefficient of quadratic equation
+			// calcuate the coefficient of quadratic equation.
 			// xx
 			_xx += xx;
-			_x += x;
-			_c += c;
+			_x += 0;
+			_c += 0;
 			// yy
 			_xx += yy * _y * _y;
 			_x += yy * 2 * _y * _yc;
@@ -95,9 +98,13 @@ namespace ray_tracer {
 			_xx += 0;
 			_x += z * _z;
 			_c += z * _zc;
-			// find the root
+			// c
+			_xx += 0;
+			_x += 0;
+			_c += c;
+			// find the root.
 			delta = _x * _x - 4 * _xx * _c;
-			if (delta > 0) {
+			if (delta > epsilon) {
 				delta = sqrt(delta);
 				value1 = (-_x - delta) / _xx / 2;
 				value2 = (-_x + delta) / _xx / 2;
@@ -106,7 +113,8 @@ namespace ray_tracer {
 				if (value1 > value2) {
 					swap(value1, value2);
 				}
-				return value1 < 0 ? value2 : value1;
+				/* epsilon: avoid hit itself. */
+				return value1 < epsilon ? value2 : value1;
 			}
 			return -1;
 		}

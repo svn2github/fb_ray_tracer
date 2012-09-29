@@ -4,7 +4,7 @@
 namespace ray_tracer {
 
 	point2D texture_mapping_sphere::get_coordinate(hitInfo *info_ptr) const {
-		point3D p = info_ptr->hit_relative_point;
+		point3D p = info_ptr->hit_local_point;
 		double alpha, beta;
 
 		p = p.normalized();

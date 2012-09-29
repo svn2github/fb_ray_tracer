@@ -17,10 +17,6 @@ namespace ray_tracer {
 		radius_squared = radius_ * radius_;
 	}
 
-	bool surface_sphere::two_face() const {
-		return false;
-	}
-
 	double surface_sphere::hit(const ray &emission_ray) const {
 		point3D o = emission_ray.origin, c = center;
 		vector3D d = emission_ray.dir;
@@ -42,11 +38,11 @@ namespace ray_tracer {
 		}
 	}
 
-	vector3D surface_sphere::get_normal(const point3D &point) const {
+	vector3D surface_sphere::get_normal_vector(const point3D &point) const {
 		return (point - center).normalized();
 	}
 
-	point3D surface_sphere::get_relative_pos(const point3D &point) const {
+	point3D surface_sphere::get_local_point(const point3D &point) const {
 		vector3D v = point - center;
 
 		return point3D(v.x, v.y, v.z);

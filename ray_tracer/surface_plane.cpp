@@ -24,7 +24,7 @@ namespace ray_tracer {
 		return (point_on_plane - emission_ray.origin) * normal / deno;
 	}
 
-	vector3D surface_plane::get_normal(const point3D &point) const {
+	vector3D surface_plane::get_normal_vector(const point3D &point) const {
 		return normal;
 	}
 }

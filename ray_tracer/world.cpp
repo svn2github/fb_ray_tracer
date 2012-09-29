@@ -40,8 +40,8 @@ namespace ray_tracer {
 		}
 		if (hit_flag) { 
 			info_ptr->hit_point = emission_ray.origin + emission_ray.dir * info_ptr->hit_time;
-			info_ptr->hit_relative_point = info_ptr->surface_ptr->get_relative_pos(info_ptr->hit_point);
-			info_ptr->normal = info_ptr->surface_ptr->get_normal(info_ptr->hit_point);
+			info_ptr->hit_local_point = info_ptr->surface_ptr->get_local_point(info_ptr->hit_point);
+			info_ptr->normal = info_ptr->surface_ptr->get_normal_vector(info_ptr->hit_point);
 			info_ptr->emission_ray = emission_ray;
 		}
 		return hit_flag;
