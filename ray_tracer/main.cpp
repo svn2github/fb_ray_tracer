@@ -12,7 +12,7 @@
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
 #include "surface_triangle.hpp"
-#include "surface_parabolic.hpp"
+#include "surface_quadratic.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
 #include "texture_image.hpp"
@@ -55,7 +55,7 @@ void test1(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(-10, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), true);
 	// cam->rotate(pi / 4);
 
-	s1 = new surface_sphere(point3D(15, -7, 0), 9);
+	s1 = new surface_quadratic; //surface_sphere(point3D(15, -7, 0), 9);
 	// m1 = new material_matte;
 	m1 = new material_mirror(colorRGB(0.2, 0.6, 0.8));
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
@@ -78,11 +78,11 @@ void test1(SDL_Surface *screen) {
 
 	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
 	// l = new light_point(point3D(0, 0, 0), color_white);
-	l = new light_point(point3D(0, 0, 30), color_white);
+	l = new light_point(point3D(-20, 0, 30), color_white);
 	l->set_attenuation_constant(1);
 	l->set_attenuation_linear(0.001);
 	l->set_attenuation_quadratic(0.0005);
-	l2 = new light_point(point3D(0, 0, 0), color_white);
+	l2 = new light_point(point3D(-20, 0, 0), color_white);
 	l2->set_attenuation_constant(1);
 	l2->set_attenuation_linear(0.001);
 	l2->set_attenuation_quadratic(0.0005);
@@ -174,7 +174,7 @@ void test3(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(-20, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), true);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
 
-	s = new surface_parabolic;
+	s = new surface_quadratic;
 	m = new material_phong;
 	m->set_specular_shininess(10);
 	t = new texture_checker(color_white, colorRGB(0.2, 0.2, 0.2));
@@ -206,9 +206,6 @@ void test3(SDL_Surface *screen) {
 }
 
 int main() {
-	// algebra_quadratic a;
-	// a.xx = 2, a.yy = 1, a.z = 1, a.c = -3;
-	// printf("%.6lf\n", a.find_root(point3D(0, 0, 0), vector3D(1, 1, 1).normalized()));
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
 		return 0;
@@ -221,7 +218,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test3(screen);
+	test1(screen);
 	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;

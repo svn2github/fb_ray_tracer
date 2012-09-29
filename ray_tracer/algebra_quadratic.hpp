@@ -3,7 +3,6 @@
 
 #include "point3D.hpp"
 #include "vector3D.hpp"
-// #include <iostream>
 
 namespace ray_tracer {
 	class algebra_quadratic {
@@ -18,14 +17,16 @@ namespace ray_tracer {
 		double xx, yy, zz, xy, xz, yz, x, y, z, c;
 	public:
 		algebra_quadratic() {
-			xx = yy = zz = xy = xz = yz = x = y = c = 0;
+			xx = 0;
+			yy = 0;
+			zz = 0;
+			xy = 0;
+			xz = 0;
+			yz = 0;
+			x = 0;
+			y = 0;
+			c = 0;
 		}
-
-#ifdef _DEBUG
-		bool check(point3D p) {
-			return dblcmp(xx * p.x * p.x + yy * p.y * p.y + zz * p.z * p.z + xy * p.x * p.y + yz * p.y * p.z + xz * p.x * p.z + x * p.x + y * p.y + z * p.z + c) == 0;
-		}
-#endif
 
 		double gradient_x(const point3D &p) const {
 			return 2 * xx * p.x + xy * p.y + xz * p.z + x;
@@ -40,11 +41,9 @@ namespace ray_tracer {
 		}
 
 		/* it should be granted that the vector is an unit vector. */
-		double find_root(const point3D &p_, const vector3D &v_) const {
+		double find_root(point3D p, vector3D v) const {
 			double _xx = 0, _x = 0, _c = 0;
 			double _y, _yc, _z, _zc, delta, value1, value2;
-			point3D p = p_;
-			vector3D v = v_;
 
 			// make sure v.x is not zero
 			if (v.x == 0 && v.y != 0) {
@@ -107,15 +106,7 @@ namespace ray_tracer {
 				if (value1 > value2) {
 					swap(value1, value2);
 				}
-#ifdef _DEBUG
-				std::cout << check(p_ + value1 * v_) << std::endl;
-				std::cout << check(p_ + value2 * v_) << std::endl;
-#endif
-				if (value1 < 0) {
-					return value2;
-				} else {
-					return value1;
-				}
+				return value1 < 0 ? value2 : value1;
 			}
 			return -1;
 		}

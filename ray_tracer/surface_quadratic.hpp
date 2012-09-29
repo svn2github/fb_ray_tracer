@@ -5,9 +5,9 @@
 #include "algebra_quadratic.hpp"
 
 namespace ray_tracer {
-	class surface_parabolic : public surface {
+	class surface_quadratic : public surface {
 	public:
-		surface_parabolic();
+		surface_quadratic();
 		double hit(const ray &) const;
 		vector3D get_normal(const point3D &) const;
 	private:
