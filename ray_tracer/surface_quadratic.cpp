@@ -12,11 +12,12 @@ namespace ray_tracer {
 		// quad.zz = 3;
 		// quad.c = -100;
 
-		// Parabolic: x2 + y2 + z = c
+		// Parabolic: x2 + y2 - z + c = 0
 		quad.xx = 1;
 		quad.yy = 1;
-		quad.z = -2;
+// 		quad.z = -1;
 		quad.c = -10;
+		quad.set_range_z(-10, 10);
 
 		// Sphere
 		// quad.xx = 1;

@@ -36,7 +36,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 700, height = 700;
 
 void test1(SDL_Surface *screen) {
 	world world;
@@ -55,13 +55,14 @@ void test1(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(-10, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), true);
 	// cam->rotate(pi / 4);
 
-	s1 = new surface_quadratic; //surface_sphere(point3D(15, -7, 0), 9);
+	s1 = new surface_quadratic;
+	// s1 = new surface_sphere(point3D(15, -7, 0), 9);
 	// m1 = new material_matte;
 	m1 = new material_mirror(colorRGB(0.2, 0.6, 0.8));
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
 	s1->set_material(m1);
 	s1->set_texture(t1);
-	s2 = new surface_sphere(point3D(30, 9, 0), 11);
+	s2 = new surface_sphere(point3D(30, 9, 0), 10);
 	// m2 = new material_phong;
 	// m2->set_specular_shininess(50);
 	m2 = new material_mirror(colorRGB(0.8, 0.2, 0.8));
@@ -76,17 +77,17 @@ void test1(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
+	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 4, 5);
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-20, 0, 30), color_white);
 	l->set_attenuation_constant(1);
 	l->set_attenuation_linear(0.001);
 	l->set_attenuation_quadratic(0.0005);
-	l2 = new light_point(point3D(-20, 0, 0), color_white);
+	l2 = new light_point(point3D(-10, 0, 0), color_white);
 	l2->set_attenuation_constant(1);
 	l2->set_attenuation_linear(0.001);
 	l2->set_attenuation_quadratic(0.0005);
-
+	
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(25));
 	world.set_camera(cam);
@@ -127,7 +128,7 @@ void test2(SDL_Surface *screen) {
 	light *l;
 	SDL_Surface *img;
 
-	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\moon.bmp");
+	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\earth.bmp");
 	SDL_LockSurface(img);
 	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), true);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);

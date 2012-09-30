@@ -18,8 +18,7 @@ namespace ray_tracer {
 		light_point reflect = light_point(info_ptr->hit_point, rho);
 
 		reflect.inherit_light(info_ptr->light_ptr);
-		// info.world_ptr = info_ptr->world_ptr;
-		// info.sampler_iterator_ptr = info_ptr->sampler_iterator_ptr;
+		reflect.enable_shadow(false);
 		info.ray_tracing_depth = info_ptr->ray_tracing_depth - 1;
 		return rho * info_ptr->camera_ptr->render_scene(info_ptr->hit_point, 2 * info_ptr->normal - win, &info, &reflect);
 	}

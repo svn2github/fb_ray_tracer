@@ -134,6 +134,9 @@
     <ClCompile Include="surface_quadratic.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="algebra_quadratic.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -157,14 +160,14 @@
     <Filter Include="bottom-layer\material\BRDF">
       <UniqueIdentifier>{5a781ca3-da1d-4507-b98b-7d4733377557}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bottom-layer\light">
+      <UniqueIdentifier>{34306fb5-d86c-456e-8379-dd75ac02b33e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="bottom-layer\texture">
       <UniqueIdentifier>{63482482-2542-416e-a168-f93e10404a1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="bottom-layer\texture\texture_mapping">
       <UniqueIdentifier>{6dac98c8-e650-4673-9560-1fd06bd69f9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="bottom-layer\light">
-      <UniqueIdentifier>{34306fb5-d86c-456e-8379-dd75ac02b33e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
