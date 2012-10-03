@@ -23,7 +23,7 @@ namespace ray_tracer {
 	private:
 		double xmin, xmax, ymin, ymax, zmin, zmax;
 	public:
-		double xx, yy, zz, xy, xz, yz, x, y, z, c;
+		double coef_xx, coef_yy, coef_zz, coef_xy, coef_xz, coef_yz, coef_x, coef_y, coef_z, coef_const;
 	};
 }
 
