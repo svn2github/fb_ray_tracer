@@ -15,6 +15,7 @@ namespace ray_tracer {
 		void set_range_x(double, double);
 		void set_range_y(double, double);
 		void set_range_z(double, double);
+	protected:
 		double gradient_x(const point3D &) const;
 		double gradient_y(const point3D &) const;
 		double gradient_z(const point3D &) const;

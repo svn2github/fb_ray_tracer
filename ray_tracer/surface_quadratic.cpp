@@ -7,30 +7,30 @@ namespace ray_tracer {
 
 	surface_quadratic::surface_quadratic() {
 		// Ellipsoid
-		// quad.xx = 2;
-		// quad.yy = 1;
-		// quad.zz = 3;
-		// quad.c = -100;
+		// xx = 2;
+		// yy = 1;
+		// zz = 3;
+		// c = -100;
 
 		// Parabolic: x2 + y2 - z + c = 0
-		quad.xx = 1;
-		quad.yy = 1;
-// 		quad.z = -1;
-		quad.c = -10;
-		quad.set_range_z(-10, 10);
+		xx = 1;
+		yy = 1;
+// 		z = -1;
+		c = -10;
+		set_range_z(-10, 10);
 
 		// Sphere
-		// quad.xx = 1;
-		// quad.yy = 1;
-		// quad.zz = 1;
-		// quad.c = -40;
+		// xx = 1;
+		// yy = 1;
+		// zz = 1;
+		// c = -40;
 	}
 
-	double surface_quadratic::hit(const ray &emission_ray) const {
-		return quad.find_root(emission_ray.origin, emission_ray.dir);
+	double surface_quadratic::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
+		return find_root(emission_ray.origin, emission_ray.dir);
 	}
 
 	vector3D surface_quadratic::get_normal_vector(const point3D &point) const {
-		return vector3D(quad.gradient_x(point), quad.gradient_y(point), quad.gradient_z(point)).normalized(); 
+		return vector3D(gradient_x(point), gradient_y(point), gradient_z(point)).normalized(); 
 	}
 }

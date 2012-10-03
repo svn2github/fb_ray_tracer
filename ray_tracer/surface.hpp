@@ -16,28 +16,20 @@ namespace ray_tracer {
 		surface();
 		virtual ~surface() = 0;
 		/** Return a negative value if missed. */
-		virtual double hit(const ray &) const; 
+		/** Hit surface pointer remains unchanged if not compound. */
+		virtual double hit(const ray &, const surface **) const; 
 		virtual vector3D get_normal_vector(const point3D &) const;
 		virtual point3D get_local_point(const point3D &) const;
-		void enable_twoface_shading(bool);
-		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
-		void set_material(material *);
-		colorRGB texture_shade(hitInfo *) const;
-		void set_texture(texture *);
+		virtual colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
+		virtual void set_material(const material *);
+		virtual colorRGB texture_shade(hitInfo *) const;
+		virtual void set_texture(const texture *);
+		virtual void set_twoface_shading(bool);
 	protected:
-		material *material_ptr;
-		texture *texture_ptr;
-	private:
+		const material *material_ptr;
+		const texture *texture_ptr;
 		bool twoface_shading;
 	};
-
-	inline void surface::set_material(material *material_ptr_) {
-		material_ptr = material_ptr_;
-	}
-
-	inline void surface::set_texture(texture *texture_ptr_) {
-		texture_ptr = texture_ptr_;
-	}
 }
 
 #endif

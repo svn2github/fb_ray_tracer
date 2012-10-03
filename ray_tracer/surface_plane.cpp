@@ -15,7 +15,7 @@ namespace ray_tracer {
 		normal = normal_.normalized();
 	}
 
-	double surface_plane::hit(const ray &emission_ray) const {
+	double surface_plane::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		double deno = normal * emission_ray.dir;
 
 		if (dblcmp(deno) == 0) {

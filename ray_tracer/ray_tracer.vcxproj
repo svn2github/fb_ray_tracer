@@ -95,6 +95,7 @@
     <ClCompile Include="light_spot.cpp" />
     <ClCompile Include="material_mirror.cpp" />
     <ClCompile Include="sampler_single.cpp" />
+    <ClCompile Include="surface_compound.cpp" />
     <ClCompile Include="surface_quadratic.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="light_spot.hpp" />
     <ClInclude Include="material_mirror.hpp" />
     <ClInclude Include="sampler_single.hpp" />
+    <ClInclude Include="surface_compound.hpp" />
     <ClInclude Include="surface_quadratic.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />

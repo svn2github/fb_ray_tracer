@@ -19,7 +19,7 @@ namespace ray_tracer {
 		normal = ((v1 - v0) ^ (v2 - v0)).normalized();
 	}
 
-	double surface_triangle::hit(const ray &emission_ray) const {
+	double surface_triangle::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		double a = v0.x - v1.x, b = v0.x - v2.x, c = emission_ray.dir.x, d = v0.x - emission_ray.origin.x;
 		double e = v0.y - v1.y, f = v0.y - v2.y, g = emission_ray.dir.y, h = v0.y - emission_ray.origin.y;
 		double i = v0.z - v1.z, j = v0.z - v2.z, k = emission_ray.dir.z, l = v0.z - emission_ray.origin.z;

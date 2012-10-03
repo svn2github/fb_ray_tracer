@@ -23,28 +23,21 @@ namespace ray_tracer {
 	}
 
 	bool world::get_hit(const ray &emission_ray, hitInfo *info_ptr) const {
-		bool hit_flag = false;
-		const surface *surface_ptr;
+		const surface *surface_ptr = NULL;
+		double hit_time;
 
-		info_ptr->hit_time = huge_double;
-		hit_flag = false;
-		for (std::vector<const surface *>::const_iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
-			surface_ptr = *iter;
-			double t = surface_ptr->hit(emission_ray);
-			/* Avoid hiting the surface which shots this ray. */
-			if (t > epsilon && t < info_ptr->hit_time) {
-				info_ptr->hit_time = t;
-				info_ptr->surface_ptr = surface_ptr;
-				hit_flag = true;
-			}
-		}
-		if (hit_flag) { 
+		hit_time = surfaces.hit(emission_ray, &surface_ptr);
+		if (surface_ptr != NULL) { 
+			info_ptr->hit_time = hit_time;
+			info_ptr->surface_ptr = surface_ptr;
 			info_ptr->hit_point = emission_ray.origin + emission_ray.dir * info_ptr->hit_time;
 			info_ptr->hit_local_point = info_ptr->surface_ptr->get_local_point(info_ptr->hit_point);
 			info_ptr->normal = info_ptr->surface_ptr->get_normal_vector(info_ptr->hit_point);
 			info_ptr->emission_ray = emission_ray;
+			return true;
+		} else {
+			return false;
 		}
-		return hit_flag;
 	}
 
 	void world::render_begin(int w_, int h_, void *ptr_) {

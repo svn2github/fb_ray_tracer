@@ -19,7 +19,7 @@ namespace ray_tracer {
 		radius_squared = radius_ * radius_;
 	}
 
-	double surface_disk::hit(const ray &emission_ray) const {
+	double surface_disk::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		double deno = normal * emission_ray.dir;
 		double t = (center - emission_ray.origin) * normal / deno;
 		point3D p;

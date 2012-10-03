@@ -17,7 +17,7 @@ namespace ray_tracer {
 		radius_squared = radius_ * radius_;
 	}
 
-	double surface_sphere::hit(const ray &emission_ray) const {
+	double surface_sphere::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		point3D o = emission_ray.origin, c = center;
 		vector3D d = emission_ray.dir;
 		double a = d * (o - c), d2 = d.length_squared();

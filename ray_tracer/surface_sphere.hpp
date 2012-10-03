@@ -8,7 +8,7 @@ namespace ray_tracer {
 	public:
 		surface_sphere();
 		surface_sphere(const point3D &, double);
-		double hit(const ray &) const;
+		double hit(const ray &, const surface **) const;
 		vector3D get_normal_vector(const point3D &) const;
 		point3D get_local_point(const point3D &) const;
 	private:

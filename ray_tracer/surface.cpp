@@ -11,7 +11,7 @@ namespace ray_tracer {
 
 	surface::~surface() { }
 
-	double surface::hit(const ray &emission_ray) const {
+	double surface::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		return -1;
 	}
 
@@ -23,8 +23,16 @@ namespace ray_tracer {
 		return point3D(0, 0, 0);
 	}
 
-	void surface::enable_twoface_shading(bool twoface_) {
+	void surface::set_twoface_shading(bool twoface_) {
 		twoface_shading = twoface_;
+	}
+
+	void surface::set_material(const material *material_ptr_) {
+		material_ptr = material_ptr_;
+	}
+
+	void surface::set_texture(const texture *texture_ptr_) {
+		texture_ptr = texture_ptr_;
 	}
 
 	colorRGB surface::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) const {
