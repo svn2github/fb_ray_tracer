@@ -107,9 +107,6 @@
     <ClCompile Include="light.cpp">
       <Filter>bottom-layer\light</Filter>
     </ClCompile>
-    <ClCompile Include="light_spot.cpp">
-      <Filter>bottom-layer\light</Filter>
-    </ClCompile>
     <ClCompile Include="BRDF_phong.cpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClCompile>
@@ -277,9 +274,6 @@
       <Filter>bottom-layer\light</Filter>
     </ClInclude>
     <ClInclude Include="light.hpp">
-      <Filter>bottom-layer\light</Filter>
-    </ClInclude>
-    <ClInclude Include="light_spot.hpp">
       <Filter>bottom-layer\light</Filter>
     </ClInclude>
     <ClInclude Include="BRDF_phong.hpp">

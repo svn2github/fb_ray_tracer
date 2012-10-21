@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace ray_tracer {
-	
+
 	void light::init_attenuation() {
 		attenuation_enabled = false;
 		attenuation_constant = 1;
@@ -16,6 +16,7 @@ namespace ray_tracer {
 		set_position(point3D(0, 0, 0));
 		set_color(color_white);
 		cast_shadow = true;
+		spot_enabled = false;
 		init_attenuation();
 		traveled_dist = 0;
 	}
@@ -24,6 +25,7 @@ namespace ray_tracer {
 		set_position(position_);
 		set_color(color_);
 		cast_shadow = true;
+		spot_enabled = false;
 		init_attenuation();
 		traveled_dist = 0;
 	}
@@ -35,14 +37,20 @@ namespace ray_tracer {
 	}
 
 	colorRGB light::light_shade(hitInfo *info_ptr) const {
+		colorRGB ret = color;
+
+		if (spot_enabled) {
+			double vdotd = (info_ptr->hit_point - position).normalized() * direction;
+
+			ret = vdotd > 0 ? ret * pow(vdotd, exponent) : color_black;
+		}
 		if (attenuation_enabled) {
 			double d = (info_ptr->hit_point - get_light_origin(info_ptr)).length() + traveled_dist;
 			double f = 1 / (attenuation_constant + attenuation_linear * d + attenuation_quadratic * d * d);
 
-			return f * color;
-		} else {
-			return color;
+			ret = f * ret;
 		}
+		return ret;
 	}
 
 	bool light::under_shadow(hitInfo *info_ptr) const {
@@ -66,7 +74,11 @@ namespace ray_tracer {
 	}
 
 	bool light::in_range(hitInfo *info_ptr) const {
-		return true;
+		if (spot_enabled) {
+			return ((info_ptr->hit_point - position).normalized() * direction) > cos_cutoff;
+		} else {
+			return true;
+		}
 	}
 
 	void light::inherit_light(const light *light_ptr) {

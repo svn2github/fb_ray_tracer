@@ -15,13 +15,12 @@ namespace ray_tracer {
 		virtual point3D get_light_origin(hitInfo *) const;
 		void set_position(const point3D &);
 		void set_color(const colorRGB &);
-		void enable_shadow(bool);
-		void set_attenuation_constant(double);
-		void set_attenuation_linear(double);
-		void set_attenuation_quadratic(double);
+		void set_shadow(bool);
+		void set_spot(const vector3D &, double, int);
+		void set_attenuation(double, double, double);
 		bool under_shadow(hitInfo *) const;
 		virtual colorRGB light_shade(hitInfo *) const;
-		virtual bool in_range(hitInfo *) const;
+		bool in_range(hitInfo *) const;
 		void inherit_light(const light *);
 	private:
 		void init_attenuation();
@@ -29,9 +28,15 @@ namespace ray_tracer {
 		point3D position;
 		colorRGB color;
 	private:
+		// Inherits information
 		double traveled_dist;
-		bool cast_shadow;
-		bool attenuation_enabled;
+		// Attitudes
+		bool cast_shadow, spot_enabled, attenuation_enabled;
+		// Spot
+		vector3D direction;
+		double cutoff, cos_cutoff;
+		int exponent;
+		// Attenuation
 		double attenuation_constant, attenuation_linear, attenuation_quadratic;
 	};
 
@@ -43,22 +48,22 @@ namespace ray_tracer {
 		color = color_;
 	}
 
-	inline void light::enable_shadow(bool shadow_) {
+	inline void light::set_shadow(bool shadow_) {
 		cast_shadow = shadow_;
 	}
 
-	inline void light::set_attenuation_constant(double f) {
-		attenuation_constant = f;
-		attenuation_enabled = true;
+	inline void light::set_spot(const vector3D &direction_, double cutoff_, int exponent_) {
+		direction = direction_.normalized();
+		cutoff = cutoff_;
+		cos_cutoff = cos(cutoff);
+		exponent = exponent_;
+		spot_enabled = true;
 	}
 
-	inline void light::set_attenuation_linear(double f) {
-		attenuation_linear = f;
-		attenuation_enabled = true;
-	}
-
-	inline void light::set_attenuation_quadratic(double f) {
-		attenuation_quadratic = f;
+	inline void light::set_attenuation(double constant_, double linear_, double quadratic_) {
+		attenuation_constant = constant_;
+		attenuation_linear = linear_;
+		attenuation_quadratic = quadratic_;
 		attenuation_enabled = true;
 	}
 }

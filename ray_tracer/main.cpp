@@ -23,7 +23,6 @@
 #include "world.hpp"
 #include "light.hpp"
 #include "light_point.hpp"
-#include "light_spot.hpp"
 #include "light_area.hpp"
 #include "camera.hpp"
 #include "camera_orthographic.hpp"
@@ -77,16 +76,12 @@ void test1(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
-	// l = new light_spot(point3D(0, 0, 30), color_white, vector3D(30, 9, -30), pi / 7, 5);
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-10, 0, 0), color_white);
-	l->set_attenuation_constant(1);
-	l->set_attenuation_linear(0.001);
-	l->set_attenuation_quadratic(0.0005);
+	l->set_spot(vector3D(30, 9, -30), pi / 3, 5);
+	l->set_attenuation(1, 0.001, 0.0005);
 	l2 = new light_point(point3D(-10, 0, 30), color_white);
-	l2->set_attenuation_constant(1);
-	l2->set_attenuation_linear(0.001);
-	l2->set_attenuation_quadratic(0.0005);
+	l2->set_attenuation(1, 0.001, 0.0005);
 
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(25));
@@ -140,7 +135,7 @@ void test2(SDL_Surface *screen) {
 	s->set_texture(t);
 
 	l = new light_point(point3D(0, -30, 30), color_white);
-	l->enable_shadow(false);
+	l->set_shadow(false);
 
 	world.set_ambient(color_black);
 	world.set_sampler(new sampler_jittered(25));
@@ -183,7 +178,7 @@ void test3(SDL_Surface *screen) {
 	s->set_texture(t);
 
 	l = new light_point(point3D(-20, 0, 0), color_white);
-	l->enable_shadow(false);
+	l->set_shadow(false);
 
 	world.set_ambient(color_white / 5);
 	// world.set_sampler(new sampler_jittered(25));

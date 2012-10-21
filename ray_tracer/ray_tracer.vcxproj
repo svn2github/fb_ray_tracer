@@ -92,7 +92,6 @@
     <ClCompile Include="image.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_area.cpp" />
-    <ClCompile Include="light_spot.cpp" />
     <ClCompile Include="material_mirror.cpp" />
     <ClCompile Include="sampler_single.cpp" />
     <ClCompile Include="surface_compound.cpp" />
@@ -139,7 +138,6 @@
     <ClInclude Include="image.hpp" />
     <ClInclude Include="light.hpp" />
     <ClInclude Include="light_area.hpp" />
-    <ClInclude Include="light_spot.hpp" />
     <ClInclude Include="material_mirror.hpp" />
     <ClInclude Include="sampler_single.hpp" />
     <ClInclude Include="surface_compound.hpp" />
