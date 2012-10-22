@@ -16,14 +16,12 @@ namespace ray_tracer {
 		void set_position(const point3D &);
 		void set_color(const colorRGB &);
 		void set_shadow(bool);
-		void set_spot(const vector3D &, double, int);
-		void set_attenuation(double, double, double);
+		void set_spot(bool, const vector3D &, double, int);
+		void set_attenuation(bool, double, double, double);
 		bool under_shadow(hitInfo *) const;
 		virtual colorRGB light_shade(hitInfo *) const;
 		bool in_range(hitInfo *) const;
 		void inherit_light(const light *);
-	private:
-		void init_attenuation();
 	protected:
 		point3D position;
 		colorRGB color;
@@ -33,9 +31,9 @@ namespace ray_tracer {
 		// Attitudes
 		bool cast_shadow, spot_enabled, attenuation_enabled;
 		// Spot
-		vector3D direction;
-		double cutoff, cos_cutoff;
-		int exponent;
+		vector3D spot_direction;
+		double spot_cutoff, spot_cos_cutoff;
+		int spot_exponent;
 		// Attenuation
 		double attenuation_constant, attenuation_linear, attenuation_quadratic;
 	};
@@ -52,19 +50,19 @@ namespace ray_tracer {
 		cast_shadow = shadow_;
 	}
 
-	inline void light::set_spot(const vector3D &direction_, double cutoff_, int exponent_) {
-		direction = direction_.normalized();
-		cutoff = cutoff_;
-		cos_cutoff = cos(cutoff);
-		exponent = exponent_;
-		spot_enabled = true;
+	inline void light::set_spot(bool enabled_, const vector3D &direction_ = vector3D(0, 0, 1), double cutoff_ = pi / 2, int exponent_ = 1) {
+		spot_enabled = enabled_;
+		spot_direction = direction_.normalized();
+		spot_cutoff = cutoff_;
+		spot_cos_cutoff = cos(spot_cutoff);
+		spot_exponent = exponent_;
 	}
 
-	inline void light::set_attenuation(double constant_, double linear_, double quadratic_) {
+	inline void light::set_attenuation(bool enabled_, double constant_ = 1, double linear_ = 0, double quadratic_ = 0) {
+		attenuation_enabled = enabled_;
 		attenuation_constant = constant_;
 		attenuation_linear = linear_;
 		attenuation_quadratic = quadratic_;
-		attenuation_enabled = true;
 	}
 }
 

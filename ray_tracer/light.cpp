@@ -5,28 +5,21 @@
 
 namespace ray_tracer {
 
-	void light::init_attenuation() {
-		attenuation_enabled = false;
-		attenuation_constant = 1;
-		attenuation_linear = 0;
-		attenuation_quadratic = 0;
-	}
-
 	light::light() {
 		set_position(point3D(0, 0, 0));
 		set_color(color_white);
-		cast_shadow = true;
-		spot_enabled = false;
-		init_attenuation();
+		set_shadow(true);
+		set_spot(false);
+		set_attenuation(false);
 		traveled_dist = 0;
 	}
 
 	light::light(const point3D &position_, const colorRGB &color_) {
 		set_position(position_);
 		set_color(color_);
-		cast_shadow = true;
-		spot_enabled = false;
-		init_attenuation();
+		set_shadow(true);
+		set_spot(false);
+		set_attenuation(false);
 		traveled_dist = 0;
 	}
 
@@ -40,9 +33,9 @@ namespace ray_tracer {
 		colorRGB ret = color;
 
 		if (spot_enabled) {
-			double vdotd = (info_ptr->hit_point - position).normalized() * direction;
+			double vdotd = (info_ptr->hit_point - position).normalized() * spot_direction;
 
-			ret = vdotd > 0 ? ret * pow(vdotd, exponent) : color_black;
+			ret = vdotd > 0 ? ret * pow(vdotd, spot_exponent) : color_black;
 		}
 		if (attenuation_enabled) {
 			double d = (info_ptr->hit_point - get_light_origin(info_ptr)).length() + traveled_dist;
@@ -75,7 +68,7 @@ namespace ray_tracer {
 
 	bool light::in_range(hitInfo *info_ptr) const {
 		if (spot_enabled) {
-			return ((info_ptr->hit_point - position).normalized() * direction) > cos_cutoff;
+			return ((info_ptr->hit_point - position).normalized() * spot_direction) > spot_cos_cutoff;
 		} else {
 			return true;
 		}

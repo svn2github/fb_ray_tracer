@@ -78,10 +78,10 @@ void test1(SDL_Surface *screen) {
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-10, 0, 0), color_white);
-	l->set_spot(vector3D(30, 9, -30), pi / 3, 5);
-	l->set_attenuation(1, 0.001, 0.0005);
+	l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
+	l->set_attenuation(true, 1, 0.001, 0.0005);
 	l2 = new light_point(point3D(-10, 0, 30), color_white);
-	l2->set_attenuation(1, 0.001, 0.0005);
+	l2->set_attenuation(true, 1, 0.001, 0.0005);
 
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(25));
