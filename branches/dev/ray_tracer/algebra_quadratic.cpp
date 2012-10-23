@@ -16,15 +16,9 @@ namespace ray_tracer {
 	}
 
 	bool algebra_quadratic::check_point_in_range(const point3D &p) const {
-		if (p.x < xmin || p.x > xmax) {
-			return false;
-		}
-		if (p.y < ymin || p.y > ymax) {
-			return false;
-		}
-		if (p.z < zmin || p.z > zmax) {
-			return false;
-		}
+		if (p.x < xmin || p.x > xmax) return false;
+		if (p.y < ymin || p.y > ymax) return false;
+		if (p.z < zmin || p.z > zmax) return false;
 		return true;
 	}
 
@@ -123,9 +117,7 @@ namespace ray_tracer {
 			delta = sqrt(delta);
 			value1 = ((-quadratic_b - delta) / quadratic_a / 2 - p.x) / v.x;
 			value2 = ((-quadratic_b + delta) / quadratic_a / 2 - p.x) / v.x;
-			if (value1 > value2) {
-				swap(value1, value2);
-			}
+			if (value1 > value2) swap(value1, value2);
 			/* epsilon: avoid hit itself. */
 			valid1 = (value1 > epsilon) && check_point_in_range(p_ + v_ * value1);
 			valid2 = (value2 > epsilon) && check_point_in_range(p_ + v_ * value2);

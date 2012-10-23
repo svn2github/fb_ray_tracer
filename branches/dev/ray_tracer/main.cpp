@@ -72,8 +72,7 @@ void render(world &world, SDL_Surface *screen) {
 void test1(SDL_Surface *screen) {
 	world world;
 	camera *cam;
-	surface_quadratic *s1;
-	surface *s2, *s3;
+	surface *s1, *s2, *s3;
 	// material_matte *m1;
 	material_mirror *m1;
 	material_mirror *m2;
@@ -87,7 +86,7 @@ void test1(SDL_Surface *screen) {
 	cam = new camera_pinhole(point3D(-10, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2.0), atan(2.0), true);
 	// cam->rotate(pi / 4);
 
-	s1 = new surface_quadratic; //surface_sphere(point3D(15, -7, 0), 9);
+	s1 = new surface_sphere(point3D(15, -7, 0), 9);
 	// m1 = new material_matte;
 	m1 = new material_mirror(colorRGB(0.2, 0.6, 0.8));
 	t1 = new texture_solid_color(colorRGB(0.2, 0.6, 0.8));
@@ -110,7 +109,7 @@ void test1(SDL_Surface *screen) {
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-10, 0, 0), color_white);
-	l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
+	// l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
 	l->set_attenuation(true, 1, 0.001, 0.0005);
 	l2 = new light_point(point3D(-10, 0, 30), color_white);
 	l2->set_attenuation(true, 1, 0.001, 0.0005);
@@ -206,7 +205,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test3(screen);
+	test1(screen);
 	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;

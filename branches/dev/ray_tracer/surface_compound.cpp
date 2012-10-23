@@ -55,10 +55,10 @@ namespace ray_tracer {
 		for (std::vector<surface *>::const_iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = *iter;
 			temp_surface_ptr = NULL;
+
 			double t = surface_ptr->hit(emission_ray, &temp_surface_ptr);
-			if (temp_surface_ptr != NULL) {
-				surface_ptr = temp_surface_ptr;
-			}
+
+			if (temp_surface_ptr != NULL) surface_ptr = temp_surface_ptr;
 			/* Avoid hiting the surface which shots this ray. */
 			if (t > epsilon && t < hit_time) {
 				hit_time = t;
@@ -66,10 +66,6 @@ namespace ray_tracer {
 				hit_flag = true;
 			}
 		}
-		if (hit_flag) { 
-			return hit_time;
-		} else {
-			return -1;
-		}
+		return hit_flag ? hit_time : -1;
 	}
 }

@@ -19,9 +19,7 @@ namespace ray_tracer {
 			double result = 1;
 
 			while (power > 0 && result > epsilon) {
-				if (power & 1) {
-					result *= base;
-				}
+				if (power & 1) result *= base;
 				power >>= 1;
 				base *= base;
 			}
