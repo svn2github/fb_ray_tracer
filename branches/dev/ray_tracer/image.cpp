@@ -12,7 +12,8 @@ namespace ray_tracer {
 
 	colorRGB image::get_color(int x, int y) const {
 		uint8_t *ptr = image_ptr + (y * w + x) * bpp;
-		return colorRGB(*(int *)ptr);
+		// return colorRGB(*(int *)ptr);
+		return color_black; // Not implemented
 	}
 }
 	

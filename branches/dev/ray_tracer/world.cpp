@@ -40,10 +40,11 @@ namespace ray_tracer {
 		}
 	}
 
-	void world::render_begin(int w_, int h_, void *ptr_) {
+	void world::render_begin(int w_, int h_, const render_callback_func callback_func_, void *callback_param_ptr_) {
 		dest_w = w_;
 		dest_h = h_;
-		pixal_buffer_ptr = (int *)ptr_;
+		callback_func = callback_func_;
+		callback_param_ptr = callback_param_ptr_;
 		current_coordinate_x = 0;
 		current_coordinate_y = 0;
 	}
@@ -81,7 +82,8 @@ namespace ray_tracer {
 				color += camera_ptr->render_scene(x + sample_point.x, y + sample_point.y, dest_w, dest_h, &info);
 			}
 			color = color / number_sample;
-			*(pixal_buffer_ptr + y * dest_w + x) = color.clamp_to_int();
+			color = color.clamp();
+			callback_func(x, y, color, callback_param_ptr);
 		}
 	}
 }

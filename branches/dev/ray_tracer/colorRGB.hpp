@@ -6,8 +6,7 @@ namespace ray_tracer {
 	public:
 		colorRGB();
 		colorRGB(double, double, double);
-		colorRGB(int);
-		int clamp_to_int() const;
+		colorRGB clamp() const;
 		friend colorRGB operator+(const colorRGB &, const colorRGB &);
 		friend colorRGB &operator+=(colorRGB &, const colorRGB &);
 		friend colorRGB operator-(const colorRGB &, const colorRGB &);
@@ -18,14 +17,6 @@ namespace ray_tracer {
 	public:
 		double r, g, b;
 	};
-
-	inline int colorRGB::clamp_to_int() const {
-		int r_ = (int)((r > 1.0 ? 1.0 : r) * 255);
-		int g_ = (int)((g > 1.0 ? 1.0 : g) * 255);
-		int b_ = (int)((b > 1.0 ? 1.0 : b) * 255);
-
-		return (b_ | (g_ << 8) | (r_ << 16));
-	}
 
 	inline colorRGB operator+(const colorRGB &c1, const colorRGB &c2) {
 		return colorRGB(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b);

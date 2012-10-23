@@ -19,6 +19,9 @@
 #include "sampler.hpp"
 
 namespace ray_tracer {
+
+	typedef void (* render_callback_func)(int x, int y, const colorRGB &color, void *pixel_ptr);
+
 	class world {
 		friend class tracer;
 		friend class camera;
@@ -33,7 +36,7 @@ namespace ray_tracer {
 		void set_fog(const fog *);
 		void set_camera(const camera *);
 		bool get_hit(const ray &, hitInfo *) const;
-		void render_begin(int, int, void *); // Dimension: pixal
+		void render_begin(int, int, const render_callback_func, void *); // Dimension: pixal
 		void render_scene();
 	private:
 		colorRGB ambient;
@@ -43,9 +46,9 @@ namespace ray_tracer {
 		const camera *camera_ptr;
 		const tracer *tracer_ptr;
 		const sampler *sampler_ptr, *sampler_single_ptr;
-		int *pixal_buffer_ptr;
-		int dest_w, dest_h;
-		int current_coordinate_x, current_coordinate_y;
+		int dest_w, dest_h, current_coordinate_x, current_coordinate_y;
+		render_callback_func callback_func;
+		void *callback_param_ptr;
 #ifndef __MT_NO_MUTEX__
 		std::mutex coordinate_mutex;
 #endif

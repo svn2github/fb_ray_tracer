@@ -37,6 +37,38 @@ using namespace ray_tracer;
 
 const int width = 500, height = 500;
 
+void render_callback(int x, int y, const colorRGB &color, void *pixel_ptr) {
+	char *p = (char *)pixel_ptr;
+
+	static_cast<char>(color.b * 255);
+	p += (y * width + x) << 2;
+	*p++ = static_cast<uint8_t>(color.b * 255);
+	*p++ = static_cast<uint8_t>(color.g * 255);
+	*p++ = static_cast<uint8_t>(color.r * 255);
+}
+
+void render(world &world, SDL_Surface *screen) {
+	if (SDL_MUSTLOCK(screen)) {
+		if (SDL_LockSurface(screen) < 0) {
+			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
+			return;
+		}
+	}
+	world.render_begin(width, height, render_callback, screen->pixels);
+	std::thread thr[4];
+	for (int i = 0; i < 4; i += 1) {
+		thr[i] = std::thread([&]{ world.render_scene(); });
+	}
+	for (int i = 0; i < 4; i += 1) {
+		thr[i].join();
+	}
+	if (SDL_MUSTLOCK(screen)) {
+		SDL_UnlockSurface(screen);
+	}
+	SDL_UpdateRect(screen, 0, 0, width, height);
+	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+}
+
 void test1(SDL_Surface *screen) {
 	world world;
 	camera *cam;
@@ -93,25 +125,7 @@ void test1(SDL_Surface *screen) {
 	world.add_light(l);
 	world.add_light(l2);
 
-	if (SDL_MUSTLOCK(screen)) {
-		if (SDL_LockSurface(screen) < 0) {
-			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
-			return;
-		}
-	}
-	world.render_begin(width, height, screen->pixels);
-	std::thread thr[4];
-	for (int i = 0; i < 4; i += 1) {
-		thr[i] = std::thread([&]{ world.render_scene(); });
-	}
-	for (int i = 0; i < 4; i += 1) {
-		thr[i].join();
-	}
-	if (SDL_MUSTLOCK(screen)) {
-		SDL_UnlockSurface(screen);
-	}
-	SDL_UpdateRect(screen, 0, 0, width, height);
-	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+	render(world, screen);
 }
 
 void test2(SDL_Surface *screen) {
@@ -143,21 +157,8 @@ void test2(SDL_Surface *screen) {
 	world.add_surface(s);
 	world.add_light(l);
 
-	if (SDL_MUSTLOCK(screen)) {
-		if (SDL_LockSurface(screen) < 0) {
-			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
-			return;
-		}
-	}
-	world.render_begin(width, height, screen->pixels);
-	world.render_scene();
-	if (SDL_MUSTLOCK(screen)) {
-		SDL_UnlockSurface(screen);
-	}
-	SDL_UpdateRect(screen, 0, 0, width, height);
-	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+	render(world, screen);
 }
-
 
 void test3(SDL_Surface *screen) {
 	world world;
@@ -186,19 +187,7 @@ void test3(SDL_Surface *screen) {
 	world.add_surface(s);
 	world.add_light(l);
 
-	if (SDL_MUSTLOCK(screen)) {
-		if (SDL_LockSurface(screen) < 0) {
-			printf("Couldn't lock the screen: %s.\n", SDL_GetError());
-			return;
-		}
-	}
-	world.render_begin(width, height, screen->pixels);
-	world.render_scene();
-	if (SDL_MUSTLOCK(screen)) {
-		SDL_UnlockSurface(screen);
-	}
-	SDL_UpdateRect(screen, 0, 0, width, height);
-	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
+	render(world, screen);
 }
 
 int main() {
@@ -217,7 +206,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test1(screen);
+	test3(screen);
 	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
 
 	SDL_Event event;

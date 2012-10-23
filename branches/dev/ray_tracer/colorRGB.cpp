@@ -15,12 +15,16 @@ namespace ray_tracer {
 		b = b_;
 	}
 
-	colorRGB::colorRGB(int c) {
-		b = (double)(c & 255) / 255;
-		c >>= 8;
-		g = (double)(c & 255) / 255;
-		c >>= 8;
-		r = (double)(c & 255) / 255;
+	colorRGB colorRGB::clamp() const {
+		double rr = r, gg = g, bb = b;
+
+		if (rr > 1.0) rr = 1.0;
+		if (bb > 1.0) bb = 1.0;
+		if (gg > 1.0) gg = 1.0;
+		if (rr < 0.0) rr = 0.0;
+		if (bb < 0.0) bb = 0.0;
+		if (gg < 0.0) gg = 0.0;
+		return colorRGB(rr, gg, bb);
 	}
 
 	colorRGB color_black = colorRGB(0.0, 0.0, 0.0);
