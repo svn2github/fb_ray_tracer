@@ -89,9 +89,6 @@
     <ClCompile Include="hitInfo.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="texture_image.cpp">
       <Filter>bottom-layer\texture</Filter>
     </ClCompile>
@@ -137,6 +134,12 @@
     <ClCompile Include="surface_compound.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>bottom-layer\image</Filter>
+    </ClCompile>
+    <ClCompile Include="image_bmp.cpp">
+      <Filter>bottom-layer\image\bmp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -168,6 +171,12 @@
     </Filter>
     <Filter Include="bottom-layer\texture\texture_mapping">
       <UniqueIdentifier>{6dac98c8-e650-4673-9560-1fd06bd69f9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\image">
+      <UniqueIdentifier>{aff4d6dc-3fbb-46f1-83a9-80541c3fa90a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\image\bmp">
+      <UniqueIdentifier>{12e07f55-8598-48e7-9185-46815f8cb73f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -258,9 +267,6 @@
     <ClInclude Include="hitInfo.hpp">
       <Filter>bottom-layer\basis</Filter>
     </ClInclude>
-    <ClInclude Include="image.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
     <ClInclude Include="texture_image.hpp">
       <Filter>bottom-layer\texture</Filter>
     </ClInclude>
@@ -308,6 +314,12 @@
     </ClInclude>
     <ClInclude Include="surface_compound.hpp">
       <Filter>bottom-layer\surface</Filter>
+    </ClInclude>
+    <ClInclude Include="image.hpp">
+      <Filter>bottom-layer\image</Filter>
+    </ClInclude>
+    <ClInclude Include="image_bmp.hpp">
+      <Filter>bottom-layer\image\bmp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

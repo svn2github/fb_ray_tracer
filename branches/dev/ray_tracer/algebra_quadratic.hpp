@@ -7,8 +7,6 @@
 namespace ray_tracer {
 	class algebra_quadratic {
 	private:
-		template<typename T> 
-		void swap(T &, T &) const;
 		bool check_point_in_range(const point3D &) const;
 	public:
 		algebra_quadratic();

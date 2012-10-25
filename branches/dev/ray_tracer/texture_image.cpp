@@ -13,8 +13,8 @@ namespace ray_tracer {
 		point2D coord = mapping_ptr->get_coordinate(info_ptr);
 		int x, y;
 
-		x = (int)((image_ptr->get_w() - 1) * coord.x);
-		y = (int)((image_ptr->get_h() - 1) * coord.y);
+		x = (int)((image_ptr->get_width() - 1) * coord.x);
+		y = (int)((image_ptr->get_height() - 1) * coord.y);
 		return image_ptr->get_color(x, y);
 	}
 }

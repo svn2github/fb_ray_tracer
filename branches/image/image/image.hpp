@@ -1,7 +1,7 @@
 #ifndef __IMAGE_HPP__
 #define __IMAGE_HPP__
 
-#include <cstdio>
+#include <filesystem>
 
 namespace ray_tracer {
 
@@ -16,10 +16,10 @@ namespace ray_tracer {
 		/* Destructor is forbidden, plz implement destroy instead. */
 		virtual bool create() = 0;
 		virtual void destroy() = 0;
-		virtual int width() const = 0;
-		virtual int height() const = 0;
+		virtual int get_width() const = 0;
+		virtual int get_height() const = 0;
 		/** Index ranged in [0, w/h - 1]. */
-		virtual int color(int, int) const = 0;
+		virtual int get_color(int, int) const = 0;
 	protected:
 		FILE *imgfile_ptr;
 	};

@@ -1,18 +1,12 @@
 
 #include "algebra_quadratic.hpp"
+#include <algorithm>
 
 namespace ray_tracer {
 	algebra_quadratic::algebra_quadratic() {
 		coef_xx = coef_yy = coef_zz = coef_xy = coef_xz = coef_yz = coef_x = coef_y = coef_z = coef_const = 0;
 		xmin = ymin = zmin = -huge_double;
 		xmax = ymax = zmax = huge_double;
-	}
-
-	template<typename T> 
-	void algebra_quadratic::swap(T &a, T &b) const {
-		T c = a;
-		a = b;
-		b = c;
 	}
 
 	bool algebra_quadratic::check_point_in_range(const point3D &p) const {
@@ -59,11 +53,11 @@ namespace ray_tracer {
 
 		// make sure v.x is not zero.
 		if (v.x == 0 && v.y != 0) {
-			swap(p.x, p.y);
-			swap(v.x, v.y);
+			std::swap(p.x, p.y);
+			std::swap(v.x, v.y);
 		} else if (v.x == 0 && v.z != 0) {
-			swap(p.x, p.z);
-			swap(v.x, v.z);
+			std::swap(p.x, p.z);
+			std::swap(v.x, v.z);
 		}
 		// transform y and z to x.
 		ycoef = v.y / v.x;
@@ -117,7 +111,7 @@ namespace ray_tracer {
 			delta = sqrt(delta);
 			value1 = ((-quadratic_b - delta) / quadratic_a / 2 - p.x) / v.x;
 			value2 = ((-quadratic_b + delta) / quadratic_a / 2 - p.x) / v.x;
-			if (value1 > value2) swap(value1, value2);
+			if (value1 > value2) std::swap(value1, value2);
 			/* epsilon: avoid hit itself. */
 			valid1 = (value1 > epsilon) && check_point_in_range(p_ + v_ * value1);
 			valid2 = (value2 > epsilon) && check_point_in_range(p_ + v_ * value2);

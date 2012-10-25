@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <SDL.h>
 #include "vector3D.hpp"
+#include "image.hpp"
 #include "material.hpp"
 #include "material_phong.hpp"
 #include "material_matte.hpp"
@@ -35,7 +36,7 @@
 
 using namespace ray_tracer;
 
-const int width = 500, height = 500;
+const int width = 500, height = 500, max_thread_count = 4;
 
 void render_callback(int x, int y, const colorRGB &color, void *pixel_ptr) {
 	char *p = (char *)pixel_ptr;
@@ -55,11 +56,11 @@ void render(world &world, SDL_Surface *screen) {
 		}
 	}
 	world.render_begin(width, height, render_callback, screen->pixels);
-	std::thread thr[4];
-	for (int i = 0; i < 4; i += 1) {
+	std::thread thr[max_thread_count];
+	for (int i = 0; i < max_thread_count; i += 1) {
 		thr[i] = std::thread([&]{ world.render_scene(); });
 	}
-	for (int i = 0; i < 4; i += 1) {
+	for (int i = 0; i < max_thread_count; i += 1) {
 		thr[i].join();
 	}
 	if (SDL_MUSTLOCK(screen)) {
@@ -134,16 +135,13 @@ void test2(SDL_Surface *screen) {
 	material *m;
 	texture *t;
 	light *l;
-	SDL_Surface *img;
 
-	img = SDL_LoadBMP("C:\\Users\\ForeverBell\\Desktop\\moon.bmp");
-	SDL_LockSurface(img);
 	cam = new camera_pinhole(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), atan(2), atan(2), true);
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
 
 	s = new surface_sphere(point3D(25, 0, 0), 10);
 	m = new material_matte(colorRGB(1.4, 1.4, 0.5));
-	t = new texture_image(new image(img->pixels, img->w, img->h, 24), new texture_mapping_sphere());
+	t = new texture_image(image_file_create("C:\\Users\\ForeverBell\\Desktop\\moon.bmp", image_type_bmp), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 

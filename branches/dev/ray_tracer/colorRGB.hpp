@@ -6,6 +6,7 @@ namespace ray_tracer {
 	public:
 		colorRGB();
 		colorRGB(double, double, double);
+		colorRGB(int);
 		colorRGB clamp() const;
 		friend colorRGB operator+(const colorRGB &, const colorRGB &);
 		friend colorRGB &operator+=(colorRGB &, const colorRGB &);

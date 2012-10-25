@@ -1,19 +1,28 @@
 
 #include "image.hpp"
+#include "image_bmp.hpp"
 
 namespace ray_tracer {
 
-	image::image(void *image_ptr_, int w_, int h_, int bpp_) {
-		image_ptr = (uint8_t *)image_ptr_;
-		w = w_;
-		h = h_;
-		bpp = bpp_ / 8;
+	image *image_file_create(const char *file, image_file_type image_type) {
+		image *img = NULL;
+		switch (image_type) {
+		case image_type_bmp:
+			img = new image_bmp;
+			break;
+		}
+		if (img == NULL) return img;
+		img->imgfile_ptr = fopen(file, "rb+"); 
+		if (img->imgfile_ptr == NULL || !img->create()) {
+			image_file_destroy(img);
+			return NULL;
+		}
+		return img;
 	}
 
-	colorRGB image::get_color(int x, int y) const {
-		uint8_t *ptr = image_ptr + (y * w + x) * bpp;
-		// return colorRGB(*(int *)ptr);
-		return color_black; // Not implemented
+	void image_file_destroy(image *img_ptr) {
+		img_ptr->destroy();
+		if (img_ptr->imgfile_ptr != NULL) fclose(img_ptr->imgfile_ptr);
+		delete img_ptr;
 	}
 }
-	

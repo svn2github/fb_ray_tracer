@@ -90,6 +90,7 @@
     <ClCompile Include="fog.cpp" />
     <ClCompile Include="hitInfo.cpp" />
     <ClCompile Include="image.cpp" />
+    <ClCompile Include="image_bmp.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="light_area.cpp" />
     <ClCompile Include="material_mirror.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="hitInfo.hpp" />
     <ClInclude Include="camera_orthographic.hpp" />
     <ClInclude Include="image.hpp" />
+    <ClInclude Include="image_bmp.hpp" />
     <ClInclude Include="light.hpp" />
     <ClInclude Include="light_area.hpp" />
     <ClInclude Include="material_mirror.hpp" />
