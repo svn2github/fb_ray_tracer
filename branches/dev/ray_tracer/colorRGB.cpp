@@ -16,9 +16,9 @@ namespace ray_tracer {
 	}
 
 	colorRGB::colorRGB(int color_) {
-		b = ((color_ >> 0x00) & 255) / 255.0;
-		g = ((color_ >> 0x08) & 255) / 255.0;
-		r = ((color_ >> 0x10) & 255) / 255.0;
+		b = ((color_ >> 0x00) & 0xff) / 255.0;
+		g = ((color_ >> 0x08) & 0xff) / 255.0;
+		r = ((color_ >> 0x10) & 0xff) / 255.0;
 	}
 
 	colorRGB colorRGB::clamp() const {

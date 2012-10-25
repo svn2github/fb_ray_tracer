@@ -12,12 +12,8 @@ namespace ray_tracer {
 			break;
 		}
 		if (img == NULL) return img;
-		img->imgfile_ptr = fopen(file, "rb+"); // ?
-		if (img->imgfile_ptr == NULL) {
-			image_file_destroy(img);
-			return NULL;
-		}
-		if (!img->create()) {
+		img->imgfile_ptr = fopen(file, "rb+"); 
+		if (img->imgfile_ptr == NULL || !img->create()) {
 			image_file_destroy(img);
 			return NULL;
 		}
