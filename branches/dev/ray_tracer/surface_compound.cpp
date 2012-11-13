@@ -7,6 +7,10 @@ namespace ray_tracer {
 
 	surface_compound::surface_compound() { }
 	
+	void surface_compound::add_surface(surface *surface_) {
+		surfaces.push_back(surface_);
+	}
+
 	/** material/texture shade: No defination */
 	colorRGB surface_compound::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) const {
 		return color_black;

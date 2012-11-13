@@ -71,7 +71,7 @@ namespace ray_tracer {
 	}
 
 	inline void world::add_surface(const surface *surface_ptr_) {
-		surfaces.surfaces.push_back(const_cast<surface *>(surface_ptr_));
+		surfaces.add_surface(const_cast<surface *>(surface_ptr_));
 	}
 
 	inline void world::set_fog(const fog *fog_ptr_) {

@@ -77,7 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="algebra_quadratic.cpp" />
+    <ClCompile Include="quadratic.cpp" />
     <ClCompile Include="BRDF.cpp" />
     <ClCompile Include="BRDF_reflection.cpp" />
     <ClCompile Include="BRDF_phong.cpp" />
@@ -123,7 +123,7 @@
     <ClCompile Include="vector3D.cpp" />
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
-    <ClInclude Include="algebra_quadratic.hpp" />
+    <ClInclude Include="quadratic.hpp" />
     <ClInclude Include="BRDF.hpp" />
     <ClInclude Include="BRDF_reflection.hpp" />
     <ClInclude Include="BRDF_phong.hpp" />

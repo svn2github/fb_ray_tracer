@@ -128,9 +128,6 @@
     <ClCompile Include="surface_quadratic.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
-    <ClCompile Include="algebra_quadratic.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="surface_compound.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
@@ -139,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="image_bmp.cpp">
       <Filter>bottom-layer\image\bmp</Filter>
+    </ClCompile>
+    <ClCompile Include="quadratic.cpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -306,9 +306,6 @@
     <ClInclude Include="BRDF_reflection.hpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClInclude>
-    <ClInclude Include="algebra_quadratic.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
     <ClInclude Include="surface_quadratic.hpp">
       <Filter>bottom-layer\surface</Filter>
     </ClInclude>
@@ -320,6 +317,9 @@
     </ClInclude>
     <ClInclude Include="image_bmp.hpp">
       <Filter>bottom-layer\image\bmp</Filter>
+    </ClInclude>
+    <ClInclude Include="quadratic.hpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

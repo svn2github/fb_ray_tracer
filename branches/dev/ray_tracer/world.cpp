@@ -56,23 +56,21 @@ namespace ray_tracer {
 		hitInfo info;
 
 		while (current_coordinate_y < dest_h) {
+			/* Get current rendering coordinate. */
 #ifndef __MT_NO_MUTEX__
 			coordinate_mutex.lock();
 #endif
 			x = current_coordinate_x + 1;
 			y = current_coordinate_y;
-			if (x == dest_w) {
-				x = 0; 
-				y += 1;
-			}
+			if (x == dest_w) x = 0, y += 1;
 			current_coordinate_x = x;
 			current_coordinate_y = y;
 #ifndef __MT_NO_MUTEX__
 			coordinate_mutex.unlock();
 #endif
+			/* Sampling for anti-aliasing. */
 			sampler_iterator sam_iter(sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr);
 			int number_sample = sam_iter.get_sampler_count();
-
 			color = color_black;
 			for (int i = 0; i < number_sample; i += 1) {
 				info.world_ptr = this;

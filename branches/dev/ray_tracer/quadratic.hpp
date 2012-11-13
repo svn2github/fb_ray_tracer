@@ -1,15 +1,15 @@
-#ifndef __ALGEBRA_QUADRATIC_HPP__
-#define __ALGEBRA_QUADRATIC_HPP__
+#ifndef __QUADRATIC_HPP__
+#define __QUADRATIC_HPP__
 
 #include "point3D.hpp"
 #include "vector3D.hpp"
 
 namespace ray_tracer {
-	class algebra_quadratic {
+	class quadratic {
 	private:
-		bool check_point_in_range(const point3D &) const;
+		bool check_range(const point3D &) const;
 	public:
-		algebra_quadratic();
+		quadratic();
 		void set_range_x(double, double);
 		void set_range_y(double, double);
 		void set_range_z(double, double);

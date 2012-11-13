@@ -76,6 +76,7 @@ void test1(SDL_Surface *screen) {
 	camera *cam;
 	surface *s1, *s2, *s3, *s5;
 	surface_quadratic *s4;
+	surface_compound *sc;
 	// material_matte *m1;
 	material_mirror *m1;
 	material_mirror *m2;
@@ -113,32 +114,31 @@ void test1(SDL_Surface *screen) {
 	s4 = new surface_quadratic();
 	s4->coef_xx = 1, s4->coef_yy = 1, s4->coef_y = -5, s4->coef_const = -8;
 	s4->set_range_z(-10, -2);
-	t4 = new texture_solid_color(colorRGB(0.8, 0.8, 0.0));
-	s4->set_material(m2);
-	s4->set_texture(t4);
-	
 	s5 = new surface_disk(point3D(0, 2.5, -2), vector3D(0, 0, 1), 3.77491);
-	s5->set_material(m2);
-	s5->set_texture(t4);
+	sc = new surface_compound();
+	sc->add_surface(s4);
+	sc->add_surface(s5);
+	t4 = new texture_solid_color(colorRGB(0.7, 0.7, 0.0));
+	sc->set_material(m2);
+	sc->set_texture(t4);
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
-	l = new light_point(point3D(-10, 0, 0), color_white);
+	l = new light_point(point3D(-20, 0, 30), color_white);
 	// l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
-	l->set_attenuation(true, 1, 0.001, 0.0005);
+	l->set_attenuation(true, 1, 0.0001, 0.00005);
 	l2 = new light_point(point3D(-10, 0, 30), color_white);
-	l2->set_attenuation(true, 1, 0.001, 0.0005);
+	l2->set_attenuation(true, 1, 0.0001, 0.00005);
 
 	world.set_ambient(color_white / 5);
 	world.set_sampler(new sampler_jittered(25));
 	world.set_camera(cam);
-	world.set_fog(new fog(0.01, 1, color_black));
+	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
-	world.add_surface(s4);
-	world.add_surface(s5);
+	world.add_surface(sc);
 	world.add_light(l);
-	world.add_light(l2);
+//	world.add_light(l2);
 
 	render(world, screen);
 }
@@ -203,9 +203,6 @@ void test3(SDL_Surface *screen) {
 }
 
 int main() {
-	// algebra_quadratic a;
-	// a.xx = 2, a.yy = 1, a.z = 1, a.c = -3;
-	// printf("%.6lf\n", a.find_root(point3D(0, 0, 0), vector3D(1, 1, 1).normalized()));
 	if (SDL_Init(SDL_INIT_VIDEO) == -1) { 
 		printf("Could not initialize SDL: %s.\n", SDL_GetError());
 		return 0;

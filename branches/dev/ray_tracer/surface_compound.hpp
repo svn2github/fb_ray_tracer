@@ -6,9 +6,9 @@
 
 namespace ray_tracer {
 	class surface_compound : public surface {
-		friend class world;
 	public:
 		surface_compound();
+		void add_surface(surface *);
 		double hit(const ray &, const surface **) const;
 		void set_material(const material *);
 		void set_material(const material *, int);
