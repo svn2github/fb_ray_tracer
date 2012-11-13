@@ -17,18 +17,15 @@ namespace ray_tracer {
 	}
 
 	void algebra_quadratic::set_range_x(double xmin_, double xmax_) {
-		xmin = xmin_;
-		xmax = xmax_;
+		xmin = xmin_, xmax = xmax_;
 	}
 
 	void algebra_quadratic::set_range_y(double ymin_, double ymax_) {
-		ymin = ymin_;
-		ymax = ymax_;
+		ymin = ymin_, ymax = ymax_;
 	}
 
 	void algebra_quadratic::set_range_z(double zmin_, double zmax_) {
-		zmin = zmin_;
-		zmax = zmax_;
+		zmin = zmin_, zmax = zmax_;
 	}
 
 	double algebra_quadratic::gradient_x(const point3D &p) const {

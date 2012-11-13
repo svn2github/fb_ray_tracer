@@ -14,6 +14,7 @@
 #include "surface_plane.hpp"
 #include "surface_triangle.hpp"
 #include "surface_quadratic.hpp"
+#include "surface_disk.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
 #include "texture_image.hpp"
@@ -73,12 +74,13 @@ void render(world &world, SDL_Surface *screen) {
 void test1(SDL_Surface *screen) {
 	world world;
 	camera *cam;
-	surface *s1, *s2, *s3;
+	surface *s1, *s2, *s3, *s5;
+	surface_quadratic *s4;
 	// material_matte *m1;
 	material_mirror *m1;
 	material_mirror *m2;
 	material_matte *m3;
-	texture *t1, *t2, *t3;
+	texture *t1, *t2, *t3, *t4;
 	light *l, *l2;
 
 	// cam = new camera_fisheye(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), pi / 2);
@@ -108,6 +110,17 @@ void test1(SDL_Surface *screen) {
 	t3 = new texture_checker;
 	s3->set_texture(t3);
 
+	s4 = new surface_quadratic();
+	s4->coef_xx = 1, s4->coef_yy = 1, s4->coef_y = -5, s4->coef_const = -8;
+	s4->set_range_z(-10, -2);
+	t4 = new texture_solid_color(colorRGB(0.8, 0.8, 0.0));
+	s4->set_material(m2);
+	s4->set_texture(t4);
+	
+	s5 = new surface_disk(point3D(0, 2.5, -2), vector3D(0, 0, 1), 3.77491);
+	s5->set_material(m2);
+	s5->set_texture(t4);
+
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-10, 0, 0), color_white);
 	// l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
@@ -122,6 +135,8 @@ void test1(SDL_Surface *screen) {
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
+	world.add_surface(s4);
+	world.add_surface(s5);
 	world.add_light(l);
 	world.add_light(l2);
 
