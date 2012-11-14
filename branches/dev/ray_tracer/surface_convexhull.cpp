@@ -15,25 +15,25 @@ namespace ray_tracer {
 	void surface_convexhull::construct(const std::vector<point3D> &points_) {
 		points = points_;
 		faces = convexhull(points).construct_hull();
+		face_tris.reserve(faces.size());
+		for (std::vector<face_t>::const_iterator it = faces.begin(); it != faces.end(); ++it) {
+			face_tris.push_back(surface_triangle(points[std::get<2>(*it)], points[std::get<1>(*it)], points[std::get<0>(*it)]));
+			(--face_tris.end())->attach(this);
+		}
 	}
 
 	double surface_convexhull::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		double t = -1, temp_t;
-		std::vector<face_t>::const_iterator ret_it = faces.end();
+		int index = 0;
 
-		for (std::vector<face_t>::const_iterator it = faces.begin(); it != faces.end(); ++it) {
+		for (std::vector<face_t>::const_iterator it = faces.begin(); it != faces.end(); ++it, ++index) {
 			temp_t = triangle_hit(emission_ray, points[std::get<0>(*it)], points[std::get<1>(*it)], points[std::get<2>(*it)]);
-			if (temp_t != -1) {
+			if (temp_t > epsilon) {
 				if (t == -1 || t > temp_t) {
 					t = temp_t;
-					ret_it = it;
+					*hit_surface_ptr = &face_tris[index];
 				}
 			}
-		}
-		if (ret_it != faces.end()) {
-			surface_triangle *tri_ptr = new surface_triangle(points[std::get<2>(*ret_it)], points[std::get<1>(*ret_it)], points[std::get<0>(*ret_it)]);
-			tri_ptr->attach(this);
-			*hit_surface_ptr = tri_ptr;
 		}
 		return t;
 	}

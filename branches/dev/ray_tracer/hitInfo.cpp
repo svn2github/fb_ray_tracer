@@ -18,6 +18,6 @@ namespace ray_tracer {
 		light_ptr = NULL;
 		sampler_iterator_ptr = NULL;
 		emission_ray = ray();
-		ray_tracing_depth = 7;
+		ray_tracing_depth = 3;
 	}
 }

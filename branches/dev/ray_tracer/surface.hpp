@@ -15,12 +15,7 @@ namespace ray_tracer {
 	public:
 		surface();
 		virtual ~surface() = 0;
-		/**
-			Some surface objects are attached to other objects.
-			They are just temporary objects and will be deleted by tracer.
-		*/
 		void attach(const surface *);
-		bool is_temporary() const;
 		/** Return a negative value if missed. */
 		/** Hit surface pointer remains unchanged if not compound. */
 		virtual double hit(const ray &, const surface **) const; 

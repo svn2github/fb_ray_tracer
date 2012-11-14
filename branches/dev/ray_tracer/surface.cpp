@@ -16,10 +16,6 @@ namespace ray_tracer {
 		attached_surface_ptr = attached_surface_ptr_;
 	}
 
-	bool surface::is_temporary() const {
-		return attached_surface_ptr != NULL;
-	}
-
 	double surface::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		return -1;
 	}

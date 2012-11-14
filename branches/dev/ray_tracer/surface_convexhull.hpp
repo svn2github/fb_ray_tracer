@@ -18,6 +18,7 @@ namespace ray_tracer {
 	protected:
 		std::vector<point3D> points;
 		std::vector<face_t> faces;
+		std::vector<surface_triangle> face_tris;
 	};
 }
 

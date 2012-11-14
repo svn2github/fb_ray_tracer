@@ -48,8 +48,6 @@ namespace ray_tracer {
 			if (world_ptr->fog_ptr) {
 				result = world_ptr->fog_ptr->fog_blending(info_ptr, world_ptr->camera_ptr->get_view_point(), result);
 			}
-			/* Memory caution! */
-			if (info_ptr->surface_ptr->is_temporary()) delete info_ptr->surface_ptr;
 			return result;
 		}
 	}
