@@ -11,16 +11,6 @@ namespace ray_tracer {
 		surfaces.push_back(surface_);
 	}
 
-	/** material/texture shade: No defination */
-	colorRGB surface_compound::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) const {
-		return color_black;
-	}
-
-	colorRGB surface_compound::texture_shade(hitInfo *info_ptr) const {
-		return color_black;
-	}
-	/** = */
-
 	void surface_compound::set_material(const material *material_ptr_) {
 		for (std::vector<surface *>::const_iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			(*iter)->set_material(material_ptr_);

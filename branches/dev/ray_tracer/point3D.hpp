@@ -15,6 +15,7 @@ namespace ray_tracer {
 		point3D normalized() const;
 		friend point3D operator+(const point3D &, const vector3D &);
 		friend point3D &operator+=(point3D &, const vector3D &);
+		friend point3D operator-(const point3D &);
 		friend vector3D operator-(const point3D &, const point3D &);
 		friend point3D operator-(const point3D &, const vector3D &);
 	public:
@@ -47,6 +48,10 @@ namespace ray_tracer {
 		p.y += v.y;
 		p.z += v.z;
 		return p;
+	}
+
+	inline point3D operator-(const point3D &p) {
+		return point3D(-p.x, -p.y, -p.z);
 	}
 
 	inline vector3D operator-(const point3D &p1, const point3D &p2) {

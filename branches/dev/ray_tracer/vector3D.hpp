@@ -13,7 +13,6 @@ namespace ray_tracer {
 		double length_squared() const;
 		double inv_length() const;
 		vector3D normalized() const;
-		vector3D invert() const;
 		vector3D create_vertical() const;
 		friend vector3D operator+(const vector3D &, const vector3D &);
 		friend vector3D &operator+=(vector3D &, const vector3D &);
@@ -43,10 +42,6 @@ namespace ray_tracer {
 	inline vector3D vector3D::normalized() const {
 		double l = inv_length();
 		return vector3D(x * l, y * l, z * l);
-	}
-
-	inline vector3D vector3D::invert() const {
-		return vector3D(-x, -y, -z);
 	}
 
 	inline vector3D operator+(const vector3D &v1, const vector3D &v2) {

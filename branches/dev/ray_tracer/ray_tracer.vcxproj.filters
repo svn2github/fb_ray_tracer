@@ -17,12 +17,6 @@
     <ClCompile Include="colorRGB.cpp">
       <Filter>bottom-layer\basis</Filter>
     </ClCompile>
-    <ClCompile Include="surface_sphere.cpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_plane.cpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClCompile>
     <ClCompile Include="surface.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
@@ -50,17 +44,11 @@
     <ClCompile Include="camera_thinlens.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
-    <ClCompile Include="surface_triangle.cpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClCompile>
     <ClCompile Include="camera_fisheye.cpp">
       <Filter>bottom-layer\camera</Filter>
     </ClCompile>
     <ClCompile Include="sampler_jittered.cpp">
       <Filter>bottom-layer\sampler</Filter>
-    </ClCompile>
-    <ClCompile Include="surface_disk.cpp">
-      <Filter>bottom-layer\surface</Filter>
     </ClCompile>
     <ClCompile Include="matrix3D.cpp">
       <Filter>bottom-layer\basis</Filter>
@@ -125,9 +113,6 @@
     <ClCompile Include="BRDF_reflection.cpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClCompile>
-    <ClCompile Include="surface_quadratic.cpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClCompile>
     <ClCompile Include="surface_compound.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
@@ -138,7 +123,31 @@
       <Filter>bottom-layer\image\bmp</Filter>
     </ClCompile>
     <ClCompile Include="quadratic.cpp">
-      <Filter>bottom-layer\basis</Filter>
+      <Filter>bottom-layer\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_disk.cpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_plane.cpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_triangle.cpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_quadratic.cpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_sphere.cpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="convexhull.cpp">
+      <Filter>bottom-layer\mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_convexhull.cpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="surface_regpolyhedron.cpp">
+      <Filter>bottom-layer\surface\3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,9 +162,6 @@
     </Filter>
     <Filter Include="bottom-layer\camera">
       <UniqueIdentifier>{8432a768-f6d1-45bf-a97d-9420b946e42e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="bottom-layer\sampler">
-      <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
     </Filter>
     <Filter Include="bottom-layer\material">
       <UniqueIdentifier>{022ba66c-2681-41d1-89ad-9f74a90b16b5}</UniqueIdentifier>
@@ -177,6 +183,18 @@
     </Filter>
     <Filter Include="bottom-layer\image\bmp">
       <UniqueIdentifier>{12e07f55-8598-48e7-9185-46815f8cb73f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\mathematics">
+      <UniqueIdentifier>{c4faf1f7-0f23-46db-82e9-1810a6442c79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\surface\2D">
+      <UniqueIdentifier>{00225c6a-7be4-417e-bc7b-540d0ef81914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\surface\3D">
+      <UniqueIdentifier>{46aceede-5a6c-4125-89f3-1deb9dcf4e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\sampler">
+      <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -201,12 +219,6 @@
     <ClInclude Include="misc.hpp">
       <Filter>bottom-layer\basis</Filter>
     </ClInclude>
-    <ClInclude Include="surface_sphere.hpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClInclude>
-    <ClInclude Include="surface_plane.hpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClInclude>
     <ClInclude Include="camera.hpp">
       <Filter>bottom-layer\camera</Filter>
     </ClInclude>
@@ -228,17 +240,11 @@
     <ClInclude Include="tracer.hpp">
       <Filter>bottom-layer</Filter>
     </ClInclude>
-    <ClInclude Include="surface_triangle.hpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClInclude>
     <ClInclude Include="camera_fisheye.hpp">
       <Filter>bottom-layer\camera</Filter>
     </ClInclude>
     <ClInclude Include="sampler_jittered.hpp">
       <Filter>bottom-layer\sampler</Filter>
-    </ClInclude>
-    <ClInclude Include="surface_disk.hpp">
-      <Filter>bottom-layer\surface</Filter>
     </ClInclude>
     <ClInclude Include="matrix3D.hpp">
       <Filter>bottom-layer\basis</Filter>
@@ -306,9 +312,6 @@
     <ClInclude Include="BRDF_reflection.hpp">
       <Filter>bottom-layer\material\BRDF</Filter>
     </ClInclude>
-    <ClInclude Include="surface_quadratic.hpp">
-      <Filter>bottom-layer\surface</Filter>
-    </ClInclude>
     <ClInclude Include="surface_compound.hpp">
       <Filter>bottom-layer\surface</Filter>
     </ClInclude>
@@ -319,7 +322,34 @@
       <Filter>bottom-layer\image\bmp</Filter>
     </ClInclude>
     <ClInclude Include="quadratic.hpp">
-      <Filter>bottom-layer\basis</Filter>
+      <Filter>bottom-layer\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_disk.hpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_plane.hpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_triangle.hpp">
+      <Filter>bottom-layer\surface\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_quadratic.hpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_sphere.hpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="convexhull.hpp">
+      <Filter>bottom-layer\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_convexhull.hpp">
+      <Filter>bottom-layer\surface\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="triangle_hit.hpp">
+      <Filter>bottom-layer\mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="surface_regpolyhedron.hpp">
+      <Filter>bottom-layer\surface\3D</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

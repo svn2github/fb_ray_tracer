@@ -17,11 +17,11 @@ namespace ray_tracer {
 			wout = (light_ptr->get_light_origin(info_ptr) - info_ptr->hit_point).normalized();
 			temp = info_ptr->normal * wout; 
 			if (temp < epsilon && info_ptr->surface_ptr->twoface_shading) {
-				info_ptr->normal = info_ptr->normal.invert();
+				info_ptr->normal = -info_ptr->normal;
 				temp = -temp;
 			}
 			if (temp > epsilon) {
-			 	return light_ptr->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
+				return light_ptr->light_shade(info_ptr) * temp * info_ptr->surface_ptr->material_shade(info_ptr, surface_color, win, wout);
 			}
 		}
 		return color_black;
@@ -48,6 +48,8 @@ namespace ray_tracer {
 			if (world_ptr->fog_ptr) {
 				result = world_ptr->fog_ptr->fog_blending(info_ptr, world_ptr->camera_ptr->get_view_point(), result);
 			}
+			/* Memory caution! */
+			if (info_ptr->surface_ptr->is_temporary()) delete info_ptr->surface_ptr;
 			return result;
 		}
 	}

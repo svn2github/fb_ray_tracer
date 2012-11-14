@@ -1,9 +1,7 @@
 #ifndef __WOLRD_HPP__
 #define __WOLRD_HPP__
 
-#ifndef __MT_NO_MUTEX__
-#include <mutex> // C++0x Only
-#endif
+#include <mutex>
 #include <vector>
 #include "colorRGB.hpp"
 #include "vector3D.hpp"
@@ -49,9 +47,7 @@ namespace ray_tracer {
 		int dest_w, dest_h, current_coordinate_x, current_coordinate_y;
 		render_callback_func callback_func;
 		void *callback_param_ptr;
-#ifndef __MT_NO_MUTEX__
 		std::mutex coordinate_mutex;
-#endif
 	};
 
 	inline colorRGB world::get_background() const {

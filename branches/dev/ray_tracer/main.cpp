@@ -15,6 +15,8 @@
 #include "surface_triangle.hpp"
 #include "surface_quadratic.hpp"
 #include "surface_disk.hpp"
+#include "surface_convexhull.hpp"
+#include "surface_regpolyhedron.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
 #include "texture_image.hpp"
@@ -42,7 +44,6 @@ const int width = 500, height = 500, max_thread_count = 4;
 void render_callback(int x, int y, const colorRGB &color, void *pixel_ptr) {
 	char *p = (char *)pixel_ptr;
 
-	static_cast<char>(color.b * 255);
 	p += (y * width + x) << 2;
 	*p++ = static_cast<uint8_t>(color.b * 255);
 	*p++ = static_cast<uint8_t>(color.g * 255);
@@ -122,6 +123,27 @@ void test1(SDL_Surface *screen) {
 	sc->set_material(m2);
 	sc->set_texture(t4);
 
+	std::vector<point3D> vertices;
+	vertices.push_back(point3D(0, 5, -10));
+	vertices.push_back(point3D(10, 5, -10));
+	vertices.push_back(point3D(0, 15, -10));
+	vertices.push_back(point3D(10, 15, -10));
+	vertices.push_back(point3D(0, 5, 0));
+	vertices.push_back(point3D(10, 5, 0));
+	vertices.push_back(point3D(0, 15, 0));
+	vertices.push_back(point3D(10, 15, 0));
+	surface_convexhull *s6 = new surface_convexhull(vertices);
+	s6->set_material(m1);
+	s6->set_texture(t1);
+
+	surface_regpolyhedron *s7 = new surface_regpolyhedron(20, 5, point3D(5, 5, -5));
+	s7->set_material(m1);
+	s7->set_texture(t1);
+		
+	surface_regpolyhedron *s8 = new surface_regpolyhedron(8, 5, point3D(5, -5, -5));
+	s8->set_material(m2);
+	s8->set_texture(t2);
+
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-20, 0, 30), color_white);
 	// l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
@@ -136,7 +158,9 @@ void test1(SDL_Surface *screen) {
 	world.add_surface(s1);
 	world.add_surface(s2);
 	world.add_surface(s3);
-	world.add_surface(sc);
+	// world.add_surface(sc);
+	world.add_surface(s7);
+	world.add_surface(s8);
 	world.add_light(l);
 //	world.add_light(l2);
 

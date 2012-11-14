@@ -3,6 +3,7 @@
 #include <algorithm>
 
 namespace ray_tracer {
+
 	quadratic::quadratic() {
 		coef_xx = coef_yy = coef_zz = coef_xy = coef_xz = coef_yz = coef_x = coef_y = coef_z = coef_const = 0;
 		xmin = ymin = zmin = -huge_double;
@@ -44,7 +45,7 @@ namespace ray_tracer {
 	double quadratic::find_root(const point3D &p_, const vector3D &v_) const {
 		point3D p = p_;
 		vector3D v = v_;
-		double quadratic_a = 0, quadratic_b = 0, quadratic_c = 0;
+		double quad_a = 0, quad_b = 0, quad_c = 0;
 		double ycoef, yconst, zcoef, zconst, delta, value1, value2;
 		bool valid1, valid2;
 
@@ -63,51 +64,51 @@ namespace ray_tracer {
 		zconst = p.z - zcoef * p.x;
 		// calcuate the coefficient of quadratic equation.
 		// coefx_x
-		quadratic_a += coef_xx;
-		quadratic_b += 0;
-		quadratic_c += 0;
+		quad_a += coef_xx;
+		quad_b += 0;
+		quad_c += 0;
 		// coef_yy
-		quadratic_a += coef_yy * ycoef * ycoef;
-		quadratic_b += coef_yy * 2 * ycoef * yconst;
-		quadratic_c += coef_yy * yconst * yconst;
+		quad_a += coef_yy * ycoef * ycoef;
+		quad_b += coef_yy * 2 * ycoef * yconst;
+		quad_c += coef_yy * yconst * yconst;
 		// coef_zz
-		quadratic_a += coef_zz * zcoef * zcoef;
-		quadratic_b += coef_zz * 2 * zcoef * zconst;
-		quadratic_c += coef_zz * zconst * zconst;
+		quad_a += coef_zz * zcoef * zcoef;
+		quad_b += coef_zz * 2 * zcoef * zconst;
+		quad_c += coef_zz * zconst * zconst;
 		// coef_xy
-		quadratic_a += coef_xy * ycoef;
-		quadratic_b += coef_xy * yconst;
-		quadratic_c += 0;
+		quad_a += coef_xy * ycoef;
+		quad_b += coef_xy * yconst;
+		quad_c += 0;
 		// coef_xz
-		quadratic_a += coef_xz * zcoef;
-		quadratic_b += coef_xz * zconst;
-		quadratic_c += 0;
+		quad_a += coef_xz * zcoef;
+		quad_b += coef_xz * zconst;
+		quad_c += 0;
 		// coef_yz
-		quadratic_a += coef_yz * ycoef * zcoef;
-		quadratic_b += coef_yz * (ycoef * zconst + zcoef * yconst);
-		quadratic_c += coef_yz * yconst * zconst;
+		quad_a += coef_yz * ycoef * zcoef;
+		quad_b += coef_yz * (ycoef * zconst + zcoef * yconst);
+		quad_c += coef_yz * yconst * zconst;
 		// coef_x
-		quadratic_a += 0;
-		quadratic_b += coef_x;
-		quadratic_c += 0;
+		quad_a += 0;
+		quad_b += coef_x;
+		quad_c += 0;
 		// coef_y
-		quadratic_a += 0;
-		quadratic_b += coef_y * ycoef;
-		quadratic_c += coef_y * yconst;
+		quad_a += 0;
+		quad_b += coef_y * ycoef;
+		quad_c += coef_y * yconst;
 		// coef_z
-		quadratic_a += 0;
-		quadratic_b += coef_z * zcoef;
-		quadratic_c += coef_z * zconst;
-		// c
-		quadratic_a += 0;
-		quadratic_b += 0;
-		quadratic_c += coef_const;
+		quad_a += 0;
+		quad_b += coef_z * zcoef;
+		quad_c += coef_z * zconst;
+		// coef_const
+		quad_a += 0;
+		quad_b += 0;
+		quad_c += coef_const;
 		// find the root.
-		delta = quadratic_b * quadratic_b - 4 * quadratic_a * quadratic_c;
+		delta = quad_b * quad_b - 4 * quad_a * quad_c;
 		if (delta >= 0) {
 			delta = sqrt(delta);
-			value1 = ((-quadratic_b - delta) / quadratic_a / 2 - p.x) / v.x;
-			value2 = ((-quadratic_b + delta) / quadratic_a / 2 - p.x) / v.x;
+			value1 = ((-quad_b - delta) / quad_a / 2 - p.x) / v.x;
+			value2 = ((-quad_b + delta) / quad_a / 2 - p.x) / v.x;
 			if (value1 > value2) std::swap(value1, value2);
 			/* epsilon: avoid hit itself. */
 			valid1 = (value1 > epsilon) && check_range(p_ + v_ * value1);

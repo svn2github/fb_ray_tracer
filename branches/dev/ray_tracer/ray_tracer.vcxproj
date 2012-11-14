@@ -77,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="convexhull.cpp" />
     <ClCompile Include="quadratic.cpp" />
     <ClCompile Include="BRDF.cpp" />
     <ClCompile Include="BRDF_reflection.cpp" />
@@ -96,7 +97,9 @@
     <ClCompile Include="material_mirror.cpp" />
     <ClCompile Include="sampler_single.cpp" />
     <ClCompile Include="surface_compound.cpp" />
+    <ClCompile Include="surface_convexhull.cpp" />
     <ClCompile Include="surface_quadratic.cpp" />
+    <ClCompile Include="surface_regpolyhedron.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
     <ClCompile Include="texture_image.cpp" />
@@ -123,6 +126,7 @@
     <ClCompile Include="vector3D.cpp" />
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
+    <ClInclude Include="convexhull.hpp" />
     <ClInclude Include="quadratic.hpp" />
     <ClInclude Include="BRDF.hpp" />
     <ClInclude Include="BRDF_reflection.hpp" />
@@ -143,7 +147,9 @@
     <ClInclude Include="material_mirror.hpp" />
     <ClInclude Include="sampler_single.hpp" />
     <ClInclude Include="surface_compound.hpp" />
+    <ClInclude Include="surface_convexhull.hpp" />
     <ClInclude Include="surface_quadratic.hpp" />
+    <ClInclude Include="surface_regpolyhedron.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />
     <ClInclude Include="material.hpp" />
@@ -170,6 +176,7 @@
     <ClInclude Include="texture_image.hpp" />
     <ClInclude Include="texture_solid_color.hpp" />
     <ClInclude Include="ray.hpp" />
+    <ClInclude Include="triangle_hit.hpp" />
     <ClInclude Include="vector3D.hpp" />
     <ClInclude Include="tracer.hpp" />
     <ClInclude Include="world.hpp" />

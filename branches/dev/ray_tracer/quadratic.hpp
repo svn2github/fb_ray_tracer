@@ -5,6 +5,7 @@
 #include "vector3D.hpp"
 
 namespace ray_tracer {
+
 	class quadratic {
 	private:
 		bool check_range(const point3D &) const;
