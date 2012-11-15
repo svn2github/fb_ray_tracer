@@ -49,7 +49,7 @@ namespace ray_tracer {
 		double ycoef, yconst, zcoef, zconst, delta, value1, value2;
 		bool valid1, valid2;
 
-		// make sure v.x is not zero.
+		// Make sure v.x is not zero.
 		if (v.x == 0 && v.y != 0) {
 			std::swap(p.x, p.y);
 			std::swap(v.x, v.y);
@@ -57,12 +57,12 @@ namespace ray_tracer {
 			std::swap(p.x, p.z);
 			std::swap(v.x, v.z);
 		}
-		// transform y and z to x.
+		// Transform y and z to x.
 		ycoef = v.y / v.x;
 		yconst = p.y - ycoef * p.x;
 		zcoef = v.z / v.x;
 		zconst = p.z - zcoef * p.x;
-		// calcuate the coefficient of quadratic equation.
+		// Calcuate the coefficient of quadratic equation.
 		// coefx_x
 		quad_a += coef_xx;
 		quad_b += 0;
@@ -103,14 +103,14 @@ namespace ray_tracer {
 		quad_a += 0;
 		quad_b += 0;
 		quad_c += coef_const;
-		// find the root.
+		// Find the root.
 		delta = quad_b * quad_b - 4 * quad_a * quad_c;
 		if (delta >= 0) {
 			delta = sqrt(delta);
 			value1 = ((-quad_b - delta) / quad_a / 2 - p.x) / v.x;
 			value2 = ((-quad_b + delta) / quad_a / 2 - p.x) / v.x;
 			if (value1 > value2) std::swap(value1, value2);
-			/* epsilon: avoid hit itself. */
+			/* Epsilon: Avoid hit itself. */
 			valid1 = (value1 > epsilon) && check_range(p_ + v_ * value1);
 			valid2 = (value2 > epsilon) && check_range(p_ + v_ * value2);
 			if (valid1) {

@@ -78,7 +78,7 @@ namespace ray_tracer {
 	}
 
 	inline vector3D operator/(const vector3D &v, double f) {
-		double inv_f = 1.0 / f;
+		double inv_f = 1 / f;
 		return vector3D(v.x * inv_f, v.y * inv_f, v.z * inv_f);
 	}
 }

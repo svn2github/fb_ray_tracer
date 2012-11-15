@@ -11,6 +11,7 @@ namespace ray_tracer {
 		const double s2 = sqrt(2), s3 = sqrt(3), s5 = sqrt(5), t1 = (s5 + 1) / 2, t2 = (s5 - 1) / 2, k1 = sqrt(t1 / s5), k2 = sqrt(t2 / s5); 
 		std::vector<point3D> vertices;
 		vector3D vc = vector3D(c.x, c.y, c.z);
+
 		if (f == 4) {
 			vertices.push_back(point3D(0, r, 0));
 			vertices.push_back(point3D(0, -r / 3, r * 2 * s2 / 3));
@@ -46,6 +47,42 @@ namespace ray_tracer {
 			vertices.push_back(point3D(r * k2, r / s5, -r * t1 / s5));
 			vertices.push_back(point3D(-r * k2, r / s5, -r * t1 / s5));
 			vertices.push_back(point3D(-r * k1, r / s5, r * t2 / s5));
+			reflect(vertices);
+		} else if (f == 32) {
+			vertices.push_back(point3D(0, 1, 3 * t1));
+			vertices.push_back(point3D(0, -1, 3 * t1));
+			vertices.push_back(point3D(1, 3 * t1, 0));
+			vertices.push_back(point3D(-1, 3 * t1, 0));
+			vertices.push_back(point3D(3 * t1, 0, 1));
+			vertices.push_back(point3D(3 * t1, 0, -1));
+			vertices.push_back(point3D(2, 1 + 2 * t1, t1));
+			vertices.push_back(point3D(2, 1 + 2 * t1, -t1));
+			vertices.push_back(point3D(2, -1 - 2 * t1, t1));
+			vertices.push_back(point3D(2, -1 - 2 * t1, -t1));
+			vertices.push_back(point3D(1 + 2 * t1, t1, 2));
+			vertices.push_back(point3D(1 + 2 * t1, -t1, 2));
+			vertices.push_back(point3D(-1 - 2 * t1, t1, 2));
+			vertices.push_back(point3D(-1 - 2 * t1, -t1, 2));
+			vertices.push_back(point3D(t1, 2, 1 + 2 * t1));
+			vertices.push_back(point3D(-t1, 2, 1 + 2 * t1));
+			vertices.push_back(point3D(t1, 2, -1 - 2 * t1));
+			vertices.push_back(point3D(-t1, 2, -1 - 2 * t1));
+			vertices.push_back(point3D(1, 2 + t1, 2 * t1));
+			vertices.push_back(point3D(1, 2 + t1, 2 * -t1));
+			vertices.push_back(point3D(1, -2 - t1, 2 * t1));
+			vertices.push_back(point3D(1, -2 - t1, 2 * -t1));
+			vertices.push_back(point3D(2 + t1, 2 * t1, 1));
+			vertices.push_back(point3D(2 + t1, 2 * -t1, 1));
+			vertices.push_back(point3D(-2 - t1, 2 * t1, 1));
+			vertices.push_back(point3D(-2 - t1, 2 * -t1, 1));
+			vertices.push_back(point3D(2 * t1, 1, 2 + t1));
+			vertices.push_back(point3D(2 * -t1, 1, 2 + t1));
+			vertices.push_back(point3D(2 * t1, 1, -2 - t1));
+			vertices.push_back(point3D(2 * -t1, 1, -2 - t1));
+			for (unsigned int i = 0; i < vertices.size(); ++i) {
+				vertices[i] = vertices[i].normalized();
+				vertices[i] = vertices[i] * r;
+			}
 			reflect(vertices);
 		}
 		for (unsigned int i = 0; i < vertices.size(); ++i) {

@@ -35,12 +35,14 @@ namespace ray_tracer {
 		}
 	}
 
+	/* Complexity: O(N^2). */
 	std::vector<face_t> convexhull::construct_hull() {
 		int n = points.size(), flag = 0;
 		std::vector<face_t> result;
 		face_t f;
 		double volume;
 
+		/* Ensure the first four vertices which don't share the same face. */
 		for (int i = 1; i < n; ++i) {
 			if (dblcmp((points[i] - points[0]).length()) > 0) {
 				std::swap(points[i], points[1]);
@@ -63,6 +65,7 @@ namespace ray_tracer {
 			}
 		}
 		if (flag != 7) return result;
+		/* Init the first face. */
 		for (int i = 0; i < 4; ++i) {
 			std::get<0>(f) = (i + 1) % 4, std::get<1>(f) = (i + 2) % 4, std::get<2>(f) = (i + 3) % 4;
 			volume = ((points[std::get<0>(f)] - points[i]) ^ (points[std::get<1>(f)] - points[i])) * (points[std::get<2>(f)] - points[i]);
@@ -70,6 +73,7 @@ namespace ray_tracer {
 			belong[std::make_pair(std::get<0>(f), std::get<1>(f))] = belong[std::make_pair(std::get<1>(f), std::get<2>(f))] = belong[std::make_pair(std::get<2>(f), std::get<0>(f))] = faces.size();
 			faces.push_back(std::make_pair(f, true));
 		}
+		/* Construct the 3D hull. */
 		std::random_shuffle(points.begin() + 4, points.end());
 		for (int i = 4; i < n; ++i) {
 			for (unsigned int j = 0; j < faces.size(); ++j) {
@@ -80,6 +84,7 @@ namespace ray_tracer {
 				}
 			}
 		}
+		/* Remove hidden face from face array. */
 		for (std::vector<std::pair<face_t, bool> >::iterator it = faces.begin(); it != faces.end(); ++it) {
 			if (it->second) result.push_back(it->first);
 		}
