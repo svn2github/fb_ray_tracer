@@ -1,5 +1,4 @@
 
-#include <iostream>
 #include <thread>
 #include <Windows.h>
 #include <SDL.h>
@@ -145,7 +144,7 @@ void test1(SDL_Surface *screen) {
 	s8->set_texture(t2);
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
-	l = new light_point(point3D(-20, 0, 30), color_white);
+	l = new light_point(point3D(-20, 0, 10), color_white);
 	// l->set_spot(true, vector3D(30, 9, -30), pi / 3, 5);
 	l->set_attenuation(true, 1, 0.0001, 0.00005);
 	l2 = new light_point(point3D(-10, 0, 30), color_white);
@@ -240,7 +239,7 @@ int main() {
 
 	DWORD old_time = GetTickCount();
 	test1(screen);
-	std::cout << "Total time used: " << GetTickCount() - old_time << std::endl;
+	printf("Total time used: %dms.\n",GetTickCount() - old_time);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));

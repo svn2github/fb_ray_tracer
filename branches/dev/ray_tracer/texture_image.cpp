@@ -1,6 +1,5 @@
 
 #include "texture_image.hpp"
-#include <cstdio>
 
 namespace ray_tracer {
 

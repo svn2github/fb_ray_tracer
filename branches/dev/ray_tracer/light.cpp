@@ -1,7 +1,6 @@
 
 #include "light.hpp"
 #include "world.hpp"
-#include <iostream>
 
 namespace ray_tracer {
 
