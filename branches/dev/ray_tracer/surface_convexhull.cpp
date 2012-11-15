@@ -31,7 +31,7 @@ namespace ray_tracer {
 		edges = hull.second;
 		face_tris.reserve(faces.size());
 		for (std::vector<face_t>::const_iterator it = faces.begin(); it != faces.end(); ++it) {
-			v0 = points[std::get<2>(*it)], v1 = points[std::get<1>(*it)], v2 = points[std::get<0>(*it)];
+			v0 = points[std::get<0>(*it)], v1 = points[std::get<1>(*it)], v2 = points[std::get<2>(*it)];
 			tri_ptr = new surface_triangle(v0, v1, v2);
 			face_tris.push_back(tri_ptr);
 			tri_ptr->attach(this);
