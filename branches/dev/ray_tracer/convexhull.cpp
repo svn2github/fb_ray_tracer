@@ -36,9 +36,10 @@ namespace ray_tracer {
 	}
 
 	/* Complexity: O(N^2). */
-	std::vector<face_t> convexhull::construct_hull() {
+	std::pair<std::vector<face_t>, std::vector<edge_t> > convexhull::construct_hull() {
 		int n = points.size(), flag = 0;
-		std::vector<face_t> result;
+		std::vector<face_t> ret_faces;
+		std::vector<edge_t> ret_edges;
 		face_t f;
 		double volume;
 
@@ -64,7 +65,7 @@ namespace ray_tracer {
 				break;
 			}
 		}
-		if (flag != 7) return result;
+		if (flag != 7) return std::make_pair(ret_faces, ret_edges);
 		/* Init the first face. */
 		for (int i = 0; i < 4; ++i) {
 			std::get<0>(f) = (i + 1) % 4, std::get<1>(f) = (i + 2) % 4, std::get<2>(f) = (i + 3) % 4;
@@ -86,8 +87,11 @@ namespace ray_tracer {
 		}
 		/* Remove hidden face from face array. */
 		for (std::vector<std::pair<face_t, bool> >::iterator it = faces.begin(); it != faces.end(); ++it) {
-			if (it->second) result.push_back(it->first);
+			if (it->second) ret_faces.push_back(it->first);
 		}
-		return result;
+		for (std::map<std::pair<int, int>, int>::iterator it = belong.begin(); it != belong.end(); ++it) {
+			if (faces[it->second].second && it->first.first < it->first.second) ret_edges.push_back(it->first);
+		}
+		return std::make_pair(ret_faces, ret_edges);
 	}
 }

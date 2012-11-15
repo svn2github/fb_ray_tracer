@@ -18,6 +18,7 @@
 #include "surface_regpolyhedron.hpp"
 #include "texture.hpp"
 #include "texture_checker.hpp"
+#include "texture_football.hpp"
 #include "texture_image.hpp"
 #include "texture_solid_color.hpp"
 #include "texture_mapping.hpp"
@@ -138,10 +139,10 @@ void test1(SDL_Surface *screen) {
 	surface_regpolyhedron *s7 = new surface_regpolyhedron(20, 5, point3D(5, 5, -5));
 	s7->set_material(m1);
 	s7->set_texture(t1);
-		
-	surface_regpolyhedron *s8 = new surface_regpolyhedron(8, 5, point3D(5, -5, -5));
-	s8->set_material(m2);
-	s8->set_texture(t2);
+
+	surface_regpolyhedron *s8 = new surface_regpolyhedron(32, 5, point3D(5, -5, -5));
+	s8->set_material(m3);
+	s8->set_texture(new texture_football);
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-20, 0, 10), color_white);
@@ -161,9 +162,12 @@ void test1(SDL_Surface *screen) {
 	world.add_surface(s7);
 	world.add_surface(s8);
 	world.add_light(l);
-//	world.add_light(l2);
+	//	world.add_light(l2);
 
 	render(world, screen);
+
+	delete s7;
+	delete s8;
 }
 
 void test2(SDL_Surface *screen) {
@@ -178,12 +182,12 @@ void test2(SDL_Surface *screen) {
 	// cam = new camera_orthographic(point3D(0, 0, 0), point3D(1, 0, 0), vector3D(0, 0, 1), 40, 40);
 
 	s = new surface_sphere(point3D(25, 0, 0), 10);
-	m = new material_matte(colorRGB(1.4, 1.4, 0.5));
-	t = new texture_image(image_file_create("C:\\Users\\ForeverBell\\Desktop\\moon.bmp", image_type_bmp), new texture_mapping_sphere());
+	m = new material_matte(color_white);
+	t = new texture_image(image_file_create("C:\\Users\\ForeverBell\\Desktop\\earth.bmp", image_type_bmp), new texture_mapping_sphere());
 	s->set_material(m);
 	s->set_texture(t);
 
-	l = new light_point(point3D(0, -30, 30), color_white);
+	l = new light_point(point3D(0, 0, 0), color_white);
 	l->set_shadow(false);
 
 	world.set_ambient(color_black);
@@ -239,7 +243,7 @@ int main() {
 
 	DWORD old_time = GetTickCount();
 	test1(screen);
-	printf("Total time used: %dms.\n",GetTickCount() - old_time);
+	printf("Total time used: %dms.\n", GetTickCount() - old_time);
 
 	SDL_Event event;
 	while (SDL_WaitEvent(&event));

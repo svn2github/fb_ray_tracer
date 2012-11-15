@@ -1,6 +1,7 @@
 #ifndef __SURFACE_HPP__
 #define __SURFACE_HPP__
 
+#include <memory>
 #include "vector3D.hpp"
 #include "point3D.hpp"
 #include "colorRGB.hpp"
@@ -11,7 +12,9 @@
 
 namespace ray_tracer {
 	class surface {
+		friend class surface_compound;
 		friend class tracer;
+		friend class texture_football;
 	public:
 		surface();
 		virtual ~surface() = 0;
@@ -27,6 +30,7 @@ namespace ray_tracer {
 		virtual void set_texture(const texture *);
 		virtual void set_twoface_shading(bool);
 	protected:
+		std::unique_ptr<const surface> bounding_surface_ptr;
 		const surface *attached_surface_ptr;
 		const material *material_ptr;
 		const texture *texture_ptr;

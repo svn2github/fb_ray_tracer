@@ -100,6 +100,7 @@
     <ClCompile Include="surface_convexhull.cpp" />
     <ClCompile Include="surface_quadratic.cpp" />
     <ClCompile Include="surface_regpolyhedron.cpp" />
+    <ClCompile Include="texture_football.cpp" />
     <ClCompile Include="texture_mapping.cpp" />
     <ClCompile Include="texture_mapping_sphere.cpp" />
     <ClCompile Include="texture_image.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="surface_convexhull.hpp" />
     <ClInclude Include="surface_quadratic.hpp" />
     <ClInclude Include="surface_regpolyhedron.hpp" />
+    <ClInclude Include="texture_football.hpp" />
     <ClInclude Include="texture_mapping.hpp" />
     <ClInclude Include="texture_mapping_sphere.hpp" />
     <ClInclude Include="material.hpp" />

@@ -1,7 +1,9 @@
 
-#include "surface_regpolyhedron.hpp"
 #include <vector>
 #include <cmath>
+#include <memory>
+#include "surface_regpolyhedron.hpp"
+#include "surface_sphere.hpp"
 
 // Reference: http://caterpillar.onlyfun.net/Gossip/ComputerGraphics/VetexOfPolyhedron.htm
 
@@ -18,10 +20,10 @@ namespace ray_tracer {
 			vertices.push_back(point3D(r * s2 / s3, -r / 3, -r * s2/ 3));
 			vertices.push_back(point3D(-r * s2 / s3, -r / 3, -r * s2 / 3));
 		} else if (f == 6) {
-			vertices.push_back(point3D(0, r, 0));
-			vertices.push_back(point3D(0, r / 3, r * 2 * s2 / 3));
-			vertices.push_back(point3D(r * s2 / s3, r / 3, -r * s2 / 3));
-			vertices.push_back(point3D(-r * s2 / s3, r / 3, - r * s2 / 3));
+			vertices.push_back(point3D(r / s3, r / s3, r / s3));
+			vertices.push_back(point3D(r / s3, r / s3, -r / s3));
+			vertices.push_back(point3D(r / s3, -r / s3, r / s3));
+			vertices.push_back(point3D(r / s3, -r / s3, -r / s3));
 			reflect(vertices);
 		} else if (f == 8) {
 			vertices.push_back(point3D(0, r, 0));
@@ -89,6 +91,8 @@ namespace ray_tracer {
 			vertices[i] += vc;
 		}
 		construct(vertices);
+
+		bounding_surface_ptr = std::unique_ptr<const surface>(new surface_sphere(c, r));
 	}
 
 	void surface_regpolyhedron::reflect(std::vector<point3D> &vertices) {

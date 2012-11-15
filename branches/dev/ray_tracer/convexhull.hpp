@@ -10,11 +10,12 @@
 namespace ray_tracer {
 
 	typedef std::tuple<int, int, int> face_t;
+	typedef std::tuple<int, int> edge_t;
 
 	class convexhull {
 	public:
 		convexhull(std::vector<point3D> &);
-		std::vector<face_t> construct_hull();
+		std::pair<std::vector<face_t>, std::vector<edge_t> > construct_hull();
 	private:
 		bool remove_hidden_face(int, int, int);
 		void walk_hidden_face(int, int);

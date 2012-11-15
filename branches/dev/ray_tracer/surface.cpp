@@ -4,6 +4,7 @@
 namespace ray_tracer {
 
 	surface::surface() {
+		bounding_surface_ptr = NULL;
 		attached_surface_ptr = NULL;
 		material_ptr = NULL;
 		texture_ptr = NULL;

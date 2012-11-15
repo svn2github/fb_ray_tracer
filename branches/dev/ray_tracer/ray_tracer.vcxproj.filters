@@ -149,6 +149,9 @@
     <ClCompile Include="surface_regpolyhedron.cpp">
       <Filter>bottom-layer\surface\3D</Filter>
     </ClCompile>
+    <ClCompile Include="texture_football.cpp">
+      <Filter>bottom-layer\texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -350,6 +353,9 @@
     </ClInclude>
     <ClInclude Include="surface_regpolyhedron.hpp">
       <Filter>bottom-layer\surface\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_football.hpp">
+      <Filter>bottom-layer\texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

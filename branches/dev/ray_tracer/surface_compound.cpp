@@ -43,14 +43,22 @@ namespace ray_tracer {
 
 	double surface_compound::hit(const ray &emission_ray, const surface **hit_surface_ptr) const {
 		bool hit_flag = false;
-		double hit_time = huge_double;
+		double t, hit_time = huge_double;
 		const surface *surface_ptr, *temp_surface_ptr;
 
 		for (std::vector<surface *>::const_iterator iter = surfaces.begin(); iter != surfaces.end(); ++iter) {
 			surface_ptr = *iter;
 			temp_surface_ptr = NULL;
 
-			double t = surface_ptr->hit(emission_ray, &temp_surface_ptr);
+			/* Use bounding sphere / box to improve efficiency. */
+			if (surface_ptr->bounding_surface_ptr != NULL) {
+				t = surface_ptr->bounding_surface_ptr->hit(emission_ray, &temp_surface_ptr);
+				if (t > epsilon && t < hit_time) {
+					t = surface_ptr->hit(emission_ray, &temp_surface_ptr);
+				}
+			} else {
+				t = surface_ptr->hit(emission_ray, &temp_surface_ptr);
+			}
 
 			if (temp_surface_ptr != NULL) surface_ptr = temp_surface_ptr;
 			/* Avoid hiting the surface which shots this ray. */

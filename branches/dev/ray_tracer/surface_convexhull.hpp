@@ -5,11 +5,14 @@
 #include "surface_triangle.hpp"
 #include "convexhull.hpp"
 #include <vector>
+#include <unordered_map>
 
 namespace ray_tracer {
 	class surface_convexhull : public surface {
+		friend class texture_football;
 	public:
 		surface_convexhull(const std::vector<point3D> &);
+		~surface_convexhull();
 		double hit(const ray &, const surface **) const;
 		vector3D get_normal_vector(const point3D &) const;
 	protected:
@@ -18,7 +21,9 @@ namespace ray_tracer {
 	protected:
 		std::vector<point3D> points;
 		std::vector<face_t> faces;
-		std::vector<surface_triangle> face_tris;
+		std::vector<edge_t> edges;
+		std::vector<const surface_triangle *> face_tris;
+		std::unordered_map<const surface_triangle *, int> vetices_onface;
 	};
 }
 
