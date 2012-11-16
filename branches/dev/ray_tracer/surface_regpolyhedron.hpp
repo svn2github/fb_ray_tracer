@@ -11,6 +11,7 @@ namespace ray_tracer {
 		surface_regpolyhedron(int, double, const point3D &);
 	private:
 		void reflect(std::vector<point3D> &);
+		void subdivide(double, int, std::vector<point3D> &);
 	};
 }
 

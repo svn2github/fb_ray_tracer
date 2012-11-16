@@ -13,6 +13,7 @@ namespace ray_tracer {
 		double length_squared() const;
 		double inv_length() const;
 		point3D normalized() const;
+		friend point3D operator+(const point3D &, const point3D &);
 		friend point3D operator+(const point3D &, const vector3D &);
 		friend point3D &operator+=(point3D &, const vector3D &);
 		friend point3D operator-(const point3D &);
@@ -40,6 +41,10 @@ namespace ray_tracer {
 	inline point3D point3D::normalized() const {
 		double l = inv_length();
 		return point3D(x * l, y * l, z * l);
+	}
+
+	inline point3D operator+(const point3D &p1, const point3D &p2) {
+		return point3D(p1.x + p2.x, p1.y + p2.y, p1.z + p2.z);
 	}
 
 	inline point3D operator+(const point3D &p, const vector3D &v) {

@@ -17,8 +17,8 @@ namespace ray_tracer {
 		convexhull(std::vector<point3D> &);
 		std::pair<std::vector<face_t>, std::vector<edge_t> > construct_hull();
 	private:
-		bool remove_hidden_face(int, int, int);
-		void walk_hidden_face(int, int);
+		bool remove_face(int, int, int);
+		void walk_face(int, int);
 		double mixed_product(const point3D &, const point3D &, const point3D &, const point3D &);
 	private:
 		std::vector<std::pair<face_t, bool> > faces;

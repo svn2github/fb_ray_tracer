@@ -58,9 +58,4 @@ namespace ray_tracer {
 		}
 		return t;
 	}
-
-	vector3D surface_convexhull::get_normal_vector(const point3D &point) const {
-		throw -1;
-		return vector3D(0, 0, 0); // Never be here 
-	}
 }

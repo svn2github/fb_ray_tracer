@@ -14,7 +14,6 @@ namespace ray_tracer {
 		surface_convexhull(const std::vector<point3D> &);
 		~surface_convexhull();
 		double hit(const ray &, const surface **) const;
-		vector3D get_normal_vector(const point3D &) const;
 	protected:
 		surface_convexhull();
 		void construct(const std::vector<point3D> &);

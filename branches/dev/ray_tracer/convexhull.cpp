@@ -7,11 +7,11 @@ namespace ray_tracer {
 
 	convexhull::convexhull(std::vector<point3D> &points_) : points(points_) { }
 
-	bool convexhull::remove_hidden_face(int p, int b, int a) {
+	bool convexhull::remove_face(int p, int b, int a) {
 		int f = belong[std::make_pair(b, a)];
 
 		if (faces[f].second) {
-			if (dblcmp(mixed_product(points[p], points[std::get<0>(faces[f].first)], points[std::get<1>(faces[f].first)], points[std::get<2>(faces[f].first)])) > 0) {
+			if (dblcmp(mixed_product(points[p], points[std::get<0>(faces[f].first)], points[std::get<1>(faces[f].first)], points[std::get<2>(faces[f].first)])) >= 0) {
 				return true;
 			} else {
 				belong[std::make_pair(a, b)] = faces.size();
@@ -23,17 +23,13 @@ namespace ray_tracer {
 		return false;
 	}
 
-	void convexhull::walk_hidden_face(int p, int f) {
+	void convexhull::walk_face(int p, int f) {
+		int a = std::get<0>(faces[f].first), b = std::get<1>(faces[f].first), c = std::get<2>(faces[f].first);
+
 		faces[f].second = false;
-		if (remove_hidden_face(p, std::get<1>(faces[f].first), std::get<0>(faces[f].first))) {
-			walk_hidden_face(p, belong[std::make_pair(std::get<1>(faces[f].first), std::get<0>(faces[f].first))]);
-		} 
-		if (remove_hidden_face(p, std::get<2>(faces[f].first), std::get<1>(faces[f].first))) {
-			walk_hidden_face(p, belong[std::make_pair(std::get<2>(faces[f].first), std::get<1>(faces[f].first))]);
-		}
-		if (remove_hidden_face(p, std::get<0>(faces[f].first), std::get<2>(faces[f].first))) {
-			walk_hidden_face(p, belong[std::make_pair(std::get<0>(faces[f].first), std::get<2>(faces[f].first))]);
-		}
+		if (remove_face(p, b, a)) walk_face(p, belong[std::make_pair(b, a)]);
+		if (remove_face(p, c, b)) walk_face(p, belong[std::make_pair(c, b)]);
+		if (remove_face(p, a, c)) walk_face(p, belong[std::make_pair(a, c)]);
 	}
 
 	/* Complexity: O(N^2). */
@@ -43,7 +39,6 @@ namespace ray_tracer {
 		std::vector<edge_t> ret_edges;
 		face_t f;
 
-		std::random_shuffle(points.begin(), points.end());
 		/* Ensure the first four vertices which don't share the same face. */
 		for (int i = 1; i < n; ++i) {
 			if (dblcmp((points[i] - points[0]).length()) > 0) {
@@ -85,8 +80,8 @@ namespace ray_tracer {
 			for (int j = 0; j < sz; ++j) {
 				if (faces[j].second) {
 					f = faces[j].first;
-					if (dblcmp(mixed_product(points[i], points[std::get<0>(f)], points[std::get<1>(f)], points[std::get<2>(f)])) > 0) {
-						walk_hidden_face(i, j);
+					if (dblcmp(mixed_product(points[i], points[std::get<0>(f)], points[std::get<1>(f)], points[std::get<2>(f)])) >= 0) {
+						walk_face(i, j);
 						break;
 					}
 				}

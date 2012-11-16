@@ -4,6 +4,7 @@
 #include <memory>
 #include "surface_regpolyhedron.hpp"
 #include "surface_sphere.hpp"
+#include "convexhull.hpp"
 
 // Reference: http://caterpillar.onlyfun.net/Gossip/ComputerGraphics/VetexOfPolyhedron.htm
 
@@ -101,5 +102,20 @@ namespace ray_tracer {
 		for (int i = 0; i < sz; ++i) {
 			vertices.push_back(-vertices[i]);
 		}
+	}
+
+	void surface_regpolyhedron::subdivide(double r, int depth, std::vector<point3D> &points) {
+		std::vector<edge_t> edges;
+		point3D v0, v1, v2;
+
+		do {
+			edges = convexhull(points).construct_hull().second;
+			for (std::vector<edge_t>::const_iterator it = edges.begin(); it != edges.end(); ++it) {
+				v0 = points[std::get<0>(*it)];
+				v1 = points[std::get<1>(*it)];
+				v2 = (v0 + v1).normalized() * r;
+				points.push_back(v2);
+			}
+		} while (--depth != 0);
 	}
 }
