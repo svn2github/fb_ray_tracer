@@ -78,6 +78,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="convexhull.cpp" />
+    <ClCompile Include="polyvertex.cpp" />
+    <ClCompile Include="polyvertex_cube.cpp" />
+    <ClCompile Include="polyvertex_dodecahedron.cpp" />
+    <ClCompile Include="polyvertex_icosahedron.cpp" />
+    <ClCompile Include="polyvertex_octahedron.cpp" />
+    <ClCompile Include="polyvertex_tetrahedron.cpp" />
+    <ClCompile Include="polyvertex_truncated_icosahedron.cpp" />
     <ClCompile Include="quadratic.cpp" />
     <ClCompile Include="BRDF.cpp" />
     <ClCompile Include="BRDF_reflection.cpp" />
@@ -128,6 +135,13 @@
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="convexhull.hpp" />
+    <ClInclude Include="polyvertex.hpp" />
+    <ClInclude Include="polyvertex_cube.hpp" />
+    <ClInclude Include="polyvertex_dodecahedron.hpp" />
+    <ClInclude Include="polyvertex_icosahedron.hpp" />
+    <ClInclude Include="polyvertex_octahedron.hpp" />
+    <ClInclude Include="polyvertex_tetrahedron.hpp" />
+    <ClInclude Include="polyvertex_truncated_icosahedron.hpp" />
     <ClInclude Include="quadratic.hpp" />
     <ClInclude Include="BRDF.hpp" />
     <ClInclude Include="BRDF_reflection.hpp" />

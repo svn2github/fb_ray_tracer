@@ -10,7 +10,7 @@ namespace ray_tracer {
 	class material_phong : public material  {
 	public:
 		material_phong();
-		material_phong(const colorRGB &, const colorRGB &);
+		material_phong(const colorRGB &, const colorRGB &, int);
 		~material_phong();
 		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		void set_specular_shininess(const int &);

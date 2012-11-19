@@ -136,8 +136,8 @@ void test1(SDL_Surface *screen) {
 	s6->set_material(m1);
 	s6->set_texture(t1);
 
-	surface_regpolyhedron *s7 = new surface_regpolyhedron(20, 5, point3D(5, 5, -5));
-	s7->set_material(m1);
+	surface_regpolyhedron *s7 = new surface_regpolyhedron(4, 5, point3D(5, 5, -5));
+	s7->set_material(m3);
 	s7->set_texture(t1);
 
 	surface_regpolyhedron *s8 = new surface_regpolyhedron(32, 5, point3D(5, -5, -5));
@@ -165,9 +165,6 @@ void test1(SDL_Surface *screen) {
 	//	world.add_light(l2);
 
 	render(world, screen);
-
-	delete s7;
-	delete s8;
 }
 
 void test2(SDL_Surface *screen) {

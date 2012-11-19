@@ -9,10 +9,10 @@ namespace ray_tracer {
 		specular_ptr = new BRDF_phong(color_white);	
 	}
 
-	material_phong::material_phong(const colorRGB &diffuse_rho_, const colorRGB &specular_rho_) {
+	material_phong::material_phong(const colorRGB &diffuse_rho_, const colorRGB &specular_rho_, int shininess_) {
 		diffuse_ptr = new BRDF_lambertian(diffuse_rho_);
 		specular_ptr = new BRDF_phong(specular_rho_);
-		set_specular_shininess(1);
+		set_specular_shininess(shininess_);
 	}
 
 	material_phong::~material_phong() {

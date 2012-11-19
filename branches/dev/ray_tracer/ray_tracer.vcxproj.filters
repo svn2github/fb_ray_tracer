@@ -152,6 +152,27 @@
     <ClCompile Include="texture_football.cpp">
       <Filter>bottom-layer\texture</Filter>
     </ClCompile>
+    <ClCompile Include="polyvertex.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_tetrahedron.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_cube.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_octahedron.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_dodecahedron.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_icosahedron.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
+    <ClCompile Include="polyvertex_truncated_icosahedron.cpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -198,6 +219,9 @@
     </Filter>
     <Filter Include="bottom-layer\sampler">
       <UniqueIdentifier>{8a448816-b8d4-4135-9c04-6f8643151816}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\mathematics\polyvertex">
+      <UniqueIdentifier>{1a65341f-5107-4910-9565-87d1cc3c1ba6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -356,6 +380,27 @@
     </ClInclude>
     <ClInclude Include="texture_football.hpp">
       <Filter>bottom-layer\texture</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_tetrahedron.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_cube.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_octahedron.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_dodecahedron.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_icosahedron.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
+    </ClInclude>
+    <ClInclude Include="polyvertex_truncated_icosahedron.hpp">
+      <Filter>bottom-layer\mathematics\polyvertex</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
