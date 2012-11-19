@@ -45,25 +45,28 @@ namespace ray_tracer {
 		dest_h = h_;
 		callback_func = callback_func_;
 		callback_param_ptr = callback_param_ptr_;
-		current_coordinate_x = -1;
-		current_coordinate_y = 0;
+		current_x = -1;
+		current_y = 0;
 	}
 
 	void world::render_scene() {
 		colorRGB color;
 		point2D sample_point;
-		int x, y;
 		hitInfo info;
+		int x, y;
 
 		do {
 			/* Get current rendering coordinate. */
 			coordinate_mutex.lock();
-			x = current_coordinate_x + 1;
-			y = current_coordinate_y;
-			if (x == dest_w) x = 0, y += 1;
-			current_coordinate_x = x;
-			current_coordinate_y = y;
-			coordinate_mutex.unlock();
+			if (current_y == dest_h) {
+				coordinate_mutex.unlock();
+				break;
+			} else {
+				current_x += 1;
+				if (current_x == dest_w) current_x = 0, current_y += 1;
+				x = current_x, y = current_y;
+				coordinate_mutex.unlock();
+			}
 			/* Sampling for anti-aliasing. */
 			sampler_iterator sam_iter(sampler_ptr == NULL ? sampler_single_ptr : sampler_ptr);
 			int number_sample = sam_iter.get_sampler_count();
@@ -78,6 +81,6 @@ namespace ray_tracer {
 			color = color / number_sample;
 			color = color.clamp();
 			callback_func(x, y, color, callback_param_ptr);
-		} while (!(current_coordinate_x == dest_w - 1 && current_coordinate_y == dest_h - 1));
+		} while (true);
 	}
 }

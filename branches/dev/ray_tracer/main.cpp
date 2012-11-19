@@ -152,7 +152,7 @@ void test1(SDL_Surface *screen) {
 	l2->set_attenuation(true, 1, 0.0001, 0.00005);
 
 	world.set_ambient(color_white / 5);
-	world.set_sampler(new sampler_jittered(25));
+	// world.set_sampler(new sampler_jittered(25));
 	world.set_camera(cam);
 	world.set_fog(new fog(0.01, 1, color_white));
 	world.add_surface(s1);

@@ -44,7 +44,7 @@ namespace ray_tracer {
 		const camera *camera_ptr;
 		const tracer *tracer_ptr;
 		const sampler *sampler_ptr, *sampler_single_ptr;
-		int dest_w, dest_h, current_coordinate_x, current_coordinate_y;
+		int dest_w, dest_h, current_x, current_y;
 		render_callback_func callback_func;
 		void *callback_param_ptr;
 		std::mutex coordinate_mutex;
