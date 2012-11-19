@@ -4,16 +4,16 @@
 #include "material.hpp"
 #include "BRDF.hpp"
 #include "BRDF_lambertian.hpp"
+#include <memory>
 
 namespace ray_tracer {
 	class material_matte : public material  {
 	public:
 		material_matte();
 		material_matte(const colorRGB &);
-		~material_matte();
 		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 	private:
-		BRDF_lambertian *diffuse_ptr;
+		std::unique_ptr<BRDF_lambertian> diffuse_ptr;
 	};
 }
 

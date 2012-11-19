@@ -1,6 +1,8 @@
 
 #include "polyvertex.hpp"
 #include "convexhull.hpp"
+#include <functional>
+#include <algorithm>
 
 namespace ray_tracer {
 
@@ -11,11 +13,11 @@ namespace ray_tracer {
 	}
 	
 	void polyvertex::reflect() {
-		int sz = vertices.size();
+		std::vector<point3D> reflected(vertices.size());
 
-		for (int i = 0; i < sz; ++i) {
-			vertices.push_back(-vertices[i]);
-		}
+		std::transform(vertices.begin(), vertices.end(), reflected.begin(), std::negate<point3D>());
+		vertices.resize(vertices.size() + vertices.size());
+		std::copy_backward(reflected.begin(), reflected.end(), vertices.end());
 	}
 
 	void polyvertex::subdivide(int depth) {
