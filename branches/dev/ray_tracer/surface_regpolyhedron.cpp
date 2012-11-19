@@ -18,28 +18,29 @@
 
 namespace ray_tracer {
 
-	surface_regpolyhedron::surface_regpolyhedron(int f, double r, const point3D &c) {
+	surface_regpolyhedron::surface_regpolyhedron(double radius, const point3D &center, int face, int div) {
 		std::unique_ptr<polyvertex> vertices_ptr;
 		std::vector<point3D> vertices;
 
-		if (f == 4) {
+		if (face == 4) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_tetrahedron);
-		} else if (f == 6) {
+		} else if (face == 6) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_cube);
-		} else if (f == 8) {
+		} else if (face == 8) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_octahedron);
-		} else if (f == 12) {
+		} else if (face == 12) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_dodecahedron);
-		} else if (f == 20) {
+		} else if (face == 20) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_icosahedron);
-		} else if (f == 32) {
+		} else if (face == 32) {
 			vertices_ptr = std::unique_ptr<polyvertex>(new polyvertex_truncated_icosahedron);
 		}
+		if (div > 0) vertices_ptr->subdivide(div);
 		vertices = vertices_ptr->get_vertices();
-		std::transform(vertices.begin(), vertices.end(), vertices.begin(), vertices_transformer(r, vector3D(c.x, c.y, c.z)));
+		std::transform(vertices.begin(), vertices.end(), vertices.begin(), vertices_transformer(radius, vector3D(center.x, center.y, center.z)));
 		construct(vertices);
 
-		bounding_surface_ptr = std::unique_ptr<const surface>(new surface_sphere(c, r));
+		bounding_surface_ptr = std::unique_ptr<const surface>(new surface_sphere(center, radius));
 	}
 
 }
