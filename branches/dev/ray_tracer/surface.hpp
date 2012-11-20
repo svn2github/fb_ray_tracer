@@ -22,8 +22,7 @@ namespace ray_tracer {
 		/** Return a negative value if missed. */
 		/** Hit surface pointer remains unchanged if not compound. */
 		virtual double hit(const ray &, const surface **) const; 
-		virtual vector3D get_normal_vector(const point3D &) const;
-		virtual point3D get_local_point(const point3D &) const;
+		virtual vector3D atnormal(const point3D &) const;
 		colorRGB material_shade(hitInfo *, const colorRGB &, const vector3D &, const vector3D &) const;
 		virtual void set_material(const material *);
 		colorRGB texture_shade(hitInfo *) const;

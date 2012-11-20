@@ -9,7 +9,7 @@ namespace ray_tracer {
 		return find_root(emission_ray.origin, emission_ray.dir);
 	}
 
-	vector3D surface_quadratic::get_normal_vector(const point3D &point) const {
+	vector3D surface_quadratic::atnormal(const point3D &point) const {
 		return vector3D(gradient_x(point), gradient_y(point), gradient_z(point)).normalized(); 
 	}
 }

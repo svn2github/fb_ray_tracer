@@ -11,7 +11,6 @@ namespace ray_tracer {
 	hitInfo::hitInfo() { 
 		hit_time = huge_double;
 		hit_point = point3D(0, 0, 0);
-		hit_local_point = point3D(0, 0, 0);
 		normal = vector3D(0, 0, 0);
 		world_ptr = NULL;
 		surface_ptr = NULL;

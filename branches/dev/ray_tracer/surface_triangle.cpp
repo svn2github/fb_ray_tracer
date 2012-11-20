@@ -24,7 +24,7 @@ namespace ray_tracer {
 		return triangle_hit(emission_ray, v0, v1, v2);
 	}
 
-	vector3D surface_triangle::get_normal_vector(const point3D &point) const {
+	vector3D surface_triangle::atnormal(const point3D &point) const {
 		return normal;
 	}
 }

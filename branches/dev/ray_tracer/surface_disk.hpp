@@ -9,7 +9,7 @@ namespace ray_tracer {
 		surface_disk();
 		surface_disk(const point3D &, const vector3D &, double);
 		double hit(const ray &, const surface **) const;
-		vector3D get_normal_vector(const point3D &) const;
+		vector3D atnormal(const point3D &) const;
 	private:
 		point3D center;
 		vector3D normal;

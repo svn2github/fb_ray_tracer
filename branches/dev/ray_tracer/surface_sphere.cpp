@@ -38,13 +38,7 @@ namespace ray_tracer {
 		}
 	}
 
-	vector3D surface_sphere::get_normal_vector(const point3D &point) const {
+	vector3D surface_sphere::atnormal(const point3D &point) const {
 		return (point - center).normalized();
-	}
-
-	point3D surface_sphere::get_local_point(const point3D &point) const {
-		vector3D v = point - center;
-
-		return point3D(v.x, v.y, v.z);
 	}
 }

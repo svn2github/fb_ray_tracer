@@ -31,8 +31,7 @@ namespace ray_tracer {
 			info_ptr->hit_time = hit_time;
 			info_ptr->surface_ptr = surface_ptr;
 			info_ptr->hit_point = emission_ray.origin + emission_ray.dir * info_ptr->hit_time;
-			info_ptr->hit_local_point = info_ptr->surface_ptr->get_local_point(info_ptr->hit_point);
-			info_ptr->normal = info_ptr->surface_ptr->get_normal_vector(info_ptr->hit_point);
+			info_ptr->normal = info_ptr->surface_ptr->atnormal(info_ptr->hit_point);
 			info_ptr->emission_ray = emission_ray;
 			return true;
 		} else {

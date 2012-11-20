@@ -21,12 +21,8 @@ namespace ray_tracer {
 		return -1;
 	}
 
-	vector3D surface::get_normal_vector(const point3D &point) const {
+	vector3D surface::atnormal(const point3D &point) const {
 		return vector3D(0, 0, 1);
-	}
-
-	point3D surface::get_local_point(const point3D &point) const {
-		return point3D(0, 0, 0);
 	}
 
 	void surface::set_twoface_shading(bool twoface_) {

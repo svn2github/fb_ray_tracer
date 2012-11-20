@@ -19,7 +19,6 @@ namespace ray_tracer {
 	public:
 		double hit_time;
 		point3D hit_point;
-		point3D hit_local_point; 
 		vector3D normal;
 		const world *world_ptr;
 		const surface *surface_ptr;
