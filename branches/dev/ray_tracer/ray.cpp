@@ -12,4 +12,8 @@ namespace ray_tracer {
 		origin = origin_;
 		dir = dir_;
 	}
+
+	point3D ray::at(double t_) const {
+		return origin + t_ * dir;
+	}
 }

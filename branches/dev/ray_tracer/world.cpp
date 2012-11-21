@@ -30,7 +30,7 @@ namespace ray_tracer {
 		if (surface_ptr != NULL) { 
 			info_ptr->hit_time = hit_time;
 			info_ptr->surface_ptr = surface_ptr;
-			info_ptr->hit_point = emission_ray.origin + emission_ray.dir * info_ptr->hit_time;
+			info_ptr->hit_point = emission_ray.at(info_ptr->hit_time);
 			info_ptr->normal = info_ptr->surface_ptr->atnormal(info_ptr->hit_point);
 			info_ptr->emission_ray = emission_ray;
 			return true;

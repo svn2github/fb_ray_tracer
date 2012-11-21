@@ -11,6 +11,7 @@
 #include "surface.hpp"
 #include "surface_sphere.hpp"
 #include "surface_plane.hpp"
+#include "surface_planeDIY.hpp"
 #include "surface_triangle.hpp"
 #include "surface_quadratic.hpp"
 #include "surface_disk.hpp"
@@ -72,6 +73,10 @@ void render(world &world, SDL_Surface *screen) {
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
+bool func(double x, double y) {
+	return x * x / 3 + y * y / 4 >= 2;
+}
+
 void test1(SDL_Surface *screen) {
 	world world;
 	camera *cam;
@@ -106,7 +111,7 @@ void test1(SDL_Surface *screen) {
 	s2->set_material(m2);
 	s2->set_texture(t2);
 
-	s3 = new surface_plane(point3D(0, 0, -10), vector3D(0, 0, 1));
+	s3 = new surface_planeDIY(point3D(0, 0, -10), vector3D(0, 0, 1), vector3D(1, 0, 0), vector3D(0, 1, 0), func);
 	m3 = new material_matte;
 	s3->set_material(m3);
 	t3 = new texture_checker;
@@ -239,7 +244,7 @@ int main() {
 	}
 
 	DWORD old_time = GetTickCount();
-	test2(screen);
+	test1(screen);
 	printf("Total time used: %dms.\n", GetTickCount() - old_time);
 
 	SDL_Event event;

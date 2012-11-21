@@ -12,6 +12,7 @@ namespace ray_tracer {
 	public:
 		ray();
 		ray(const point3D &, const vector3D &);
+		point3D at(double) const;
 	public:
 		point3D origin;
 		vector3D dir;
