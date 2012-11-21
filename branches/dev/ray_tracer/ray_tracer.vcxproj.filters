@@ -176,6 +176,9 @@
     <ClCompile Include="surface_planeDIY.cpp">
       <Filter>bottom-layer\surface\2D</Filter>
     </ClCompile>
+    <ClCompile Include="vector2D.cpp">
+      <Filter>bottom-layer\basis</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="bottom-layer">
@@ -407,6 +410,9 @@
     </ClInclude>
     <ClInclude Include="surface_planeDIY.hpp">
       <Filter>bottom-layer\surface\2D</Filter>
+    </ClInclude>
+    <ClInclude Include="vector2D.hpp">
+      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

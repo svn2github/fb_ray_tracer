@@ -73,8 +73,22 @@ void render(world &world, SDL_Surface *screen) {
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
+bool in_sierpinski(int depth, const point2D &v1, const point2D &v2, const point2D &v3, const point2D &v0) {
+	if (dblcmp((v2 - v1) ^ (v0 - v1)) < 0) return false;
+	if (dblcmp((v3 - v2) ^ (v0 - v2)) < 0) return false;
+	if (dblcmp((v1 - v3) ^ (v0 - v3)) < 0) return false;
+	if (depth == 0) return true;
+	point2D v4 = (v1 + v2) / 2, v5 = (v2 + v3) / 2, v6 = (v3 + v1) / 2;
+	if (in_sierpinski(depth - 1, v1, v4, v6, v0)) return true;
+	if (in_sierpinski(depth - 1, v4, v2, v5, v0)) return true;
+	if (in_sierpinski(depth - 1, v6, v5, v3, v0)) return true;
+	return false;
+}
+
+const double triradius = 25, sqrt3 = sqrt(3);
+
 bool func(double x, double y) {
-	return x * x / 3 + y * y / 4 >= 2;
+	return in_sierpinski(5, point2D(0, triradius), point2D(-triradius * sqrt3 / 2, -triradius / 2), point2D(triradius * sqrt3 / 2, -triradius / 2), point2D(x, y));
 }
 
 void test1(SDL_Surface *screen) {
@@ -111,11 +125,11 @@ void test1(SDL_Surface *screen) {
 	s2->set_material(m2);
 	s2->set_texture(t2);
 
-	s3 = new surface_planeDIY(point3D(0, 0, -10), vector3D(0, 0, 1), vector3D(1, 0, 0), vector3D(0, 1, 0), func);
+	s3 = new surface_planeDIY(point3D(10, 0, -10), vector3D(0, 0, 1), vector3D(0, 1, 0), vector3D(1, 0, 0), func);
 	m3 = new material_matte;
 	s3->set_material(m3);
 	t3 = new texture_checker;
-	s3->set_texture(t3);
+	s3->set_texture(new texture_solid_color(color_black));
 
 	s4 = new surface_quadratic();
 	s4->coef_xx = 1, s4->coef_yy = 1, s4->coef_y = -5, s4->coef_const = -8;

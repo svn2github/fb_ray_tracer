@@ -132,6 +132,7 @@
     <ClCompile Include="colorRGB.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="surface_plane.cpp" />
+    <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="vector3D.cpp" />
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="texture_solid_color.hpp" />
     <ClInclude Include="ray.hpp" />
     <ClInclude Include="triangle_hit.hpp" />
+    <ClInclude Include="vector2D.hpp" />
     <ClInclude Include="vector3D.hpp" />
     <ClInclude Include="tracer.hpp" />
     <ClInclude Include="world.hpp" />
