@@ -4,15 +4,11 @@
 namespace ray_tracer {
 
 	colorRGB::colorRGB() {
-		r = 0;
-		g = 0;
-		b = 0;
+		r = 0, g = 0, b = 0;
 	}
 
 	colorRGB::colorRGB(double r_, double g_, double b_) {
-		r = r_;
-		g = g_;
-		b = b_;
+		r = r_, g = g_, b = b_;
 	}
 
 	colorRGB::colorRGB(int color_) {

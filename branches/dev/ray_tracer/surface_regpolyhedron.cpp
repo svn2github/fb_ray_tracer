@@ -37,7 +37,7 @@ namespace ray_tracer {
 		}
 		if (div > 0) vertices_ptr->subdivide(div);
 		vertices = vertices_ptr->get_vertices();
-		std::transform(vertices.begin(), vertices.end(), vertices.begin(), vertices_transformer(radius, vector3D(center.x, center.y, center.z)));
+		std::transform(vertices.begin(), vertices.end(), vertices.begin(), [=](const point3D &p) { return radius * p.normalized() + center; });
 		construct(vertices);
 
 		bounding_surface_ptr = std::unique_ptr<const surface>(new surface_sphere(center, radius));
