@@ -9,6 +9,7 @@
 #include "ray.hpp"
 #include "material.hpp"
 #include "texture.hpp"
+#include "transformation.hpp"
 
 namespace ray_tracer {
 	class surface {
@@ -27,13 +28,18 @@ namespace ray_tracer {
 		virtual void set_material(const material *);
 		colorRGB texture_shade(hitInfo *) const;
 		virtual void set_texture(const texture *);
-		virtual void set_twoface_shading(bool);
+		virtual void set_bifaced(bool);
+		virtual void set_transform_center(const point3D &);
+		virtual void clear_transformation();
+		virtual void apply_transformation(const transformation &);
 	protected:
 		std::unique_ptr<const surface> bounding_surface_ptr;
 		const surface *attached_surface_ptr;
 		const material *material_ptr;
 		const texture *texture_ptr;
-		bool twoface_shading;
+		bool bifaced, transformed;
+		point3D transform_center;
+		transformation transform;
 	};
 }
 

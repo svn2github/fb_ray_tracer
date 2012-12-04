@@ -37,6 +37,9 @@
 #include "sampler.hpp"
 #include "sampler_random.hpp"
 #include "sampler_jittered.hpp"
+#include "transformation.hpp"
+#include "scaling_transformation.hpp"
+#include "translation_transformation.hpp"
 
 using namespace ray_tracer;
 
@@ -162,6 +165,9 @@ void test1(SDL_Surface *screen) {
 	surface_regpolyhedron *s8 = new surface_regpolyhedron(5, point3D(5, -5, -5), 32);
 	s8->set_material(m3);
 	s8->set_texture(new texture_football);
+	s8->set_transform_center(point3D(5, -5, -5));
+	s8->apply_transformation(scaling_transformation(1.2, 1.2, 1));
+	s8->apply_transformation(translation_transformation(0, -1, 0));
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-20, 0, 10), color_white);

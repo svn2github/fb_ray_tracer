@@ -10,6 +10,7 @@
 namespace ray_tracer {
 
 	world::world() {
+		surfaces.global_surface = true;
 		tracer_ptr = new tracer;
 		sampler_ptr = NULL;
 		sampler_single_ptr = new sampler_single(1);

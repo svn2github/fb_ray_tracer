@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="convexhull.cpp" />
+    <ClCompile Include="matrix4D.cpp" />
     <ClCompile Include="polyvertex.cpp" />
     <ClCompile Include="polyvertex_cube.cpp" />
     <ClCompile Include="polyvertex_dodecahedron.cpp" />
@@ -103,6 +104,7 @@
     <ClCompile Include="light_area.cpp" />
     <ClCompile Include="material_mirror.cpp" />
     <ClCompile Include="sampler_single.cpp" />
+    <ClCompile Include="scaling_transformation.cpp" />
     <ClCompile Include="surface_compound.cpp" />
     <ClCompile Include="surface_convexhull.cpp" />
     <ClCompile Include="surface_planeDIY.cpp" />
@@ -132,11 +134,14 @@
     <ClCompile Include="colorRGB.cpp" />
     <ClCompile Include="surface.cpp" />
     <ClCompile Include="surface_plane.cpp" />
+    <ClCompile Include="transformation.cpp" />
+    <ClCompile Include="translation_transformation.cpp" />
     <ClCompile Include="vector2D.cpp" />
     <ClCompile Include="vector3D.cpp" />
     <ClCompile Include="tracer.cpp" />
     <ClCompile Include="surface_sphere.cpp" />
     <ClInclude Include="convexhull.hpp" />
+    <ClInclude Include="matrix4D.hpp" />
     <ClInclude Include="polyvertex.hpp" />
     <ClInclude Include="polyvertex_cube.hpp" />
     <ClInclude Include="polyvertex_dodecahedron.hpp" />
@@ -163,6 +168,7 @@
     <ClInclude Include="light_area.hpp" />
     <ClInclude Include="material_mirror.hpp" />
     <ClInclude Include="sampler_single.hpp" />
+    <ClInclude Include="scaling_transformation.hpp" />
     <ClInclude Include="surface_compound.hpp" />
     <ClInclude Include="surface_convexhull.hpp" />
     <ClInclude Include="surface_planeDIY.hpp" />
@@ -195,6 +201,8 @@
     <ClInclude Include="texture_image.hpp" />
     <ClInclude Include="texture_solid_color.hpp" />
     <ClInclude Include="ray.hpp" />
+    <ClInclude Include="transformation.hpp" />
+    <ClInclude Include="translation_transformation.hpp" />
     <ClInclude Include="triangle_hit.hpp" />
     <ClInclude Include="vector2D.hpp" />
     <ClInclude Include="vector3D.hpp" />

@@ -4,10 +4,13 @@
 #include "vector3D.hpp"
 
 namespace ray_tracer {
+	
+	class matrix4D;
 	class matrix3D {
 	public:
 		matrix3D();
 		matrix3D transpose() const;
+		matrix4D convert4D() const;
 		friend matrix3D operator*(const matrix3D &, const matrix3D &);
 		friend vector3D operator*(const matrix3D &, const vector3D &);
 	public:

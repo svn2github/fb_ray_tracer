@@ -8,7 +8,8 @@ namespace ray_tracer {
 		attached_surface_ptr = NULL;
 		material_ptr = NULL;
 		texture_ptr = NULL;
-		twoface_shading = false;
+		bifaced = false;
+		clear_transformation();
 	}
 
 	surface::~surface() { }
@@ -25,16 +26,31 @@ namespace ray_tracer {
 		return vector3D(0, 0, 1);
 	}
 
-	void surface::set_twoface_shading(bool twoface_) {
-		twoface_shading = twoface_;
-	}
-
 	void surface::set_material(const material *material_ptr_) {
 		material_ptr = material_ptr_;
 	}
 
 	void surface::set_texture(const texture *texture_ptr_) {
 		texture_ptr = texture_ptr_;
+	}
+
+	void surface::set_bifaced(bool twoface_) {
+		bifaced = twoface_;
+	}
+
+	void surface::set_transform_center(const point3D &center_) {
+		transform_center = center_;
+	}
+
+	void surface::clear_transformation() {
+		transformed = false;
+		transform_center = point3D(0, 0, 0);
+		transform = transformation();
+	}
+
+	void surface::apply_transformation(const transformation &transform_) {
+		transformed = true;
+		transform = transform_ * transform;
 	}
 
 	colorRGB surface::material_shade(hitInfo *info_ptr, const colorRGB &surface_color, const vector3D &win, const vector3D &wout) const {

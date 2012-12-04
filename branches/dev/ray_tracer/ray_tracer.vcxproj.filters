@@ -8,15 +8,6 @@
     <ClCompile Include="world.cpp">
       <Filter>bottom-layer</Filter>
     </ClCompile>
-    <ClCompile Include="vector3D.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="point3D.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
-    <ClCompile Include="colorRGB.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="surface.cpp">
       <Filter>bottom-layer\surface</Filter>
     </ClCompile>
@@ -32,9 +23,6 @@
     <ClCompile Include="sampler.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
-    <ClCompile Include="point2D.cpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClCompile>
     <ClCompile Include="sampler_random.cpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClCompile>
@@ -49,9 +37,6 @@
     </ClCompile>
     <ClCompile Include="sampler_jittered.cpp">
       <Filter>bottom-layer\sampler</Filter>
-    </ClCompile>
-    <ClCompile Include="matrix3D.cpp">
-      <Filter>bottom-layer\basis</Filter>
     </ClCompile>
     <ClCompile Include="material.cpp">
       <Filter>bottom-layer\mathematics\material</Filter>
@@ -176,8 +161,35 @@
     <ClCompile Include="surface_planeDIY.cpp">
       <Filter>bottom-layer\surface\2D</Filter>
     </ClCompile>
+    <ClCompile Include="vector3D.cpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClCompile>
     <ClCompile Include="vector2D.cpp">
-      <Filter>bottom-layer\basis</Filter>
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="point3D.cpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="point2D.cpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClCompile>
+    <ClCompile Include="colorRGB.cpp">
+      <Filter>bottom-layer\basis\color</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix3D.cpp">
+      <Filter>bottom-layer\basis\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix4D.cpp">
+      <Filter>bottom-layer\basis\matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="transformation.cpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
+    </ClCompile>
+    <ClCompile Include="scaling_transformation.cpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
+    </ClCompile>
+    <ClCompile Include="translation_transformation.cpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +241,18 @@
     <Filter Include="bottom-layer\mathematics\material\BRDF">
       <UniqueIdentifier>{5a781ca3-da1d-4507-b98b-7d4733377557}</UniqueIdentifier>
     </Filter>
+    <Filter Include="bottom-layer\basis\vector">
+      <UniqueIdentifier>{56c7ab71-2843-4e17-a890-3616856a2981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\basis\color">
+      <UniqueIdentifier>{b66bf6d7-c19f-4745-aa43-9250e91b21a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\basis\transformation">
+      <UniqueIdentifier>{7814c546-3794-462b-93dc-501ff4c913d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bottom-layer\basis\matrix">
+      <UniqueIdentifier>{07388b61-a6dd-44be-b280-c9d492bb0928}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray.hpp">
@@ -236,15 +260,6 @@
     </ClInclude>
     <ClInclude Include="world.hpp">
       <Filter>bottom-layer</Filter>
-    </ClInclude>
-    <ClInclude Include="vector3D.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="point3D.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
-    <ClInclude Include="colorRGB.hpp">
-      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
     <ClInclude Include="surface.hpp">
       <Filter>bottom-layer\surface</Filter>
@@ -264,9 +279,6 @@
     <ClInclude Include="sampler.hpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
-    <ClInclude Include="point2D.hpp">
-      <Filter>bottom-layer\basis</Filter>
-    </ClInclude>
     <ClInclude Include="sampler_random.hpp">
       <Filter>bottom-layer\sampler</Filter>
     </ClInclude>
@@ -278,9 +290,6 @@
     </ClInclude>
     <ClInclude Include="sampler_jittered.hpp">
       <Filter>bottom-layer\sampler</Filter>
-    </ClInclude>
-    <ClInclude Include="matrix3D.hpp">
-      <Filter>bottom-layer\basis</Filter>
     </ClInclude>
     <ClInclude Include="material.hpp">
       <Filter>bottom-layer\mathematics\material</Filter>
@@ -411,8 +420,35 @@
     <ClInclude Include="surface_planeDIY.hpp">
       <Filter>bottom-layer\surface\2D</Filter>
     </ClInclude>
+    <ClInclude Include="vector3D.hpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClInclude>
     <ClInclude Include="vector2D.hpp">
-      <Filter>bottom-layer\basis</Filter>
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="point3D.hpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="point2D.hpp">
+      <Filter>bottom-layer\basis\vector</Filter>
+    </ClInclude>
+    <ClInclude Include="colorRGB.hpp">
+      <Filter>bottom-layer\basis\color</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix3D.hpp">
+      <Filter>bottom-layer\basis\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix4D.hpp">
+      <Filter>bottom-layer\basis\matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="transformation.hpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
+    </ClInclude>
+    <ClInclude Include="scaling_transformation.hpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
+    </ClInclude>
+    <ClInclude Include="translation_transformation.hpp">
+      <Filter>bottom-layer\basis\transformation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

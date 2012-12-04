@@ -1,5 +1,6 @@
 
 #include "matrix3D.hpp"
+#include "matrix4D.hpp"
 
 namespace ray_tracer {
 
@@ -19,6 +20,18 @@ namespace ray_tracer {
 				result.value[i][j] = value[j][i];
 			}
 		}
+		return result;
+	}
+
+	matrix4D matrix3D::convert4D() const {
+		matrix4D result;
+
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				result.value[i][j] = value[i][j];
+			}
+		}
+		result.value[3][3] = 1;
 		return result;
 	}
 }

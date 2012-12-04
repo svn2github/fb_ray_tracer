@@ -16,4 +16,8 @@ namespace ray_tracer {
 	point3D ray::at(double t_) const {
 		return origin + t_ * dir;
 	}
+
+	ray ray::inv_transform(const transformation &trans, const point3D &center) const {
+		return ray(center + trans.inv_matrix * (origin - center), trans.inv_matrix ^ dir);
+	}
 }

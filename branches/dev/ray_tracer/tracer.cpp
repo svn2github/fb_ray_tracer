@@ -16,7 +16,7 @@ namespace ray_tracer {
 		if (light_ptr->in_range(info_ptr) && !light_ptr->under_shadow(info_ptr)) {
 			wout = (light_ptr->get_light_origin(info_ptr) - info_ptr->hit_point).normalized();
 			temp = info_ptr->normal * wout; 
-			if (temp < epsilon && info_ptr->surface_ptr->twoface_shading) {
+			if (temp < epsilon && info_ptr->surface_ptr->bifaced) {
 				info_ptr->normal = -info_ptr->normal;
 				temp = -temp;
 			}
