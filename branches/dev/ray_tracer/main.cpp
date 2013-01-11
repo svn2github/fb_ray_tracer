@@ -76,6 +76,7 @@ void render(world &world, SDL_Surface *screen) {
 	SDL_SaveBMP(screen, "C:\\Users\\ForeverBell\\Desktop\\a.bmp");
 }
 
+/*
 bool in_sierpinski(int depth, const point2D &v1, const point2D &v2, const point2D &v3, const point2D &v0) {
 	if (dblcmp((v2 - v1) ^ (v0 - v1)) < 0) return false;
 	if (dblcmp((v3 - v2) ^ (v0 - v2)) < 0) return false;
@@ -93,6 +94,7 @@ const double triradius = 25, sqrt3 = sqrt(3);
 bool func(double x, double y) {
 	return in_sierpinski(5, point2D(0, triradius), point2D(-triradius * sqrt3 / 2, -triradius / 2), point2D(triradius * sqrt3 / 2, -triradius / 2), point2D(x, y));
 }
+*/
 
 void test1(SDL_Surface *screen) {
 	world world;
@@ -128,11 +130,11 @@ void test1(SDL_Surface *screen) {
 	s2->set_material(m2);
 	s2->set_texture(t2);
 
-	s3 = new surface_planeDIY(point3D(10, 0, -10), vector3D(0, 0, 1), vector3D(0, 1, 0), vector3D(1, 0, 0), func);
+	s3 = new surface_plane(point3D(10, 0, -10), vector3D(0, 0, 1));
 	m3 = new material_matte;
 	s3->set_material(m3);
 	t3 = new texture_checker;
-	s3->set_texture(new texture_solid_color(color_black));
+	s3->set_texture(t3);
 
 	s4 = new surface_quadratic();
 	s4->coef_xx = 1, s4->coef_yy = 1, s4->coef_y = -5, s4->coef_const = -8;
@@ -165,9 +167,6 @@ void test1(SDL_Surface *screen) {
 	surface_regpolyhedron *s8 = new surface_regpolyhedron(5, point3D(5, -5, -5), 32);
 	s8->set_material(m3);
 	s8->set_texture(new texture_football);
-	s8->set_transform_center(point3D(5, -5, -5));
-	s8->apply_transformation(scaling_transformation(1.2, 1.2, 1));
-	s8->apply_transformation(translation_transformation(0, -1, 0));
 
 	// l = new light_point(point3D(0, 0, 0), color_white);
 	l = new light_point(point3D(-20, 0, 10), color_white);
